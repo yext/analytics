@@ -18,7 +18,6 @@ jobs:
       with:
         node-version: 15.x
     - run: npm ci
-    - run: npx gulp templates
     - run: npx jest --coverage
     - name: Coveralls
       uses: coverallsapp/github-action@master
