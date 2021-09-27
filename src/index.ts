@@ -6,7 +6,7 @@ import { Requester } from './infra/Requester';
  * The entrypoint to the answers-analytics library.
  *
  * @remarks
- * Returns an {@link AnswersAnalytics} instance.
+ * Returns an {@link AnswersReporter} instance.
  *
  * @param config - The answers-analytics config
  *

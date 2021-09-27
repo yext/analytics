@@ -9,5 +9,5 @@ export interface RequesterService {
    * @param url - The URL to send the request to
    * @param body - The data to be included with the request
    */
-  beacon<T>(url: string, body: RequestData): boolean;
+  beacon(url: string, body: RequestData): boolean;
 }

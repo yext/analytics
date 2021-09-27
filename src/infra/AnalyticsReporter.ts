@@ -3,14 +3,14 @@ import { AnalyticsConfig } from '../models/AnalyticsConfig';
 import { RequesterService } from '../services/RequesterService';
 import { AnalyticsEvent } from '../models/AnalyticsEvent';
 import { RequestData } from '../models/RequestData';
-import { AnalyticsMetadata } from '../models/AnalyticsMetadata';
+import { AnalyticsResponse } from '../models/AnalyticsResponse';
 
 const defaultDomain = 'https://answers.yext-pixel.com';
 
 export class AnalyticsReporter implements AnalyticsService {
   constructor(private config: AnalyticsConfig, private RequesterService: RequesterService) {};
 
-  report (event: AnalyticsEvent, additionalData?: RequestData): AnalyticsMetadata {
+  report (event: AnalyticsEvent, additionalData?: RequestData): AnalyticsResponse {
     const domain = this.config.domain ?? defaultDomain;
     const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
     const data = {

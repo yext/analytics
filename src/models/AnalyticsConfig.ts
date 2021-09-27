@@ -1,7 +1,7 @@
 import { AnalyticsEventData } from "./AnalyticsEventData";
 
 /**
- * The main configuration options for {@link AnswersCore}.
+ * The main configuration options for the {@link AnalyticsReporter}.
  *
  * @public
  */
