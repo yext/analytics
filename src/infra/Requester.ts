@@ -1,11 +1,11 @@
 import { RequesterService } from '../services/RequesterService';
-import { RequestData } from '../models/RequestData';
+import { BeaconPayload } from '../models/BeaconPayload';
 
 /**
  * Responsible for making web requests
  */
 export class Requester implements RequesterService {
-  beacon(url: string, body: RequestData): boolean {
+  beacon(url: string, body: BeaconPayload): boolean {
     return true;
   }
 };

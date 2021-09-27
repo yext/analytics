@@ -48,10 +48,10 @@ it('The data is structured properly', () => {
 it('Additional params are sent properly', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
-  const additionalData = {
+  const additionalRequestAttributes = {
     ytag: 123
   };
-  analyticsReporter.report(event, additionalData);
+  analyticsReporter.report(event, additionalRequestAttributes);
   const expectedData = {
     data: {
       businessId: 123,
@@ -59,7 +59,7 @@ it('Additional params are sent properly', () => {
       experienceKey: 'yext',
       experienceVersion: 'PRODUCTION'
     },
-    ...additionalData
+    ...additionalRequestAttributes
   };
   expect(mockRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
