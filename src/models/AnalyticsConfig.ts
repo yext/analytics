@@ -14,6 +14,6 @@ export interface AnalyticsConfig {
   businessId: number,
   /** The domain to send the requests to */
   domain?: string,
-  /** Options added to every analytics event */
-  baseOptions?: AnalyticsEventData
+  /** Data added to every analytics event */
+  baseData?: AnalyticsEventData
 }

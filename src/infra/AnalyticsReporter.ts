@@ -18,7 +18,8 @@ export class AnalyticsReporter implements AnalyticsService {
       businessId: this.config.businessId,
       experienceKey: this.config.experienceKey,
       experienceVersion: this.config.experienceVersion,
-      ...event.data
+      ...this.config.baseData,
+      ...event.data,
     }
     const successfullyQueued = this.RequesterService.beacon(url, { data, ...additionalData });
     return successfullyQueued
