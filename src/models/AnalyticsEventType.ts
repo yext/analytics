@@ -7,10 +7,23 @@ export enum AnalyticsEventTypeEnum {
   QuestionSubmit = 'QUESTION_SUBMIT',
   RowExpand = 'ROW_EXPAND',
   RowCollapse = 'ROW_COLLAPSE',
-  CtaClick = 'CTA_CLICK',
   ThumbsUp = 'THUMBS_UP',
   ThumbsDown = 'THUMBS_DOWN',
-  TapToCall = 'TAP_TO_CALL'
+  VoiceStart = 'VOICE_SEARCH',
+  VoiceStop = 'VOICE_STOP',
+
+  // CTA event types
+  TitleClick = 'TITLE_CLICK',
+  CtaClick = 'CTA_CLICK',
+  TapToCall = 'TAP_TO_CALL',
+  OrderNow = 'ORDER_NOW',
+  AddToCart = 'ADD_TO_CART',
+  ApplyNow = 'APPLY_NOW',
+  DrivingDirections = 'DRIVING_DIRECTIONS',
+  ViewWebsite = 'VIEW_WEBSITE',
+  Email = 'EMAIL',
+  BookAppointment = 'BOOK_APPOINTMENT',
+  Rsvp = 'RSVP'
 }
 
 // Use a template literal type to create a union of string literal types based on the enum values
