@@ -1,6 +1,6 @@
 import { AnalyticsConfig } from './models/AnalyticsConfig';
 import { AnalyticsReporter } from './infra/AnalyticsReporter';
-import { Requester } from './infra/Requester';
+import { HttpRequester } from './infra/HttpRequester';
  
 /**
  * The entrypoint to the answers-analytics library.
@@ -13,7 +13,7 @@ import { Requester } from './infra/Requester';
  * @public
  */
 export function provideAnalytics(config: AnalyticsConfig): AnalyticsReporter {
-  const httpRequester = new Requester();
+  const httpRequester = new HttpRequester();
 
   return new AnalyticsReporter(config, httpRequester);
 }

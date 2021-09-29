@@ -1,19 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es2015",
-    "outDir": "lib",
-    "esModuleInterop": true,
     "strict": true,
+    "esModuleInterop": true,
     "skipLibCheck": true,
-    "module": "es6",
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true,
-    // "jsx": "react-jsx"
+    "sourceMap": true
   },
-  "include": [
-    "src"
-  ]
+  "include": [ "src/**/*" ],
+  "exclude": [ "node_modules" ]
 }
