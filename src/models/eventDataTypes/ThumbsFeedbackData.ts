@@ -4,10 +4,10 @@ import { AnalyticsEventData } from "../AnalyticsEventData";
 export interface ThumbsFeedbackData extends AnalyticsEventData {
   /** {@inheritdoc CtaData.directAnswer} */
   directAnswer: boolean,
-  /** {@inheritdoc CtaData.searcher} */
-  searcher?: string,
   /** {@inheritdoc CtaData.verticalKey} */
   verticalKey?: string,
   /** {@inheritdoc CtaData.entityId} */
-  entityId?: string
+  entityId?: string,
+  /** {@inheritdoc CtaData.searcher} */
+  searcher?: string
 }

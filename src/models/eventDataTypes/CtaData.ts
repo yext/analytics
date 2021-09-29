@@ -10,10 +10,10 @@ export interface CtaData extends AnalyticsEventData {
    * results.
    */
   verticalKey: string,
-  /** Whether it was on universal or vertical search ('UNIVERSAL' or 'VERTICAL'). */
-  searcher: string,
   /** The entity ID for the entity. */
   entityId: string,
+  /** Whether it was on universal or vertical search ('UNIVERSAL' or 'VERTICAL'). */
+  searcher: string,
   /** The url of the event target. */
   url: string,
   /** (Optional) The name of the Rich Text field used. */
