@@ -1,9 +1,10 @@
 import { AnalyticsEventData } from "../AnalyticsEventData";
+import { Searcher } from "../Searcher";
 
 /** Data for submitting a question (QuestionFocus and QuestionSubmit). */
 export interface QuestionSubmissionData extends AnalyticsEventData {
-  /** {@inheritdoc CtaData.verticalKey} */
+  /** {@inheritDoc CtaData.verticalKey} */
   verticalKey: string,
-  /** {@inheritdoc CtaData.searcher} */
-  searcher: string
+  /** {@inheritDoc CtaData.searcher} */
+  searcher: Searcher
 }

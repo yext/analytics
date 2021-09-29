@@ -1,13 +1,14 @@
 import { AnalyticsEventData } from "../AnalyticsEventData";
+import { Searcher } from "../Searcher";
 
 /** Data for CtaClick event when video is played. */
 export interface VideoPlayData extends AnalyticsEventData {
-  /** {@inheritdoc CtaData.verticalKey} */
+  /** {@inheritDoc CtaData.verticalKey} */
   verticalKey: string,
-  /** {@inheritdoc CtaData.entityId} */
+  /** {@inheritDoc CtaData.entityId} */
   entityId: string,
-  /** {@inheritdoc CtaData.searcher} */
-  searcher: string,
+  /** {@inheritDoc CtaData.searcher} */
+  searcher: Searcher,
   /** The label for this CTA event. */
   ctaLabel: 'video_played'
 }

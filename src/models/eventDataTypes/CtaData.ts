@@ -1,4 +1,6 @@
 import { AnalyticsEventData } from "../AnalyticsEventData";
+import { Searcher } from "../Searcher";
+
 
 /** Data for CTA analytics event types. */
 export interface CtaData extends AnalyticsEventData {
@@ -12,10 +14,10 @@ export interface CtaData extends AnalyticsEventData {
   verticalKey: string,
   /** The entity ID for the entity. */
   entityId: string,
-  /** Whether it was on universal or vertical search ('UNIVERSAL' or 'VERTICAL'). */
-  searcher: string,
+  /** Whether it was on universal or vertical search. */
+  searcher: Searcher,
   /** The url of the event target. */
   url: string,
-  /** (Optional) The name of the Rich Text field used. */
+  /** The name of the Rich Text field used. */
   fieldName?: string
 }

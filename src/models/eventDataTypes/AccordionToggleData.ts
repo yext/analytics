@@ -1,11 +1,12 @@
 import { AnalyticsEventData } from "../AnalyticsEventData";
+import { Searcher } from "../Searcher";
 
 /** Data for expanding or collapsing an accordion row (RowExpand and RowCollapse). */
 export interface AccordionToggleData extends AnalyticsEventData {
-  /** {@inheritdoc CtaData.verticalKey} */
+  /** {@inheritDoc CtaData.verticalKey} */
   verticalKey: string,
-  /** {@inheritdoc CtaData.entityId} */
+  /** {@inheritDoc CtaData.entityId} */
   entityId: string,
-  /** {@inheritdoc CtaData.searcher} */
-  searcher?: string
+  /** {@inheritDoc CtaData.searcher} */
+  searcher?: Searcher
 }
