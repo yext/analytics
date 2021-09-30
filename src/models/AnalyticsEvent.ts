@@ -8,5 +8,10 @@ export class AnalyticsEvent {
   constructor(
     public eventType: AnalyticsEventType,
     public data?: AnalyticsEventData
-  ) {}
+  ) {
+    if (data?.verticalKey) {
+      data.verticalConfigId = data.verticalKey;
+      delete data.verticalKey;
+    }
+  }
 }
