@@ -1,5 +1,5 @@
-import { AnalyticsEventData } from "../AnalyticsEventData";
-import { Searcher } from "../Searcher";
+import { AnalyticsEventData } from '../AnalyticsEventData';
+import { Searcher } from '../Searcher';
 
 /** Data for expanding or collapsing an accordion row (RowExpand and RowCollapse). */
 export interface AccordionToggleData extends AnalyticsEventData {

@@ -1,5 +1,5 @@
-import { AnalyticsEventData } from "../AnalyticsEventData";
-import { Searcher } from "../Searcher";
+import { AnalyticsEventData } from '../AnalyticsEventData';
+import { Searcher } from '../Searcher';
 
 
 /** Data for CTA analytics event types. */

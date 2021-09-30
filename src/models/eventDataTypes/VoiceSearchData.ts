@@ -1,4 +1,4 @@
-import { AnalyticsEventData } from "../AnalyticsEventData";
+import { AnalyticsEventData } from '../AnalyticsEventData';
 
 /** Data for starting or stopping voice search (VoiceStart and VoiceStop). */
 export interface VoiceSearchData extends AnalyticsEventData {
