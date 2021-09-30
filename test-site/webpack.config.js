@@ -1,5 +1,5 @@
 const path = require('path');
-const CopyPlugin = require("copy-webpack-plugin");
+const CopyPlugin = require('copy-webpack-plugin');
 
 const babelOptions = {
   presets: [['@babel/preset-env', { useBuiltIns: 'entry', corejs: 3, targets: {ie: 11} }]],
@@ -27,7 +27,7 @@ module.exports = [{
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: "src/index.html" },
+        { from: 'src/index.html' },
       ],
     }),
   ],

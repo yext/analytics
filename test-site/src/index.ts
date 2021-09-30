@@ -1,12 +1,12 @@
-import { provideAnalytics, AnalyticsEvent } from '@yext/answers-analytics';
+import { provideAnalytics, AnalyticsEvent, AnalyticsResponse } from '@yext/answers-analytics';
 
 const analytics = provideAnalytics({
   experienceKey: 'rosetest',
   experienceVersion: 'PRODUCTION',
   businessId: 123,
-})
+});
 
-export function fireAnalyticsEvent () {
+export function fireAnalyticsEvent(): AnalyticsResponse {
   const event = new AnalyticsEvent('CTA_CLICK');
-  analytics.report(event);
+  return analytics.report(event);
 }

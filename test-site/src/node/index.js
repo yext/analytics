@@ -4,7 +4,7 @@ const analytics = provideAnalytics({
   experienceKey: 'rosetest',
   experienceVersion: 'PRODUCTION',
   businessId: 123,
-})
+});
 
 const event = new AnalyticsEvent('CTA_CLICK');
 const response = analytics.report(event);

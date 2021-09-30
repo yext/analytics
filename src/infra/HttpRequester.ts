@@ -10,9 +10,9 @@ export class HttpRequester implements HttpRequesterService {
     const data = JSON.stringify(body);
 
     const isNode = typeof(window) === 'undefined';
-    if(isNode) {
-     fetch(url, { method: 'POST', body: data });
-     return true;
+    if (isNode) {
+      fetch(url, { method: 'POST', body: data });
+      return true;
     }
 
     const isBeaconSupported = !!window.navigator?.sendBeacon;
@@ -25,10 +25,11 @@ export class HttpRequester implements HttpRequesterService {
 
   // Navigator.sendBeacon polyfill
   // Combination of the compact Financial Times polyfill:
-  // https://github.com/Financial-Times/polyfill-library/blob/master/polyfills/navigator/sendBeacon/polyfill.js
+  // https://github.com/Financial-Times/
+  // polyfill-library/blob/master/polyfills/navigator/sendBeacon/polyfill.js
   // with the async-by-default behavior of Miguel Mota's polyfill:
   // https://github.com/miguelmota/Navigator.sendBeacon/blob/master/sendbeacon.js
-  _beaconPolyfill(url: string, data: string) : boolean {
+  _beaconPolyfill(url: string, data: string): boolean {
     const event = window.event?.type;
     const sync = event === 'unload' || event === 'beforeunload';
     const xhr = ('XMLHttpRequest' in window) ? new XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -38,4 +39,4 @@ export class HttpRequester implements HttpRequesterService {
     xhr.send(data);
     return true;
   }
-};
+}

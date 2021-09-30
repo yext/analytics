@@ -6,9 +6,9 @@ const config: AnalyticsConfig = {
   experienceKey: 'yext',
   experienceVersion: 'PRODUCTION',
   businessId: 123
-}
+};
 
-const mockHttpRequesterService : HttpRequesterService = { beacon: jest.fn(() => true) };
+const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => true) };
 
 it('The URL is constructed correctly', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
@@ -72,7 +72,7 @@ it('A status of "success" is returned for successful beacons', () => {
 });
 
 it('A status of "error" is returned for unsuccessful beacons', () => {
-  const mockHttpRequesterService : HttpRequesterService = { beacon: jest.fn(() => false) };
+  const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => false) };
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   const metadata = analyticsReporter.report(event);

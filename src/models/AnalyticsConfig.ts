@@ -1,4 +1,4 @@
-import { AnalyticsEventData } from "./AnalyticsEventData";
+import { AnalyticsEventData } from './AnalyticsEventData';
 
 /**
  * The main configuration options for the {@link AnalyticsReporter}.

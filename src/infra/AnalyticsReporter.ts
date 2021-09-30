@@ -8,9 +8,9 @@ import { AnalyticsResponse } from '../models/AnalyticsResponse';
 const defaultDomain = 'https://answers.yext-pixel.com';
 
 export class AnalyticsReporter implements AnalyticsService {
-  constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {};
+  constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {}
 
-  report (event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse {
+  report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse {
     const domain = this.config.domain ?? defaultDomain;
     const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
     const data = {
@@ -20,8 +20,10 @@ export class AnalyticsReporter implements AnalyticsService {
       experienceVersion: this.config.experienceVersion,
       ...this.config.baseData,
       ...event.data,
-    }
-    const successfullyQueued = this.httpRequesterService.beacon(url, { data, ...additionalRequestAttributes });
+    };
+    const successfullyQueued = this.httpRequesterService.beacon(
+      url, { data, ...additionalRequestAttributes }
+    );
     return successfullyQueued
       ? { status: 'success' }
       : { status: 'error', message: 'The useragent failed to queue the data for transfer' };

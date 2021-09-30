@@ -1,7 +1,7 @@
 import { AnalyticsConfig } from './models/AnalyticsConfig';
 import { AnalyticsReporter } from './infra/AnalyticsReporter';
 import { HttpRequester } from './infra/HttpRequester';
- 
+
 /**
  * The entrypoint to the answers-analytics library.
  *
