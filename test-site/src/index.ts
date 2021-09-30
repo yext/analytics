@@ -1,12 +1,17 @@
 import { provideAnalytics, AnalyticsEvent, AnalyticsResponse } from '@yext/answers-analytics';
 
 const analytics = provideAnalytics({
-  experienceKey: 'rosetest',
+  experienceKey: 'slanswers',
   experienceVersion: 'PRODUCTION',
-  businessId: 123,
+  businessId: 3350634,
 });
 
-export function fireAnalyticsEvent(): AnalyticsResponse {
-  const event = new AnalyticsEvent('CTA_CLICK');
-  return analytics.report(event);
+export function fireAnalyticsEvent() {
+  const event = new AnalyticsEvent('CTA_CLICK', {
+    entityId: 1,
+    verticalConfigId: 'people',
+    searcher: 'VERTICAL',
+    queryId: '95751527-9db6-4859-8278-60d1c060b6c0'
+  });
+  analytics.report(event);
 }
