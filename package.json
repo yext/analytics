@@ -3,16 +3,17 @@
   "version": "0.0.0",
   "description": "An analytics library for Yext Answers",
   "author": "slapshot@yext.com",
-  "main": "./lib/index.js",
-  "module": "./lib/index.js",
+  "main": "./lib/commonjs/index.js",
+  "module": "./lib/esm/index.js",
   "files": [
     "lib"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
-    "test": "jest"
+    "test": "jest",
+    "dev": "tsc -p tsconfig.cjs.json --watch"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
@@ -43,5 +44,8 @@
     "testMatch": [
       "<rootDir>/tests/**/*.ts"
     ]
+  },
+  "dependencies": {
+    "cross-fetch": "^3.0.0"
   }
 }

@@ -1,21 +1,21 @@
 import { AnalyticsReporter } from '../../src/infra/AnalyticsReporter';
 import { AnalyticsConfig, AnalyticsEvent } from '../../src/models';
-import { RequesterService } from '../../src/services/RequesterService';
+import { HttpRequesterService } from '../../src/services/HttpRequesterService';
 
 const config: AnalyticsConfig = {
   experienceKey: 'yext',
   experienceVersion: 'PRODUCTION',
   businessId: 123
-}
+};
 
-const mockRequesterService : RequesterService = { beacon: jest.fn(() => true) };
+const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => true) };
 
 it('The URL is constructed correctly', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockRequesterService);
+  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   analyticsReporter.report(event);
   const expectedUrl = `https://answers.yext-pixel.com/realtimeanalytics/data/answers/${config.businessId}`;
-  expect(mockRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The URL is constructed correctly with custom domains', () => {
@@ -23,15 +23,15 @@ it('The URL is constructed correctly with custom domains', () => {
     ...config,
     domain: 'https://yext.com'
   };
-  const analyticsReporter = new AnalyticsReporter(configWithCustomDomain, mockRequesterService);
+  const analyticsReporter = new AnalyticsReporter(configWithCustomDomain, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   analyticsReporter.report(event);
   const expectedUrl = `https://yext.com/realtimeanalytics/data/answers/${config.businessId}`;
-  expect(mockRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The data is structured properly', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockRequesterService);
+  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   analyticsReporter.report(event);
   const expectedData = {
@@ -42,11 +42,11 @@ it('The data is structured properly', () => {
       experienceVersion: 'PRODUCTION'
     }
   };
-  expect(mockRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
+  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
 it('Additional params are sent properly', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockRequesterService);
+  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   const additionalRequestAttributes = {
     ytag: 123
@@ -61,19 +61,19 @@ it('Additional params are sent properly', () => {
     },
     ...additionalRequestAttributes
   };
-  expect(mockRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
+  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
 it('A status of "success" is returned for successful beacons', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockRequesterService);
+  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   const metadata = analyticsReporter.report(event);
   expect(metadata).toEqual({ status: 'success' });
 });
 
 it('A status of "error" is returned for unsuccessful beacons', () => {
-  const mockRequesterService : RequesterService = { beacon: jest.fn(() => false) };
-  const analyticsReporter = new AnalyticsReporter(config, mockRequesterService);
+  const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => false) };
+  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const event = new AnalyticsEvent('THUMBS_UP');
   const metadata = analyticsReporter.report(event);
   expect(metadata).toEqual({ status: 'error', message: expect.anything() });

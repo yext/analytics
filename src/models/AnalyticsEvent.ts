@@ -1,11 +1,11 @@
-import { AnalyticsEventType } from "./AnalyticsEventType";
-import { AnalyticsEventData } from "./AnalyticsEventData";
+import { AnalyticsEventType } from './AnalyticsEventType';
+import { AnalyticsEventData } from './AnalyticsEventData';
 
 /**
  * An analytics event
  */
 export class AnalyticsEvent {
-  constructor (
+  constructor(
     public eventType: AnalyticsEventType,
     public data?: AnalyticsEventData
   ) {
@@ -15,4 +15,3 @@ export class AnalyticsEvent {
     }
   }
 }
-  
