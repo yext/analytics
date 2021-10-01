@@ -11,6 +11,7 @@ export enum AnalyticsEventType {
   ThumbsDown = 'THUMBS_DOWN',
   VoiceStart = 'VOICE_START',
   VoiceStop = 'VOICE_STOP',
+  SearchBarImpression = 'SEARCH_BAR_IMPRESSION',
 
   // CTA event types
   CtaClick = 'CTA_CLICK',
