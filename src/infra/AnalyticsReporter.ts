@@ -19,7 +19,7 @@ export class AnalyticsReporter implements AnalyticsService {
       businessId: this.config.businessId,
       experienceKey: this.config.experienceKey,
       experienceVersion: this.config.experienceVersion,
-      ...this._formatForApi(eventData as Omit<AnalyticsEvent, 'type'>)
+      ...this._formatForApi(eventData)
     };
     const successfullyQueued = this.httpRequesterService.beacon(
       url, { data, ...additionalRequestAttributes }
@@ -34,7 +34,7 @@ export class AnalyticsReporter implements AnalyticsService {
    * @param event The data to format
    * @returns The formatted data
    */
-  _formatForApi(event: BeaconPayload): BeaconPayload {
+  _formatForApi(event: Omit<AnalyticsEvent, 'type'>): BeaconPayload {
     const transformedEvent: BeaconPayload = { ...event };
     if (transformedEvent.verticalKey) {
       transformedEvent.verticalConfigId = transformedEvent.verticalKey;
