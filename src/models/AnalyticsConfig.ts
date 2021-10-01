@@ -13,5 +13,5 @@ export interface AnalyticsConfig {
   /** The domain to send the requests to */
   domain?: string,
   /** Data added to every analytics event */
-  baseData?: Record<string, string>
+  baseData?: Record<string, string | boolean | number>
 }
