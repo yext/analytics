@@ -19,7 +19,7 @@ export class AnalyticsReporter implements AnalyticsService {
       businessId: this.config.businessId,
       experienceKey: this.config.experienceKey,
       experienceVersion: this.config.experienceVersion,
-      ...this._getTransformedEvent(eventData as Omit<AnalyticsEvent, 'type'>)
+      ...this._formatForApi(eventData as Omit<AnalyticsEvent, 'type'>)
     };
     const successfullyQueued = this.httpRequesterService.beacon(
       url, { data, ...additionalRequestAttributes }
@@ -29,7 +29,12 @@ export class AnalyticsReporter implements AnalyticsService {
       : { status: 'error', message: 'The useragent failed to queue the data for transfer' };
   }
 
-  _getTransformedEvent(event: BeaconPayload): BeaconPayload {
+  /**
+   * Formats the event data for the api which includes adapting verticalKey to verticalConfigId
+   * @param event The data to format
+   * @returns The formatted data
+   */
+  _formatForApi(event: BeaconPayload): BeaconPayload {
     const transformedEvent: BeaconPayload = { ...event };
     if (transformedEvent.verticalKey) {
       transformedEvent.verticalConfigId = transformedEvent.verticalKey;
