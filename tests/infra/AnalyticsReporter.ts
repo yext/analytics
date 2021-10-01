@@ -12,8 +12,7 @@ const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => t
 
 it('The URL is constructed correctly', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const event = new AnalyticsEvent('THUMBS_UP');
-  analyticsReporter.report(event);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE' });
   const expectedUrl = `https://answers.yext-pixel.com/realtimeanalytics/data/answers/${config.businessId}`;
   expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
@@ -24,20 +23,18 @@ it('The URL is constructed correctly with custom domains', () => {
     domain: 'https://yext.com'
   };
   const analyticsReporter = new AnalyticsReporter(configWithCustomDomain, mockHttpRequesterService);
-  const event = new AnalyticsEvent('THUMBS_UP');
-  analyticsReporter.report(event);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE' });
   const expectedUrl = `https://yext.com/realtimeanalytics/data/answers/${config.businessId}`;
   expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The data is structured properly', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const event = new AnalyticsEvent('THUMBS_UP');
-  analyticsReporter.report(event);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE' });
   const expectedData = {
     data: {
       businessId: 123,
-      eventType: 'THUMBS_UP',
+      eventType: 'SCROLL_TO_BOTTOM_OF_PAGE',
       experienceKey: 'yext',
       experienceVersion: 'PRODUCTION'
     }
@@ -47,15 +44,14 @@ it('The data is structured properly', () => {
 
 it('Additional params are sent properly', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const event = new AnalyticsEvent('THUMBS_UP');
   const additionalRequestAttributes = {
     ytag: 123
   };
-  analyticsReporter.report(event, additionalRequestAttributes);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE' }, additionalRequestAttributes);
   const expectedData = {
     data: {
       businessId: 123,
-      eventType: 'THUMBS_UP',
+      eventType: 'SCROLL_TO_BOTTOM_OF_PAGE',
       experienceKey: 'yext',
       experienceVersion: 'PRODUCTION'
     },
@@ -66,15 +62,13 @@ it('Additional params are sent properly', () => {
 
 it('A status of "success" is returned for successful beacons', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const event = new AnalyticsEvent('THUMBS_UP');
-  const metadata = analyticsReporter.report(event);
+  const metadata = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE' });
   expect(metadata).toEqual({ status: 'success' });
 });
 
 it('A status of "error" is returned for unsuccessful beacons', () => {
   const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => false) };
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const event = new AnalyticsEvent('THUMBS_UP');
-  const metadata = analyticsReporter.report(event);
+  const metadata = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE' });
   expect(metadata).toEqual({ status: 'error', message: expect.anything() });
 });

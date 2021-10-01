@@ -1,5 +1,5 @@
 import { BeaconPayload } from '../models';
-import { AnalyticsEvent } from '../models/AnalyticsEvent';
+import { AnalyticsEvent } from '../models/events/AnalyticsEvent';
 import { AnalyticsResponse } from '../models/AnalyticsResponse';
 
 /**

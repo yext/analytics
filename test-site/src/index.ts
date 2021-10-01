@@ -1,4 +1,4 @@
-import { provideAnalytics, AnalyticsEvent, AnalyticsResponse } from '@yext/answers-analytics';
+import { provideAnalytics } from '@yext/answers-analytics';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
@@ -7,11 +7,11 @@ const analytics = provideAnalytics({
 });
 
 export function fireAnalyticsEvent() {
-  const event = new AnalyticsEvent('CTA_CLICK', {
-    entityId: 1,
-    verticalConfigId: 'people',
+  analytics.report({
+    type: "CTA_CLICK",
+    entityId: '1',
+    verticalKey: 'people',
     searcher: 'VERTICAL',
     queryId: '95751527-9db6-4859-8278-60d1c060b6c0'
   });
-  analytics.report(event);
 }
