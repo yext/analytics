@@ -1,7 +1,7 @@
 /**
  * Represents the possible analytics event types
  */
-export enum AnalyticsEventTypeEnum {
+export enum AnalyticsEventType {
   ScrollToBottomOfPage = 'SCROLL_TO_BOTTOM_OF_PAGE',
   QuestionFocus = 'QUESTION_FOCUS',
   QuestionSubmit = 'QUESTION_SUBMIT',
@@ -9,12 +9,13 @@ export enum AnalyticsEventTypeEnum {
   RowCollapse = 'ROW_COLLAPSE',
   ThumbsUp = 'THUMBS_UP',
   ThumbsDown = 'THUMBS_DOWN',
-  VoiceStart = 'VOICE_SEARCH',
+  VoiceStart = 'VOICE_START',
   VoiceStop = 'VOICE_STOP',
+  SearchBarImpression = 'SEARCH_BAR_IMPRESSION',
 
   // CTA event types
-  TitleClick = 'TITLE_CLICK',
   CtaClick = 'CTA_CLICK',
+  TitleClick = 'TITLE_CLICK',
   TapToCall = 'TAP_TO_CALL',
   OrderNow = 'ORDER_NOW',
   AddToCart = 'ADD_TO_CART',
@@ -25,6 +26,3 @@ export enum AnalyticsEventTypeEnum {
   BookAppointment = 'BOOK_APPOINTMENT',
   Rsvp = 'RSVP'
 }
-
-// Use a template literal type to create a union of string literal types based on the enum values
-export type AnalyticsEventType = AnalyticsEventTypeEnum | `${AnalyticsEventTypeEnum}`;

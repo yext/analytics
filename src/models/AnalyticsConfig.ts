@@ -1,5 +1,3 @@
-import { AnalyticsEventData } from './AnalyticsEventData';
-
 /**
  * The main configuration options for the {@link AnalyticsReporter}.
  *
@@ -14,6 +12,4 @@ export interface AnalyticsConfig {
   businessId: number,
   /** The domain to send the requests to */
   domain?: string,
-  /** Data added to every analytics event */
-  baseData?: AnalyticsEventData
 }
