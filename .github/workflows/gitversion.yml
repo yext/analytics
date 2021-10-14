@@ -1,6 +1,6 @@
 name: GitTools
 
-on: [pull_request]
+on: [push]
 
 jobs:
   Gitversion:
