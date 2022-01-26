@@ -1,18 +1,18 @@
 {
   "name": "answers-analytics-test-site",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "dev": "webpack --watch",
-    "serve": "serve dist"
+    "serve": "serve dist -p 3030"
   },
   "author": "slapshot@yext.com",
   "devDependencies": {
     "@babel/preset-env": "^7.15.6",
     "copy-webpack-plugin": "^9.0.1",
-    "serve": "^12.0.1",
+    "serve": "^13.0.1",
     "ts-loader": "^9.2.6",
     "webpack": "^5.55.1",
     "webpack-cli": "^4.8.0"
