@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
     "test": "jest",
-    "dev": "tsc -p tsconfig.cjs.json --watch"
+    "dev": "tsc -p tsconfig.cjs.json --watch",
+    "generate-notices": "generate-license-file --input package.json --output THIRD-PARTY-NOTICES --overwrite"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
@@ -23,6 +24,7 @@
     "@typescript-eslint/parser": "^4.28.2",
     "babel-jest": "^27.0.6",
     "eslint": "^7.30.0",
+    "generate-license-file": "^1.3.0",
     "jest": "^27.0.6",
     "typescript": "^4.1.5"
   },
