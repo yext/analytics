@@ -1,5 +1,5 @@
 {
-  "name": "@yext/answers-analytics",
+  "name": "@yext/analytics",
   "version": "0.1.0",
   "description": "An analytics library for Yext Answers",
   "author": "slapshot@yext.com",
