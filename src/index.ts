@@ -1,6 +1,7 @@
 import { AnalyticsConfig } from './models/AnalyticsConfig';
 import { AnalyticsReporter } from './infra/AnalyticsReporter';
 import { HttpRequester } from './infra/HttpRequester';
+import { AnalyticsService } from './services/AnalyticsService';
 
 /**
  * The entrypoint to the analytics library.
@@ -12,10 +13,11 @@ import { HttpRequester } from './infra/HttpRequester';
  *
  * @public
  */
-export function provideAnalytics(config: AnalyticsConfig): AnalyticsReporter {
+export function provideAnalytics(config: AnalyticsConfig): AnalyticsService {
   const httpRequester = new HttpRequester();
 
   return new AnalyticsReporter(config, httpRequester);
 }
 
 export * from './models';
+export { AnalyticsService };

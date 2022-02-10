@@ -12,6 +12,7 @@ export enum AnalyticsEventType {
   VoiceStart = 'VOICE_START',
   VoiceStop = 'VOICE_STOP',
   SearchBarImpression = 'SEARCH_BAR_IMPRESSION',
+  SearchClearButton = 'SEARCH_CLEAR_BUTTON',
 
   // CTA event types
   CtaClick = 'CTA_CLICK',
