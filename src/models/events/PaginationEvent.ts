@@ -6,6 +6,8 @@ export interface PaginationEvent {
   type: EnumOrLiteral<AnalyticsEventType.Paginate>,
   /** {@inheritDoc CtaData.verticalKey} */
   verticalKey: string,
+  /** The ID of the query correspond to this pagination sequence. */
+  queryId: string,
   /** Current page number */
   currentPage: number,
   /** Next page number to navigate to */
