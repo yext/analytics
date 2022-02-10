@@ -5,6 +5,7 @@ import { QuestionSubmissionEvent } from './QuestionSubmissionEvent';
 import { ThumbsFeedbackEvent } from './ThumbsFeedbackEvent';
 import { VoiceSearchEvent } from './VoiceSearchEvent';
 import { SearchBarImpressionEvent } from './SearchBarImpressionEvent';
+import { SearchClearEvent } from './SearchClearEvent';
 
 /**
  * An analytics event
@@ -15,5 +16,6 @@ export type AnalyticsEvent =
   QuestionSubmissionEvent |
   ScrollEvent |
   SearchBarImpressionEvent |
+  SearchClearEvent |
   ThumbsFeedbackEvent |
   VoiceSearchEvent;

@@ -19,3 +19,4 @@ export function provideAnalytics(config: AnalyticsConfig): AnalyticsReporter {
 }
 
 export * from './models';
+export { AnalyticsReporter };
