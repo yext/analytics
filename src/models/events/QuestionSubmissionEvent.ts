@@ -6,7 +6,7 @@ import { EnumOrLiteral } from '../utils';
 export interface QuestionSubmissionEvent {
   type: EnumOrLiteral<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>,
   /** {@inherticDoc CtaData.queryId} */
-  queryId: string
+  queryId: string,
   /** {@inheritDoc CtaData.verticalKey} */
   verticalKey: string,
   /** {@inheritDoc CtaData.searcher} */

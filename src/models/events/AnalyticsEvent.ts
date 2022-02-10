@@ -6,6 +6,7 @@ import { ThumbsFeedbackEvent } from './ThumbsFeedbackEvent';
 import { VoiceSearchEvent } from './VoiceSearchEvent';
 import { SearchBarImpressionEvent } from './SearchBarImpressionEvent';
 import { SearchClearEvent } from './SearchClearEvent';
+import { PaginationEvent } from './PaginationEvent';
 
 /**
  * An analytics event
@@ -18,4 +19,5 @@ export type AnalyticsEvent =
   SearchBarImpressionEvent |
   SearchClearEvent |
   ThumbsFeedbackEvent |
-  VoiceSearchEvent;
+  VoiceSearchEvent |
+  PaginationEvent;

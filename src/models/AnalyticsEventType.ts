@@ -25,5 +25,8 @@ export enum AnalyticsEventType {
   ViewWebsite = 'VIEW_WEBSITE',
   Email = 'EMAIL',
   BookAppointment = 'BOOK_APPOINTMENT',
-  Rsvp = 'RSVP'
+  Rsvp = 'RSVP',
+
+  // Pagination event types
+  Paginate = 'PAGINATE'
 }

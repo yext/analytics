@@ -1,4 +1,4 @@
-import { provideAnalytics } from '@yext/answers-analytics';
+import { provideAnalytics } from '@yext/analytics';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
