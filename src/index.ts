@@ -3,12 +3,12 @@ import { AnalyticsReporter } from './infra/AnalyticsReporter';
 import { HttpRequester } from './infra/HttpRequester';
 
 /**
- * The entrypoint to the answers-analytics library.
+ * The entrypoint to the analytics library.
  *
  * @remarks
  * Returns an {@link AnswersReporter} instance.
  *
- * @param config - The answers-analytics config
+ * @param config - The analytics config
  *
  * @public
  */

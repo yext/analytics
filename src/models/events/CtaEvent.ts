@@ -16,7 +16,7 @@ export interface CtaEvent {
     AnalyticsEventType.ViewWebsite |
     AnalyticsEventType.Email |
     AnalyticsEventType.BookAppointment |
-    AnalyticsEventType.Rsvp>
+    AnalyticsEventType.Rsvp>,
   /**
    * The vertical key for the vertical on which the event was fired. Or, if
    * it is a universal search, the vertical key for the section in the universal
@@ -28,7 +28,7 @@ export interface CtaEvent {
   /** Whether it was on universal or vertical search. */
   searcher: Searcher,
   /** The ID of the most recent query */
-  queryId: string
+  queryId: string,
   /** Whether or not the event was fired on a direct answer card. */
   directAnswer?: boolean,
   /** The url of the event target. */
@@ -36,5 +36,5 @@ export interface CtaEvent {
   /** The name of the Rich Text field used. */
   fieldName?: string,
   /** The label for this CTA event. */
-  ctaLabel?: 'video_played' | string,
+  ctaLabel?: 'video_played' | string
 }

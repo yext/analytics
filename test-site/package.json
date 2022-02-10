@@ -1,5 +1,5 @@
 {
-  "name": "answers-analytics-test-site",
+  "name": "analytics-test-site",
   "version": "0.1.0",
   "description": "",
   "scripts": {
@@ -18,7 +18,7 @@
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "@yext/answers-analytics": "file:..",
+    "@yext/analytics": "file:..",
     "babel-loader": "^8.2.2"
   }
 }

@@ -1,4 +1,4 @@
-const { provideAnalytics, AnalyticsEvent } = require('@yext/answers-analytics');
+const { provideAnalytics, AnalyticsEvent } = require('@yext/analytics');
 
 const analytics = provideAnalytics({
   experienceKey: 'rosetest',
