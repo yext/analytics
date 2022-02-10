@@ -4,9 +4,9 @@ import { EnumOrLiteral } from '../utils';
 
 /** Event for submitting thumbs up/down feedback (ThumbsUp and ThumbsDown). */
 export interface ThumbsFeedbackEvent {
-  type: EnumOrLiteral<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>
+  type: EnumOrLiteral<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>,
   /** {@inherticDoc CtaData.queryId} */
-  queryId: string
+  queryId: string,
   /** {@inheritDoc CtaData.directAnswer} */
   directAnswer?: boolean,
   /** {@inheritDoc CtaData.verticalKey} */
@@ -14,5 +14,5 @@ export interface ThumbsFeedbackEvent {
   /** {@inheritDoc CtaData.entityId} */
   entityId?: string,
   /** {@inheritDoc CtaData.searcher} */
-  searcher?: Searcher,
+  searcher?: Searcher
 }
