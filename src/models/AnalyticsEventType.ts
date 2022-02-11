@@ -13,6 +13,7 @@ export enum AnalyticsEventType {
   VoiceStop = 'VOICE_STOP',
   SearchBarImpression = 'SEARCH_BAR_IMPRESSION',
   SearchClearButton = 'SEARCH_CLEAR_BUTTON',
+  VerticalViewAll = 'VERTICAL_VIEW_ALL',
 
   // CTA event types
   CtaClick = 'CTA_CLICK',
