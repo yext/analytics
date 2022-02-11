@@ -28,5 +28,8 @@ export enum AnalyticsEventType {
   Rsvp = 'RSVP',
 
   // Pagination event types
-  Paginate = 'PAGINATE'
+  Paginate = 'PAGINATE',
+
+  //Autocomplete event types
+  AutocompleteSelection = 'AUTO_COMPLETE_SELECTION'
 }

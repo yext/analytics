@@ -7,6 +7,7 @@ import { VoiceSearchEvent } from './VoiceSearchEvent';
 import { SearchBarImpressionEvent } from './SearchBarImpressionEvent';
 import { SearchClearEvent } from './SearchClearEvent';
 import { PaginationEvent } from './PaginationEvent';
+import { AutocompleteEvent } from './AutocompleteEvent';
 
 /**
  * An analytics event
@@ -20,4 +21,5 @@ export type AnalyticsEvent =
   SearchClearEvent |
   ThumbsFeedbackEvent |
   VoiceSearchEvent |
-  PaginationEvent;
+  PaginationEvent |
+  AutocompleteEvent;
