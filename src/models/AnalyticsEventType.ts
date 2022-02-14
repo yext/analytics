@@ -15,6 +15,7 @@ export enum AnalyticsEventType {
   SearchClearButton = 'SEARCH_CLEAR_BUTTON',
   Paginate = 'PAGINATE',
   AutocompleteSelection = 'AUTO_COMPLETE_SELECTION',
+  VerticalViewAll = 'VERTICAL_VIEW_ALL',
 
   // CTA event types
   CtaClick = 'CTA_CLICK',

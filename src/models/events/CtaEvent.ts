@@ -27,7 +27,7 @@ export interface CtaEvent {
   entityId: string,
   /** Whether it was on universal or vertical search. */
   searcher: Searcher,
-  /** The ID of the most recent query */
+  /** The ID of the most recent query. */
   queryId: string,
   /** Whether or not the event was fired on a direct answer card. */
   directAnswer?: boolean,

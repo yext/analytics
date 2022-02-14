@@ -1,6 +1,6 @@
 {
   "name": "@yext/analytics",
-  "version": "0.2.0-beta.1",
+  "version": "0.2.0-beta.2",
   "description": "An analytics library for Yext Answers",
   "author": "slapshot@yext.com",
   "main": "./lib/commonjs/index.js",
