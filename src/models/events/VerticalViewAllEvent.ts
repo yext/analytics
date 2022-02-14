@@ -5,7 +5,7 @@ import { EnumOrLiteral } from '../utils';
 export interface VerticalViewAllEvent {
   type: EnumOrLiteral<AnalyticsEventType.VerticalViewAll>,
   /** {@inherticDoc CtaData.queryId} */
-  queryId?: string,
+  queryId: string,
   /** The vertical key of the vertical for which the event was fired. */
   verticalKey: string
 }

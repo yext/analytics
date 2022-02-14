@@ -4,11 +4,15 @@ import { HttpRequesterService } from '../services/HttpRequesterService';
 import { AnalyticsEvent } from '../models/events/AnalyticsEvent';
 import { BeaconPayload } from '../models/BeaconPayload';
 import { AnalyticsResponse } from '../models/AnalyticsResponse';
+import { Visitor } from '../models/Visitor';
 
 const defaultDomain = 'https://answers.yext-pixel.com';
 
 export class AnalyticsReporter implements AnalyticsService {
-  constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {}
+  private _visitor: Visitor | undefined;
+  constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {
+    this.setVisitor(config.visitor);
+  }
 
   report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse {
     const domain = this.config.domain ?? defaultDomain;
@@ -19,6 +23,7 @@ export class AnalyticsReporter implements AnalyticsService {
       businessId: this.config.businessId,
       experienceKey: this.config.experienceKey,
       experienceVersion: this.config.experienceVersion,
+      ...(this._visitor && { visitor: { ...this._visitor } }),
       ...this._formatForApi(eventData)
     };
     const successfullyQueued = this.httpRequesterService.beacon(
@@ -27,6 +32,10 @@ export class AnalyticsReporter implements AnalyticsService {
     return successfullyQueued
       ? { status: 'success' }
       : { status: 'error', message: 'The useragent failed to queue the data for transfer' };
+  }
+
+  setVisitor(visitor: Visitor | undefined): void {
+    this._visitor = visitor;
   }
 
   /**
