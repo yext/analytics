@@ -13,6 +13,8 @@ export enum AnalyticsEventType {
   VoiceStop = 'VOICE_STOP',
   SearchBarImpression = 'SEARCH_BAR_IMPRESSION',
   SearchClearButton = 'SEARCH_CLEAR_BUTTON',
+  Paginate = 'PAGINATE',
+  AutocompleteSelection = 'AUTO_COMPLETE_SELECTION',
   VerticalViewAll = 'VERTICAL_VIEW_ALL',
 
   // CTA event types
@@ -27,7 +29,4 @@ export enum AnalyticsEventType {
   Email = 'EMAIL',
   BookAppointment = 'BOOK_APPOINTMENT',
   Rsvp = 'RSVP',
-
-  // Pagination event types
-  Paginate = 'PAGINATE'
 }
