@@ -6,6 +6,7 @@
   "main": "./lib/commonjs/index.js",
   "module": "./lib/esm/index.js",
   "files": [
+    "src",
     "lib"
   ],
   "scripts": {
