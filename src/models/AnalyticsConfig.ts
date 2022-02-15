@@ -1,3 +1,5 @@
+import { Visitor } from './Visitor';
+
 /**
  * The main configuration options for the {@link AnalyticsReporter}.
  *
@@ -10,6 +12,8 @@ export interface AnalyticsConfig {
   experienceVersion: 'PRODUCTION' | 'STAGING' | string,
   /** The businessId of the answers experience. */
   businessId: number,
-  /** The domain to send the requests to */
+  /** The domain to send the requests to. */
   domain?: string,
+  /** {@inheritDoc Visitor} */
+  visitor?: Visitor
 }

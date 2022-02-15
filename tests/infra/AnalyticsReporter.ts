@@ -74,3 +74,28 @@ it('A status of "error" is returned for unsuccessful beacons', () => {
   const metadata = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   expect(metadata).toEqual({ status: 'error', message: expect.anything() });
 });
+
+it('Visitor is set and passed properly', () => {
+  const visitorParam = { visitor: { id: '123'} };
+  const analyticsReporter = new AnalyticsReporter({...config, ...visitorParam}, mockHttpRequesterService);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
+  const data = {
+    businessId: 123,
+    eventType: 'SCROLL_TO_BOTTOM_OF_PAGE',
+    experienceKey: 'yext',
+    experienceVersion: 'PRODUCTION',
+    queryId: '1'
+  };
+  const expectedDataWithVisitor = {
+    data: {
+      ...data,
+      ...visitorParam
+    }
+  };
+  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(),
+    expectedDataWithVisitor);
+
+  analyticsReporter.setVisitor();
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
+  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), { data });
+});
