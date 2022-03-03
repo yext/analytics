@@ -5,12 +5,12 @@ import { Searcher } from '../Searcher';
 /** Event for expanding or collapsing an accordion row. */
 export interface AccordionToggleEvent {
   type: EnumOrLiteral<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>,
-  /** {@inherticDoc CtaData.queryId} */
+  /** {@inherticDoc CtaEvent.queryId} */
   queryId: string,
-  /** {@inheritDoc CtaData.verticalKey} */
+  /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey: string,
-  /** {@inheritDoc CtaData.entityId} */
+  /** {@inheritDoc CtaEvent.entityId} */
   entityId: string,
-  /** {@inheritDoc CtaData.searcher} */
+  /** {@inheritDoc CtaEvent.searcher} */
   searcher?: Searcher
 }

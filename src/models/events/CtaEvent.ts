@@ -16,7 +16,8 @@ export interface CtaEvent {
     AnalyticsEventType.ViewWebsite |
     AnalyticsEventType.Email |
     AnalyticsEventType.BookAppointment |
-    AnalyticsEventType.Rsvp>,
+    AnalyticsEventType.Rsvp
+  >,
   /**
    * The vertical key for the vertical on which the event was fired. Or, if
    * it is a universal search, the vertical key for the section in the universal

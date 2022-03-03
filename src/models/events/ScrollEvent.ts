@@ -3,6 +3,6 @@ import { EnumOrLiteral } from '../utils';
 
 export interface ScrollEvent {
   type: EnumOrLiteral<AnalyticsEventType.ScrollToBottomOfPage>,
-  /** {@inherticDoc CtaData.queryId} */
+  /** {@inherticDoc CtaEvent.queryId} */
   queryId: string
 }

@@ -9,6 +9,7 @@ import { SearchClearEvent } from './SearchClearEvent';
 import { PaginationEvent } from './PaginationEvent';
 import { AutocompleteEvent } from './AutocompleteEvent';
 import { VerticalViewAllEvent } from './VerticalViewAllEvent';
+import { SearchDurationEvent } from './SearchDurationEvent';
 
 /**
  * An analytics event
@@ -20,6 +21,7 @@ export type AnalyticsEvent =
   ScrollEvent |
   SearchBarImpressionEvent |
   SearchClearEvent |
+  SearchDurationEvent |
   ThumbsFeedbackEvent |
   VerticalViewAllEvent |
   VoiceSearchEvent |

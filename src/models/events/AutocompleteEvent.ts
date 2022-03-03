@@ -6,6 +6,6 @@ export interface AutocompleteEvent {
   type: EnumOrLiteral<AnalyticsEventType.AutocompleteSelection>,
   /** Selected search text from an autocomplete suggestion. */
   suggestedSearchText: string,
-  /** {@inherticDoc CtaData.queryId} */
+  /** {@inherticDoc CtaEvent.queryId} */
   queryId?: string
 }
