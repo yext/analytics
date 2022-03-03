@@ -29,4 +29,9 @@ export enum AnalyticsEventType {
   Email = 'EMAIL',
   BookAppointment = 'BOOK_APPOINTMENT',
   Rsvp = 'RSVP',
+
+  // Search duration event types
+  ResultsHidden = 'RESULTS_HIDDEN',
+  ResultsUnhidden = 'RESULTS_UNHIDDEN',
+  FollowUpQuery = 'FOLLOW_UP_QUERY'
 }

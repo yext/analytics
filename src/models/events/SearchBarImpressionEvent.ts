@@ -7,8 +7,8 @@ export interface SearchBarImpressionEvent {
   type: EnumOrLiteral<AnalyticsEventType.SearchBarImpression>,
   /** Whether or not the impression came from a standalone search bar */
   standAlone: boolean,
-  /** {@inheritDoc CtaData.verticalKey} */
+  /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey?: string,
-  /** {@inheritDoc CtaData.searcher} */
+  /** {@inheritDoc CtaEvent.searcher} */
   searcher?: Searcher
 }

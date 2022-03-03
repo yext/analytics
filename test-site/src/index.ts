@@ -8,7 +8,7 @@ const analytics = provideAnalytics({
 
 export function fireAnalyticsEvent() {
   analytics.report({
-    type: "CTA_CLICK",
+    type: 'CTA_CLICK',
     entityId: '1',
     verticalKey: 'people',
     searcher: 'VERTICAL',

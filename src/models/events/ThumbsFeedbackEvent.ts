@@ -5,14 +5,14 @@ import { EnumOrLiteral } from '../utils';
 /** Event for submitting thumbs up/down feedback (ThumbsUp and ThumbsDown). */
 export interface ThumbsFeedbackEvent {
   type: EnumOrLiteral<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>,
-  /** {@inherticDoc CtaData.queryId} */
+  /** {@inherticDoc CtaEvent.queryId} */
   queryId: string,
-  /** {@inheritDoc CtaData.directAnswer} */
+  /** {@inheritDoc CtaEvent.directAnswer} */
   directAnswer?: boolean,
-  /** {@inheritDoc CtaData.verticalKey} */
+  /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey?: string,
-  /** {@inheritDoc CtaData.entityId} */
+  /** {@inheritDoc CtaEvent.entityId} */
   entityId?: string,
-  /** {@inheritDoc CtaData.searcher} */
+  /** {@inheritDoc CtaEvent.searcher} */
   searcher?: Searcher
 }
