@@ -3,7 +3,11 @@ import { Searcher } from '../Searcher';
 import { EnumOrLiteral } from '../utils';
 
 
-/** A call to action analytics event. */
+/**
+ * A call to action analytics event.
+ *
+ * @public
+ */
 export interface CtaEvent {
   type: EnumOrLiteral<
     AnalyticsEventType.CtaClick |

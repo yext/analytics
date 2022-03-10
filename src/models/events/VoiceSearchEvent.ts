@@ -1,7 +1,11 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
 import { EnumOrLiteral } from '../utils';
 
-/** Event for starting or stopping voice search. */
+/**
+ * Event for starting or stopping voice search.
+ *
+ * @public
+ */
 export interface VoiceSearchEvent {
   type: EnumOrLiteral<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>,
   /**

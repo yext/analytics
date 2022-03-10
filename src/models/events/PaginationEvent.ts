@@ -1,7 +1,11 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
 import { EnumOrLiteral } from '../utils';
 
-/** Event for pagination interaction. */
+/**
+ * Event for pagination interaction.
+ *
+ * @public
+ */
 export interface PaginationEvent {
   type: EnumOrLiteral<AnalyticsEventType.Paginate>,
   /** {@inheritDoc CtaEvent.verticalKey} */
