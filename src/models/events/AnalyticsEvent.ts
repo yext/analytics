@@ -10,6 +10,8 @@ import { PaginationEvent } from './PaginationEvent';
 import { AutocompleteEvent } from './AutocompleteEvent';
 import { VerticalViewAllEvent } from './VerticalViewAllEvent';
 import { SearchDurationEvent } from './SearchDurationEvent';
+import { AllTabNavigationEvent } from './AllTabNavigationEvent';
+import { VerticalTabNavigationEvent } from './VerticalTabNavigationEvent';
 
 /**
  * An analytics event
@@ -26,4 +28,6 @@ export type AnalyticsEvent =
   VerticalViewAllEvent |
   VoiceSearchEvent |
   PaginationEvent |
-  AutocompleteEvent;
+  AutocompleteEvent |
+  AllTabNavigationEvent |
+  VerticalTabNavigationEvent;
