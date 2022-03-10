@@ -34,6 +34,7 @@
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BeaconPayload](./analytics.beaconpayload.md) |  |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
+|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) |  |
@@ -51,4 +52,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AnalyticsEvent](./analytics.analyticsevent.md) | An analytics event. |
+|  [EnumOrLiteral](./analytics.enumorliteral.md) |  |
+|  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 

@@ -17,6 +17,6 @@ export interface VerticalTabNavigationEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [queryId?](./analytics.verticaltabnavigationevent.queryid.md) | string | <i>(Optional)</i> The ID of the most recent query. |
-|  [type](./analytics.verticaltabnavigationevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.VerticalTabNavigation](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.verticaltabnavigationevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.VerticalTabNavigation](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 |  [verticalKey](./analytics.verticaltabnavigationevent.verticalkey.md) | string | The vertical key for the vertical on which the event was fired. Or, if it is a universal search, the vertical key for the section in the universal results. |
 

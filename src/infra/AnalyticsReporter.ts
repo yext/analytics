@@ -13,6 +13,7 @@ const defaultDomain = 'https://answers.yext-pixel.com';
  */
 export class AnalyticsReporter implements AnalyticsService {
   private _visitor: Visitor | undefined;
+
   constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
   }

@@ -17,6 +17,6 @@ export interface VoiceSearchEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [timestamp](./analytics.voicesearchevent.timestamp.md) | number | The timestamp (number of milliseconds since the Unix epoch) for firing the event. |
-|  [type](./analytics.voicesearchevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.VoiceStart](./analytics.analyticseventtype.md) \| [AnalyticsEventType.VoiceStop](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.voicesearchevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.VoiceStart](./analytics.analyticseventtype.md) \| [AnalyticsEventType.VoiceStop](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 |  [voiceSessionId](./analytics.voicesearchevent.voicesessionid.md) | string | The UUID for the voice session. Each 'VOICE\_STOP' event should correspond to a 'VOICE\_START' event with the same ID. |
 

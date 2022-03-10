@@ -16,5 +16,5 @@ export interface ScrollEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [queryId](./analytics.scrollevent.queryid.md) | string | The ID of the most recent query. |
-|  [type](./analytics.scrollevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.ScrollToBottomOfPage](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.scrollevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.ScrollToBottomOfPage](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 

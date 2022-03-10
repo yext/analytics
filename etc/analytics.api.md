@@ -8,10 +8,7 @@
 export interface AccordionToggleEvent {
     entityId: string;
     queryId: string;
-    // Warning: (ae-forgotten-export) The symbol "Searcher" needs to be exported by the entry point index.d.ts
     searcher?: Searcher;
-    // Warning: (ae-forgotten-export) The symbol "EnumOrLiteral" needs to be exported by the entry point index.d.ts
-    //
     // (undocumented)
     type: EnumOrLiteral<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>;
     verticalKey: string;
@@ -102,7 +99,6 @@ export enum AnalyticsEventType {
 
 // @public (undocumented)
 export class AnalyticsReporter implements AnalyticsService {
-    // Warning: (ae-forgotten-export) The symbol "HttpRequesterService" needs to be exported by the entry point index.d.ts
     constructor(config: AnalyticsConfig, httpRequesterService: HttpRequesterService);
     // (undocumented)
     report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
@@ -152,6 +148,14 @@ export interface CtaEvent {
     type: EnumOrLiteral<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
     url?: string;
     verticalKey: string;
+}
+
+// @public (undocumented)
+export type EnumOrLiteral<T extends string> = T | `${T}`;
+
+// @public
+export interface HttpRequesterService {
+    beacon(url: string, body: BeaconPayload): boolean;
 }
 
 // @public
@@ -208,6 +212,9 @@ export interface SearchDurationEvent {
     // (undocumented)
     type: EnumOrLiteral<AnalyticsEventType.ResultsHidden | AnalyticsEventType.ResultsUnhidden | AnalyticsEventType.FollowUpQuery>;
 }
+
+// @public
+export type Searcher = 'UNIVERSAL' | 'VERTICAL';
 
 // @public
 export interface ThumbsFeedbackEvent {

@@ -17,5 +17,5 @@ constructor(config: AnalyticsConfig, httpRequesterService: HttpRequesterService)
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  config | [AnalyticsConfig](./analytics.analyticsconfig.md) |  |
-|  httpRequesterService | HttpRequesterService |  |
+|  httpRequesterService | [HttpRequesterService](./analytics.httprequesterservice.md) |  |
 

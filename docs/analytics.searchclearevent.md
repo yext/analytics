@@ -17,6 +17,6 @@ export interface SearchClearEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [queryId](./analytics.searchclearevent.queryid.md) | string | The ID of the most recent query. |
-|  [type](./analytics.searchclearevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.SearchClearButton](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.searchclearevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.SearchClearButton](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 |  [verticalKey?](./analytics.searchclearevent.verticalkey.md) | string | <i>(Optional)</i> The vertical key of the vertical if the event was not fired on a universal page. |
 

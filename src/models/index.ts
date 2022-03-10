@@ -5,3 +5,4 @@ export { BeaconPayload } from './BeaconPayload';
 export { AnalyticsResponse } from './AnalyticsResponse';
 export { Visitor } from './Visitor';
 export { Searcher } from './Searcher';
+export { EnumOrLiteral } from './utils';

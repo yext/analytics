@@ -18,5 +18,5 @@ export interface AutocompleteEvent
 |  --- | --- | --- |
 |  [queryId?](./analytics.autocompleteevent.queryid.md) | string | <i>(Optional)</i> The ID of the most recent query. |
 |  [suggestedSearchText](./analytics.autocompleteevent.suggestedsearchtext.md) | string | Selected search text from an autocomplete suggestion. |
-|  [type](./analytics.autocompleteevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.AutocompleteSelection](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.autocompleteevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.AutocompleteSelection](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 
