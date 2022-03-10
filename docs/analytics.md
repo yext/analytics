@@ -51,4 +51,5 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AnalyticsEvent](./analytics.analyticsevent.md) | An analytics event. |
+|  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 

@@ -17,6 +17,6 @@ export interface SearchDurationEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [queryId](./analytics.searchdurationevent.queryid.md) | string | The ID of the most recent query. |
-|  [searcher](./analytics.searchdurationevent.searcher.md) | Searcher | Whether it was on universal or vertical search. |
+|  [searcher](./analytics.searchdurationevent.searcher.md) | [Searcher](./analytics.searcher.md) | Whether it was on universal or vertical search. |
 |  [type](./analytics.searchdurationevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.ResultsHidden](./analytics.analyticseventtype.md) \| [AnalyticsEventType.ResultsUnhidden](./analytics.analyticseventtype.md) \| [AnalyticsEventType.FollowUpQuery](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 

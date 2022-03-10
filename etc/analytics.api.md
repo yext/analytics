@@ -8,7 +8,6 @@
 export interface AccordionToggleEvent {
     entityId: string;
     queryId: string;
-    // Warning: (ae-forgotten-export) The symbol "Searcher" needs to be exported by the entry point index.d.ts
     searcher?: Searcher;
     // Warning: (ae-forgotten-export) The symbol "EnumOrLiteral" needs to be exported by the entry point index.d.ts
     //
@@ -208,6 +207,9 @@ export interface SearchDurationEvent {
     // (undocumented)
     type: EnumOrLiteral<AnalyticsEventType.ResultsHidden | AnalyticsEventType.ResultsUnhidden | AnalyticsEventType.FollowUpQuery>;
 }
+
+// @public
+export type Searcher = 'UNIVERSAL' | 'VERTICAL';
 
 // @public
 export interface ThumbsFeedbackEvent {

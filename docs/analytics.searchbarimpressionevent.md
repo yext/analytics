@@ -16,7 +16,7 @@ export interface SearchBarImpressionEvent
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [searcher?](./analytics.searchbarimpressionevent.searcher.md) | Searcher | <i>(Optional)</i> Whether it was on universal or vertical search. |
+|  [searcher?](./analytics.searchbarimpressionevent.searcher.md) | [Searcher](./analytics.searcher.md) | <i>(Optional)</i> Whether it was on universal or vertical search. |
 |  [standAlone](./analytics.searchbarimpressionevent.standalone.md) | boolean | Whether or not the impression came from a standalone search bar |
 |  [type](./analytics.searchbarimpressionevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.SearchBarImpression](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 |  [verticalKey?](./analytics.searchbarimpressionevent.verticalkey.md) | string | <i>(Optional)</i> The vertical key for the vertical on which the event was fired. Or, if it is a universal search, the vertical key for the section in the universal results. |
