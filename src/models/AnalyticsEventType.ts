@@ -2,6 +2,8 @@
  * Represents the possible analytics event types
  */
 export enum AnalyticsEventType {
+  AllTabNavigation = 'ALL_TAB_NAVIGATION',
+  VerticalTabNavigation = 'VERTICAL_TAB_NAVIGATION',
   ScrollToBottomOfPage = 'SCROLL_TO_BOTTOM_OF_PAGE',
   QuestionFocus = 'QUESTION_FOCUS',
   QuestionSubmit = 'QUESTION_SUBMIT',
