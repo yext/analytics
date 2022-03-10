@@ -18,6 +18,6 @@ export interface QuestionSubmissionEvent
 |  --- | --- | --- |
 |  [queryId](./analytics.questionsubmissionevent.queryid.md) | string | The ID of the most recent query. |
 |  [searcher](./analytics.questionsubmissionevent.searcher.md) | [Searcher](./analytics.searcher.md) | Whether it was on universal or vertical search. |
-|  [type](./analytics.questionsubmissionevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.QuestionFocus](./analytics.analyticseventtype.md) \| [AnalyticsEventType.QuestionSubmit](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.questionsubmissionevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.QuestionFocus](./analytics.analyticseventtype.md) \| [AnalyticsEventType.QuestionSubmit](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 |  [verticalKey](./analytics.questionsubmissionevent.verticalkey.md) | string | The vertical key for the vertical on which the event was fired. Or, if it is a universal search, the vertical key for the section in the universal results. |
 
