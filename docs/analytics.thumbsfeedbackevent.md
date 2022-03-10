@@ -20,6 +20,6 @@ export interface ThumbsFeedbackEvent
 |  [entityId?](./analytics.thumbsfeedbackevent.entityid.md) | string | <i>(Optional)</i> The entity ID for the entity. |
 |  [queryId](./analytics.thumbsfeedbackevent.queryid.md) | string | The ID of the most recent query. |
 |  [searcher?](./analytics.thumbsfeedbackevent.searcher.md) | [Searcher](./analytics.searcher.md) | <i>(Optional)</i> Whether it was on universal or vertical search. |
-|  [type](./analytics.thumbsfeedbackevent.type.md) | EnumOrLiteral&lt;[AnalyticsEventType.ThumbsUp](./analytics.analyticseventtype.md) \| [AnalyticsEventType.ThumbsDown](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
+|  [type](./analytics.thumbsfeedbackevent.type.md) | [EnumOrLiteral](./analytics.enumorliteral.md)<!-- -->&lt;[AnalyticsEventType.ThumbsUp](./analytics.analyticseventtype.md) \| [AnalyticsEventType.ThumbsDown](./analytics.analyticseventtype.md)<!-- -->&gt; |  |
 |  [verticalKey?](./analytics.thumbsfeedbackevent.verticalkey.md) | string | <i>(Optional)</i> The vertical key for the vertical on which the event was fired. Or, if it is a universal search, the vertical key for the section in the universal results. |
 
