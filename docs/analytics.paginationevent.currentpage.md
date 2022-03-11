@@ -4,7 +4,7 @@
 
 ## PaginationEvent.currentPage property
 
-Current page number
+Current page number.
 
 <b>Signature:</b>
 

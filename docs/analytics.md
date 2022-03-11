@@ -4,17 +4,11 @@
 
 ## analytics package
 
-## Classes
-
-|  Class | Description |
-|  --- | --- |
-|  [AnalyticsReporter](./analytics.analyticsreporter.md) |  |
-
 ## Enumerations
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [AnalyticsEventType](./analytics.analyticseventtype.md) | Represents the possible analytics event types |
+|  [AnalyticsEventType](./analytics.analyticseventtype.md) | Represents the possible analytics event types. |
 
 ## Functions
 
@@ -28,13 +22,12 @@
 |  --- | --- |
 |  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
-|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for the [AnalyticsReporter](./analytics.analyticsreporter.md)<!-- -->. |
-|  [AnalyticsResponse](./analytics.analyticsresponse.md) | Info about an analytics report response |
+|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics. |
+|  [AnalyticsResponse](./analytics.analyticsresponse.md) | Info about an analytics report response. |
 |  [AnalyticsService](./analytics.analyticsservice.md) | A service for Analytics. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BeaconPayload](./analytics.beaconpayload.md) |  |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
-|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) |  |

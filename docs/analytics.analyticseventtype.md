@@ -4,7 +4,7 @@
 
 ## AnalyticsEventType enum
 
-Represents the possible analytics event types
+Represents the possible analytics event types.
 
 <b>Signature:</b>
 

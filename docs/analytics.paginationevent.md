@@ -16,7 +16,7 @@ export interface PaginationEvent
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [currentPage](./analytics.paginationevent.currentpage.md) | number | Current page number |
+|  [currentPage](./analytics.paginationevent.currentpage.md) | number | Current page number. |
 |  [newPage](./analytics.paginationevent.newpage.md) | number | Next page number to navigate to |
 |  [queryId](./analytics.paginationevent.queryid.md) | string | The ID of the query correspond to this pagination sequence. |
 |  [totalPageCount](./analytics.paginationevent.totalpagecount.md) | number | Total page count from pagination |
