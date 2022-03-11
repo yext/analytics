@@ -4,7 +4,7 @@
 
 ## AnalyticsResponse interface
 
-Info about an analytics report response
+Info about an analytics report response.
 
 <b>Signature:</b>
 

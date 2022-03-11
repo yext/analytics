@@ -24,5 +24,5 @@ export declare function provideAnalytics(config: AnalyticsConfig): AnalyticsServ
 
 ## Remarks
 
-Returns an [AnalyticsReporter](./analytics.analyticsreporter.md) instance.
+Returns an analytics service instance.
 

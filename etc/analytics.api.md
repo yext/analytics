@@ -97,15 +97,6 @@ export enum AnalyticsEventType {
     VoiceStop = "VOICE_STOP"
 }
 
-// @public (undocumented)
-export class AnalyticsReporter implements AnalyticsService {
-    constructor(config: AnalyticsConfig, httpRequesterService: HttpRequesterService);
-    // (undocumented)
-    report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
-    // (undocumented)
-    setVisitor(visitor: Visitor | undefined): void;
-}
-
 // @public
 export interface AnalyticsResponse {
     // (undocumented)
@@ -152,11 +143,6 @@ export interface CtaEvent {
 
 // @public (undocumented)
 export type EnumOrLiteral<T extends string> = T | `${T}`;
-
-// @public
-export interface HttpRequesterService {
-    beacon(url: string, body: BeaconPayload): boolean;
-}
 
 // @public
 export interface PaginationEvent {

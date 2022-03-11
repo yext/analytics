@@ -4,7 +4,7 @@
 
 ## AnalyticsConfig interface
 
-The main configuration options for the [AnalyticsReporter](./analytics.analyticsreporter.md)<!-- -->.
+The main configuration options for Analytics.
 
 <b>Signature:</b>
 
