@@ -4,12 +4,6 @@
 
 ## analytics package
 
-## Classes
-
-|  Class | Description |
-|  --- | --- |
-|  [AnalyticsReporter](./analytics.analyticsreporter.md) | Responsible for reporting Analytics events. |
-
 ## Enumerations
 
 |  Enumeration | Description |
@@ -28,13 +22,12 @@
 |  --- | --- |
 |  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
-|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for the [AnalyticsReporter](./analytics.analyticsreporter.md)<!-- -->. |
+|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics. |
 |  [AnalyticsResponse](./analytics.analyticsresponse.md) | The response to the analytics report function. |
 |  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
-|  [BeaconPayload](./analytics.beaconpayload.md) | The shape of the data which is send during a beacon request. |
+|  [BeaconPayload](./analytics.beaconpayload.md) | The shape of the data which is sent during a beacon request. |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
-|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web. |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |

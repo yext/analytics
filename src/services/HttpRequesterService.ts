@@ -1,8 +1,6 @@
 import { BeaconPayload } from '../models/BeaconPayload';
 /**
  * A service for sending requests on the web.
- *
- * @public
  */
 export interface HttpRequesterService {
   /**

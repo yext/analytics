@@ -1,5 +1,5 @@
 /**
- * The shape of the data which is send during a beacon request.
+ * The shape of the data which is sent during a beacon request.
  *
  * @public
  */

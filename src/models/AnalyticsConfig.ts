@@ -1,7 +1,7 @@
 import { Visitor } from './Visitor';
 
 /**
- * The main configuration options for the {@link AnalyticsReporter}.
+ * The main configuration options for Analytics.
  *
  * @public
  */

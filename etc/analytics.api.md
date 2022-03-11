@@ -96,13 +96,6 @@ export enum AnalyticsEventType {
 }
 
 // @public
-export class AnalyticsReporter implements AnalyticsService {
-    constructor(config: AnalyticsConfig, httpRequesterService: HttpRequesterService);
-    report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
-    setVisitor(visitor: Visitor | undefined): void;
-}
-
-// @public
 export interface AnalyticsResponse {
     message?: string;
     status: 'success' | 'error';
@@ -141,11 +134,6 @@ export interface CtaEvent {
 
 // @public
 export type EnumOrString<T extends string> = T | `${T}`;
-
-// @public
-export interface HttpRequesterService {
-    beacon(url: string, body: BeaconPayload): boolean;
-}
 
 // @public
 export interface PaginationEvent {
