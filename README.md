@@ -73,7 +73,7 @@ And that's it! See **[our documentation](./docs/analytics.md)** for a full list 
 
 ## License
 
-Yext Answers-core is an open-sourced library licensed under the [BSD-3 License](./LICENSE).
+Yext Analytics is an open-sourced library licensed under the [BSD-3 License](./LICENSE).
 
 ## Third Party Licenses
 
