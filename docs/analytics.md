@@ -34,7 +34,7 @@
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BeaconPayload](./analytics.beaconpayload.md) | The shape of the data which is send during a beacon request. |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
-|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web |
+|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web. |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |

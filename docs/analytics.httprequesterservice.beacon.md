@@ -4,7 +4,7 @@
 
 ## HttpRequesterService.beacon() method
 
-A web beacon request. Returns true only if the request is successfuly queued
+A web beacon request. Returns true only if the request is successfuly queued.
 
 <b>Signature:</b>
 
@@ -16,8 +16,8 @@ beacon(url: string, body: BeaconPayload): boolean;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  url | string | The URL to send the request to |
-|  body | [BeaconPayload](./analytics.beaconpayload.md) | The payload to be included with the request |
+|  url | string | The URL to send the request to. |
+|  body | [BeaconPayload](./analytics.beaconpayload.md) | The payload to be included with the request. |
 
 <b>Returns:</b>
 

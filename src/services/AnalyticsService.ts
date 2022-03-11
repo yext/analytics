@@ -12,14 +12,14 @@ export interface AnalyticsService {
   /**
    * Reports an analytics event.
    *
-   * @param event - The {@link AnalyticsEvent} to be sent
+   * @param event - The {@link AnalyticsEvent} to be sent.
    * @param additionalRequestAttributes - Additional data included in the network request.
    */
   report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
   /**
-   * Sets the {@link Visitor} object which is included with each subsequent request
+   * Sets the {@link Visitor} object which is included with each subsequent request.
    *
-   * @param visitor - The visitor to be set, or undefined
+   * @param visitor - The visitor to be set, or undefined.
    */
   setVisitor(visitor: Visitor | undefined): void;
 }

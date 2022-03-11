@@ -16,10 +16,10 @@ export interface PaginationEvent
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [currentPage](./analytics.paginationevent.currentpage.md) | number | Current page number |
-|  [newPage](./analytics.paginationevent.newpage.md) | number | Next page number to navigate to |
+|  [currentPage](./analytics.paginationevent.currentpage.md) | number | Current page number. |
+|  [newPage](./analytics.paginationevent.newpage.md) | number | Next page number to navigate to. |
 |  [queryId](./analytics.paginationevent.queryid.md) | string | The ID of the query correspond to this pagination sequence. |
-|  [totalPageCount](./analytics.paginationevent.totalpagecount.md) | number | Total page count from pagination |
+|  [totalPageCount](./analytics.paginationevent.totalpagecount.md) | number | Total page count from pagination. |
 |  [type](./analytics.paginationevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[AnalyticsEventType.Paginate](./analytics.analyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
 |  [verticalKey](./analytics.paginationevent.verticalkey.md) | string | The vertical key for the vertical on which the event was fired. Or, if it is a universal search, the vertical key for the section in the universal results. |
 

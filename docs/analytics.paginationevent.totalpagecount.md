@@ -4,7 +4,7 @@
 
 ## PaginationEvent.totalPageCount property
 
-Total page count from pagination
+Total page count from pagination.
 
 <b>Signature:</b>
 

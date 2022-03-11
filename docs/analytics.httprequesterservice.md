@@ -4,7 +4,7 @@
 
 ## HttpRequesterService interface
 
-A service for sending requests on the web
+A service for sending requests on the web.
 
 <b>Signature:</b>
 
@@ -16,5 +16,5 @@ export interface HttpRequesterService
 
 |  Method | Description |
 |  --- | --- |
-|  [beacon(url, body)](./analytics.httprequesterservice.beacon.md) | A web beacon request. Returns true only if the request is successfuly queued |
+|  [beacon(url, body)](./analytics.httprequesterservice.beacon.md) | A web beacon request. Returns true only if the request is successfuly queued. |
 

@@ -10,7 +10,7 @@ import { Searcher } from '../Searcher';
 export interface SearchBarImpressionEvent {
   /** {@inheritDoc CtaEvent."type"} */
   type: EnumOrString<AnalyticsEventType.SearchBarImpression>,
-  /** Whether or not the impression came from a standalone search bar */
+  /** Whether or not the impression came from a standalone search bar. */
   standAlone: boolean,
   /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey?: string,
