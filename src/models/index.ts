@@ -1,5 +1,8 @@
 export { AnalyticsConfig } from './AnalyticsConfig';
-export { AnalyticsEvent } from './events/AnalyticsEvent';
+export * from './events/AnalyticsEvent';
 export { AnalyticsEventType } from './AnalyticsEventType';
 export { BeaconPayload } from './BeaconPayload';
 export { AnalyticsResponse } from './AnalyticsResponse';
+export { Visitor } from './Visitor';
+export { Searcher } from './Searcher';
+export { EnumOrLiteral } from './utils';

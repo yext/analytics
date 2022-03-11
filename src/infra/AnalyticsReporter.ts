@@ -8,8 +8,12 @@ import { Visitor } from '../models/Visitor';
 
 const defaultDomain = 'https://answers.yext-pixel.com';
 
+/**
+ * @internal
+ */
 export class AnalyticsReporter implements AnalyticsService {
   private _visitor: Visitor | undefined;
+
   constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
   }
@@ -39,11 +43,12 @@ export class AnalyticsReporter implements AnalyticsService {
   }
 
   /**
-   * Formats the event data for the api which includes adapting verticalKey to verticalConfigId
-   * @param event The data to format
-   * @returns The formatted data
+   * Formats the event data for the api which includes adapting verticalKey to verticalConfigId.
+   *
+   * @param event - The data to format.
+   * @returns The formatted data.
    */
-  _formatForApi(event: Omit<AnalyticsEvent, 'type'>): BeaconPayload {
+  private _formatForApi(event: Omit<AnalyticsEvent, 'type'>): BeaconPayload {
     const transformedEvent: BeaconPayload = { ...event };
     if (transformedEvent.verticalKey) {
       transformedEvent.verticalConfigId = transformedEvent.verticalKey;

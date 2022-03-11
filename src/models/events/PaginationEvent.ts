@@ -1,14 +1,18 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
 import { EnumOrLiteral } from '../utils';
 
-/** Event for pagination interaction. */
+/**
+ * Event for pagination interaction.
+ *
+ * @public
+ */
 export interface PaginationEvent {
   type: EnumOrLiteral<AnalyticsEventType.Paginate>,
   /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey: string,
   /** The ID of the query correspond to this pagination sequence. */
   queryId: string,
-  /** Current page number */
+  /** Current page number. */
   currentPage: number,
   /** Next page number to navigate to */
   newPage: number,

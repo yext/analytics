@@ -1,5 +1,7 @@
 /**
- * Represents the possible analytics event types
+ * Represents the possible analytics event types.
+ *
+ * @public
  */
 export enum AnalyticsEventType {
   AllTabNavigation = 'ALL_TAB_NAVIGATION',

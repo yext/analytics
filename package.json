@@ -5,13 +5,16 @@
   "author": "slapshot@yext.com",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/esm/index.js",
+  "types": "./lib/analytics.d.ts",
   "files": [
     "src",
     "lib"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run api-extractor && npm run generate-docs",
     "lint": "eslint .",
+    "api-extractor": "api-extractor run --local --verbose",
+    "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
     "test": "jest",
     "dev": "tsc -p tsconfig.cjs.json --watch",
@@ -20,6 +23,8 @@
   "devDependencies": {
     "@babel/preset-env": "^7.14.7",
     "@babel/preset-typescript": "^7.14.5",
+    "@microsoft/api-documenter": "^7.15.3",
+    "@microsoft/api-extractor": "^7.19.4",
     "@types/jest": "^26.0.24",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",

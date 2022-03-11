@@ -4,7 +4,9 @@ import { AnalyticsResponse } from '../models/AnalyticsResponse';
 import { Visitor } from '../models/Visitor';
 
 /**
- * A service for Analytics
+ * A service for Analytics.
+ *
+ * @public
  */
 export interface AnalyticsService {
   report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
