@@ -121,9 +121,8 @@ export interface AutocompleteEvent {
     type: EnumOrString<AnalyticsEventType.AutocompleteSelection>;
 }
 
-// @public (undocumented)
+// @public
 export interface BeaconPayload {
-    // (undocumented)
     [key: string]: string | number | boolean | BeaconPayload;
 }
 
@@ -169,7 +168,7 @@ export interface QuestionSubmissionEvent {
     verticalKey: string;
 }
 
-// @public (undocumented)
+// @public
 export interface ScrollEvent {
     queryId: string;
     type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>;

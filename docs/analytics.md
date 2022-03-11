@@ -32,12 +32,12 @@
 |  [AnalyticsResponse](./analytics.analyticsresponse.md) | The response to the analytics report function. |
 |  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
-|  [BeaconPayload](./analytics.beaconpayload.md) |  |
+|  [BeaconPayload](./analytics.beaconpayload.md) | The shape of the data which is send during a beacon request. |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
 |  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
-|  [ScrollEvent](./analytics.scrollevent.md) |  |
+|  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |
 |  [SearchBarImpressionEvent](./analytics.searchbarimpressionevent.md) | Event for expanding or collapsing an accordion row. |
 |  [SearchClearEvent](./analytics.searchclearevent.md) | Event for clicking on the button to clear the search input. |
 |  [SearchDurationEvent](./analytics.searchdurationevent.md) | Event used to calculate the duration of a search. |

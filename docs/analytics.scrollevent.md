@@ -4,6 +4,7 @@
 
 ## ScrollEvent interface
 
+Event for scrolling to the bottom of the page.
 
 <b>Signature:</b>
 
