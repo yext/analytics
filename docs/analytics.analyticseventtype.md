@@ -4,7 +4,7 @@
 
 ## AnalyticsEventType enum
 
-Represents the possible analytics event types
+Represents the possible analytics event types.
 
 <b>Signature:</b>
 
@@ -16,34 +16,34 @@ export declare enum AnalyticsEventType
 
 |  Member | Value | Description |
 |  --- | --- | --- |
-|  AddToCart | <code>&quot;ADD_TO_CART&quot;</code> |  |
-|  AllTabNavigation | <code>&quot;ALL_TAB_NAVIGATION&quot;</code> |  |
-|  ApplyNow | <code>&quot;APPLY_NOW&quot;</code> |  |
-|  AutocompleteSelection | <code>&quot;AUTO_COMPLETE_SELECTION&quot;</code> |  |
-|  BookAppointment | <code>&quot;BOOK_APPOINTMENT&quot;</code> |  |
-|  CtaClick | <code>&quot;CTA_CLICK&quot;</code> |  |
-|  DrivingDirections | <code>&quot;DRIVING_DIRECTIONS&quot;</code> |  |
-|  Email | <code>&quot;EMAIL&quot;</code> |  |
-|  FollowUpQuery | <code>&quot;FOLLOW_UP_QUERY&quot;</code> |  |
-|  OrderNow | <code>&quot;ORDER_NOW&quot;</code> |  |
-|  Paginate | <code>&quot;PAGINATE&quot;</code> |  |
-|  QuestionFocus | <code>&quot;QUESTION_FOCUS&quot;</code> |  |
-|  QuestionSubmit | <code>&quot;QUESTION_SUBMIT&quot;</code> |  |
-|  ResultsHidden | <code>&quot;RESULTS_HIDDEN&quot;</code> |  |
-|  ResultsUnhidden | <code>&quot;RESULTS_UNHIDDEN&quot;</code> |  |
-|  RowCollapse | <code>&quot;ROW_COLLAPSE&quot;</code> |  |
-|  RowExpand | <code>&quot;ROW_EXPAND&quot;</code> |  |
-|  Rsvp | <code>&quot;RSVP&quot;</code> |  |
-|  ScrollToBottomOfPage | <code>&quot;SCROLL_TO_BOTTOM_OF_PAGE&quot;</code> |  |
-|  SearchBarImpression | <code>&quot;SEARCH_BAR_IMPRESSION&quot;</code> |  |
-|  SearchClearButton | <code>&quot;SEARCH_CLEAR_BUTTON&quot;</code> |  |
-|  TapToCall | <code>&quot;TAP_TO_CALL&quot;</code> |  |
-|  ThumbsDown | <code>&quot;THUMBS_DOWN&quot;</code> |  |
-|  ThumbsUp | <code>&quot;THUMBS_UP&quot;</code> |  |
-|  TitleClick | <code>&quot;TITLE_CLICK&quot;</code> |  |
-|  VerticalTabNavigation | <code>&quot;VERTICAL_TAB_NAVIGATION&quot;</code> |  |
-|  VerticalViewAll | <code>&quot;VERTICAL_VIEW_ALL&quot;</code> |  |
-|  ViewWebsite | <code>&quot;VIEW_WEBSITE&quot;</code> |  |
-|  VoiceStart | <code>&quot;VOICE_START&quot;</code> |  |
-|  VoiceStop | <code>&quot;VOICE_STOP&quot;</code> |  |
+|  AddToCart | <code>&quot;ADD_TO_CART&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  AllTabNavigation | <code>&quot;ALL_TAB_NAVIGATION&quot;</code> | [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) |
+|  ApplyNow | <code>&quot;APPLY_NOW&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  AutocompleteSelection | <code>&quot;AUTO_COMPLETE_SELECTION&quot;</code> | [AutocompleteEvent](./analytics.autocompleteevent.md) |
+|  BookAppointment | <code>&quot;BOOK_APPOINTMENT&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  CtaClick | <code>&quot;CTA_CLICK&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  DrivingDirections | <code>&quot;DRIVING_DIRECTIONS&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  Email | <code>&quot;EMAIL&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  FollowUpQuery | <code>&quot;FOLLOW_UP_QUERY&quot;</code> | [SearchDurationEvent](./analytics.searchdurationevent.md) |
+|  OrderNow | <code>&quot;ORDER_NOW&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  Paginate | <code>&quot;PAGINATE&quot;</code> | [PaginationEvent](./analytics.paginationevent.md) |
+|  QuestionFocus | <code>&quot;QUESTION_FOCUS&quot;</code> | [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) |
+|  QuestionSubmit | <code>&quot;QUESTION_SUBMIT&quot;</code> | [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) |
+|  ResultsHidden | <code>&quot;RESULTS_HIDDEN&quot;</code> | [SearchDurationEvent](./analytics.searchdurationevent.md) |
+|  ResultsUnhidden | <code>&quot;RESULTS_UNHIDDEN&quot;</code> | [SearchDurationEvent](./analytics.searchdurationevent.md) |
+|  RowCollapse | <code>&quot;ROW_COLLAPSE&quot;</code> | [AccordionToggleEvent](./analytics.accordiontoggleevent.md) |
+|  RowExpand | <code>&quot;ROW_EXPAND&quot;</code> | [AccordionToggleEvent](./analytics.accordiontoggleevent.md) |
+|  Rsvp | <code>&quot;RSVP&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  ScrollToBottomOfPage | <code>&quot;SCROLL_TO_BOTTOM_OF_PAGE&quot;</code> | [ScrollEvent](./analytics.scrollevent.md) |
+|  SearchBarImpression | <code>&quot;SEARCH_BAR_IMPRESSION&quot;</code> | [SearchBarImpressionEvent](./analytics.searchbarimpressionevent.md) |
+|  SearchClearButton | <code>&quot;SEARCH_CLEAR_BUTTON&quot;</code> | [SearchClearEvent](./analytics.searchclearevent.md) |
+|  TapToCall | <code>&quot;TAP_TO_CALL&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  ThumbsDown | <code>&quot;THUMBS_DOWN&quot;</code> | [ThumbsFeedbackEvent](./analytics.thumbsfeedbackevent.md) |
+|  ThumbsUp | <code>&quot;THUMBS_UP&quot;</code> | [ThumbsFeedbackEvent](./analytics.thumbsfeedbackevent.md) |
+|  TitleClick | <code>&quot;TITLE_CLICK&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  VerticalTabNavigation | <code>&quot;VERTICAL_TAB_NAVIGATION&quot;</code> | [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) |
+|  VerticalViewAll | <code>&quot;VERTICAL_VIEW_ALL&quot;</code> | [VerticalViewAllEvent](./analytics.verticalviewallevent.md) |
+|  ViewWebsite | <code>&quot;VIEW_WEBSITE&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  VoiceStart | <code>&quot;VOICE_START&quot;</code> | [VoiceSearchEvent](./analytics.voicesearchevent.md) |
+|  VoiceStop | <code>&quot;VOICE_STOP&quot;</code> | [VoiceSearchEvent](./analytics.voicesearchevent.md) |
 

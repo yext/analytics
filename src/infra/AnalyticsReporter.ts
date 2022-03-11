@@ -9,6 +9,8 @@ import { Visitor } from '../models/Visitor';
 const defaultDomain = 'https://answers.yext-pixel.com';
 
 /**
+ * Responsible for reporting Analytics events.
+ *
  * @public
  */
 export class AnalyticsReporter implements AnalyticsService {
@@ -18,6 +20,7 @@ export class AnalyticsReporter implements AnalyticsService {
     this.setVisitor(config.visitor);
   }
 
+  /** {@inheritDoc AnalyticsService.report} */
   report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse {
     const domain = this.config.domain ?? defaultDomain;
     const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
@@ -38,6 +41,7 @@ export class AnalyticsReporter implements AnalyticsService {
       : { status: 'error', message: 'The useragent failed to queue the data for transfer' };
   }
 
+  /** {@inheritDoc AnalyticsService.setVisitor} */
   setVisitor(visitor: Visitor | undefined): void {
     this._visitor = visitor;
   }

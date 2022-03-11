@@ -4,8 +4,10 @@
 
 ## VoiceSearchEvent.type property
 
+An enum member or its string value which denotes the event type.
+
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrLiteral<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>;
+type: EnumOrString<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>;
 ```

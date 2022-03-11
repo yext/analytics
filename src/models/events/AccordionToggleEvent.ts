@@ -1,14 +1,15 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 import { Searcher } from '../Searcher';
 
 /**
- * Event for expanding or collapsing an accordion row.
+ * Event for expanding or collapsing an accordion row. Commonly used for FAQs.
  *
  * @public
  */
 export interface AccordionToggleEvent {
-  type: EnumOrLiteral<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>,
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,
   /** {@inheritDoc CtaEvent.verticalKey} */

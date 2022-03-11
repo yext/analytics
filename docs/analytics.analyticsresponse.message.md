@@ -4,6 +4,8 @@
 
 ## AnalyticsResponse.message property
 
+The message associated with the response.
+
 <b>Signature:</b>
 
 ```typescript

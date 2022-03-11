@@ -1,5 +1,5 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 import { Searcher } from '../Searcher';
 
 /**
@@ -8,7 +8,8 @@ import { Searcher } from '../Searcher';
  * @public
  */
 export interface SearchBarImpressionEvent {
-  type: EnumOrLiteral<AnalyticsEventType.SearchBarImpression>,
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<AnalyticsEventType.SearchBarImpression>,
   /** Whether or not the impression came from a standalone search bar */
   standAlone: boolean,
   /** {@inheritDoc CtaEvent.verticalKey} */

@@ -9,16 +9,14 @@ export interface AccordionToggleEvent {
     entityId: string;
     queryId: string;
     searcher?: Searcher;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>;
+    type: EnumOrString<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>;
     verticalKey: string;
 }
 
 // @public
 export interface AllTabNavigationEvent {
     queryId?: string;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.AllTabNavigation>;
+    type: EnumOrString<AnalyticsEventType.AllTabNavigation>;
 }
 
 // @public
@@ -97,28 +95,22 @@ export enum AnalyticsEventType {
     VoiceStop = "VOICE_STOP"
 }
 
-// @public (undocumented)
+// @public
 export class AnalyticsReporter implements AnalyticsService {
     constructor(config: AnalyticsConfig, httpRequesterService: HttpRequesterService);
-    // (undocumented)
     report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
-    // (undocumented)
     setVisitor(visitor: Visitor | undefined): void;
 }
 
 // @public
 export interface AnalyticsResponse {
-    // (undocumented)
     message?: string;
-    // (undocumented)
     status: 'success' | 'error';
 }
 
 // @public
 export interface AnalyticsService {
-    // (undocumented)
     report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
-    // (undocumented)
     setVisitor(visitor: Visitor | undefined): void;
 }
 
@@ -126,8 +118,7 @@ export interface AnalyticsService {
 export interface AutocompleteEvent {
     queryId?: string;
     suggestedSearchText: string;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.AutocompleteSelection>;
+    type: EnumOrString<AnalyticsEventType.AutocompleteSelection>;
 }
 
 // @public (undocumented)
@@ -144,14 +135,13 @@ export interface CtaEvent {
     fieldName?: string;
     queryId: string;
     searcher: Searcher;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
+    type: EnumOrString<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
     url?: string;
     verticalKey: string;
 }
 
-// @public (undocumented)
-export type EnumOrLiteral<T extends string> = T | `${T}`;
+// @public
+export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
 export interface HttpRequesterService {
@@ -164,8 +154,7 @@ export interface PaginationEvent {
     newPage: number;
     queryId: string;
     totalPageCount: number;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.Paginate>;
+    type: EnumOrString<AnalyticsEventType.Paginate>;
     verticalKey: string;
 }
 
@@ -176,32 +165,28 @@ export function provideAnalytics(config: AnalyticsConfig): AnalyticsService;
 export interface QuestionSubmissionEvent {
     queryId: string;
     searcher: Searcher;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>;
+    type: EnumOrString<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>;
     verticalKey: string;
 }
 
 // @public (undocumented)
 export interface ScrollEvent {
     queryId: string;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.ScrollToBottomOfPage>;
+    type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>;
 }
 
 // @public
 export interface SearchBarImpressionEvent {
     searcher?: Searcher;
     standAlone: boolean;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.SearchBarImpression>;
+    type: EnumOrString<AnalyticsEventType.SearchBarImpression>;
     verticalKey?: string;
 }
 
 // @public
 export interface SearchClearEvent {
     queryId: string;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.SearchClearButton>;
+    type: EnumOrString<AnalyticsEventType.SearchClearButton>;
     verticalKey?: string;
 }
 
@@ -209,8 +194,7 @@ export interface SearchClearEvent {
 export interface SearchDurationEvent {
     queryId: string;
     searcher: Searcher;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.ResultsHidden | AnalyticsEventType.ResultsUnhidden | AnalyticsEventType.FollowUpQuery>;
+    type: EnumOrString<AnalyticsEventType.ResultsHidden | AnalyticsEventType.ResultsUnhidden | AnalyticsEventType.FollowUpQuery>;
 }
 
 // @public
@@ -222,24 +206,21 @@ export interface ThumbsFeedbackEvent {
     entityId?: string;
     queryId: string;
     searcher?: Searcher;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>;
+    type: EnumOrString<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>;
     verticalKey?: string;
 }
 
 // @public
 export interface VerticalTabNavigationEvent {
     queryId?: string;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.VerticalTabNavigation>;
+    type: EnumOrString<AnalyticsEventType.VerticalTabNavigation>;
     verticalKey: string;
 }
 
 // @public
 export interface VerticalViewAllEvent {
     queryId: string;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.VerticalViewAll>;
+    type: EnumOrString<AnalyticsEventType.VerticalViewAll>;
     verticalKey: string;
 }
 
@@ -252,8 +233,7 @@ export interface Visitor {
 // @public
 export interface VoiceSearchEvent {
     timestamp: number;
-    // (undocumented)
-    type: EnumOrLiteral<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>;
+    type: EnumOrString<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>;
     voiceSessionId: string;
 }
 

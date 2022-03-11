@@ -4,7 +4,7 @@
 
 ## AnalyticsResponse interface
 
-Info about an analytics report response
+The response to the analytics report function.
 
 <b>Signature:</b>
 
@@ -16,6 +16,6 @@ export interface AnalyticsResponse
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [message?](./analytics.analyticsresponse.message.md) | string | <i>(Optional)</i> |
-|  [status](./analytics.analyticsresponse.status.md) | 'success' \| 'error' |  |
+|  [message?](./analytics.analyticsresponse.message.md) | string | <i>(Optional)</i> The message associated with the response. |
+|  [status](./analytics.analyticsresponse.status.md) | 'success' \| 'error' | Indicates whether or not the analytics report was sucessfully queued. |
 

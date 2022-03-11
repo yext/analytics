@@ -1,5 +1,5 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 
 /**
  * Event for navigating to a vertical tab or page.
@@ -7,7 +7,8 @@ import { EnumOrLiteral } from '../utils';
  * @public
  */
 export interface VerticalTabNavigationEvent {
-  type: EnumOrLiteral<AnalyticsEventType.VerticalTabNavigation>,
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<AnalyticsEventType.VerticalTabNavigation>,
   /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey: string,
   /** {@inheritDoc CtaEvent.queryId} */

@@ -4,6 +4,8 @@
 
 ## AnalyticsService.report() method
 
+Reports an analytics event.
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,8 +16,8 @@ report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): Anal
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  event | [AnalyticsEvent](./analytics.analyticsevent.md) |  |
-|  additionalRequestAttributes | [BeaconPayload](./analytics.beaconpayload.md) |  |
+|  event | [AnalyticsEvent](./analytics.analyticsevent.md) | The [AnalyticsEvent](./analytics.analyticsevent.md) to be sent |
+|  additionalRequestAttributes | [BeaconPayload](./analytics.beaconpayload.md) | Additional data included in the network request. |
 
 <b>Returns:</b>
 

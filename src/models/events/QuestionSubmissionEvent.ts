@@ -1,6 +1,6 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
 import { Searcher } from '../Searcher';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 
 /**
  * Event for submitting a question.
@@ -8,7 +8,8 @@ import { EnumOrLiteral } from '../utils';
  * @public
  */
 export interface QuestionSubmissionEvent {
-  type: EnumOrLiteral<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>,
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,
   /** {@inheritDoc CtaEvent.verticalKey} */

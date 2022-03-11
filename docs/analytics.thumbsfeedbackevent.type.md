@@ -4,8 +4,10 @@
 
 ## ThumbsFeedbackEvent.type property
 
+An enum member or its string value which denotes the event type.
+
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrLiteral<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>;
+type: EnumOrString<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>;
 ```

@@ -8,13 +8,13 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [AnalyticsReporter](./analytics.analyticsreporter.md) |  |
+|  [AnalyticsReporter](./analytics.analyticsreporter.md) | Responsible for reporting Analytics events. |
 
 ## Enumerations
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [AnalyticsEventType](./analytics.analyticseventtype.md) | Represents the possible analytics event types |
+|  [AnalyticsEventType](./analytics.analyticseventtype.md) | Represents the possible analytics event types. |
 
 ## Functions
 
@@ -26,11 +26,11 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. |
+|  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
 |  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for the [AnalyticsReporter](./analytics.analyticsreporter.md)<!-- -->. |
-|  [AnalyticsResponse](./analytics.analyticsresponse.md) | Info about an analytics report response |
-|  [AnalyticsService](./analytics.analyticsservice.md) | A service for Analytics. |
+|  [AnalyticsResponse](./analytics.analyticsresponse.md) | The response to the analytics report function. |
+|  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BeaconPayload](./analytics.beaconpayload.md) |  |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
@@ -52,6 +52,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AnalyticsEvent](./analytics.analyticsevent.md) | An analytics event. |
-|  [EnumOrLiteral](./analytics.enumorliteral.md) |  |
+|  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
 |  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 

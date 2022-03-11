@@ -1,5 +1,5 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 
 /**
  * Event for navigating to the 'all' tab (a universal page).
@@ -7,7 +7,8 @@ import { EnumOrLiteral } from '../utils';
  * @public
  */
 export interface AllTabNavigationEvent {
-  type: EnumOrLiteral<AnalyticsEventType.AllTabNavigation>,
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<AnalyticsEventType.AllTabNavigation>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId?: string
 }

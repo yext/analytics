@@ -4,6 +4,7 @@
 
 ## AnalyticsReporter class
 
+Responsible for reporting Analytics events.
 
 <b>Signature:</b>
 
@@ -22,6 +23,6 @@ export declare class AnalyticsReporter implements AnalyticsService
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [report(event, additionalRequestAttributes)](./analytics.analyticsreporter.report.md) |  |  |
-|  [setVisitor(visitor)](./analytics.analyticsreporter.setvisitor.md) |  |  |
+|  [report(event, additionalRequestAttributes)](./analytics.analyticsreporter.report.md) |  | Reports an analytics event. |
+|  [setVisitor(visitor)](./analytics.analyticsreporter.setvisitor.md) |  | Sets the [Visitor](./analytics.visitor.md) object which is included with each subsequent request |
 

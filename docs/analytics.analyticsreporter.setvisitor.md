@@ -4,6 +4,8 @@
 
 ## AnalyticsReporter.setVisitor() method
 
+Sets the [Visitor](./analytics.visitor.md) object which is included with each subsequent request
+
 <b>Signature:</b>
 
 ```typescript
@@ -14,7 +16,7 @@ setVisitor(visitor: Visitor | undefined): void;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  visitor | [Visitor](./analytics.visitor.md) \| undefined |  |
+|  visitor | [Visitor](./analytics.visitor.md) \| undefined | The visitor to be set, or undefined |
 
 <b>Returns:</b>
 
