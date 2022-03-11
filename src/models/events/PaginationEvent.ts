@@ -12,7 +12,7 @@ export interface PaginationEvent {
   verticalKey: string,
   /** The ID of the query correspond to this pagination sequence. */
   queryId: string,
-  /** Current page number */
+  /** Current page number. */
   currentPage: number,
   /** Next page number to navigate to */
   newPage: number,

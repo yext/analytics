@@ -1,5 +1,5 @@
 /**
- * Info about an analytics report response
+ * Info about an analytics report response.
  *
  * @public
  */

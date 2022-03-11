@@ -3,7 +3,7 @@ import { BeaconPayload } from '../models/BeaconPayload';
 import fetch from 'cross-fetch';
 
 /**
- * Responsible for making web requests
+ * Responsible for making web requests.
  */
 export class HttpRequester implements HttpRequesterService {
   beacon(url: string, body: BeaconPayload): boolean {
