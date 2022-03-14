@@ -1,6 +1,6 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
 import { Searcher } from '../Searcher';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 
 
 /**
@@ -9,7 +9,8 @@ import { EnumOrLiteral } from '../utils';
  * @public
  */
 export interface CtaEvent {
-  type: EnumOrLiteral<
+  /** An enum member or its string value which denotes the event type. */
+  type: EnumOrString<
     AnalyticsEventType.CtaClick |
     AnalyticsEventType.TitleClick |
     AnalyticsEventType.TapToCall |

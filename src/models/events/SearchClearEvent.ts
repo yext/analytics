@@ -1,5 +1,5 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 
 /**
  * Event for clicking on the button to clear the search input.
@@ -7,7 +7,8 @@ import { EnumOrLiteral } from '../utils';
  * @public
  */
 export interface SearchClearEvent {
-  type: EnumOrLiteral<AnalyticsEventType.SearchClearButton>,
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<AnalyticsEventType.SearchClearButton>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,
   /** The vertical key of the vertical if the event was not fired on a universal page. */

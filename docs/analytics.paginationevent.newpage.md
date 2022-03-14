@@ -4,7 +4,7 @@
 
 ## PaginationEvent.newPage property
 
-Next page number to navigate to
+Next page number to navigate to.
 
 <b>Signature:</b>
 

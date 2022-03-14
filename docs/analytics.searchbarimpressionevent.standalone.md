@@ -4,7 +4,7 @@
 
 ## SearchBarImpressionEvent.standAlone property
 
-Whether or not the impression came from a standalone search bar
+Whether or not the impression came from a standalone search bar.
 
 <b>Signature:</b>
 

@@ -4,8 +4,10 @@
 
 ## CtaEvent.type property
 
+An enum member or its string value which denotes the event type.
+
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrLiteral<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
+type: EnumOrString<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
 ```

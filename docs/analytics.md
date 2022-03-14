@@ -20,17 +20,17 @@
 
 |  Interface | Description |
 |  --- | --- |
-|  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. |
+|  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
 |  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics. |
-|  [AnalyticsResponse](./analytics.analyticsresponse.md) | Info about an analytics report response. |
-|  [AnalyticsService](./analytics.analyticsservice.md) | A service for Analytics. |
+|  [AnalyticsResponse](./analytics.analyticsresponse.md) | The response to the analytics report function. |
+|  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
-|  [BeaconPayload](./analytics.beaconpayload.md) |  |
+|  [BeaconPayload](./analytics.beaconpayload.md) | The shape of the data which is sent during a beacon request. |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
-|  [ScrollEvent](./analytics.scrollevent.md) |  |
+|  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |
 |  [SearchBarImpressionEvent](./analytics.searchbarimpressionevent.md) | Event for expanding or collapsing an accordion row. |
 |  [SearchClearEvent](./analytics.searchclearevent.md) | Event for clicking on the button to clear the search input. |
 |  [SearchDurationEvent](./analytics.searchdurationevent.md) | Event used to calculate the duration of a search. |
@@ -45,6 +45,6 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [AnalyticsEvent](./analytics.analyticsevent.md) | An analytics event. |
-|  [EnumOrLiteral](./analytics.enumorliteral.md) |  |
+|  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
 |  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 

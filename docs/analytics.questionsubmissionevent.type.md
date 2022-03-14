@@ -4,8 +4,10 @@
 
 ## QuestionSubmissionEvent.type property
 
+An enum member or its string value which denotes the event type.
+
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrLiteral<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>;
+type: EnumOrString<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>;
 ```

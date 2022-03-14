@@ -1,6 +1,6 @@
 import { AnalyticsEventType } from '../AnalyticsEventType';
 import { Searcher } from '../Searcher';
-import { EnumOrLiteral } from '../utils';
+import { EnumOrString } from '../utils';
 
 /**
  * Event used to calculate the duration of a search.
@@ -8,7 +8,8 @@ import { EnumOrLiteral } from '../utils';
  * @public
  */
 export interface SearchDurationEvent {
-  type: EnumOrLiteral<
+  /** {@inheritDoc CtaEvent."type"} */
+  type: EnumOrString<
     AnalyticsEventType.ResultsHidden |
     AnalyticsEventType.ResultsUnhidden |
     AnalyticsEventType.FollowUpQuery

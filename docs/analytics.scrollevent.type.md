@@ -4,8 +4,10 @@
 
 ## ScrollEvent.type property
 
+An enum member or its string value which denotes the event type.
+
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrLiteral<AnalyticsEventType.ScrollToBottomOfPage>;
+type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>;
 ```
