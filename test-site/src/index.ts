@@ -27,5 +27,5 @@ function fireAnalyticsEvent(event) {
   analytics
     .report(event)
     .then(() => console.log('success!'))
-    .catch((err => console.error(err)));
+    .catch(err => console.error(err));
 }
