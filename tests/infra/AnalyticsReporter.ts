@@ -1,6 +1,7 @@
 import { AnalyticsReporter } from '../../src/infra/AnalyticsReporter';
 import { AnalyticsConfig } from '../../src/models';
 import { HttpRequesterService } from '../../src/services/HttpRequesterService';
+import 'isomorphic-fetch';
 
 const config: AnalyticsConfig = {
   experienceKey: 'yext',
@@ -8,13 +9,15 @@ const config: AnalyticsConfig = {
   businessId: 123
 };
 
-const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => true) };
+const mockHttpRequesterService: HttpRequesterService = {
+  post: jest.fn(() => Promise.resolve(new Response()))
+};
 
 it('The URL is constructed correctly', () => {
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const expectedUrl = `https://answers.yext-pixel.com/realtimeanalytics/data/answers/${config.businessId}`;
-  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The URL is constructed correctly with custom domains', () => {
@@ -25,7 +28,7 @@ it('The URL is constructed correctly with custom domains', () => {
   const analyticsReporter = new AnalyticsReporter(configWithCustomDomain, mockHttpRequesterService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1'});
   const expectedUrl = `https://yext.com/realtimeanalytics/data/answers/${config.businessId}`;
-  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The data is structured properly', () => {
@@ -40,7 +43,7 @@ it('The data is structured properly', () => {
       queryId: '1'
     }
   };
-  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
+  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
 it('Additional params are sent properly', () => {
@@ -59,20 +62,25 @@ it('Additional params are sent properly', () => {
     },
     ...additionalRequestAttributes
   };
-  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), expectedData);
+  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
 it('A status of "success" is returned for successful beacons', () => {
+  expect.assertions(1);
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const metadata = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
-  expect(metadata).toEqual({ status: 'success' });
+  const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
+  expect(resPromise).resolves.toEqual(undefined);
 });
 
 it('A status of "error" is returned for unsuccessful beacons', () => {
-  const mockHttpRequesterService: HttpRequesterService = { beacon: jest.fn(() => false) };
+  expect.assertions(1);
+  const errMsg = 'So we put a fail in your fail so you can facepalm while you facepalm';
+  const mockHttpRequesterService: HttpRequesterService = {
+    post: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 })))
+  };
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
-  const metadata = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
-  expect(metadata).toEqual({ status: 'error', message: expect.anything() });
+  const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
+  expect(resPromise).rejects.toEqual(new Error(errMsg));
 });
 
 it('Visitor is set and passed properly', () => {
@@ -92,10 +100,10 @@ it('Visitor is set and passed properly', () => {
       ...visitorParam
     }
   };
-  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(),
+  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(),
     expectedDataWithVisitor);
 
-  analyticsReporter.setVisitor();
+  analyticsReporter.setVisitor(undefined);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
-  expect(mockHttpRequesterService.beacon).toHaveBeenLastCalledWith(expect.anything(), { data });
+  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), { data });
 });
