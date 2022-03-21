@@ -65,14 +65,14 @@ it('Additional params are sent properly', () => {
   expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
-it('A status of "success" is returned for successful beacons', () => {
+it('Returns a resolved promise after a successful report', () => {
   expect.assertions(1);
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   expect(resPromise).resolves.toEqual(undefined);
 });
 
-it('A status of "error" is returned for unsuccessful beacons', () => {
+it('Performs a promise rejection when the API responds with an error', () => {
   expect.assertions(1);
   const errMsg = 'So we put a fail in your fail so you can facepalm while you facepalm';
   const mockHttpRequesterService: HttpRequesterService = {
