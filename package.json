@@ -17,7 +17,7 @@
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
     "test": "jest",
-    "dev": "tsc -p tsconfig.cjs.json --watch",
+    "dev": "tsc -p tsconfig.esm.json --watch",
     "generate-notices": "generate-license-file --input package.json --output THIRD-PARTY-NOTICES --overwrite"
   },
   "devDependencies": {
