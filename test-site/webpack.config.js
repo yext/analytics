@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const babelOptions = {
   presets: [['@babel/preset-env', { useBuiltIns: 'entry', corejs: 3, targets: {ie: 11} }]],
@@ -23,6 +24,13 @@ module.exports = [{
   resolve: {
     extensions: [ '.tsx', '.ts', '.js' ],
   },
+  plugins: [
+    new CopyPlugin({
+      patterns: [
+        { from: 'src/index.html' },
+      ],
+    }),
+  ],
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
