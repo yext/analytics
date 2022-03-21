@@ -1,6 +1,5 @@
-import { BeaconPayload } from '../models';
+import { AnalyticsPayload } from '../models/AnalyticsPayload';
 import { AnalyticsEvent } from '../models/events/AnalyticsEvent';
-import { AnalyticsResponse } from '../models/AnalyticsResponse';
 import { Visitor } from '../models/Visitor';
 
 /**
@@ -11,11 +10,15 @@ import { Visitor } from '../models/Visitor';
 export interface AnalyticsService {
   /**
    * Reports an analytics event.
+   * Will perform a promise rejection if the API response contains an error.
    *
    * @param event - The {@link AnalyticsEvent} to be sent.
    * @param additionalRequestAttributes - Additional data included in the network request.
    */
-  report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
+  report(
+    event: AnalyticsEvent,
+    additionalRequestAttributes?: AnalyticsPayload
+  ): Promise<void>;
   /**
    * Sets the {@link Visitor} object which is included with each subsequent request.
    *

@@ -4,12 +4,12 @@
 
 ## AnalyticsService.report() method
 
-Reports an analytics event.
+Reports an analytics event. Will perform a promise rejection if the API response contains an error.
 
 <b>Signature:</b>
 
 ```typescript
-report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
+report(event: AnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
 ```
 
 ## Parameters
@@ -17,9 +17,9 @@ report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): Anal
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  event | [AnalyticsEvent](./analytics.analyticsevent.md) | The [AnalyticsEvent](./analytics.analyticsevent.md) to be sent. |
-|  additionalRequestAttributes | [BeaconPayload](./analytics.beaconpayload.md) | Additional data included in the network request. |
+|  additionalRequestAttributes | [AnalyticsPayload](./analytics.analyticspayload.md) | Additional data included in the network request. |
 
 <b>Returns:</b>
 
-[AnalyticsResponse](./analytics.analyticsresponse.md)
+Promise&lt;void&gt;
 

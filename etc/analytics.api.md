@@ -96,14 +96,13 @@ export enum AnalyticsEventType {
 }
 
 // @public
-export interface AnalyticsResponse {
-    message?: string;
-    status: 'success' | 'error';
+export interface AnalyticsPayload {
+    [key: string]: string | number | boolean | AnalyticsPayload;
 }
 
 // @public
 export interface AnalyticsService {
-    report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse;
+    report(event: AnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
     setVisitor(visitor: Visitor | undefined): void;
 }
 
@@ -112,11 +111,6 @@ export interface AutocompleteEvent {
     queryId?: string;
     suggestedSearchText: string;
     type: EnumOrString<AnalyticsEventType.AutocompleteSelection>;
-}
-
-// @public
-export interface BeaconPayload {
-    [key: string]: string | number | boolean | BeaconPayload;
 }
 
 // @public

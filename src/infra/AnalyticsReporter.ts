@@ -2,11 +2,10 @@ import { AnalyticsService } from '../services/AnalyticsService';
 import { AnalyticsConfig } from '../models/AnalyticsConfig';
 import { HttpRequesterService } from '../services/HttpRequesterService';
 import { AnalyticsEvent } from '../models/events/AnalyticsEvent';
-import { BeaconPayload } from '../models/BeaconPayload';
-import { AnalyticsResponse } from '../models/AnalyticsResponse';
+import { AnalyticsPayload } from '../models/AnalyticsPayload';
 import { Visitor } from '../models/Visitor';
 
-const defaultDomain = 'https://answers.yext-pixel.com';
+const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
 
 /**
  * Responsible for reporting Analytics events.
@@ -19,8 +18,11 @@ export class AnalyticsReporter implements AnalyticsService {
   }
 
   /** {@inheritDoc AnalyticsService.report} */
-  report(event: AnalyticsEvent, additionalRequestAttributes?: BeaconPayload): AnalyticsResponse {
-    const domain = this.config.domain ?? defaultDomain;
+  async report(
+    event: AnalyticsEvent,
+    additionalRequestAttributes?: AnalyticsPayload
+  ): Promise<void> {
+    const domain = this.config.domain ?? DEFAULT_DOMAIN;
     const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
     const { type, ...eventData } = event;
     const data = {
@@ -31,12 +33,13 @@ export class AnalyticsReporter implements AnalyticsService {
       ...(this._visitor && { visitor: { ...this._visitor } }),
       ...this._formatForApi(eventData)
     };
-    const successfullyQueued = this.httpRequesterService.beacon(
+    const res = await this.httpRequesterService.post(
       url, { data, ...additionalRequestAttributes }
     );
-    return successfullyQueued
-      ? { status: 'success' }
-      : { status: 'error', message: 'The useragent failed to queue the data for transfer' };
+    if (res.status !== 200) {
+      const errorMessage = await res.text();
+      throw new Error(errorMessage);
+    }
   }
 
   /** {@inheritDoc AnalyticsService.setVisitor} */
@@ -50,8 +53,8 @@ export class AnalyticsReporter implements AnalyticsService {
    * @param event - The data to format.
    * @returns The formatted data.
    */
-  private _formatForApi(event: Omit<AnalyticsEvent, 'type'>): BeaconPayload {
-    const transformedEvent: BeaconPayload = { ...event };
+  private _formatForApi(event: Omit<AnalyticsEvent, 'type'>): AnalyticsPayload {
+    const transformedEvent: AnalyticsPayload = { ...event };
     if (transformedEvent.verticalKey) {
       transformedEvent.verticalConfigId = transformedEvent.verticalKey;
       delete transformedEvent.verticalKey;
