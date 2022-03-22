@@ -1,12 +1,12 @@
-import { BeaconPayload } from '../models/BeaconPayload';
+import { AnalyticsPayload } from '../models/AnalyticsPayload';
 /**
  * A service for sending requests on the web.
  */
 export interface HttpRequesterService {
   /**
-   * A web beacon request. Returns true only if the request is successfuly queued.
+   * A POST request.
    * @param url - The URL to send the request to.
    * @param body - The payload to be included with the request.
    */
-  beacon(url: string, body: BeaconPayload): boolean;
+   post(url: string, body: AnalyticsPayload): Promise<Response>;
 }

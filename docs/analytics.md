@@ -23,10 +23,9 @@
 |  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
 |  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics. |
-|  [AnalyticsResponse](./analytics.analyticsresponse.md) | The response to the analytics report function. |
+|  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
 |  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
-|  [BeaconPayload](./analytics.beaconpayload.md) | The shape of the data which is sent during a beacon request. |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |

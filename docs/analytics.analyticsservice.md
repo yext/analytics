@@ -16,6 +16,6 @@ export interface AnalyticsService
 
 |  Method | Description |
 |  --- | --- |
-|  [report(event, additionalRequestAttributes)](./analytics.analyticsservice.report.md) | Reports an analytics event. |
+|  [report(event, additionalRequestAttributes)](./analytics.analyticsservice.report.md) | Reports an analytics event. Will perform a promise rejection if the API response contains an error. |
 |  [setVisitor(visitor)](./analytics.analyticsservice.setvisitor.md) | Sets the [Visitor](./analytics.visitor.md) object which is included with each subsequent request. |
 
