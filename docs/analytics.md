@@ -14,7 +14,7 @@
 
 |  Function | Description |
 |  --- | --- |
-|  [provideAnalytics(config)](./analytics.provideanalytics.md) | The entrypoint to the analytics library. TEST |
+|  [provideAnalytics(config)](./analytics.provideanalytics.md) | The entrypoint to the analytics library. |
 
 ## Interfaces
 

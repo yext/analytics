@@ -4,7 +4,7 @@
 
 ## provideAnalytics() function
 
-The entrypoint to the analytics library. TEST
+The entrypoint to the analytics library.
 
 <b>Signature:</b>
 
