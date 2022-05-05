@@ -4,7 +4,7 @@ import { HttpRequester } from './infra/HttpRequester';
 import { AnalyticsService } from './services';
 
 /**
- * The entrypoint to the analytics library. TEST
+ * The entrypoint to the analytics library.
  *
  * @remarks
  * Returns an analytics service instance.
