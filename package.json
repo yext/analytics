@@ -8,7 +8,8 @@
   "types": "./lib/analytics.d.ts",
   "files": [
     "src",
-    "lib"
+    "lib",
+    "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
     "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run api-extractor && npm run generate-docs",
