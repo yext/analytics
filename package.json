@@ -3,6 +3,7 @@
   "version": "0.2.0-beta.5",
   "description": "An analytics library for Yext Answers",
   "author": "slapshot@yext.com",
+  "license": "BSD-3-Clause",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/esm/index.js",
   "types": "./lib/analytics.d.ts",
