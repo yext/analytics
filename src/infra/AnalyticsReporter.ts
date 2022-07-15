@@ -6,6 +6,7 @@ import { AnalyticsPayload } from '../models/AnalyticsPayload';
 import { Visitor } from '../models/Visitor';
 
 const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
+const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
 
 /**
  * Responsible for reporting Analytics events.
@@ -22,6 +23,10 @@ export class AnalyticsReporter implements AnalyticsService {
     event: AnalyticsEvent,
     additionalRequestAttributes?: AnalyticsPayload
   ): Promise<void> {
+    if (event.type === 'PAGE_VIEW' || event.type === 'CLICK_EVENT') {
+      this.reportLegacy(event);
+      return;
+    }
     const domain = this.config.domain ?? DEFAULT_DOMAIN;
     const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
     const { type, ...eventData } = event;
@@ -35,6 +40,28 @@ export class AnalyticsReporter implements AnalyticsService {
     };
     const res = await this.httpRequesterService.post(
       url, { data, ...additionalRequestAttributes }
+    );
+    if (res.status !== 200) {
+      const errorMessage = await res.text();
+      throw new Error(errorMessage);
+    }
+  }
+
+  /** {@inheritDoc AnalyticsService.report} */
+  async reportLegacy(
+    event: AnalyticsEvent
+  ): Promise<void> {
+    const domain = this.config.domain ?? DEFAULT_DOMAIN_PAGES;
+    const url = `${domain}/store_pagespixel?`;
+    const queryParams = new URLSearchParams();
+
+    Object.keys(event).forEach((key) => {
+      queryParams.append(key, event[key]);
+    })
+
+    const res = await fetch(
+      url + queryParams.toString(),
+      { mode: 'no-cors' }
     );
     if (res.status !== 200) {
       const errorMessage = await res.text();
