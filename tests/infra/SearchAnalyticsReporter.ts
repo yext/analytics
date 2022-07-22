@@ -1,4 +1,4 @@
-import { AnalyticsReporter } from '../../src/infra/AnalyticsReporter';
+import { SearchAnalyticsReporter } from '../../src/infra/SearchAnalyticsReporter';
 import { SearchAnalyticsConfig } from '../../src/models';
 import { HttpRequesterService } from '../../src/services/HttpRequesterService';
 import 'isomorphic-fetch';
@@ -15,7 +15,7 @@ const mockHttpRequesterService: HttpRequesterService = {
 };
 
 it('The URL is constructed correctly', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const expectedUrl = `https://answers.yext-pixel.com/realtimeanalytics/data/answers/${config.businessId}`;
   expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
@@ -26,14 +26,14 @@ it('The URL is constructed correctly with custom domains', () => {
     ...config,
     domain: 'https://yext.com'
   };
-  const analyticsReporter = new AnalyticsReporter(configWithCustomDomain, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter(configWithCustomDomain, mockHttpRequesterService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1'});
   const expectedUrl = `https://yext.com/realtimeanalytics/data/answers/${config.businessId}`;
   expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The data is structured properly', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1'});
   const expectedData = {
     data: {
@@ -48,7 +48,7 @@ it('The data is structured properly', () => {
 });
 
 it('Additional params are sent properly', () => {
-  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
   const additionalRequestAttributes = {
     ytag: 123
   };
@@ -68,7 +68,7 @@ it('Additional params are sent properly', () => {
 
 it('Returns a resolved promise after a successful report', () => {
   expect.assertions(1);
-  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
   const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   expect(resPromise).resolves.toEqual(undefined);
 });
@@ -80,14 +80,14 @@ it('Performs a promise rejection when the API responds with an error', () => {
     post: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
     get: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
   };
-  const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
   const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   expect(resPromise).rejects.toEqual(new Error(errMsg));
 });
 
 it('Visitor is set and passed properly', () => {
   const visitorParam = { visitor: { id: '123'} };
-  const analyticsReporter = new AnalyticsReporter({...config, ...visitorParam}, mockHttpRequesterService);
+  const analyticsReporter = new SearchAnalyticsReporter({...config, ...visitorParam}, mockHttpRequesterService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const data = {
     businessId: 123,
