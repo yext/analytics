@@ -34,10 +34,9 @@ export { VerticalTabNavigationEvent };
  *
  * @public
  */
-export type AnalyticsEvent =
+export type SearchAnalyticsEvent =
   AccordionToggleEvent |
   CtaEvent |
-  PagesEvent |
   QuestionSubmissionEvent |
   ScrollEvent |
   SearchBarImpressionEvent |

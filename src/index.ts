@@ -1,5 +1,5 @@
-import { AnalyticsConfig } from './models/AnalyticsConfig';
-import { AnalyticsReporter } from './infra/AnalyticsReporter';
+import {AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig} from './models/AnalyticsConfig';
+import { SearchAnalyticsReporter } from './infra/SearchAnalyticsReporter';
 import { HttpRequester } from './infra/HttpRequester';
 import { AnalyticsService } from './services';
 
@@ -13,10 +13,12 @@ import { AnalyticsService } from './services';
  *
  * @public
  */
-export function provideAnalytics(config: AnalyticsConfig): AnalyticsService {
+export function provideAnalytics(
+  config: SearchAnalyticsConfig|AnalyticsConfig
+): AnalyticsService {
   const httpRequester = new HttpRequester();
 
-  return new AnalyticsReporter(config, httpRequester);
+  return new SearchAnalyticsReporter(config, httpRequester);
 }
 
 export * from './models';

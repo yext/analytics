@@ -9,4 +9,10 @@ export interface HttpRequesterService {
    * @param body - The payload to be included with the request.
    */
    post(url: string, body: AnalyticsPayload): Promise<Response>;
+
+    /**
+     * A GET request.
+     * @param url
+     */
+    get(url: string): Promise<Response>;
 }

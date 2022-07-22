@@ -1,16 +1,17 @@
 import { AnalyticsReporter } from '../../src/infra/AnalyticsReporter';
-import { AnalyticsConfig } from '../../src/models';
+import { SearchAnalyticsConfig } from '../../src/models';
 import { HttpRequesterService } from '../../src/services/HttpRequesterService';
 import 'isomorphic-fetch';
 
-const config: AnalyticsConfig = {
+const config: SearchAnalyticsConfig = {
   experienceKey: 'yext',
   experienceVersion: 'PRODUCTION',
   businessId: 123
 };
 
 const mockHttpRequesterService: HttpRequesterService = {
-  post: jest.fn(() => Promise.resolve(new Response()))
+  post: jest.fn(() => Promise.resolve(new Response())),
+  get: jest.fn(() => Promise.resolve(new Response())),
 };
 
 it('The URL is constructed correctly', () => {
@@ -76,7 +77,8 @@ it('Performs a promise rejection when the API responds with an error', () => {
   expect.assertions(1);
   const errMsg = 'So we put a fail in your fail so you can facepalm while you facepalm';
   const mockHttpRequesterService: HttpRequesterService = {
-    post: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 })))
+    post: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
+    get: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
   };
   const analyticsReporter = new AnalyticsReporter(config, mockHttpRequesterService);
   const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });

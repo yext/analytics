@@ -1,32 +1,26 @@
 import { AnalyticsService } from '../services/AnalyticsService';
-import { AnalyticsConfig } from '../models/AnalyticsConfig';
+import {AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig} from '../models/AnalyticsConfig';
 import { HttpRequesterService } from '../services/HttpRequesterService';
-import { AnalyticsEvent } from '../models/events/AnalyticsEvent';
+import {SearchAnalyticsEvent, PagesEvent} from '../models/events/SearchAnalyticsEvent';
 import { AnalyticsPayload } from '../models/AnalyticsPayload';
 import { Visitor } from '../models/Visitor';
 
 const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
-const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
 
 /**
  * Responsible for reporting Analytics events.
  */
-export class AnalyticsReporter implements AnalyticsService {
+export class SearchAnalyticsReporter implements AnalyticsService {
   private _visitor: Visitor | undefined;
-
-  constructor(private config: AnalyticsConfig, private httpRequesterService: HttpRequesterService) {
+  constructor(private config: SearchAnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
   }
 
   /** {@inheritDoc AnalyticsService.report} */
   async report(
-    event: AnalyticsEvent,
+    event: SearchAnalyticsEvent,
     additionalRequestAttributes?: AnalyticsPayload
   ): Promise<void> {
-    if (event.type === 'PAGE_VIEW' || event.type === 'CLICK_EVENT') {
-      this.reportLegacy(event);
-      return;
-    }
     const domain = this.config.domain ?? DEFAULT_DOMAIN;
     const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
     const { type, ...eventData } = event;
@@ -36,32 +30,10 @@ export class AnalyticsReporter implements AnalyticsService {
       experienceKey: this.config.experienceKey,
       experienceVersion: this.config.experienceVersion,
       ...(this._visitor && { visitor: { ...this._visitor } }),
-      ...this._formatForApi(eventData)
+      ...SearchAnalyticsReporter._formatForApi(eventData)
     };
     const res = await this.httpRequesterService.post(
       url, { data, ...additionalRequestAttributes }
-    );
-    if (res.status !== 200) {
-      const errorMessage = await res.text();
-      throw new Error(errorMessage);
-    }
-  }
-
-  /** {@inheritDoc AnalyticsService.report} */
-  async reportLegacy(
-    event: AnalyticsEvent
-  ): Promise<void> {
-    const domain = this.config.domain ?? DEFAULT_DOMAIN_PAGES;
-    const url = `${domain}/store_pagespixel?`;
-    const queryParams = new URLSearchParams();
-
-    Object.keys(event).forEach((key) => {
-      queryParams.append(key, event[key]);
-    })
-
-    const res = await fetch(
-      url + queryParams.toString(),
-      { mode: 'no-cors' }
     );
     if (res.status !== 200) {
       const errorMessage = await res.text();
@@ -80,7 +52,7 @@ export class AnalyticsReporter implements AnalyticsService {
    * @param event - The data to format.
    * @returns The formatted data.
    */
-  private _formatForApi(event: Omit<AnalyticsEvent, 'type'>): AnalyticsPayload {
+  private static _formatForApi(event: Omit<SearchAnalyticsEvent, 'type'>): AnalyticsPayload {
     const transformedEvent: AnalyticsPayload = { ...event };
     if (transformedEvent.verticalKey) {
       transformedEvent.verticalConfigId = transformedEvent.verticalKey;
