@@ -20,18 +20,6 @@ export interface AllTabNavigationEvent {
 }
 
 // @public
-export interface AnalyticsConfig {
-    businessId: number;
-    domain?: string;
-    experienceKey: string;
-    experienceVersion: 'PRODUCTION' | 'STAGING' | string;
-    visitor?: Visitor;
-}
-
-// @public
-export type AnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
-
-// @public
 export enum AnalyticsEventType {
     // (undocumented)
     AddToCart = "ADD_TO_CART",
@@ -44,6 +32,8 @@ export enum AnalyticsEventType {
     // (undocumented)
     BookAppointment = "BOOK_APPOINTMENT",
     // (undocumented)
+    ClickEvent = "CLICK_EVENT",
+    // (undocumented)
     CtaClick = "CTA_CLICK",
     // (undocumented)
     DrivingDirections = "DRIVING_DIRECTIONS",
@@ -53,6 +43,8 @@ export enum AnalyticsEventType {
     FollowUpQuery = "FOLLOW_UP_QUERY",
     // (undocumented)
     OrderNow = "ORDER_NOW",
+    // (undocumented)
+    PageView = "PAGE_VIEW",
     // (undocumented)
     Paginate = "PAGINATE",
     // (undocumented)
@@ -102,7 +94,7 @@ export interface AnalyticsPayload {
 
 // @public
 export interface AnalyticsService {
-    report(event: AnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
+    report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
     setVisitor(visitor: Visitor | undefined): void;
 }
 
@@ -130,6 +122,11 @@ export interface CtaEvent {
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
+export interface PagesEvent {
+    eventType: 'pageview' | string;
+}
+
+// @public
 export interface PaginationEvent {
     currentPage: number;
     newPage: number;
@@ -139,8 +136,10 @@ export interface PaginationEvent {
     verticalKey: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "AnalyticsConfig" needs to be exported by the entry point index.d.ts
+//
 // @public
-export function provideAnalytics(config: AnalyticsConfig): AnalyticsService;
+export function provideAnalytics(config: SearchAnalyticsConfig | AnalyticsConfig): AnalyticsService;
 
 // @public
 export interface QuestionSubmissionEvent {
@@ -155,6 +154,19 @@ export interface ScrollEvent {
     queryId: string;
     type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>;
 }
+
+// Warning: (ae-forgotten-export) The symbol "BaseAnalyticsConfig" needs to be exported by the entry point index.d.ts
+//
+// @public
+export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
+    domain?: string;
+    experienceKey: string;
+    experienceVersion: 'PRODUCTION' | 'STAGING' | string;
+    visitor?: Visitor;
+}
+
+// @public
+export type SearchAnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
 
 // @public
 export interface SearchBarImpressionEvent {

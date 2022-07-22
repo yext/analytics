@@ -9,14 +9,14 @@ Reports an analytics event. Will perform a promise rejection if the API response
 <b>Signature:</b>
 
 ```typescript
-report(event: AnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
+report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  event | [AnalyticsEvent](./analytics.analyticsevent.md) | The [AnalyticsEvent](./analytics.analyticsevent.md) to be sent. |
+|  event | [SearchAnalyticsEvent](./analytics.searchanalyticsevent.md) | The [SearchAnalyticsEvent](./analytics.searchanalyticsevent.md) to be sent. |
 |  additionalRequestAttributes | [AnalyticsPayload](./analytics.analyticspayload.md) | Additional data included in the network request. |
 
 <b>Returns:</b>

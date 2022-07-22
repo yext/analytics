@@ -21,11 +21,13 @@ export declare enum AnalyticsEventType
 |  ApplyNow | <code>&quot;APPLY_NOW&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  AutocompleteSelection | <code>&quot;AUTO_COMPLETE_SELECTION&quot;</code> | [AutocompleteEvent](./analytics.autocompleteevent.md) |
 |  BookAppointment | <code>&quot;BOOK_APPOINTMENT&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  ClickEvent | <code>&quot;CLICK_EVENT&quot;</code> | [PagesEvent](./analytics.pagesevent.md) |
 |  CtaClick | <code>&quot;CTA_CLICK&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  DrivingDirections | <code>&quot;DRIVING_DIRECTIONS&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  Email | <code>&quot;EMAIL&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  FollowUpQuery | <code>&quot;FOLLOW_UP_QUERY&quot;</code> | [SearchDurationEvent](./analytics.searchdurationevent.md) |
 |  OrderNow | <code>&quot;ORDER_NOW&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  PageView | <code>&quot;PAGE_VIEW&quot;</code> | [PagesEvent](./analytics.pagesevent.md) |
 |  Paginate | <code>&quot;PAGINATE&quot;</code> | [PaginationEvent](./analytics.paginationevent.md) |
 |  QuestionFocus | <code>&quot;QUESTION_FOCUS&quot;</code> | [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) |
 |  QuestionSubmit | <code>&quot;QUESTION_SUBMIT&quot;</code> | [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) |

@@ -22,14 +22,15 @@
 |  --- | --- |
 |  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
-|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics. |
 |  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
 |  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
+|  [PagesEvent](./analytics.pagesevent.md) | An event from the Pages system |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |
+|  [SearchAnalyticsConfig](./analytics.searchanalyticsconfig.md) | The main configuration options for Search Analytics. |
 |  [SearchBarImpressionEvent](./analytics.searchbarimpressionevent.md) | Event for expanding or collapsing an accordion row. |
 |  [SearchClearEvent](./analytics.searchclearevent.md) | Event for clicking on the button to clear the search input. |
 |  [SearchDurationEvent](./analytics.searchdurationevent.md) | Event used to calculate the duration of a search. |
@@ -43,7 +44,7 @@
 
 |  Type Alias | Description |
 |  --- | --- |
-|  [AnalyticsEvent](./analytics.analyticsevent.md) | An analytics event. |
 |  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
+|  [SearchAnalyticsEvent](./analytics.searchanalyticsevent.md) | An analytics event. |
 |  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 

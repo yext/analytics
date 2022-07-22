@@ -9,14 +9,14 @@ The entrypoint to the analytics library.
 <b>Signature:</b>
 
 ```typescript
-export declare function provideAnalytics(config: AnalyticsConfig): AnalyticsService;
+export declare function provideAnalytics(config: SearchAnalyticsConfig | AnalyticsConfig): AnalyticsService;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  config | [AnalyticsConfig](./analytics.analyticsconfig.md) | The analytics config |
+|  config | [SearchAnalyticsConfig](./analytics.searchanalyticsconfig.md) \| AnalyticsConfig | The analytics config |
 
 <b>Returns:</b>
 
