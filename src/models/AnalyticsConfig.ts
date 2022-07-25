@@ -68,10 +68,10 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig{
   */
 
   /** The current page url. */
-  pageurl: string,
+  pageurl?: string,
 
   /** The url the user came from. */
-  pagesReferrer: string,
+  pagesReferrer?: string,
 }
 
 /**

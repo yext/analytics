@@ -4,40 +4,62 @@ import {PagesAnalyticsReporter} from '../../src/infra/PagesAnalyticsReporter';
 import 'isomorphic-fetch';
 
 
-const config: PagesAnalyticsConfig = {
+const baseConfig: PagesAnalyticsConfig = {
   businessId: 12345,
   pageSetId: 'MyPageSet',
-  pagesReferrer: null,
-  pageurl: null,
   production: false,
   siteId: 0,
 };
+
+let windowSpy;
 
 const mockHttpRequesterService: HttpRequesterService = {
   post: jest.fn(() => Promise.resolve(new Response())),
   get: jest.fn(() => Promise.resolve(new Response())),
 };
+beforeEach(() => {
+  // will produce a v parameter == 1001 from the seed() function
+  jest.spyOn(global.Math, 'random').mockReturnValue(1);
+  jest.spyOn(global.Date, 'now').mockReturnValue(1);
+  windowSpy = jest.spyOn(window, 'window', 'get');
+});
 
-class MockDate extends Date {
-  static now(): number {
-    return 1234567889;
-  }
-}
-
-const MockMath = Object.assign(Math, {
-  random(): number {
-    return 12345;
-  }
+afterEach(() => {
+  windowSpy.mockRestore();
 });
 
 it('The PageView URL is constructed correctly', () => {
-  // const mockWindow = Object.create(Window);
-  // delete mockWindow.location;
-  // mockWindow.location = new URL('http://www.example.com');
-  // mockWindow.document.referer = 'http://www.google.com';
+  windowSpy.mockImplementation(() => {
+    return {
+      location: {
+        href: 'http://www.example.com',
+      },
+      document: {
+        referrer: 'http://www.google.com',
+      }
+    };
+  });
 
-  const reporter = new PagesAnalyticsReporter(config, mockHttpRequesterService);
+  const reporter = new PagesAnalyticsReporter(baseConfig, mockHttpRequesterService);
   reporter.pageView();
-  const expectedUrl = '';
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessId', '12345');
+  expectedUrl.searchParams.set('product', 'storepages');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', 'http%3A%2F%2Fwww.example.com');
+  expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.google.com');
+
+  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
+
+// TODO: implement entity id tracking
+// TODO: implement directory tracking test
+// TODO: implement search tracking test
+// TODO: implement overridden referrer / pages url test
+// TODO: implement click event
+// TODO: implement error check test

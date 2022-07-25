@@ -12,12 +12,11 @@ const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
  */
 export class PagesAnalyticsReporter {
   constructor(private config: PagesAnalyticsConfig,
-              private httpRequesterService: HttpRequesterService,
-              private global: Window=window) {
+              private httpRequesterService: HttpRequesterService) {
   }
 
   async report(event: PagesEvent): Promise<void> {
-    const eventDetails = new PagesEventDetails(this.config, event, this.global);
+    const eventDetails = new PagesEventDetails(this.config, event);
     const urlStr = `${DEFAULT_DOMAIN_PAGES}/store_pagespixel`;
     const url = new URL(urlStr);
     url.search = eventDetails.urlParameters().toString();

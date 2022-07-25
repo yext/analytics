@@ -1,4 +1,4 @@
-import {PagesAnalyticsConfig} from '../models/AnalyticsConfig';
+import {PagesAnalyticsConfig} from './AnalyticsConfig';
 import {PagesEvent} from '../models';
 
 /**
@@ -15,7 +15,7 @@ export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
   public pageurl: string;
   public pagesReferrer: string;
 
-  constructor(config: PagesAnalyticsConfig, event: PagesEvent, global: Window=window) {
+  constructor(config: PagesAnalyticsConfig, event: PagesEvent) {
     this.eventType = event.eventType;
     this.product = 'storepages';
     this.siteId = config.siteId;
@@ -23,18 +23,16 @@ export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
     this.production = config.production;
     this.ids = config.ids;
     this.pageSetId = config.pageSetId;
-    this.pagesReferrer = config.pagesReferrer ? config.pagesReferrer : global.document.referrer;
-    this.pageurl = config.pageurl ? config.pageurl : global.location.href;
+    this.pagesReferrer = config.pagesReferrer ? config.pagesReferrer : window.document.referrer;
+    this.pageurl = config.pageurl ? config.pageurl : window.location.href;
   }
 
   /**
    * Get a random number to use as a cache buster in analytics pixel URLs
    * @returns {number}
    */
-  seed(date: DateConstructor = window.Date,
-    math: Math = window.Math,
-  ): number {
-    return date.now() + math.floor(1000 * math.random());
+  seed(): number {
+    return Date.now() + Math.floor(1000 * Math.random());
   }
 
   urlParameters(): URLSearchParams {
