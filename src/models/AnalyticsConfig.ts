@@ -44,6 +44,20 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig{
   siteId: number,
 
   /**
+   * The analytics ID of the version of pages
+   * 'storepages' for classic pages
+   * 'sites' for the latest version of the platform
+   */
+  product: 'storepages' |'sites';
+
+  /**
+   * Page Type
+   * The 'Page Type' filter found in analytics report builder
+   * Either entity, directory, locator, or static
+   */
+  pageType: 'entity'|'directory'|'locator'|'static',
+
+  /**
    * Set to true if the environment is production
    * If set to true events will appear in Analytics Reports in your Yext Account
    */
@@ -55,22 +69,21 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig{
   ids?: number[],
 
   /**
+   * The path component of the page url
+   * will default to window.location.pathname
+   */
+  path?: string
+
+  /**
    * The identifier of the feature within the site,
    * typically 'name' key of the feature in the features.json file
    */
-  pageSetId: string,
+  featureId: string,
 
-  /** TODO: do we want to include directory | locator | static?
-    * staticPageId: string // static page id
-    * searchId: string // search page id
-    * directoryId: string // directory feature id
-    * directoryPath: string // relative path on the directory page
-  */
-
-  /** The current page url. */
-  pageurl?: string,
-
-  /** The url the user came from. */
+  /**
+   * The url the user came from
+   * will default to window.document.referrer
+   * */
   pagesReferrer?: string,
 }
 

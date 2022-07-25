@@ -5,10 +5,12 @@ import 'isomorphic-fetch';
 
 
 const baseConfig: PagesAnalyticsConfig = {
+  product: 'storepages',
   businessId: 12345,
-  pageSetId: 'MyPageSet',
+  featureId: 'My Page Set',
+  pageType: 'static',
   production: false,
-  siteId: 0,
+  siteId: 0
 };
 
 let windowSpy;
@@ -28,16 +30,19 @@ afterEach(() => {
   windowSpy.mockRestore();
 });
 
-it('The PageView URL is constructed correctly', () => {
+const baseGlobals = {
+  location: {
+    href: 'http://www.example.com/foo/bar',
+    pathname: '/foo/bar',
+  },
+  document: {
+    referrer: 'http://www.google.com',
+  }
+};
+
+it('The static page page view URL is constructed correctly', () => {
   windowSpy.mockImplementation(() => {
-    return {
-      location: {
-        href: 'http://www.example.com',
-      },
-      document: {
-        referrer: 'http://www.google.com',
-      }
-    };
+    return baseGlobals;
   });
 
   const reporter = new PagesAnalyticsReporter(baseConfig, mockHttpRequesterService);
@@ -50,16 +55,197 @@ it('The PageView URL is constructed correctly', () => {
   expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('staticPageId', 'My%20Page%20Set');
   expectedUrl.searchParams.set('v', '1001');
-  expectedUrl.searchParams.set('pageurl', 'http%3A%2F%2Fwww.example.com');
+  expectedUrl.searchParams.set('pageurl', '%2Ffoo%2Fbar');
   expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.google.com');
 
   expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
-// TODO: implement entity id tracking
-// TODO: implement directory tracking test
-// TODO: implement search tracking test
-// TODO: implement overridden referrer / pages url test
-// TODO: implement click event
-// TODO: implement error check test
+it('Should handle http errors properly', () => {
+  expect.assertions(1);
+  const errMsg = 'Invalid IDs';
+  const errorMockHttpRequesterService: HttpRequesterService = {
+    post: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
+    get: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
+  };
+
+  const reporter = new PagesAnalyticsReporter(baseConfig, errorMockHttpRequesterService);
+  const resPromise = reporter.pageView();
+  expect(resPromise).rejects.toEqual(new Error(errMsg));
+});
+
+it('should throw an error if no ids are passed for an entity page config', () => {
+  expect.assertions(1);
+  const config: PagesAnalyticsConfig = {
+    businessId: 0,
+    featureId: '',
+    pageType: 'entity',
+    product: 'storepages',
+    production: false,
+    siteId: 0
+  };
+  const reporter = new PagesAnalyticsReporter(config, mockHttpRequesterService);
+  const resPromise = reporter.pageView();
+  expect(resPromise).rejects.toEqual(new Error('entity ids are required for entity page sets'));
+});
+
+it('should track entity pages', () => {
+  windowSpy.mockImplementation(() => {
+    return baseGlobals;
+  });
+
+  const entityConfig: PagesAnalyticsConfig = {
+    businessId: 0,
+    featureId: 'My Page Set',
+    pageType: 'entity',
+    product: 'storepages',
+    production: false,
+    siteId: 0,
+    ids: [1],
+  };
+
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('product', 'storepages');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('pageSetId', 'My%20Page%20Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '%2Ffoo%2Fbar');
+  expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.google.com');
+  expectedUrl.searchParams.set('ids', '1');
+
+  const reporter = new PagesAnalyticsReporter(entityConfig, mockHttpRequesterService);
+  reporter.pageView();
+
+  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
+
+it('should track directory pages', () => {
+  const config: PagesAnalyticsConfig = {
+    businessId: 0,
+    featureId: 'My Directory Page Set',
+    pageType: 'directory',
+    product: 'storepages',
+    production: false,
+    siteId: 0,
+  };
+
+  windowSpy.mockImplementation(() => {
+    return baseGlobals;
+  });
+
+  const reporter = new PagesAnalyticsReporter(config, mockHttpRequesterService);
+  reporter.pageView();
+
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('product', 'storepages');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('directoryId', 'My%20Directory%20Page%20Set');
+  // TODO: figure out if we need to pass the directoryPath parameter or not, it's weirdly constructed today
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '%2Ffoo%2Fbar');
+  expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.google.com');
+
+  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
+
+it('should track locator pages', () => {
+  const config: PagesAnalyticsConfig = {
+    businessId: 0,
+    featureId: 'My Locator Page Set',
+    pageType: 'locator',
+    product: 'storepages',
+    production: false,
+    siteId: 0
+  };
+
+  windowSpy.mockImplementation(() => {
+    return baseGlobals;
+  });
+
+  const reporter = new PagesAnalyticsReporter(config, mockHttpRequesterService);
+  reporter.pageView();
+
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('product', 'storepages');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('searchId', 'My%20Locator%20Page%20Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '%2Ffoo%2Fbar');
+  expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.google.com');
+
+  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
+
+it('should respect config overrides', () => {
+  const config: PagesAnalyticsConfig = {
+    businessId: 0,
+    featureId: 'My Directory Page Set',
+    pageType: 'static',
+    product: 'storepages',
+    production: false,
+    siteId: 0,
+    pagesReferrer: 'http://www.example.com', //baseGlobals.document.referrer = 'https://www.google.com'
+    path: '/bar/foo' // baseGlobals.window.pathname = '/foo/bar'
+  };
+
+  windowSpy.mockImplementation(() => {
+    return baseGlobals;
+  });
+
+  const reporter = new PagesAnalyticsReporter(config, mockHttpRequesterService);
+  reporter.pageView();
+
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('product', 'storepages');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('staticPageId', 'My%20Directory%20Page%20Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '%2Fbar%2Ffoo');
+  expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.example.com');
+
+  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
+
+
+it('should track click events', () => {
+  windowSpy.mockImplementation(() => {
+    return baseGlobals;
+  });
+
+  const eventName = 'my_event_type_name';
+
+  const reporter = new PagesAnalyticsReporter(baseConfig, mockHttpRequesterService);
+  reporter.click(eventName);
+
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessId', '12345');
+  expectedUrl.searchParams.set('product', 'storepages');
+  expectedUrl.searchParams.set('eventType', eventName);
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('staticPageId', 'My%20Page%20Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '%2Ffoo%2Fbar');
+  expectedUrl.searchParams.set('pagesReferrer','http%3A%2F%2Fwww.google.com');
+
+  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});

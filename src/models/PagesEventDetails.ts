@@ -10,10 +10,11 @@ export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
   public siteId: number;
   public production: boolean;
   public ids?: number[];
-  public pageSetId: string;
-  readonly product: 'storepages';
-  public pageurl: string;
+  public featureId: string;
+  public product: 'storepages' |'sites';
+  public path: string;
   public pagesReferrer: string;
+  public pageType: 'entity'|'directory'|'locator'|'static';
 
   constructor(config: PagesAnalyticsConfig, event: PagesEvent) {
     this.eventType = event.eventType;
@@ -22,9 +23,28 @@ export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
     this.businessId = config.businessId;
     this.production = config.production;
     this.ids = config.ids;
-    this.pageSetId = config.pageSetId;
+    this.pageType = config.pageType;
+
+    if (this.pageType === 'entity' && !this.ids) {
+      throw new Error('entity ids are required for entity page sets');
+    }
+
+    this.featureId = config.featureId;
     this.pagesReferrer = config.pagesReferrer ? config.pagesReferrer : window.document.referrer;
-    this.pageurl = config.pageurl ? config.pageurl : window.location.href;
+    this.path = config.path ? config.path : window.location.pathname;
+  }
+
+  pageTypeParam(): string {
+    switch (this.pageType) {
+      case 'directory':
+        return 'directoryId';
+      case 'entity':
+        return 'pageSetId';
+      case 'locator':
+        return 'searchId';
+      case 'static':
+        return 'staticPageId';
+    }
   }
 
   /**
@@ -42,12 +62,14 @@ export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
     params.set('eventType', this.eventType);
     params.set('siteId', this.siteId.toString());
     params.set('isStaging', (!this.production).toString());
+    params.set(this.pageTypeParam(), encodeURIComponent(this.featureId));
+    params.set('v', this.seed().toString());
+    params.set('pageurl', encodeURIComponent(this.path));
+    params.set('pagesReferrer', encodeURIComponent(this.pagesReferrer));
+
     if (this.ids) {
       params.set('ids', this.ids.map(id => id.toString()).join(','));
     }
-    params.set('v', this.seed().toString());
-    params.set('pageurl', encodeURIComponent(this.pageurl));
-    params.set('pagesReferrer', encodeURIComponent(this.pagesReferrer));
 
     return params;
   }
