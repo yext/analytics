@@ -1,9 +1,10 @@
 import { SearchAnalyticsReporter } from '../../src/infra/SearchAnalyticsReporter';
 import { SearchAnalyticsConfig } from '../../src/models';
-import { HttpRequesterService } from '../../src/services/HttpRequesterService';
+import { HttpRequesterService } from '../../src/services';
 import 'isomorphic-fetch';
 
 const config: SearchAnalyticsConfig = {
+  isSearch: true,
   experienceKey: 'yext',
   experienceVersion: 'PRODUCTION',
   businessId: 123

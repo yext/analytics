@@ -1,7 +1,8 @@
-import {HttpRequesterService} from '../services';
-import {PagesAnalyticsConfig} from '../models/AnalyticsConfig';
-import {PagesEvent} from '../models';
-import {PagesEventDetails} from '../models/PagesEventDetails';
+import { HttpRequesterService } from '../services';
+import { PagesAnalyticsConfig } from '../models/AnalyticsConfig';
+import { PagesEvent } from '../models';
+import { PagesEventDetails } from '../models/PagesEventDetails';
+import { PagesAnalyticsService } from '../services/PagesAnalyticsService';
 
 const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
 
@@ -10,7 +11,7 @@ const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
 /**
  * Responsible for reporting Pages Analytics Events
  */
-export class PagesAnalyticsReporter {
+export class PagesAnalyticsReporter implements PagesAnalyticsService{
   constructor(private config: PagesAnalyticsConfig,
               private httpRequesterService: HttpRequesterService) {
   }
@@ -31,7 +32,7 @@ export class PagesAnalyticsReporter {
     return this.report({eventType: 'pageview'});
   }
 
-  async click(eventName: string): Promise<void> {
+  async userInteraction(eventName: string): Promise<void> {
     return this.report({eventType: eventName});
   }
 }

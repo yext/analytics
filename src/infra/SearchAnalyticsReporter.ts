@@ -1,16 +1,12 @@
-import { AnalyticsService } from '../services/AnalyticsService';
-import {AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig} from '../models/AnalyticsConfig';
-import { HttpRequesterService } from '../services/HttpRequesterService';
-import {SearchAnalyticsEvent, PagesEvent} from '../models/events/SearchAnalyticsEvent';
-import { AnalyticsPayload } from '../models/AnalyticsPayload';
-import { Visitor } from '../models/Visitor';
+import { HttpRequesterService, SearchAnalyticsService } from '../services';
+import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor } from '../models';
 
 const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
 
 /**
  * Responsible for reporting Analytics events.
  */
-export class SearchAnalyticsReporter implements AnalyticsService {
+export class SearchAnalyticsReporter implements SearchAnalyticsService {
   private _visitor: Visitor | undefined;
   constructor(private config: SearchAnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);

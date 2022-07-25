@@ -5,6 +5,7 @@ import {PagesEvent} from '../models';
  * A fully detailed Pages Event
  */
 export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
+  public readonly isPages: true;
   public businessId: number;
   public eventType: string;
   public siteId: number;
