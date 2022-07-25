@@ -6,7 +6,7 @@ import { AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig } from './
 import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService } from './services';
 
 /**
- * The entrypoint to the analytics library.
+ * Provides a combined Pages & Search Analytics service given a joint config
  *
  * @remarks
  * Returns an analytics service instance.
@@ -15,22 +15,39 @@ import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService } from 
  *
  * @public
  */
-export function provideAnalytics(
-  config: SearchAnalyticsConfig|AnalyticsConfig|PagesAnalyticsConfig
-): AnalyticsService|PagesAnalyticsService|SearchAnalyticsService {
+export function provideAnalytics(config: AnalyticsConfig): AnalyticsService {
   const httpRequester = new HttpRequester();
+  return new AnalyticsReporter(config, httpRequester);
+}
 
-  const isSearch = (config as SearchAnalyticsConfig).isSearch;
-  const isPages = (config as PagesAnalyticsConfig).isPages;
-  const isBoth = isSearch && isPages;
+/**
+ * Provides a combined Search Analytics service given a Search specific config
+ *
+ * @remarks
+ * Returns an analytics service instance.
+ *
+ * @param config - The Search analytics config
+ *
+ * @public
+ */
+export function provideSearchAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService {
+  const httpRequester = new HttpRequester();
+  return new SearchAnalyticsReporter(config, httpRequester);
+}
 
-  if (isBoth) {
-    return new AnalyticsReporter((config as AnalyticsConfig), httpRequester);
-  } else if (isSearch) {
-    return new SearchAnalyticsReporter(config as SearchAnalyticsConfig, httpRequester);
-  } else if (isPages) {
-    return new PagesAnalyticsReporter((config as PagesAnalyticsConfig), httpRequester);
-  }
+/**
+ * Provides a combined Pages Analytics service given a Pages specific config
+ *
+ * @remarks
+ * Returns an analytics service instance.
+ *
+ * @param config - The Pages analytics config
+ *
+ * @public
+ */
+export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService {
+  const httpRequester = new HttpRequester();
+  return new PagesAnalyticsReporter(config, httpRequester);
 }
 
 export * from './models';

@@ -68,10 +68,4 @@ export enum AnalyticsEventType {
   ResultsUnhidden = 'RESULTS_UNHIDDEN',
   /** {@link SearchDurationEvent} */
   FollowUpQuery = 'FOLLOW_UP_QUERY',
-
-  // Pages pixel event types
-  /** {@link PagesEvent} */
-  PageView = 'PAGE_VIEW',
-  /** {@link PagesEvent} */
-  ClickEvent = 'CLICK_EVENT',
 }

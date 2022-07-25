@@ -5,7 +5,6 @@ import 'isomorphic-fetch';
 
 
 const baseConfig: PagesAnalyticsConfig = {
-  isPages: true,
   product: 'storepages',
   businessId: 12345,
   featureId: 'My Page Set',
@@ -80,7 +79,6 @@ it('Should handle http errors properly', () => {
 it('should throw an error if no ids are passed for an entity page config', () => {
   expect.assertions(1);
   const config: PagesAnalyticsConfig = {
-    isPages: true,
     businessId: 0,
     featureId: '',
     pageType: 'entity',
@@ -99,7 +97,6 @@ it('should track entity pages', () => {
   });
 
   const entityConfig: PagesAnalyticsConfig = {
-    isPages: true,
     businessId: 0,
     featureId: 'My Page Set',
     pageType: 'entity',
@@ -130,7 +127,6 @@ it('should track entity pages', () => {
 
 it('should track directory pages', () => {
   const config: PagesAnalyticsConfig = {
-    isPages: true,
     businessId: 0,
     featureId: 'My Directory Page Set',
     pageType: 'directory',
@@ -164,7 +160,6 @@ it('should track directory pages', () => {
 
 it('should track locator pages', () => {
   const config: PagesAnalyticsConfig = {
-    isPages: true,
     businessId: 0,
     featureId: 'My Locator Page Set',
     pageType: 'locator',
@@ -197,7 +192,6 @@ it('should track locator pages', () => {
 
 it('should respect config overrides', () => {
   const config: PagesAnalyticsConfig = {
-    isPages: true,
     businessId: 0,
     featureId: 'My Directory Page Set',
     pageType: 'static',

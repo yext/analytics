@@ -15,14 +15,12 @@ export class AnalyticsReporter implements PagesAnalyticsService, SearchAnalytics
       businessId: config.businessId,
       experienceKey: config.experienceKey,
       experienceVersion: config.experienceVersion,
-      isSearch: true,
     }, httpRequesterService);
 
     this.pagesReporter = new PagesAnalyticsReporter({
       businessId: config.businessId,
       featureId: config.featureId,
       ids: config.ids,
-      isPages: config.isPages,
       pageType: config.pageType,
       pagesReferrer: config.pagesReferrer,
       path: config.path,

@@ -20,8 +20,6 @@ export interface BaseAnalyticsConfig {
  * @public
  */
 export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
-  /** denotes this config is a search config */
-  readonly isSearch: true,
   /** The experience key of the answers experience. */
   experienceKey: string,
   /** The experience version of the answers experience. */
@@ -38,8 +36,6 @@ export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
  * @public
  */
 export interface PagesAnalyticsConfig extends BaseAnalyticsConfig{
-  /** denotes that this is a pages config */
-  readonly isPages: true,
   /**
    * The ID of the Pages Site
    * Can be easily found from the url of the Deploy Page in your Yext Account
