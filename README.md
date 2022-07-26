@@ -32,9 +32,48 @@ Next, import and initialize the library in your application.  Yext currently has
 between Search and Pages and so they have slightly different interfaces for working with them.  There is also a combined
 interface that you can use when you are building a Search experience entirely on Pages (e.g. a Locator or a Help Site).
 
+### Combined Analytics
+For a typical locator you will be using both Search and Pages analytics.
+
+The experienceKey will come from your Answers experience on yext.com. You can signup for a free trial at
+[https://www.yext.com/free-trial/](https://www.yext.com/free-trial/).
+
+The businessId and siteId can both be found in your account.
+
+```ts
+import { provideAnalytics } from '@yext/analytics';
+
+const analytics = provideAnalytics({
+  experienceKey: '<your experience key>',
+  experienceVersion: 'PRODUCTION',
+  businessId: 123456, // this comes from the url of your Yext account
+  featureId: 'My Locator', // the name of the feature in your features.json
+  pageType: 'locator', // the type of page, can be 'entity', 'directory', 'locator', or 'static'
+  product: 'storepages',
+  production: false, // set to true if you are in the production environment
+  siteId: 654321, // the id of your site, you can find this in the url of your deploy page
+});
+```
+
+Now that we are initialized, we can add a page view.
+
+```ts
+analytics.pageView();
+```
+
+and if a user clicks on a search result, we can fire an appropriate event.
+
+```ts
+analytics.report({
+  type: 'CTA_CLICK',
+  entityId: '1',
+  verticalKey: 'people',
+  searcher: 'VERTICAL',
+  queryId: '12345678-1234-1234-1234-123456789012'
+});
+```
 
 ### Search Analytics
-The experienceKey will come from your Answers experience on yext.com. You can signup for a free trial at [https://www.yext.com/free-trial/](https://www.yext.com/free-trial/).
 
 ```ts
 import { provideSearchAnalytics } from '@yext/analytics';
