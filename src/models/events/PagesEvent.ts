@@ -1,6 +1,3 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
-
-
 /**
  * An event from the Pages system
  *

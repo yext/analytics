@@ -1,8 +1,5 @@
-import { HttpRequesterService } from '../services';
-import { PagesAnalyticsConfig } from '../models/AnalyticsConfig';
-import { PagesEvent } from '../models';
-import { PagesEventDetails } from '../models/PagesEventDetails';
-import { PagesAnalyticsService } from '../services/PagesAnalyticsService';
+import { HttpRequesterService, PagesAnalyticsService } from '../services';
+import { PagesAnalyticsConfig, PagesEvent, PagesEventDetails } from '../models';
 
 const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
 
@@ -33,6 +30,9 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
   }
 
   async userInteraction(eventName: string): Promise<void> {
+    /** TODO: need to evaluate that the event name is valid, I think there are restrictions in the characters
+      * that are accepted
+      */
     return this.report({eventType: eventName});
   }
 }

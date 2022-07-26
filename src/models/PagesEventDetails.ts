@@ -3,6 +3,8 @@ import {PagesEvent} from '../models';
 
 /**
  * A fully detailed Pages Event
+ *
+ * @public
  */
 export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
   public businessId: number;
@@ -49,7 +51,7 @@ export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
 
   /**
    * Get a random number to use as a cache buster in analytics pixel URLs
-   * @returns {number}
+   * @returns number
    */
   seed(): number {
     return Date.now() + Math.floor(1000 * Math.random());
