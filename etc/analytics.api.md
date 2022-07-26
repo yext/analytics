@@ -20,6 +20,10 @@ export interface AllTabNavigationEvent {
 }
 
 // @public
+export interface AnalyticsConfig extends SearchAnalyticsConfig, PagesAnalyticsConfig {
+}
+
+// @public
 export enum AnalyticsEventType {
     // (undocumented)
     AddToCart = "ADD_TO_CART",
@@ -32,8 +36,6 @@ export enum AnalyticsEventType {
     // (undocumented)
     BookAppointment = "BOOK_APPOINTMENT",
     // (undocumented)
-    ClickEvent = "CLICK_EVENT",
-    // (undocumented)
     CtaClick = "CTA_CLICK",
     // (undocumented)
     DrivingDirections = "DRIVING_DIRECTIONS",
@@ -43,8 +45,6 @@ export enum AnalyticsEventType {
     FollowUpQuery = "FOLLOW_UP_QUERY",
     // (undocumented)
     OrderNow = "ORDER_NOW",
-    // (undocumented)
-    PageView = "PAGE_VIEW",
     // (undocumented)
     Paginate = "PAGINATE",
     // (undocumented)
@@ -93,9 +93,7 @@ export interface AnalyticsPayload {
 }
 
 // @public
-export interface AnalyticsService {
-    report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
-    setVisitor(visitor: Visitor | undefined): void;
+export interface AnalyticsService extends SearchAnalyticsService, PagesAnalyticsService {
 }
 
 // @public
@@ -121,9 +119,59 @@ export interface CtaEvent {
 // @public
 export type EnumOrString<T extends string> = T | `${T}`;
 
+// Warning: (ae-forgotten-export) The symbol "BaseAnalyticsConfig" needs to be exported by the entry point index.d.ts
+//
+// @public
+export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
+    featureId: string;
+    ids?: number[];
+    pagesReferrer?: string;
+    pageType: 'entity' | 'directory' | 'locator' | 'static';
+    path?: string;
+    product: 'storepages' | 'sites';
+    production: boolean;
+    siteId: number;
+}
+
+// @public
+export interface PagesAnalyticsService {
+    pageView(): Promise<void>;
+    userInteraction(eventName: string): Promise<void>;
+}
+
 // @public
 export interface PagesEvent {
     eventType: 'pageview' | string;
+}
+
+// @public
+export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
+    constructor(config: PagesAnalyticsConfig, event: PagesEvent);
+    // (undocumented)
+    businessId: number;
+    // (undocumented)
+    eventType: string;
+    // (undocumented)
+    featureId: string;
+    // (undocumented)
+    ids?: number[];
+    // (undocumented)
+    pagesReferrer: string;
+    // (undocumented)
+    pageType: 'entity' | 'directory' | 'locator' | 'static';
+    // (undocumented)
+    pageTypeParam(): string;
+    // (undocumented)
+    path: string;
+    // (undocumented)
+    product: 'storepages' | 'sites';
+    // (undocumented)
+    production: boolean;
+    seed(): number;
+    // (undocumented)
+    siteId: number;
+    // (undocumented)
+    urlParameters(): URLSearchParams;
 }
 
 // @public
@@ -136,10 +184,14 @@ export interface PaginationEvent {
     verticalKey: string;
 }
 
-// Warning: (ae-forgotten-export) The symbol "AnalyticsConfig" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function provideAnalytics(config: SearchAnalyticsConfig | AnalyticsConfig): AnalyticsService;
+export function provideAnalytics(config: AnalyticsConfig): AnalyticsService;
+
+// @public
+export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService;
+
+// @public
+export function provideSearchAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
 
 // @public
 export interface QuestionSubmissionEvent {
@@ -155,8 +207,6 @@ export interface ScrollEvent {
     type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>;
 }
 
-// Warning: (ae-forgotten-export) The symbol "BaseAnalyticsConfig" needs to be exported by the entry point index.d.ts
-//
 // @public
 export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
     domain?: string;
@@ -167,6 +217,12 @@ export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
 
 // @public
 export type SearchAnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
+
+// @public
+export interface SearchAnalyticsService {
+    report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
+    setVisitor(visitor: Visitor | undefined): void;
+}
 
 // @public
 export interface SearchBarImpressionEvent {

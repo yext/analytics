@@ -4,19 +4,19 @@
 
 ## provideAnalytics() function
 
-The entrypoint to the analytics library.
+Provides a combined Pages &amp; Search Analytics service given a joint config
 
 <b>Signature:</b>
 
 ```typescript
-export declare function provideAnalytics(config: SearchAnalyticsConfig | AnalyticsConfig): AnalyticsService;
+export declare function provideAnalytics(config: AnalyticsConfig): AnalyticsService;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  config | [SearchAnalyticsConfig](./analytics.searchanalyticsconfig.md) \| AnalyticsConfig | The analytics config |
+|  config | [AnalyticsConfig](./analytics.analyticsconfig.md) | The analytics config |
 
 <b>Returns:</b>
 

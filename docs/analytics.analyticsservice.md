@@ -4,18 +4,12 @@
 
 ## AnalyticsService interface
 
-A service for reporting analytics events.
+A service for reporting both pages and search analytics events.
 
 <b>Signature:</b>
 
 ```typescript
-export interface AnalyticsService 
+export interface AnalyticsService extends SearchAnalyticsService, PagesAnalyticsService 
 ```
-
-## Methods
-
-|  Method | Description |
-|  --- | --- |
-|  [report(event, additionalRequestAttributes)](./analytics.analyticsservice.report.md) | Reports an analytics event. Will perform a promise rejection if the API response contains an error. |
-|  [setVisitor(visitor)](./analytics.analyticsservice.setvisitor.md) | Sets the [Visitor](./analytics.visitor.md) object which is included with each subsequent request. |
+<b>Extends:</b> [SearchAnalyticsService](./analytics.searchanalyticsservice.md)<!-- -->, [PagesAnalyticsService](./analytics.pagesanalyticsservice.md)
 
