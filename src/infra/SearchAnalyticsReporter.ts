@@ -52,6 +52,7 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
       const errorMessage = await res.text();
       throw new Error(errorMessage);
     }
+    this.printEvent(event);
   }
 
   /** {@inheritDoc AnalyticsService.setVisitor} */

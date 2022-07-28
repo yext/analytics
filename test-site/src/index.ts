@@ -4,6 +4,7 @@ const analytics = provideAnalytics({
   experienceKey: 'slanswers',
   experienceVersion: 'PRODUCTION',
   businessId: 3350634,
+  debug: true,
 });
 
 export function fireClickEvent() {
@@ -40,6 +41,7 @@ const pages = providePagesAnalytics({
   businessId: 3350634,
   production: false,
   siteId: 25317,
+  debug: true,
 });
 
 export function firePageView() {
