@@ -89,12 +89,6 @@ export interface EntityPage extends PageType {
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
-export interface HttpRequesterService {
-    get(url: string): Promise<Response>;
-    post(url: string, body: AnalyticsPayload): Promise<Response>;
-}
-
-// @public
 export interface LocatorPage extends PageType {
     readonly name: 'locator';
     searchId: string;
@@ -116,7 +110,8 @@ export interface PagesAnalyticsEvent {
 
 // @public
 export class PagesAnalyticsReporter implements PagesAnalyticsService {
-    constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterService, debug?: boolean);
+    // Warning: (ae-forgotten-export) The symbol "HttpRequesterService" needs to be exported by the entry point index.d.ts
+    constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterService);
     pageView(): Promise<void>;
     setDebugEnabled(enabled: boolean): void;
     setVisitor(visitor: Visitor | undefined): void;
@@ -188,7 +183,7 @@ export { SearchAnalyticsConfig }
 export type SearchAnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
 
 // @public
-export enum SearchAnalyticsEventType {
+enum SearchAnalyticsEventType {
     // (undocumented)
     AddToCart = "ADD_TO_CART",
     // (undocumented)
@@ -250,6 +245,8 @@ export enum SearchAnalyticsEventType {
     // (undocumented)
     VoiceStop = "VOICE_STOP"
 }
+export { SearchAnalyticsEventType as AnalyticsEventType }
+export { SearchAnalyticsEventType }
 
 // @public
 class SearchAnalyticsReporter implements SearchAnalyticsService {

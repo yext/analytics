@@ -17,5 +17,5 @@ constructor(config: SearchAnalyticsConfig, httpRequesterService: HttpRequesterSe
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  config | [SearchAnalyticsConfig](./analytics.searchanalyticsconfig.md) |  |
-|  httpRequesterService | [HttpRequesterService](./analytics.httprequesterservice.md) |  |
+|  httpRequesterService | HttpRequesterService |  |
 

@@ -17,7 +17,7 @@ export declare class PagesAnalyticsReporter implements PagesAnalyticsService
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(config, httpRequesterService, debug)](./analytics.pagesanalyticsreporter._constructor_.md) |  | Constructs a new instance of the <code>PagesAnalyticsReporter</code> class |
+|  [(constructor)(config, httpRequesterService)](./analytics.pagesanalyticsreporter._constructor_.md) |  | Constructs a new instance of the <code>PagesAnalyticsReporter</code> class |
 
 ## Methods
 

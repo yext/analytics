@@ -9,7 +9,7 @@ Constructs a new instance of the `PagesAnalyticsReporter` class
 <b>Signature:</b>
 
 ```typescript
-constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterService, debug?: boolean);
+constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterService);
 ```
 
 ## Parameters
@@ -17,6 +17,5 @@ constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterSer
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  config | [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) |  |
-|  httpRequesterService | [HttpRequesterService](./analytics.httprequesterservice.md) |  |
-|  debug | boolean |  |
+|  httpRequesterService | HttpRequesterService |  |
 

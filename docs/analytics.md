@@ -38,7 +38,6 @@
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
 |  [DirectoryPage](./analytics.directorypage.md) | Represents the analytics parameters required to track events on a directory page |
 |  [EntityPage](./analytics.entitypage.md) | Represents the analytics parameters required to track events on an Entity Page |
-|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web. |
 |  [LocatorPage](./analytics.locatorpage.md) | Represents the analytics parameters required to track events on a Locator Page |
 |  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics. Contains all page or session level information. |
 |  [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | An event from the Pages system |
