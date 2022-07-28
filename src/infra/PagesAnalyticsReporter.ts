@@ -1,5 +1,5 @@
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
-import {PagesAnalyticsConfig, Visitor} from '../models';
+import {DefaultPagesEventNames, PagesAnalyticsConfig, Visitor} from '../models';
 import {PagesAnalyticsEvent} from '../models/pages/events/PagesAnalyticsEvent';
 import {PageViewEvent} from '../models/pages';
 
@@ -9,7 +9,7 @@ const PRODUCT_NAME = 'storepages';
 // TODO: Implement conversion tracking
 
 enum urlParamNames {
-  BusinessId = 'businessId',
+  BusinessId = 'businessids',
   Product = 'product',
   SiteId = 'siteId',
   IsStaging = 'isStaging',
@@ -23,6 +23,21 @@ enum urlParamNames {
   SearchId = 'searchId',
   StaticPageId = 'staticPageId',
   PageType = 'pageType',
+}
+
+const eventTypeNameMapping = new Map<string, string>();
+eventTypeNameMapping.set(DefaultPagesEventNames.PageView, 'pageview');
+eventTypeNameMapping.set(DefaultPagesEventNames.CTA, 'calltoactionclick');
+eventTypeNameMapping.set(DefaultPagesEventNames.PhoneCall, 'phonecall');
+eventTypeNameMapping.set(DefaultPagesEventNames.DrivingDirection, 'drivingdirection');
+eventTypeNameMapping.set(DefaultPagesEventNames.Website, 'clicktowebsite');
+
+function getEventName(name: string): string {
+  const mappedName = eventTypeNameMapping.get(name);
+  if (typeof mappedName === 'string') {
+    return mappedName;
+  }
+  return name;
 }
 
 /**
@@ -70,7 +85,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     params.set(urlParamNames.Product, PRODUCT_NAME);
     params.set(urlParamNames.SiteId, this.config.siteId.toString());
     params.set(urlParamNames.IsStaging, (!this.config.production).toString());
-    params.set(urlParamNames.EventType, event.eventType);
+    params.set(urlParamNames.EventType, getEventName(event.eventType));
     params.set(urlParamNames.PageType, this.config.pageType.name);
 
     if (this.config.pageType.name === 'entity') {
@@ -106,7 +121,9 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     const url = new URL(urlStr);
     url.search = this.urlParameters(event).toString();
     const res = await this.httpRequesterService.get(url.toString());
-    if (res.status !== 200) {
+    // modern browsers won't let us access the status because of CORS
+    // https://developer.mozilla.org/en-US/docs/Web/API/Request/mode
+    if (res.status !== 200 && !(res.type == 'opaque' || res.type == 'opaqueredirect')) {
       const errorMessage = await res.text();
       throw new Error(errorMessage);
     }

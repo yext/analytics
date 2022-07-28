@@ -14,7 +14,6 @@ beforeEach(() => {
 
 it('The static page page view URL is constructed correctly', () => {
   const reporter = new PagesAnalyticsReporter({
-    debug: false,
     pageType: {
       staticPageId: 'My Page Set',
       name: 'static',
@@ -29,11 +28,11 @@ it('The static page page view URL is constructed correctly', () => {
   reporter.pageView();
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
 
-  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'storepages');
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
-  expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('pageType', 'static');
   expectedUrl.searchParams.set('staticPageId', 'My Page Set');
   expectedUrl.searchParams.set('v', '1001');
@@ -52,7 +51,6 @@ it('Should handle http errors properly', () => {
   };
 
   const reporter = new PagesAnalyticsReporter({
-    debug: false,
     pageType: {
       staticPageId: 'My Page Set',
       name: 'static',
@@ -69,11 +67,11 @@ it('Should handle http errors properly', () => {
 
 it('should track entity pages', () => {
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
-  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'storepages');
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
-  expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('pageType', 'entity');
   expectedUrl.searchParams.set('pageSetId', 'My Page Set');
   expectedUrl.searchParams.set('id', '1');
@@ -82,7 +80,6 @@ it('should track entity pages', () => {
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
 
   const reporter = new PagesAnalyticsReporter({
-    debug: false,
     pageType: {
       name: 'entity',
       pageSetId: 'My Page Set',
@@ -101,7 +98,6 @@ it('should track entity pages', () => {
 
 it('should track directory pages', () => {
   const reporter = new PagesAnalyticsReporter({
-    debug: false,
     pageType: {
       name: 'directory',
       directoryId: 'My Directory Page Set',
@@ -117,11 +113,11 @@ it('should track directory pages', () => {
 
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
 
-  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'storepages');
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
-  expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('pageType', 'directory');
   expectedUrl.searchParams.set('directoryId', 'My Directory Page Set');
   expectedUrl.searchParams.set('id', '1');
@@ -134,7 +130,6 @@ it('should track directory pages', () => {
 
 it('should track locator pages', () => {
   const reporter = new PagesAnalyticsReporter({
-    debug: false,
     pageType: {
       name: 'locator',
       searchId: 'My Locator Page Set',
@@ -148,11 +143,11 @@ it('should track locator pages', () => {
   reporter.pageView();
 
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
-  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'storepages');
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
-  expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('pageType', 'locator');
   expectedUrl.searchParams.set('searchId', 'My Locator Page Set');
   expectedUrl.searchParams.set('v', '1001');
@@ -166,7 +161,6 @@ it('should track custom events', () => {
   const eventName = 'my_event_type_name';
 
   const reporter = new PagesAnalyticsReporter({
-    debug: false,
     pageType: {
       name: 'static',
       staticPageId: 'My Page Set',
@@ -181,7 +175,7 @@ it('should track custom events', () => {
 
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
 
-  expectedUrl.searchParams.set('businessId', '0');
+  expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'storepages');
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
