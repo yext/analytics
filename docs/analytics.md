@@ -4,13 +4,6 @@
 
 ## analytics package
 
-## Classes
-
-|  Class | Description |
-|  --- | --- |
-|  [PagesAnalyticsReporter](./analytics.pagesanalyticsreporter.md) | Responsible for reporting Pages Analytics Events |
-|  [SearchAnalyticsReporter](./analytics.searchanalyticsreporter.md) | Responsible for reporting Analytics events. |
-
 ## Enumerations
 
 |  Enumeration | Description |

@@ -109,16 +109,6 @@ export interface PagesAnalyticsEvent {
 }
 
 // @public
-export class PagesAnalyticsReporter implements PagesAnalyticsService {
-    // Warning: (ae-forgotten-export) The symbol "HttpRequesterService" needs to be exported by the entry point index.d.ts
-    constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterService);
-    pageView(): Promise<void>;
-    setDebugEnabled(enabled: boolean): void;
-    setVisitor(visitor: Visitor | undefined): void;
-    track(event: PagesAnalyticsEvent): Promise<void>;
-}
-
-// @public
 export interface PagesAnalyticsService {
     pageView(): Promise<void>;
     setDebugEnabled(enabled: boolean): void;
@@ -247,16 +237,6 @@ enum SearchAnalyticsEventType {
 }
 export { SearchAnalyticsEventType as AnalyticsEventType }
 export { SearchAnalyticsEventType }
-
-// @public
-class SearchAnalyticsReporter implements SearchAnalyticsService {
-    constructor(config: SearchAnalyticsConfig, httpRequesterService: HttpRequesterService);
-    report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
-    setDebugEnabled(enabled: boolean): void;
-    setVisitor(visitor: Visitor | undefined): void;
-}
-export { SearchAnalyticsReporter as AnalyticsReporter }
-export { SearchAnalyticsReporter }
 
 // @public
 interface SearchAnalyticsService {
