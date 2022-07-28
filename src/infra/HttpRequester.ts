@@ -5,7 +5,6 @@ import fetch from 'cross-fetch';
 /**
  * Responsible for making web requests.
  *
- * @public
  */
 export class HttpRequester implements HttpRequesterService {
   post(url: string, body: AnalyticsPayload): Promise<Response> {

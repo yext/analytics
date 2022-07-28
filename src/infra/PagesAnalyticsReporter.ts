@@ -34,8 +34,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
   private _visitor: Visitor |undefined;
   private _debug: boolean;
   constructor(private config: PagesAnalyticsConfig,
-              private httpRequesterService: HttpRequesterService,
-              private debug: boolean = false) {
+              private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;
   }

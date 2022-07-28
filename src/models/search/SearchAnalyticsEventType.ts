@@ -69,3 +69,5 @@ export enum SearchAnalyticsEventType {
   /** {@link SearchDurationEvent} */
   FollowUpQuery = 'FOLLOW_UP_QUERY',
 }
+
+export { SearchAnalyticsEventType as AnalyticsEventType};

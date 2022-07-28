@@ -1,6 +1,5 @@
 import { HttpRequesterService, SearchAnalyticsService } from '../services';
 import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor } from '../models';
-import {PagesAnalyticsEvent} from '../models/pages/events/PagesAnalyticsEvent';
 
 const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
 

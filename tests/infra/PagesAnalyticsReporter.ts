@@ -16,6 +16,7 @@ it('The static page page view URL is constructed correctly', () => {
     debug: false,
     pageType: {
       staticPageId: 'My Page Set',
+      name: 'static',
     },
     pagesReferrer: 'https://www.google.com',
     path: '/foo/bar',
@@ -32,6 +33,7 @@ it('The static page page view URL is constructed correctly', () => {
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
   expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('pageType', 'static');
   expectedUrl.searchParams.set('staticPageId', 'My Page Set');
   expectedUrl.searchParams.set('v', '1001');
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
@@ -52,6 +54,7 @@ it('Should handle http errors properly', () => {
     debug: false,
     pageType: {
       staticPageId: 'My Page Set',
+      name: 'static',
     },
     pagesReferrer: 'https://www.google.com',
     path: '/foo/bar',
@@ -70,6 +73,7 @@ it('should track entity pages', () => {
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
   expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('pageType', 'entity');
   expectedUrl.searchParams.set('pageSetId', 'My Page Set');
   expectedUrl.searchParams.set('id', '1');
   expectedUrl.searchParams.set('v', '1001');
@@ -79,6 +83,7 @@ it('should track entity pages', () => {
   const reporter = new PagesAnalyticsReporter({
     debug: false,
     pageType: {
+      name: 'entity',
       pageSetId: 'My Page Set',
       id: 1,
     },
@@ -97,6 +102,7 @@ it('should track directory pages', () => {
   const reporter = new PagesAnalyticsReporter({
     debug: false,
     pageType: {
+      name: 'directory',
       directoryId: 'My Directory Page Set',
       id: 1,
     },
@@ -115,9 +121,9 @@ it('should track directory pages', () => {
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
   expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('pageType', 'directory');
   expectedUrl.searchParams.set('directoryId', 'My Directory Page Set');
   expectedUrl.searchParams.set('id', '1');
-  // TODO: figure out if we need to pass the directoryPath parameter or not, it's weirdly constructed today
   expectedUrl.searchParams.set('v', '1001');
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
@@ -129,6 +135,7 @@ it('should track locator pages', () => {
   const reporter = new PagesAnalyticsReporter({
     debug: false,
     pageType: {
+      name: 'locator',
       searchId: 'My Locator Page Set',
     },
     pagesReferrer: 'https://www.google.com',
@@ -145,6 +152,7 @@ it('should track locator pages', () => {
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
   expectedUrl.searchParams.set('eventType', 'PAGE_VIEW');
+  expectedUrl.searchParams.set('pageType', 'locator');
   expectedUrl.searchParams.set('searchId', 'My Locator Page Set');
   expectedUrl.searchParams.set('v', '1001');
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
@@ -159,6 +167,7 @@ it('should track custom events', () => {
   const reporter = new PagesAnalyticsReporter({
     debug: false,
     pageType: {
+      name: 'static',
       staticPageId: 'My Page Set',
     },
     pagesReferrer: 'https://www.google.com',
@@ -176,6 +185,7 @@ it('should track custom events', () => {
   expectedUrl.searchParams.set('siteId', '0');
   expectedUrl.searchParams.set('isStaging', 'true');
   expectedUrl.searchParams.set('eventType', eventName);
+  expectedUrl.searchParams.set('pageType', 'static');
   expectedUrl.searchParams.set('staticPageId', 'My Page Set');
   expectedUrl.searchParams.set('v', '1001');
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
