@@ -54,4 +54,3 @@ export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyt
 
 export * from './models';
 export { AnalyticsService, PagesAnalyticsService, SearchAnalyticsService } from './services';
-export { AnalyticsReporter, PagesAnalyticsReporter, SearchAnalyticsReporter };

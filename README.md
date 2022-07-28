@@ -62,7 +62,7 @@ searchAnalytics.report({
 ```
 
 #### Search Analytics Event Types
-When specifying the analytics type, either the [AnalyticsEventType](./docs/analytics.analyticseventtype.md) enum
+When specifying the analytics type, either the [SearchAnalyticsEventType](./docs/analytics.searchanalyticseventtype.md) enum
 or its corresponding string can be specified. For example, you can specify the 'CTA_CLICK' event with either 'CTA_CLICK' or
 with `AnalyticsEventType.CtaClick`. Once the event type is specified, TypeScript is able to enforce the required and
 optional properties for that event type.
