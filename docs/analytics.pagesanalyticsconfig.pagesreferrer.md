@@ -4,10 +4,10 @@
 
 ## PagesAnalyticsConfig.pagesReferrer property
 
-The url the user came from will default to window.document.referrer
+The url the user came from
 
 <b>Signature:</b>
 
 ```typescript
-pagesReferrer?: string;
+pagesReferrer: string;
 ```

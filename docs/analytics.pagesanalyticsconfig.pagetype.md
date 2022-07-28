@@ -4,10 +4,10 @@
 
 ## PagesAnalyticsConfig.pageType property
 
-Page Type The 'Page Type' filter found in analytics report builder Either entity, directory, locator, or static
+The details of the page type
 
 <b>Signature:</b>
 
 ```typescript
-pageType: 'entity' | 'directory' | 'locator' | 'static';
+pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
 ```

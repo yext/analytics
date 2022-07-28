@@ -17,5 +17,6 @@ export interface SearchAnalyticsService
 |  Method | Description |
 |  --- | --- |
 |  [report(event, additionalRequestAttributes)](./analytics.searchanalyticsservice.report.md) | Reports an analytics event. Will perform a promise rejection if the API response contains an error. |
+|  [setDebugEnabled(enabled)](./analytics.searchanalyticsservice.setdebugenabled.md) | Turns on debug logging for event details. Will log details to the console when report() is called. |
 |  [setVisitor(visitor)](./analytics.searchanalyticsservice.setvisitor.md) | Sets the [Visitor](./analytics.visitor.md) object which is included with each subsequent request. |
 

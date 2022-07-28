@@ -19,6 +19,6 @@ export interface AccordionToggleEvent
 |  [entityId](./analytics.accordiontoggleevent.entityid.md) | string | The entity ID for the entity. |
 |  [queryId](./analytics.accordiontoggleevent.queryid.md) | string | The ID of the most recent query. |
 |  [searcher?](./analytics.accordiontoggleevent.searcher.md) | [Searcher](./analytics.searcher.md) | <i>(Optional)</i> Whether it was on universal or vertical search. |
-|  [type](./analytics.accordiontoggleevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[AnalyticsEventType.RowExpand](./analytics.analyticseventtype.md) \| [AnalyticsEventType.RowCollapse](./analytics.analyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
+|  [type](./analytics.accordiontoggleevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[SearchAnalyticsEventType.RowExpand](./analytics.searchanalyticseventtype.md) \| [SearchAnalyticsEventType.RowCollapse](./analytics.searchanalyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
 |  [verticalKey](./analytics.accordiontoggleevent.verticalkey.md) | string | The vertical key for the vertical on which the event was fired. Or, if it is a universal search, the vertical key for the section in the universal results. |
 

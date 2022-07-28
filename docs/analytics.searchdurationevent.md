@@ -18,5 +18,5 @@ export interface SearchDurationEvent
 |  --- | --- | --- |
 |  [queryId](./analytics.searchdurationevent.queryid.md) | string | The ID of the most recent query. |
 |  [searcher](./analytics.searchdurationevent.searcher.md) | [Searcher](./analytics.searcher.md) | Whether it was on universal or vertical search. |
-|  [type](./analytics.searchdurationevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[AnalyticsEventType.ResultsHidden](./analytics.analyticseventtype.md) \| [AnalyticsEventType.ResultsUnhidden](./analytics.analyticseventtype.md) \| [AnalyticsEventType.FollowUpQuery](./analytics.analyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
+|  [type](./analytics.searchdurationevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[SearchAnalyticsEventType.ResultsHidden](./analytics.searchanalyticseventtype.md) \| [SearchAnalyticsEventType.ResultsUnhidden](./analytics.searchanalyticseventtype.md) \| [SearchAnalyticsEventType.FollowUpQuery](./analytics.searchanalyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
 

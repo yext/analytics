@@ -4,25 +4,22 @@
 
 ## PagesAnalyticsConfig interface
 
-The main configuration options for Pages Analytics
+The main configuration options for Pages Analytics. Contains all page or session level information.
 
 <b>Signature:</b>
 
 ```typescript
 export interface PagesAnalyticsConfig extends BaseAnalyticsConfig 
 ```
-<b>Extends:</b> BaseAnalyticsConfig
+<b>Extends:</b> [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md)
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [featureId](./analytics.pagesanalyticsconfig.featureid.md) | string | The identifier of the feature within the site, typically 'name' key of the feature in the features.json file |
-|  [ids?](./analytics.pagesanalyticsconfig.ids.md) | number\[\] | <i>(Optional)</i> Yext Internal ID of Entities to Track |
-|  [pagesReferrer?](./analytics.pagesanalyticsconfig.pagesreferrer.md) | string | <i>(Optional)</i> The url the user came from will default to window.document.referrer |
-|  [pageType](./analytics.pagesanalyticsconfig.pagetype.md) | 'entity' \| 'directory' \| 'locator' \| 'static' | Page Type The 'Page Type' filter found in analytics report builder Either entity, directory, locator, or static |
-|  [path?](./analytics.pagesanalyticsconfig.path.md) | string | <i>(Optional)</i> The path component of the page url will default to window.location.pathname |
-|  [product](./analytics.pagesanalyticsconfig.product.md) | 'storepages' \| 'sites' | The analytics ID of the version of pages 'storepages' for classic pages 'sites' for the latest version of the platform |
+|  [pagesReferrer](./analytics.pagesanalyticsconfig.pagesreferrer.md) | string | The url the user came from |
+|  [pageType](./analytics.pagesanalyticsconfig.pagetype.md) | [DirectoryPage](./analytics.directorypage.md) \| [EntityPage](./analytics.entitypage.md) \| [LocatorPage](./analytics.locatorpage.md) \| [StaticPage](./analytics.staticpage.md) | The details of the page type |
+|  [path](./analytics.pagesanalyticsconfig.path.md) | string | The path component of the page url |
 |  [production](./analytics.pagesanalyticsconfig.production.md) | boolean | Set to true if the environment is production If set to true events will appear in Analytics Reports in your Yext Account |
 |  [siteId](./analytics.pagesanalyticsconfig.siteid.md) | number | The ID of the Pages Site Can be easily found from the url of the Deploy Page in your Yext Account e.g. https://www.yext.com/s/\[businessId\]/yextsites/\[siteid\]/branch/\[branchId\]/deploys/recent |
 

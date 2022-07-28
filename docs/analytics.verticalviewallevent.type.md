@@ -9,5 +9,5 @@ An enum member or its string value which denotes the event type.
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrString<AnalyticsEventType.VerticalViewAll>;
+type: EnumOrString<SearchAnalyticsEventType.VerticalViewAll>;
 ```

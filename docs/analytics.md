@@ -8,21 +8,23 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [PagesEventDetails](./analytics.pageseventdetails.md) | A fully detailed Pages Event |
+|  [PagesAnalyticsReporter](./analytics.pagesanalyticsreporter.md) | Responsible for reporting Pages Analytics Events |
+|  [SearchAnalyticsReporter](./analytics.searchanalyticsreporter.md) | Responsible for reporting Analytics events. |
 
 ## Enumerations
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [AnalyticsEventType](./analytics.analyticseventtype.md) | Represents the possible analytics event types. |
+|  [DefaultPagesEventNames](./analytics.defaultpageseventnames.md) | Default pages analytics event types. |
+|  [SearchAnalyticsEventType](./analytics.searchanalyticseventtype.md) | Represents the possible analytics event types. |
 
 ## Functions
 
 |  Function | Description |
 |  --- | --- |
-|  [provideAnalytics(config)](./analytics.provideanalytics.md) | Provides a combined Pages &amp; Search Analytics service given a joint config |
-|  [providePagesAnalytics(config)](./analytics.providepagesanalytics.md) | Provides a combined Pages Analytics service given a Pages specific config |
-|  [provideSearchAnalytics(config)](./analytics.providesearchanalytics.md) | Provides a combined Search Analytics service given a Search specific config |
+|  [provideAnalytics(config)](./analytics.provideanalytics.md) | Maintained for backwards compatibility with older versions of the library provideAnalytics uses the AnalyticsConfig, AnalyticsService, and AnalyticsReporter aliases for SearchAnalyticsConfig, SearchAnalyticsService, and SearchAnalyticsReporter |
+|  [providePagesAnalytics(config)](./analytics.providepagesanalytics.md) | Provides a Pages Analytics service given a Pages specific config |
+|  [provideSearchAnalytics(config)](./analytics.providesearchanalytics.md) | Provides a Search Analytics service given a Search specific config |
 
 ## Interfaces
 
@@ -30,14 +32,17 @@
 |  --- | --- |
 |  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
 |  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
-|  [AnalyticsConfig](./analytics.analyticsconfig.md) | Combined Analytics Config for tracking Search &amp; Pages on the same site |
 |  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
-|  [AnalyticsService](./analytics.analyticsservice.md) | A service for reporting both pages and search analytics events. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
+|  [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md) | Base analytics configuration |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
-|  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics |
+|  [DirectoryPage](./analytics.directorypage.md) | Represents the analytics parameters required to track events on a directory page |
+|  [EntityPage](./analytics.entitypage.md) | Represents the analytics parameters required to track events on an Entity Page |
+|  [HttpRequesterService](./analytics.httprequesterservice.md) | A service for sending requests on the web. |
+|  [LocatorPage](./analytics.locatorpage.md) | Represents the analytics parameters required to track events on a Locator Page |
+|  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics. Contains all page or session level information. |
+|  [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | An event from the Pages system |
 |  [PagesAnalyticsService](./analytics.pagesanalyticsservice.md) | A service for reporting pages analytics events. |
-|  [PagesEvent](./analytics.pagesevent.md) | An event from the Pages system |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |
@@ -46,11 +51,22 @@
 |  [SearchBarImpressionEvent](./analytics.searchbarimpressionevent.md) | Event for expanding or collapsing an accordion row. |
 |  [SearchClearEvent](./analytics.searchclearevent.md) | Event for clicking on the button to clear the search input. |
 |  [SearchDurationEvent](./analytics.searchdurationevent.md) | Event used to calculate the duration of a search. |
+|  [StaticPage](./analytics.staticpage.md) | Represents the analytics parameters required to track events on a static page |
 |  [ThumbsFeedbackEvent](./analytics.thumbsfeedbackevent.md) | Event for submitting thumbs up/down feedback (ThumbsUp and ThumbsDown). |
 |  [VerticalTabNavigationEvent](./analytics.verticaltabnavigationevent.md) | Event for navigating to a vertical tab or page. |
 |  [VerticalViewAllEvent](./analytics.verticalviewallevent.md) | Event for clicking on a vertical's View All button on a universal page. |
 |  [Visitor](./analytics.visitor.md) | Information used to associate analytics with a particular user. |
 |  [VoiceSearchEvent](./analytics.voicesearchevent.md) | Event for starting or stopping voice search. |
+
+## Variables
+
+|  Variable | Description |
+|  --- | --- |
+|  [CTAEvent](./analytics.ctaevent.md) | A Pages CTA Event |
+|  [DrivingDirectionEvent](./analytics.drivingdirectionevent.md) | A Pages DrivingDirection Event |
+|  [PageViewEvent](./analytics.pageviewevent.md) | A Pages PageView Event |
+|  [PhoneCallEvent](./analytics.phonecallevent.md) | A Pages Phone Call Event |
+|  [WebsiteEvent](./analytics.websiteevent.md) | A Pages Website Click Event |
 
 ## Type Aliases
 

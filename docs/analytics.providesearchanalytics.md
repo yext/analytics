@@ -4,7 +4,7 @@
 
 ## provideSearchAnalytics() function
 
-Provides a combined Search Analytics service given a Search specific config
+Provides a Search Analytics service given a Search specific config
 
 <b>Signature:</b>
 

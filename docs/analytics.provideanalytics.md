@@ -4,7 +4,7 @@
 
 ## provideAnalytics() function
 
-Provides a combined Pages &amp; Search Analytics service given a joint config
+Maintained for backwards compatibility with older versions of the library provideAnalytics uses the AnalyticsConfig, AnalyticsService, and AnalyticsReporter aliases for SearchAnalyticsConfig, SearchAnalyticsService, and SearchAnalyticsReporter
 
 <b>Signature:</b>
 
@@ -16,11 +16,11 @@ export declare function provideAnalytics(config: AnalyticsConfig): AnalyticsServ
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  config | [AnalyticsConfig](./analytics.analyticsconfig.md) | The analytics config |
+|  config | [AnalyticsConfig](./analytics.searchanalyticsconfig.md) | The analytics config |
 
 <b>Returns:</b>
 
-[AnalyticsService](./analytics.analyticsservice.md)
+[AnalyticsService](./analytics.searchanalyticsservice.md)
 
 ## Remarks
 

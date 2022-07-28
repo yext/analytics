@@ -9,22 +9,178 @@ export interface AccordionToggleEvent {
     entityId: string;
     queryId: string;
     searcher?: Searcher;
-    type: EnumOrString<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>;
+    type: EnumOrString<SearchAnalyticsEventType.RowExpand | SearchAnalyticsEventType.RowCollapse>;
     verticalKey: string;
 }
 
 // @public
 export interface AllTabNavigationEvent {
     queryId?: string;
-    type: EnumOrString<AnalyticsEventType.AllTabNavigation>;
+    type: EnumOrString<SearchAnalyticsEventType.AllTabNavigation>;
 }
 
 // @public
-export interface AnalyticsConfig extends SearchAnalyticsConfig, PagesAnalyticsConfig {
+export interface AnalyticsPayload {
+    [key: string]: string | number | boolean | AnalyticsPayload;
 }
 
 // @public
-export enum AnalyticsEventType {
+export interface AutocompleteEvent {
+    queryId?: string;
+    suggestedSearchText: string;
+    type: EnumOrString<SearchAnalyticsEventType.AutocompleteSelection>;
+}
+
+// @public
+export interface BaseAnalyticsConfig {
+    businessId: number;
+    debug: boolean;
+    visitor?: Visitor;
+}
+
+// @public
+export const CTAEvent: PagesAnalyticsEvent;
+
+// @public
+export interface CtaEvent {
+    ctaLabel?: 'video_played' | string;
+    directAnswer?: boolean;
+    entityId: string;
+    fieldName?: string;
+    queryId: string;
+    searcher: Searcher;
+    type: EnumOrString<SearchAnalyticsEventType.CtaClick | SearchAnalyticsEventType.TitleClick | SearchAnalyticsEventType.TapToCall | SearchAnalyticsEventType.OrderNow | SearchAnalyticsEventType.AddToCart | SearchAnalyticsEventType.ApplyNow | SearchAnalyticsEventType.DrivingDirections | SearchAnalyticsEventType.ViewWebsite | SearchAnalyticsEventType.Email | SearchAnalyticsEventType.BookAppointment | SearchAnalyticsEventType.Rsvp>;
+    url?: string;
+    verticalKey: string;
+}
+
+// @public
+export enum DefaultPagesEventNames {
+    // (undocumented)
+    CTA = "CTA_CLICK",
+    // (undocumented)
+    DrivingDirection = "DRIVING_DIRECTIONS",
+    // (undocumented)
+    PageView = "PAGE_VIEW",
+    // (undocumented)
+    PhoneCall = "CALL",
+    // (undocumented)
+    Website = "WEBSITE"
+}
+
+// @public
+export interface DirectoryPage {
+    directoryId: string;
+    id: number;
+}
+
+// @public
+export const DrivingDirectionEvent: PagesAnalyticsEvent;
+
+// @public
+export interface EntityPage {
+    id: number;
+    pageSetId: string;
+}
+
+// @public
+export type EnumOrString<T extends string> = T | `${T}`;
+
+// @public
+export interface HttpRequesterService {
+    get(url: string): Promise<Response>;
+    post(url: string, body: AnalyticsPayload): Promise<Response>;
+}
+
+// @public
+export interface LocatorPage {
+    searchId: string;
+}
+
+// @public
+export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
+    pagesReferrer: string;
+    pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
+    path: string;
+    production: boolean;
+    siteId: number;
+}
+
+// @public
+export interface PagesAnalyticsEvent {
+    eventType: DefaultPagesEventNames.PageView | DefaultPagesEventNames.CTA | DefaultPagesEventNames.PhoneCall | DefaultPagesEventNames.DrivingDirection | DefaultPagesEventNames.Website | string;
+}
+
+// @public
+export class PagesAnalyticsReporter implements PagesAnalyticsService {
+    constructor(config: PagesAnalyticsConfig, httpRequesterService: HttpRequesterService, debug?: boolean);
+    pageView(): Promise<void>;
+    setDebugEnabled(enabled: boolean): void;
+    setVisitor(visitor: Visitor | undefined): void;
+    track(event: PagesAnalyticsEvent): Promise<void>;
+}
+
+// @public
+export interface PagesAnalyticsService {
+    pageView(): Promise<void>;
+    setDebugEnabled(enabled: boolean): void;
+    setVisitor(visitor: Visitor | undefined): void;
+    track(event: PagesAnalyticsEvent): Promise<void>;
+}
+
+// @public
+export const PageViewEvent: PagesAnalyticsEvent;
+
+// @public
+export interface PaginationEvent {
+    currentPage: number;
+    newPage: number;
+    queryId: string;
+    totalPageCount: number;
+    type: EnumOrString<SearchAnalyticsEventType.Paginate>;
+    verticalKey: string;
+}
+
+// @public
+export const PhoneCallEvent: PagesAnalyticsEvent;
+
+// @public
+export function provideAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
+
+// @public
+export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService;
+
+// @public
+export function provideSearchAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
+
+// @public
+export interface QuestionSubmissionEvent {
+    queryId: string;
+    searcher: Searcher;
+    type: EnumOrString<SearchAnalyticsEventType.QuestionFocus | SearchAnalyticsEventType.QuestionSubmit>;
+    verticalKey: string;
+}
+
+// @public
+export interface ScrollEvent {
+    queryId: string;
+    type: EnumOrString<SearchAnalyticsEventType.ScrollToBottomOfPage>;
+}
+
+// @public
+interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
+    domain?: string;
+    experienceKey: string;
+    experienceVersion: 'PRODUCTION' | 'STAGING' | string;
+}
+export { SearchAnalyticsConfig as AnalyticsConfig }
+export { SearchAnalyticsConfig }
+
+// @public
+export type SearchAnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
+
+// @public
+export enum SearchAnalyticsEventType {
     // (undocumented)
     AddToCart = "ADD_TO_CART",
     // (undocumented)
@@ -88,154 +244,36 @@ export enum AnalyticsEventType {
 }
 
 // @public
-export interface AnalyticsPayload {
-    [key: string]: string | number | boolean | AnalyticsPayload;
-}
-
-// @public
-export interface AnalyticsService extends SearchAnalyticsService, PagesAnalyticsService {
-}
-
-// @public
-export interface AutocompleteEvent {
-    queryId?: string;
-    suggestedSearchText: string;
-    type: EnumOrString<AnalyticsEventType.AutocompleteSelection>;
-}
-
-// @public
-export interface CtaEvent {
-    ctaLabel?: 'video_played' | string;
-    directAnswer?: boolean;
-    entityId: string;
-    fieldName?: string;
-    queryId: string;
-    searcher: Searcher;
-    type: EnumOrString<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
-    url?: string;
-    verticalKey: string;
-}
-
-// @public
-export type EnumOrString<T extends string> = T | `${T}`;
-
-// Warning: (ae-forgotten-export) The symbol "BaseAnalyticsConfig" needs to be exported by the entry point index.d.ts
-//
-// @public
-export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
-    featureId: string;
-    ids?: number[];
-    pagesReferrer?: string;
-    pageType: 'entity' | 'directory' | 'locator' | 'static';
-    path?: string;
-    product: 'storepages' | 'sites';
-    production: boolean;
-    siteId: number;
-}
-
-// @public
-export interface PagesAnalyticsService {
-    pageView(): Promise<void>;
-    userInteraction(eventName: string): Promise<void>;
-}
-
-// @public
-export interface PagesEvent {
-    eventType: 'pageview' | string;
-}
-
-// @public
-export class PagesEventDetails implements PagesAnalyticsConfig, PagesEvent {
-    constructor(config: PagesAnalyticsConfig, event: PagesEvent);
-    // (undocumented)
-    businessId: number;
-    // (undocumented)
-    eventType: string;
-    // (undocumented)
-    featureId: string;
-    // (undocumented)
-    ids?: number[];
-    // (undocumented)
-    pagesReferrer: string;
-    // (undocumented)
-    pageType: 'entity' | 'directory' | 'locator' | 'static';
-    // (undocumented)
-    pageTypeParam(): string;
-    // (undocumented)
-    path: string;
-    // (undocumented)
-    product: 'storepages' | 'sites';
-    // (undocumented)
-    production: boolean;
-    seed(): number;
-    // (undocumented)
-    siteId: number;
-    // (undocumented)
-    urlParameters(): URLSearchParams;
-}
-
-// @public
-export interface PaginationEvent {
-    currentPage: number;
-    newPage: number;
-    queryId: string;
-    totalPageCount: number;
-    type: EnumOrString<AnalyticsEventType.Paginate>;
-    verticalKey: string;
-}
-
-// @public
-export function provideAnalytics(config: AnalyticsConfig): AnalyticsService;
-
-// @public
-export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService;
-
-// @public
-export function provideSearchAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
-
-// @public
-export interface QuestionSubmissionEvent {
-    queryId: string;
-    searcher: Searcher;
-    type: EnumOrString<AnalyticsEventType.QuestionFocus | AnalyticsEventType.QuestionSubmit>;
-    verticalKey: string;
-}
-
-// @public
-export interface ScrollEvent {
-    queryId: string;
-    type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>;
-}
-
-// @public
-export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
-    domain?: string;
-    experienceKey: string;
-    experienceVersion: 'PRODUCTION' | 'STAGING' | string;
-    visitor?: Visitor;
-}
-
-// @public
-export type SearchAnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
-
-// @public
-export interface SearchAnalyticsService {
+class SearchAnalyticsReporter implements SearchAnalyticsService {
+    constructor(config: SearchAnalyticsConfig, httpRequesterService: HttpRequesterService);
     report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
+    setDebugEnabled(enabled: boolean): void;
     setVisitor(visitor: Visitor | undefined): void;
 }
+export { SearchAnalyticsReporter as AnalyticsReporter }
+export { SearchAnalyticsReporter }
+
+// @public
+interface SearchAnalyticsService {
+    report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
+    setDebugEnabled(enabled: boolean): void;
+    setVisitor(visitor: Visitor | undefined): void;
+}
+export { SearchAnalyticsService as AnalyticsService }
+export { SearchAnalyticsService }
 
 // @public
 export interface SearchBarImpressionEvent {
     searcher?: Searcher;
     standAlone: boolean;
-    type: EnumOrString<AnalyticsEventType.SearchBarImpression>;
+    type: EnumOrString<SearchAnalyticsEventType.SearchBarImpression>;
     verticalKey?: string;
 }
 
 // @public
 export interface SearchClearEvent {
     queryId: string;
-    type: EnumOrString<AnalyticsEventType.SearchClearButton>;
+    type: EnumOrString<SearchAnalyticsEventType.SearchClearButton>;
     verticalKey?: string;
 }
 
@@ -243,11 +281,16 @@ export interface SearchClearEvent {
 export interface SearchDurationEvent {
     queryId: string;
     searcher: Searcher;
-    type: EnumOrString<AnalyticsEventType.ResultsHidden | AnalyticsEventType.ResultsUnhidden | AnalyticsEventType.FollowUpQuery>;
+    type: EnumOrString<SearchAnalyticsEventType.ResultsHidden | SearchAnalyticsEventType.ResultsUnhidden | SearchAnalyticsEventType.FollowUpQuery>;
 }
 
 // @public
 export type Searcher = 'UNIVERSAL' | 'VERTICAL';
+
+// @public
+export interface StaticPage {
+    staticPageId: string;
+}
 
 // @public
 export interface ThumbsFeedbackEvent {
@@ -255,21 +298,21 @@ export interface ThumbsFeedbackEvent {
     entityId?: string;
     queryId: string;
     searcher?: Searcher;
-    type: EnumOrString<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>;
+    type: EnumOrString<SearchAnalyticsEventType.ThumbsUp | SearchAnalyticsEventType.ThumbsDown>;
     verticalKey?: string;
 }
 
 // @public
 export interface VerticalTabNavigationEvent {
     queryId?: string;
-    type: EnumOrString<AnalyticsEventType.VerticalTabNavigation>;
+    type: EnumOrString<SearchAnalyticsEventType.VerticalTabNavigation>;
     verticalKey: string;
 }
 
 // @public
 export interface VerticalViewAllEvent {
     queryId: string;
-    type: EnumOrString<AnalyticsEventType.VerticalViewAll>;
+    type: EnumOrString<SearchAnalyticsEventType.VerticalViewAll>;
     verticalKey: string;
 }
 
@@ -282,9 +325,12 @@ export interface Visitor {
 // @public
 export interface VoiceSearchEvent {
     timestamp: number;
-    type: EnumOrString<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>;
+    type: EnumOrString<SearchAnalyticsEventType.VoiceStart | SearchAnalyticsEventType.VoiceStop>;
     voiceSessionId: string;
 }
+
+// @public
+export const WebsiteEvent: PagesAnalyticsEvent;
 
 // (No @packageDocumentation comment for this package)
 

@@ -11,7 +11,7 @@ The main configuration options for Search Analytics.
 ```typescript
 export interface SearchAnalyticsConfig extends BaseAnalyticsConfig 
 ```
-<b>Extends:</b> BaseAnalyticsConfig
+<b>Extends:</b> [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md)
 
 ## Properties
 
@@ -20,5 +20,4 @@ export interface SearchAnalyticsConfig extends BaseAnalyticsConfig
 |  [domain?](./analytics.searchanalyticsconfig.domain.md) | string | <i>(Optional)</i> The domain to send the requests to. |
 |  [experienceKey](./analytics.searchanalyticsconfig.experiencekey.md) | string | The experience key of the answers experience. |
 |  [experienceVersion](./analytics.searchanalyticsconfig.experienceversion.md) | 'PRODUCTION' \| 'STAGING' \| string | The experience version of the answers experience. |
-|  [visitor?](./analytics.searchanalyticsconfig.visitor.md) | [Visitor](./analytics.visitor.md) | <i>(Optional)</i> Information used to associate analytics with a particular user. |
 

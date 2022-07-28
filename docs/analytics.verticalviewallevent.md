@@ -17,6 +17,6 @@ export interface VerticalViewAllEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [queryId](./analytics.verticalviewallevent.queryid.md) | string | The ID of the most recent query. |
-|  [type](./analytics.verticalviewallevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[AnalyticsEventType.VerticalViewAll](./analytics.analyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
+|  [type](./analytics.verticalviewallevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[SearchAnalyticsEventType.VerticalViewAll](./analytics.searchanalyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
 |  [verticalKey](./analytics.verticalviewallevent.verticalkey.md) | string | The vertical key of the vertical for which the event was fired. |
 

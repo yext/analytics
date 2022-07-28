@@ -4,10 +4,10 @@
 
 ## PagesAnalyticsConfig.path property
 
-The path component of the page url will default to window.location.pathname
+The path component of the page url
 
 <b>Signature:</b>
 
 ```typescript
-path?: string;
+path: string;
 ```

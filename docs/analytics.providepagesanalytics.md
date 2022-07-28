@@ -4,7 +4,7 @@
 
 ## providePagesAnalytics() function
 
-Provides a combined Pages Analytics service given a Pages specific config
+Provides a Pages Analytics service given a Pages specific config
 
 <b>Signature:</b>
 
