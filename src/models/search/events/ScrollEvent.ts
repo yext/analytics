@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { EnumOrString } from '../utils';
  */
 export interface ScrollEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.ScrollToBottomOfPage>,
+  type: EnumOrString<SearchAnalyticsEventType.ScrollToBottomOfPage>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string
 }

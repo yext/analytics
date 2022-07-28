@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { Searcher } from '../Searcher';
 import { EnumOrString } from '../utils';
 
@@ -10,9 +10,9 @@ import { EnumOrString } from '../utils';
 export interface SearchDurationEvent {
   /** {@inheritDoc CtaEvent."type"} */
   type: EnumOrString<
-    AnalyticsEventType.ResultsHidden |
-    AnalyticsEventType.ResultsUnhidden |
-    AnalyticsEventType.FollowUpQuery
+    SearchAnalyticsEventType.ResultsHidden |
+    SearchAnalyticsEventType.ResultsUnhidden |
+    SearchAnalyticsEventType.FollowUpQuery
   >,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,

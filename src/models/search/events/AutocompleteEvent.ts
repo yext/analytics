@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { EnumOrString } from '../utils';
  */
 export interface AutocompleteEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.AutocompleteSelection>,
+  type: EnumOrString<SearchAnalyticsEventType.AutocompleteSelection>,
   /** Selected search text from an autocomplete suggestion. */
   suggestedSearchText: string,
   /** {@inheritDoc CtaEvent.queryId} */

@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 import { Searcher } from '../Searcher';
 
@@ -9,7 +9,7 @@ import { Searcher } from '../Searcher';
  */
 export interface AccordionToggleEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.RowExpand | AnalyticsEventType.RowCollapse>,
+  type: EnumOrString<SearchAnalyticsEventType.RowExpand | SearchAnalyticsEventType.RowCollapse>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,
   /** {@inheritDoc CtaEvent.verticalKey} */

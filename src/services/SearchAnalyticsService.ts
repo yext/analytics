@@ -23,4 +23,11 @@ export interface SearchAnalyticsService {
    * @param visitor - The visitor to be set, or undefined.
    */
   setVisitor(visitor: Visitor | undefined): void;
+
+  /**
+   * Turns on debug logging for event details.  Will log details to the console when report() is called.
+   *
+   * @param enabled - whether debug logging should be turned on
+   */
+  setDebugEnabled(enabled: boolean): void;
 }

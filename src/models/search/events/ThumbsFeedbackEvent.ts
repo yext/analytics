@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { Searcher } from '../Searcher';
 import { EnumOrString } from '../utils';
 
@@ -9,7 +9,7 @@ import { EnumOrString } from '../utils';
  */
 export interface ThumbsFeedbackEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.ThumbsUp | AnalyticsEventType.ThumbsDown>,
+  type: EnumOrString<SearchAnalyticsEventType.ThumbsUp | SearchAnalyticsEventType.ThumbsDown>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,
   /** {@inheritDoc CtaEvent.directAnswer} */

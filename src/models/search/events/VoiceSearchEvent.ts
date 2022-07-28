@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { EnumOrString } from '../utils';
  */
 export interface VoiceSearchEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.VoiceStart | AnalyticsEventType.VoiceStop>,
+  type: EnumOrString<SearchAnalyticsEventType.VoiceStart | SearchAnalyticsEventType.VoiceStop>,
   /**
    * The timestamp (number of milliseconds since the Unix epoch) for firing
    * the event.

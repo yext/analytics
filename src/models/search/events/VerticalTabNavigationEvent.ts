@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { EnumOrString } from '../utils';
  */
 export interface VerticalTabNavigationEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.VerticalTabNavigation>,
+  type: EnumOrString<SearchAnalyticsEventType.VerticalTabNavigation>,
   /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey: string,
   /** {@inheritDoc CtaEvent.queryId} */

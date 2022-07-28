@@ -1,3 +1,6 @@
+import {PagesAnalyticsEvent} from '../models/pages/events/PagesAnalyticsEvent';
+import {Visitor} from '../models';
+
 /**
  * A service for reporting pages analytics events.
  *
@@ -15,7 +18,21 @@ export interface PagesAnalyticsService {
    * Reports a user interaction event.
    * Will perform a promis rejection if the API contains an error or if
    * the parameters are misconfigured.
-   * @param eventName - the name of the event to track
+   * @param event - the pages event to track
    */
-  userInteraction(eventName: string): Promise<void>
+  track(event: PagesAnalyticsEvent): Promise<void>;
+
+  /**
+   * Sets the {@link Visitor} object which is included with each subsequent request.
+   *
+   * @param visitor - The visitor to be set, or undefined.
+   */
+  setVisitor(visitor: Visitor | undefined): void;
+
+  /**
+   * Turns on debug logging for event details.  Will log details to the console when report() is called.
+   *
+   * @param enabled - whether debug logging should be turned on
+   */
+  setDebugEnabled(enabled: boolean): void;
 }

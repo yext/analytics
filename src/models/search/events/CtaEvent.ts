@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { Searcher } from '../Searcher';
 import { EnumOrString } from '../utils';
 
@@ -11,17 +11,17 @@ import { EnumOrString } from '../utils';
 export interface CtaEvent {
   /** An enum member or its string value which denotes the event type. */
   type: EnumOrString<
-    AnalyticsEventType.CtaClick |
-    AnalyticsEventType.TitleClick |
-    AnalyticsEventType.TapToCall |
-    AnalyticsEventType.OrderNow |
-    AnalyticsEventType.AddToCart |
-    AnalyticsEventType.ApplyNow |
-    AnalyticsEventType.DrivingDirections |
-    AnalyticsEventType.ViewWebsite |
-    AnalyticsEventType.Email |
-    AnalyticsEventType.BookAppointment |
-    AnalyticsEventType.Rsvp
+    SearchAnalyticsEventType.CtaClick |
+    SearchAnalyticsEventType.TitleClick |
+    SearchAnalyticsEventType.TapToCall |
+    SearchAnalyticsEventType.OrderNow |
+    SearchAnalyticsEventType.AddToCart |
+    SearchAnalyticsEventType.ApplyNow |
+    SearchAnalyticsEventType.DrivingDirections |
+    SearchAnalyticsEventType.ViewWebsite |
+    SearchAnalyticsEventType.Email |
+    SearchAnalyticsEventType.BookAppointment |
+    SearchAnalyticsEventType.Rsvp
   >,
   /**
    * The vertical key for the vertical on which the event was fired. Or, if

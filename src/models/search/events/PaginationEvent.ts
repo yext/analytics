@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { EnumOrString } from '../utils';
  */
 export interface PaginationEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.Paginate>,
+  type: EnumOrString<SearchAnalyticsEventType.Paginate>,
   /** {@inheritDoc CtaEvent.verticalKey} */
   verticalKey: string,
   /** The ID of the query correspond to this pagination sequence. */

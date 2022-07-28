@@ -4,6 +4,7 @@ import { HttpRequesterService } from '../../src/services';
 import 'isomorphic-fetch';
 
 const config: SearchAnalyticsConfig = {
+  debug: false,
   experienceKey: 'yext',
   experienceVersion: 'PRODUCTION',
   businessId: 123

@@ -1,6 +1,8 @@
-import { AnalyticsPayload } from '../models/AnalyticsPayload';
+import { AnalyticsPayload } from '../models';
 /**
  * A service for sending requests on the web.
+ *
+ * @public
  */
 export interface HttpRequesterService {
   /**
@@ -12,7 +14,7 @@ export interface HttpRequesterService {
 
     /**
      * A GET request.
-     * @param url
+     * @param url - the URL to send the request to
      */
     get(url: string): Promise<Response>;
 }

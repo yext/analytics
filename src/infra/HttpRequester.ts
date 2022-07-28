@@ -1,15 +1,17 @@
-import { HttpRequesterService } from '../services/HttpRequesterService';
-import { AnalyticsPayload } from '../models/AnalyticsPayload';
+import { HttpRequesterService } from '../services';
+import { AnalyticsPayload } from '../models';
 import fetch from 'cross-fetch';
 
 /**
  * Responsible for making web requests.
+ *
+ * @public
  */
 export class HttpRequester implements HttpRequesterService {
   post(url: string, body: AnalyticsPayload): Promise<Response> {
     const data = JSON.stringify(body);
 
-    const fetchInit = {
+    const fetchInit: RequestInit = {
       method: 'POST',
       body: data,
       keepalive: true
@@ -23,9 +25,9 @@ export class HttpRequester implements HttpRequesterService {
   }
 
   get(url: string): Promise<Response> {
-    const fetchInit = {
+    const fetchInit: RequestInit = {
       method: 'GET',
-      mode: 'no-cors' as RequestMode,
+      mode: 'no-cors',
     };
 
     if (typeof (window) !== 'undefined' && window.fetch) {

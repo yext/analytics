@@ -6,7 +6,9 @@ import { AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig } from './
 import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService } from './services';
 
 /**
- * Provides a combined Pages & Search Analytics service given a joint config
+ * Maintained for backwards compatibility with older versions of the library
+ * provideAnalytics uses the AnalyticsConfig, AnalyticsService, and AnalyticsReporter aliases
+ * for SearchAnalyticsConfig, SearchAnalyticsService, and SearchAnalyticsReporter
  *
  * @remarks
  * Returns an analytics service instance.
@@ -21,7 +23,7 @@ export function provideAnalytics(config: AnalyticsConfig): AnalyticsService {
 }
 
 /**
- * Provides a combined Search Analytics service given a Search specific config
+ * Provides a Search Analytics service given a Search specific config
  *
  * @remarks
  * Returns an analytics service instance.
@@ -36,7 +38,7 @@ export function provideSearchAnalytics(config: SearchAnalyticsConfig): SearchAna
 }
 
 /**
- * Provides a combined Pages Analytics service given a Pages specific config
+ * Provides a Pages Analytics service given a Pages specific config
  *
  * @remarks
  * Returns an analytics service instance.
@@ -51,4 +53,5 @@ export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyt
 }
 
 export * from './models';
-export { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService } from './services';
+export * from './services';
+export { AnalyticsReporter, PagesAnalyticsReporter, SearchAnalyticsReporter };

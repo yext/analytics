@@ -1,4 +1,4 @@
-import { AnalyticsEventType } from '../AnalyticsEventType';
+import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { EnumOrString } from '../utils';
 
 /**
@@ -8,7 +8,7 @@ import { EnumOrString } from '../utils';
  */
 export interface VerticalViewAllEvent {
   /** {@inheritDoc CtaEvent."type"} */
-  type: EnumOrString<AnalyticsEventType.VerticalViewAll>,
+  type: EnumOrString<SearchAnalyticsEventType.VerticalViewAll>,
   /** {@inheritDoc CtaEvent.queryId} */
   queryId: string,
   /** The vertical key of the vertical for which the event was fired. */

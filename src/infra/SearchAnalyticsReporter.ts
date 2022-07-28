@@ -1,15 +1,33 @@
 import { HttpRequesterService, SearchAnalyticsService } from '../services';
 import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor } from '../models';
+import {PagesAnalyticsEvent} from '../models/pages/events/PagesAnalyticsEvent';
 
 const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
 
 /**
  * Responsible for reporting Analytics events.
+ *
+ * @public
  */
 export class SearchAnalyticsReporter implements SearchAnalyticsService {
   private _visitor: Visitor | undefined;
+  private _debug: boolean;
   constructor(private config: SearchAnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
+    this._debug = config.debug;
+  }
+
+  /**
+   * Prints event details to the console for debugging of analytics events as they fire.
+   * @param event - the PagesAnalyticsEvent that will be printed
+   */
+  private printEvent(event: SearchAnalyticsEvent): void {
+    if (!this._debug) return;
+    console.log(
+      `%c[YextAnalytics]%c- Tracked Search event: ${event.type}`,
+      'background: white; color: blue;',
+      '',
+    );
   }
 
   /** {@inheritDoc AnalyticsService.report} */
@@ -55,5 +73,10 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
       delete transformedEvent.verticalKey;
     }
     return transformedEvent;
+  }
+
+  /** {@inheritDoc SearchAnalyticsService.setDebugEnabled} */
+  setDebugEnabled(enabled: boolean): void {
+    this._debug = enabled;
   }
 }

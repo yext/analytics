@@ -3,7 +3,7 @@
  *
  * @public
  */
-export enum AnalyticsEventType {
+export enum SearchAnalyticsEventType {
   /** {@link AllTabNavigationEvent} */
   AllTabNavigation = 'ALL_TAB_NAVIGATION',
   /** {@link AllTabNavigationEvent} */

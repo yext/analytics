@@ -1,14 +1,6 @@
 /**
- * A service for reporting either pages or search analytics events.
+ * An alias for reporting either search analytics events.
+ * Maintained for backward compatibility with previous versions of this library.
  */
+export { SearchAnalyticsService as AnalyticsService } from './SearchAnalyticsService';
 
-import { SearchAnalyticsService } from './SearchAnalyticsService';
-import { PagesAnalyticsService } from './PagesAnalyticsService';
-
-/**
- * A service for reporting both pages and search analytics events.
- *
- * @public
- */
-export interface AnalyticsService extends SearchAnalyticsService,PagesAnalyticsService {
-}

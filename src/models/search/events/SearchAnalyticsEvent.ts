@@ -4,8 +4,6 @@ import { AccordionToggleEvent } from './AccordionToggleEvent';
 export { AccordionToggleEvent };
 import { CtaEvent } from './CtaEvent';
 export { CtaEvent };
-import { PagesEvent } from './PagesEvent';
-export { PagesEvent };
 import { QuestionSubmissionEvent } from './QuestionSubmissionEvent';
 export { QuestionSubmissionEvent };
 import { ThumbsFeedbackEvent } from './ThumbsFeedbackEvent';
