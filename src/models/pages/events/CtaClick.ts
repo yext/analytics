@@ -6,6 +6,6 @@ import { DefaultPagesEventNames } from './DefaultPagesEventNames';
  *
  * @public
  */
-export const CTAEvent: PagesAnalyticsEvent = {
+export const CtaClick: PagesAnalyticsEvent = {
   eventType: DefaultPagesEventNames.CTA,
 };

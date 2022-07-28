@@ -32,51 +32,10 @@ Next, import and initialize the library in your application.  Yext currently has
 between Search and Pages and so they have slightly different interfaces for working with them.  There is also a combined
 interface that you can use when you are building a Search experience entirely on Pages (e.g. a Locator or a Help Site).
 
-### Combined Analytics
-For a typical locator you will be using both Search and Pages analytics.
-
-The experienceKey will come from your Answers experience on yext.com. You can signup for a free trial at
-[https://www.yext.com/free-trial/](https://www.yext.com/free-trial/).
-
-The businessId and siteId can both be found in your account.
-
-```ts
-import { provideAnalytics } from '@yext/analytics';
-
-const analytics = provideAnalytics({
-  experienceKey: '<your experience key>',
-  experienceVersion: 'PRODUCTION',
-  businessId: 123456, // this comes from the url of your Yext account
-  featureId: 'My Locator', // the name of the feature in your features.json
-  pageType: 'locator', // the type of page, can be 'entity', 'directory', 'locator', or 'static'
-  product: 'storepages',
-  production: false, // set to true if you are in the production environment
-  siteId: 654321, // the id of your site, you can find this in the url of your deploy page
-});
-```
-
-Now that we are initialized, we can add a page view.
-
-```ts
-analytics.pageView();
-```
-
-and if a user clicks on a search result, we can fire an appropriate event.
-
-```ts
-analytics.report({
-  type: 'CTA_CLICK',
-  entityId: '1',
-  verticalKey: 'people',
-  searcher: 'VERTICAL',
-  queryId: '12345678-1234-1234-1234-123456789012'
-});
-```
-
 ### Search Analytics
 
 ```ts
-import { provideSearchAnalytics } from '@yext/analytics';
+import { provideSearchAnalytics } from '@yext/analytics'; // can also be imported as provideAnalytics
 
 const searchAnalytics = provideSearchAnalytics({
   experienceKey: '<your experience key>',
@@ -102,19 +61,29 @@ searchAnalytics.report({
 });
 ```
 
+#### Search Analytics Event Types
+When specifying the analytics type, either the [AnalyticsEventType](./docs/analytics.analyticseventtype.md) enum
+or its corresponding string can be specified. For example, you can specify the 'CTA_CLICK' event with either 'CTA_CLICK' or
+with `AnalyticsEventType.CtaClick`. Once the event type is specified, TypeScript is able to enforce the required and
+optional properties for that event type.
+
 ### Pages Analytics
 
 ```ts
-import {providePagesAnalytics} from '@yext/analytics';
+import { providePagesAnalytics } from '@yext/analytics';
 
 const pagesAnalytics = providePagesAnalytics({
-  businessId: 123456, // this comes from the url of your Yext account 
-  featureId: 'My Page Set', // the name of the feature in your features.json
-  pageType: 'entity', // the type of page, can be 'entity', 'directory', 'locator', or 'static'
-  product: 'storepages',
+  debug: false, // enables console debugging logs if set to true
+  pageType: {
+    pageSetId: 'My  Page Set', // the name of the feature in your features.json or the name of your template file
+    id: 90210, // the uid of the entity your page represents
+    name: 'static',
+  },
+  pagesReferrer: 'https://www.google.com', // e.g. document.referrer
+  path: '/foo/bar', // e.g. window.location.pathname
+  businessId: 12345, // this comes from the url of your Yext account
   production: false, // set to true if you are in the production environment
   siteId: 654321, // the id of your site, you can find this in the url of your deploy page
-  ids: [90210], // if your pageType is 'entity' this is required, and it is the uid of the entity 
 });
 ```
 
@@ -123,16 +92,19 @@ Now that the pages analytics reporter is initialized, we can fire a pageview:
 pagesAnalytics.pageView();
 ```
 
-We can also fire an event on any other type of user interaction and give it a custom name:
+If a user clicks on a CTA, we can track a CTA Click Event
+
 ```ts
-pagesAnalytics.userInteraction('somebuttonclick');
+import { CtaClick } from '@yext/analytics';
+
+pagesAnalytics.track(CtaClick);
 ```
 
-#### Search Analytics Event Types
-When specifying the analytics type, either the [AnalyticsEventType](./docs/analytics.analyticseventtype.md) enum
-or its corresponding string can be specified. For example, you can specify the 'CTA_CLICK' event with either 'CTA_CLICK' or
-with `AnalyticsEventType.CtaClick`. Once the event type is specified, TypeScript is able to enforce the required and
-optional properties for that event type.
+We can also fire an event on any other type of user interaction and give it a custom name:
+```ts
+pagesAnalytics.track({eventType: 'C_MY_CUSTOM_EVENT'});
+```
+
 
 And that's it! See **[our documentation](./docs/analytics.md)** for a full list of analytics events.
 

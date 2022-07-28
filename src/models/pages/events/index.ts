@@ -1,5 +1,5 @@
 export { DefaultPagesEventNames } from './DefaultPagesEventNames';
-export { CTAEvent } from './CTAEvent';
+export { CtaClick } from './CtaClick';
 export { WebsiteEvent } from './WebsiteEvent';
 export { DrivingDirectionEvent } from './DrivingDirectionEvent';
 export { PageViewEvent } from './PageViewEvent';

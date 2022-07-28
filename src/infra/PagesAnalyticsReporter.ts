@@ -22,6 +22,7 @@ enum urlParamNames {
   DirectoryId = 'directoryId',
   SearchId = 'searchId',
   StaticPageId = 'staticPageId',
+  PageType = 'pageType',
 }
 
 /**
@@ -71,21 +72,18 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     params.set(urlParamNames.SiteId, this.config.siteId.toString());
     params.set(urlParamNames.IsStaging, (!this.config.production).toString());
     params.set(urlParamNames.EventType, event.eventType);
+    params.set(urlParamNames.PageType, this.config.pageType.name);
 
-    if (urlParamNames.PageSetId in this.config.pageType) {
+    if (this.config.pageType.name === 'entity') {
       params.set(urlParamNames.PageSetId, this.config.pageType.pageSetId);
       params.set(urlParamNames.EntityInternalId, this.config.pageType.id.toString());
-    } else if (urlParamNames.DirectoryId in this.config.pageType) {
+    } else if (this.config.pageType.name === 'directory') {
       params.set(urlParamNames.DirectoryId, this.config.pageType.directoryId);
       params.set(urlParamNames.EntityInternalId, this.config.pageType.id.toString());
-    } else if (urlParamNames.SearchId in this.config.pageType) {
+    } else if (this.config.pageType.name === 'locator') {
       params.set(urlParamNames.SearchId, this.config.pageType.searchId);
     } else if (urlParamNames.StaticPageId in this.config.pageType){
       params.set(urlParamNames.StaticPageId, this.config.pageType.staticPageId);
-    } else {
-      throw new Error(
-        'the PageType Parameter is required to be one of EntityPage, StaticPage, DirectoryPage or LocatorPage'
-      );
     }
 
     params.set(urlParamNames.CacheBuster, PagesAnalyticsReporter.seed().toString());
