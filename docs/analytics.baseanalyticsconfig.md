@@ -17,6 +17,6 @@ export interface BaseAnalyticsConfig
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [businessId](./analytics.baseanalyticsconfig.businessid.md) | number | Your Yext Account ID Can be easily found from the url of your homepage of your Yext account e.g. https://www.yext.com/s/\[businessId\]/home |
-|  [debug](./analytics.baseanalyticsconfig.debug.md) | boolean | Turn on analytics event logging in the console |
+|  [debug?](./analytics.baseanalyticsconfig.debug.md) | boolean | <i>(Optional)</i> Turn on analytics event logging in the console |
 |  [visitor?](./analytics.baseanalyticsconfig.visitor.md) | [Visitor](./analytics.visitor.md) | <i>(Optional)</i> Information used to associate analytics with a particular user. |
 

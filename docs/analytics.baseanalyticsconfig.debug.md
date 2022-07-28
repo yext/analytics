@@ -9,5 +9,5 @@ Turn on analytics event logging in the console
 <b>Signature:</b>
 
 ```typescript
-debug: boolean;
+debug?: boolean;
 ```

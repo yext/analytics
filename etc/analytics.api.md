@@ -34,7 +34,7 @@ export interface AutocompleteEvent {
 // @public
 export interface BaseAnalyticsConfig {
     businessId: number;
-    debug: boolean;
+    debug?: boolean;
     visitor?: Visitor;
 }
 
