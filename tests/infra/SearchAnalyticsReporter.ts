@@ -1,5 +1,5 @@
 import { SearchAnalyticsReporter } from '../../src/infra/SearchAnalyticsReporter';
-import { SearchAnalyticsConfig } from '../../src/models';
+import { SearchAnalyticsConfig } from '../../src';
 import { HttpRequesterService } from '../../src/services';
 import 'isomorphic-fetch';
 

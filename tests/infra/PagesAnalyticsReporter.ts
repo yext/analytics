@@ -1,5 +1,6 @@
 import 'isomorphic-fetch';
-import {PagesAnalyticsReporter, HttpRequesterService} from '../../src';
+import { PagesAnalyticsReporter } from '../../src/infra/PagesAnalyticsReporter';
+import { HttpRequesterService } from '../../src/services';
 
 const mockHttpRequesterService: HttpRequesterService = {
   post: jest.fn(() => Promise.resolve(new Response())),
