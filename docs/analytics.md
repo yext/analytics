@@ -43,6 +43,7 @@
 |  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics. Contains all page or session level information. |
 |  [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | An event from the Pages system |
 |  [PagesAnalyticsService](./analytics.pagesanalyticsservice.md) | A service for reporting pages analytics events. |
+|  [PageType](./analytics.pagetype.md) | represents a page type |
 |  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
 |  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
 |  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |
@@ -62,7 +63,7 @@
 
 |  Variable | Description |
 |  --- | --- |
-|  [CTAEvent](./analytics.ctaevent.md) | A Pages CTA Event |
+|  [CtaClick](./analytics.ctaclick.md) | A Pages CTA Event |
 |  [DrivingDirectionEvent](./analytics.drivingdirectionevent.md) | A Pages DrivingDirection Event |
 |  [PageViewEvent](./analytics.pageviewevent.md) | A Pages PageView Event |
 |  [PhoneCallEvent](./analytics.phonecallevent.md) | A Pages Phone Call Event |

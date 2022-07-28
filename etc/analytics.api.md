@@ -39,7 +39,7 @@ export interface BaseAnalyticsConfig {
 }
 
 // @public
-export const CTAEvent: PagesAnalyticsEvent;
+export const CtaClick: PagesAnalyticsEvent;
 
 // @public
 export interface CtaEvent {
@@ -69,17 +69,19 @@ export enum DefaultPagesEventNames {
 }
 
 // @public
-export interface DirectoryPage {
+export interface DirectoryPage extends PageType {
     directoryId: string;
     id: number;
+    readonly name: 'directory';
 }
 
 // @public
 export const DrivingDirectionEvent: PagesAnalyticsEvent;
 
 // @public
-export interface EntityPage {
+export interface EntityPage extends PageType {
     id: number;
+    readonly name: 'entity';
     pageSetId: string;
 }
 
@@ -93,7 +95,8 @@ export interface HttpRequesterService {
 }
 
 // @public
-export interface LocatorPage {
+export interface LocatorPage extends PageType {
+    readonly name: 'locator';
     searchId: string;
 }
 
@@ -126,6 +129,11 @@ export interface PagesAnalyticsService {
     setDebugEnabled(enabled: boolean): void;
     setVisitor(visitor: Visitor | undefined): void;
     track(event: PagesAnalyticsEvent): Promise<void>;
+}
+
+// @public
+export interface PageType {
+    name: string;
 }
 
 // @public
@@ -288,7 +296,8 @@ export interface SearchDurationEvent {
 export type Searcher = 'UNIVERSAL' | 'VERTICAL';
 
 // @public
-export interface StaticPage {
+export interface StaticPage extends PageType {
+    readonly name: 'static';
     staticPageId: string;
 }
 

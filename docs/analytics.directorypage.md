@@ -9,8 +9,9 @@ Represents the analytics parameters required to track events on a directory page
 <b>Signature:</b>
 
 ```typescript
-export interface DirectoryPage 
+export interface DirectoryPage extends PageType 
 ```
+<b>Extends:</b> [PageType](./analytics.pagetype.md)
 
 ## Properties
 
@@ -18,4 +19,5 @@ export interface DirectoryPage
 |  --- | --- | --- |
 |  [directoryId](./analytics.directorypage.directoryid.md) | string | The name of the directory page feature, may be from the 'name' property of your feature in features.json or the name of your page template file if you are using yext/pages to implement your page. |
 |  [id](./analytics.directorypage.id.md) | number | Yext Internal ID of Entities to Track. May come from meta.id or the uid parameter of a stream document |
+|  [name](./analytics.directorypage.name.md) | 'directory' | The string name of the page type |
 

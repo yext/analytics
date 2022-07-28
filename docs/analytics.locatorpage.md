@@ -9,12 +9,14 @@ Represents the analytics parameters required to track events on a Locator Page
 <b>Signature:</b>
 
 ```typescript
-export interface LocatorPage 
+export interface LocatorPage extends PageType 
 ```
+<b>Extends:</b> [PageType](./analytics.pagetype.md)
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [name](./analytics.locatorpage.name.md) | 'locator' | The string name of the page type |
 |  [searchId](./analytics.locatorpage.searchid.md) | string | The name of the locator page feature, may be from the 'name' property of your feature in features.json or the name of your page template file if you are using yext/pages to implement your page. |
 

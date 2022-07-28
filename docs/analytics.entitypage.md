@@ -9,13 +9,15 @@ Represents the analytics parameters required to track events on an Entity Page
 <b>Signature:</b>
 
 ```typescript
-export interface EntityPage 
+export interface EntityPage extends PageType 
 ```
+<b>Extends:</b> [PageType](./analytics.pagetype.md)
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [id](./analytics.entitypage.id.md) | number | Yext Internal ID of Entities to Track. May come from meta.id or the uid parameter of a stream document |
+|  [name](./analytics.entitypage.name.md) | 'entity' | The string name of the page type |
 |  [pageSetId](./analytics.entitypage.pagesetid.md) | string | The name of the entity page feature, may be from the 'name' property of your feature in features.json or the name of your page template file if you are using yext/pages to implement your page. |
 
