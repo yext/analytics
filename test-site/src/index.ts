@@ -1,9 +1,10 @@
-import { provideAnalytics } from '@yext/analytics';
+import {CtaClick, PagesAnalyticsConfig, provideAnalytics, providePagesAnalytics} from '@yext/analytics';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
   experienceVersion: 'PRODUCTION',
   businessId: 3350634,
+  debug: true,
 });
 
 export function fireClickEvent() {
@@ -28,4 +29,25 @@ function fireAnalyticsEvent(event) {
     .report(event)
     .then(() => console.log('success!'))
     .catch(err => console.error(err));
+}
+
+const pages = providePagesAnalytics({
+  pageType: {
+    name: 'static',
+    staticPageId: 'turtlehead-tacos',
+  },
+  pagesReferrer: 'https://www.google.com',
+  path: '/foo/bar',
+  businessId: 3350634,
+  production: false,
+  siteId: 25317,
+  debug: true,
+});
+
+export function firePageView() {
+  pages.pageView();
+}
+
+export function firePagesCTA() {
+  pages.track(CtaClick);
 }

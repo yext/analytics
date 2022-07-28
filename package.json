@@ -38,9 +38,10 @@
     "typescript": "^4.1.5"
   },
   "jest": {
-    "bail": 0,
+    "bail": false,
     "verbose": true,
     "collectCoverage": true,
+    "testEnvironment": "jsdom",
     "collectCoverageFrom": [
       "src/**"
     ],

@@ -28,29 +28,31 @@ First, install the library via [npm](https://www.npmjs.com/get-npm):
 npm install @yext/analytics
 ```
 
-Next, import and initialize the library in your application.
+Next, import and initialize the library in your application.  Yext currently has different analytics reporting features 
+between Search and Pages and so they have slightly different interfaces for working with them.  There is also a combined
+interface that you can use when you are building a Search experience entirely on Pages (e.g. a Locator or a Help Site).
 
-The experienceKey will come from your Answers experience on yext.com. You can signup for a free trial at [https://www.yext.com/free-trial/](https://www.yext.com/free-trial/).
+### Search Analytics
 
 ```ts
-import { provideAnalytics } from '@yext/analytics';
+import { provideSearchAnalytics } from '@yext/analytics'; // can also be imported as provideAnalytics
 
-const analytics = provideAnalytics({
+const searchAnalytics = provideSearchAnalytics({
   experienceKey: '<your experience key>',
   experienceVersion: 'PRODUCTION',
-  businessId: 123456,
+  businessId: 123456, // this comes from the url of your Yext account
 });
 ```
 
 To use the library with Node, use the following import instead:
 ```ts
-const { provideAnalytics } = require('@yext/analytics');
+const { provideSearchAnalytics } = require('@yext/analytics');
 ``` 
 
-Now that the analytics reporter is initialized, let's fire off an event:
+Now that the search analytics reporter is initialized, let's fire off an event:
 
 ```ts
-analytics.report({
+searchAnalytics.report({
   type: 'CTA_CLICK',
   entityId: '1',
   verticalKey: 'people',
@@ -59,15 +61,54 @@ analytics.report({
 });
 ```
 
-### Analytics Event Types
-When specifying the analytics type, either the [AnalyticsEventType](./docs/analytics.analyticseventtype.md) enum
+#### Search Analytics Event Types
+When specifying the analytics type, either the [SearchAnalyticsEventType](./docs/analytics.searchanalyticseventtype.md) enum
 or its corresponding string can be specified. For example, you can specify the 'CTA_CLICK' event with either 'CTA_CLICK' or
 with `AnalyticsEventType.CtaClick`. Once the event type is specified, TypeScript is able to enforce the required and
 optional properties for that event type.
 
+### Pages Analytics
+
+```ts
+import { providePagesAnalytics } from '@yext/analytics';
+
+const pagesAnalytics = providePagesAnalytics({
+  debug: false, // enables console debugging logs if set to true
+  pageType: {
+    pageSetId: 'My  Page Set', // the name of the feature in your features.json or the name of your template file
+    id: 90210, // the uid of the entity your page represents
+    name: 'static',
+  },
+  pagesReferrer: 'https://www.google.com', // e.g. document.referrer
+  path: '/foo/bar', // e.g. window.location.pathname
+  businessId: 12345, // this comes from the url of your Yext account
+  production: false, // set to true if you are in the production environment
+  siteId: 654321, // the id of your site, you can find this in the url of your deploy page
+});
+```
+
+Now that the pages analytics reporter is initialized, we can fire a pageview:
+```ts
+pagesAnalytics.pageView();
+```
+
+If a user clicks on a CTA, we can track a CTA Click Event
+
+```ts
+import { CtaClick } from '@yext/analytics';
+
+pagesAnalytics.track(CtaClick);
+```
+
+We can also fire an event on any other type of user interaction and give it a custom name:
+```ts
+pagesAnalytics.track({eventType: 'C_MY_CUSTOM_EVENT'});
+```
+
+
 And that's it! See **[our documentation](./docs/analytics.md)** for a full list of analytics events.
 
-### Module support
+## Module support
 - The ESM (ES6) build will be used automatically by module bundlers that support it (e.g. Webpack). It can be specified directly by importing `@yext/analytics/lib/esm`
 - The CommonJS build will be used automatically by Node, but it can be specified directly by importing `@yext/analytics/lib/commonjs`
 

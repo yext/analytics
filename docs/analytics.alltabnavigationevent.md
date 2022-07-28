@@ -17,5 +17,5 @@ export interface AllTabNavigationEvent
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [queryId?](./analytics.alltabnavigationevent.queryid.md) | string | <i>(Optional)</i> The ID of the most recent query. |
-|  [type](./analytics.alltabnavigationevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[AnalyticsEventType.AllTabNavigation](./analytics.analyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
+|  [type](./analytics.alltabnavigationevent.type.md) | [EnumOrString](./analytics.enumorstring.md)<!-- -->&lt;[SearchAnalyticsEventType.AllTabNavigation](./analytics.searchanalyticseventtype.md)<!-- -->&gt; | An enum member or its string value which denotes the event type. |
 

@@ -9,5 +9,5 @@ An enum member or its string value which denotes the event type.
 <b>Signature:</b>
 
 ```typescript
-type: EnumOrString<AnalyticsEventType.CtaClick | AnalyticsEventType.TitleClick | AnalyticsEventType.TapToCall | AnalyticsEventType.OrderNow | AnalyticsEventType.AddToCart | AnalyticsEventType.ApplyNow | AnalyticsEventType.DrivingDirections | AnalyticsEventType.ViewWebsite | AnalyticsEventType.Email | AnalyticsEventType.BookAppointment | AnalyticsEventType.Rsvp>;
+type: EnumOrString<SearchAnalyticsEventType.CtaClick | SearchAnalyticsEventType.TitleClick | SearchAnalyticsEventType.TapToCall | SearchAnalyticsEventType.OrderNow | SearchAnalyticsEventType.AddToCart | SearchAnalyticsEventType.ApplyNow | SearchAnalyticsEventType.DrivingDirections | SearchAnalyticsEventType.ViewWebsite | SearchAnalyticsEventType.Email | SearchAnalyticsEventType.BookAppointment | SearchAnalyticsEventType.Rsvp>;
 ```
