@@ -10,7 +10,7 @@ const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
  */
 export class SearchAnalyticsReporter implements SearchAnalyticsService {
   private _visitor: Visitor | undefined;
-  private _debug: boolean;
+  private _debug: boolean|undefined;
   constructor(private config: SearchAnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;

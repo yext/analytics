@@ -32,7 +32,7 @@ enum urlParamNames {
  */
 export class PagesAnalyticsReporter implements PagesAnalyticsService{
   private _visitor: Visitor |undefined;
-  private _debug: boolean;
+  private _debug: boolean|undefined;
   constructor(private config: PagesAnalyticsConfig,
               private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);

@@ -19,5 +19,5 @@ export interface BaseAnalyticsConfig {
   /**
    * Turn on analytics event logging in the console
    */
-  debug: boolean;
+  debug?: boolean;
 }
