@@ -1,4 +1,5 @@
 import {CtaClick, PagesAnalyticsConfig, provideAnalytics, providePagesAnalytics} from '@yext/analytics';
+import { provideConversionTrackingAnalytics } from '../../src';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
@@ -50,4 +51,14 @@ export function firePageView() {
 
 export function firePagesCTA() {
   pages.track(CtaClick);
+}
+
+const conversions = provideConversionTrackingAnalytics(true);
+
+export function fireConversion(value?: number) {
+  conversions.trackConversion({cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556', cv: value.toString()});
+}
+
+export function fireListings() {
+  conversions.trackListings({source: '1_NjE0MzM5Mi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D', location: 'location/04500'});
 }

@@ -1,11 +1,6 @@
-import 'isomorphic-fetch';
 import { PagesAnalyticsReporter } from '../../src/infra/PagesAnalyticsReporter';
-import { HttpRequesterService } from '../../src/services';
+import { mockErrorHttpRequesterService, mockHttpRequesterService } from '../../src/services/__mocks__/MockHttpRequesterService';
 
-const mockHttpRequesterService: HttpRequesterService = {
-  post: jest.fn(() => Promise.resolve(new Response())),
-  get: jest.fn(() => Promise.resolve(new Response())),
-};
 beforeEach(() => {
   // will produce a v parameter == 1001 from the seed() function
   jest.spyOn(global.Math, 'random').mockReturnValue(1);
@@ -45,10 +40,6 @@ it('The static page page view URL is constructed correctly', () => {
 it('Should handle http errors properly', () => {
   expect.assertions(1);
   const errMsg = 'Invalid IDs';
-  const errorMockHttpRequesterService: HttpRequesterService = {
-    post: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
-    get: jest.fn(() => Promise.resolve(new Response(errMsg, { status: 400 }))),
-  };
 
   const reporter = new PagesAnalyticsReporter({
     pageType: {
@@ -60,7 +51,7 @@ it('Should handle http errors properly', () => {
     businessId: 0,
     production: false,
     siteId: 0
-  }, errorMockHttpRequesterService);
+  }, mockErrorHttpRequesterService(errMsg));
   const resPromise = reporter.pageView();
   expect(resPromise).rejects.toEqual(new Error(errMsg));
 });

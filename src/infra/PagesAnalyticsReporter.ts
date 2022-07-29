@@ -1,13 +1,13 @@
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
-import {DefaultPagesEventNames, PagesAnalyticsConfig, Visitor} from '../models';
-import {PagesAnalyticsEvent} from '../models/pages/events/PagesAnalyticsEvent';
-import {PageViewEvent} from '../models/pages';
+import { DefaultPagesEventNames, PagesAnalyticsConfig, Visitor } from '../models';
+import { PagesAnalyticsEvent } from '../models';
+import { PageViewEvent } from '../models';
+import { calculateSeed } from './CalculateSeed';
 
 const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
 const PRODUCT_NAME = 'storepages';
 
 // TODO: Implement conversion tracking
-
 enum urlParamNames {
   BusinessId = 'businessids',
   Product = 'product',
@@ -55,14 +55,6 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
   }
 
   /**
-   * Get a random number to use as a cache buster in analytics pixel URLs
-   * @returns number
-   */
-  private static seed(): number {
-    return Date.now() + Math.floor(1000 * Math.random());
-  }
-
-  /**
    * Prints event details to the console for debugging of analytics events as they fire.
    * @param event - the PagesAnalyticsEvent that will be printed
    */
@@ -100,7 +92,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
       params.set(urlParamNames.StaticPageId, this.config.pageType.staticPageId);
     }
 
-    params.set(urlParamNames.CacheBuster, PagesAnalyticsReporter.seed().toString());
+    params.set(urlParamNames.CacheBuster, calculateSeed().toString());
     params.set(urlParamNames.UrlPath, this.config.path);
     params.set(urlParamNames.Referrer, this.config.pagesReferrer);
 
