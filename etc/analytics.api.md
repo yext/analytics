@@ -39,6 +39,25 @@ export interface BaseAnalyticsConfig {
 }
 
 // @public
+export interface ConversionEvent {
+    cid: string;
+    cv?: string;
+    firstPartyCookieId?: string;
+    referrer?: string;
+    thirdPartyCookieId?: string;
+}
+
+// @public
+export interface ConversionTrackingService {
+    setDebugEnabled(enabled: boolean): void;
+    trackConversion(event: ConversionEvent): void;
+    trackListings(event: ListingsClickEvent): Promise<void>;
+}
+
+// @public
+export const CookieParam = "_yfpc";
+
+// @public
 export const CtaClick: PagesAnalyticsEvent;
 
 // @public
@@ -87,6 +106,15 @@ export interface EntityPage extends PageType {
 
 // @public
 export type EnumOrString<T extends string> = T | `${T}`;
+
+// @public
+export interface ListingsClickEvent {
+    firstPartyCookieId?: string;
+    location: string;
+    referrer?: string;
+    source: string;
+    thirdPartyCookieId?: string;
+}
 
 // @public
 export interface LocatorPage extends PageType {
@@ -139,6 +167,9 @@ export const PhoneCallEvent: PagesAnalyticsEvent;
 
 // @public
 export function provideAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
+
+// @public
+export function provideConversionTrackingAnalytics(debug?: boolean): ConversionTrackingService;
 
 // @public
 export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService;
