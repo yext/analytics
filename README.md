@@ -105,6 +105,45 @@ We can also fire an event on any other type of user interaction and give it a cu
 pagesAnalytics.track({eventType: 'C_MY_CUSTOM_EVENT'});
 ```
 
+### Conversion Tracking
+
+Yext offers conversion tracking that can attribute values to conversion events that are driven by user interaction
+with Yext's products.  Once you have [setup conversion tracking](https://hitchhikers.yext.com/modules/ana104-conversion/01-conversion-overview/)
+you can create a conversionTracking provider like so:
+
+```ts
+import { provideConversionTrackingAnalytics } from '@yext/analytics';
+const conversionTracker = provideConversionTrackingAnalytics();
+```
+
+In order to track conversions, you will need to set a Cookie on your users and pass the id of that cookie to the 
+conversion tracker when a conversion event occurs.  Which can be done like so:
+
+```ts
+conversionTracker.trackConversion({
+  cookieId: '12466678', //the unique id that you generated for the user cookie
+  cid: '12345-abcde-67890-fghij', //the value of the tag found in the conversion tracking setup page in your account
+  cv: 10, // the optional monetary value of the conversion event.
+})
+```
+
+Additionally, if you are implementing Conversion tracking on a pages site, once you have setup the pages analytics
+tracker, you should turn on conversion tracking so that interactions on your pages site can be properly credited with 
+conversions.  That can be done like so:
+
+```ts
+pagesAnalytics.setConversionTrackingEnabled(true, 'cookie id of the user goes here');
+```
+
+Then, when you track a page view it will automatically be credited for conversion tracking purposes. Additionally, if
+an event on your pages should be treated as a conversion, you would track it like so:
+
+```ts
+pagesAnalytics.track('event_to_track', {
+  cid: '12345-abcde-67890-fghij', // the value of the tag found in the conversion tracking setup page in your account
+  cv: 10, // the optional monetary value of the conversion event.
+});
+```
 
 And that's it! See **[our documentation](./docs/analytics.md)** for a full list of analytics events.
 

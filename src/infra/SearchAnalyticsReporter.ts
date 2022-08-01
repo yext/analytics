@@ -18,7 +18,7 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
 
   /**
    * Prints event details to the console for debugging of analytics events as they fire.
-   * @param event - the PagesAnalyticsEvent that will be printed
+   * @param event - the SearchAnalyticsEvent that will be printed
    */
   private printEvent(event: SearchAnalyticsEvent): void {
     if (!this._debug) return;
