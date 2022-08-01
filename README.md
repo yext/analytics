@@ -121,8 +121,8 @@ conversion tracker when a conversion event occurs.  Which can be done like so:
 
 ```ts
 conversionTracker.trackConversion({
-  cookieId: 'the unique id that you generated for the user cookie,
-  cid: 'the value of the tag found in the conversion tracking setup page in your account',
+  cookieId: '12466678', //the unique id that you generated for the user cookie
+  cid: '12345-abcde-67890-fghij', //the value of the tag found in the conversion tracking setup page in your account
   cv: 10, // the optional monetary value of the conversion event.
 })
 ```
