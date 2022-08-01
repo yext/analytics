@@ -1,5 +1,5 @@
 import { ConversionEvent, COOKIE_PARAM, ListingsClickEvent } from '../models';
-import { DEFAULT_CONVERSION_TRACKING_DOMAIN } from '../models/constants';
+import { DEFAULT_CONVERSION_TRACKING_DOMAIN, LISTINGS_SOURCE_PARAM } from '../models/constants';
 import { CommonConversionData } from '../models/conversiontracking/CommonConversionData';
 import { ConversionTrackingService, HttpRequesterService } from '../services';
 import { calculateSeed } from './CalculateSeed';
@@ -60,7 +60,7 @@ export class ConversionTrackingReporter implements ConversionTrackingService {
   async trackListings(event: ListingsClickEvent): Promise<void> {
     const url = new URL(`https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${listingsEndpoint}`);
     const params = new URLSearchParams();
-    params.set('y_source', event.source);
+    params.set(LISTINGS_SOURCE_PARAM, event.source);
     params.set('location', event.location);
     ConversionTrackingReporter.formatBaseEvent(event, params);
     url.search = params.toString();

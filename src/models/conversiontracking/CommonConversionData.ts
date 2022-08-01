@@ -1,5 +1,7 @@
 /**
  * Shared properties of both ConversionEvent and ListingsClickEvent
+ *
+ * @public
  */
 export interface CommonConversionData {
   /**

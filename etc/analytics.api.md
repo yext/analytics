@@ -38,9 +38,18 @@ export interface BaseAnalyticsConfig {
     visitor?: Visitor;
 }
 
-// Warning: (ae-forgotten-export) The symbol "CommonConversionData" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "ConversionDetails" needs to be exported by the entry point index.d.ts
-//
+// @public
+export interface CommonConversionData {
+    cookieId: string;
+    referrer?: string;
+}
+
+// @public
+export interface ConversionDetails {
+    cid: string;
+    cv?: string;
+}
+
 // @public
 export interface ConversionEvent extends CommonConversionData, ConversionDetails {
 }
@@ -120,7 +129,7 @@ export interface LocatorPage extends PageType {
 // @public
 export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
     pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
-    path: string;
+    pageUrl: string;
     production: boolean;
     referrer: string;
     siteId: number;

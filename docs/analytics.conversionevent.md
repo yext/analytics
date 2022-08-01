@@ -11,5 +11,5 @@ An event representing a Conversion
 ```typescript
 export interface ConversionEvent extends CommonConversionData, ConversionDetails 
 ```
-<b>Extends:</b> CommonConversionData, ConversionDetails
+<b>Extends:</b> [CommonConversionData](./analytics.commonconversiondata.md)<!-- -->, [ConversionDetails](./analytics.conversiondetails.md)
 

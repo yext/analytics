@@ -24,9 +24,9 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
   production: boolean,
 
   /**
-   * The path component of the page url
+   * The full url of the page we are on, typically window.location.href
    */
-  path: string
+  pageUrl: string
 
   /**
    * Page which sent the user to the current page, comes from typically Document.referrer

@@ -11,7 +11,7 @@ An event representing a user arriving at a landing page from a publisher site.
 ```typescript
 export interface ListingsClickEvent extends CommonConversionData 
 ```
-<b>Extends:</b> CommonConversionData
+<b>Extends:</b> [CommonConversionData](./analytics.commonconversiondata.md)
 
 ## Properties
 

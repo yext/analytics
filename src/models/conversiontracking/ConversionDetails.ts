@@ -1,5 +1,7 @@
 /**
  * The details of an individual conversion event, without the cookie id.
+ *
+ * @public
  */
 export interface ConversionDetails {
   /**

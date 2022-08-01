@@ -1,4 +1,4 @@
-import { COOKIE_PARAM, DEFAULT_CONVERSION_TRACKING_DOMAIN } from '../models/constants';
+import { COOKIE_PARAM, DEFAULT_CONVERSION_TRACKING_DOMAIN, LISTINGS_SOURCE_PARAM } from '../models/constants';
 import { ConversionDetails } from '../models/conversiontracking/ConversionDetails';
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
 import { DefaultPagesEventNames, PagesAnalyticsConfig, Visitor } from '../models';
@@ -55,12 +55,20 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
   private _debug: boolean|undefined;
   private _conversionTrackingEnabled: boolean|undefined;
   private _cookieID: string|undefined;
-  private _conversionTracker: ConversionTrackingReporter;
+  private readonly _conversionTracker: ConversionTrackingReporter;
+  private _hasTrackedListings: boolean;
+  private readonly _pageUrl: URL;
   constructor(private config: PagesAnalyticsConfig,
               private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;
     this._conversionTracker = new ConversionTrackingReporter(this.httpRequesterService, this._debug);
+    this._hasTrackedListings = false;
+    try {
+      this._pageUrl = new URL(config.pageUrl);
+    } catch {
+      throw new Error(`pageUrl property must be a valid URL, was: '${config.pageUrl}'`);
+    }
   }
 
   /**
@@ -102,7 +110,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     }
 
     params.set(urlParamNames.CacheBuster, calculateSeed().toString());
-    params.set(urlParamNames.UrlPath, this.config.path);
+    params.set(urlParamNames.UrlPath, this._pageUrl.pathname);
     params.set(urlParamNames.Referrer, this.config.referrer);
 
     if (this._conversionTrackingEnabled && this._cookieID) {
@@ -119,6 +127,19 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
 
   /** {@inheritDoc PagesAnalyticsService.pageView} */
   async pageView(): Promise<void> {
+    const sourceValue = this._pageUrl.searchParams.get(LISTINGS_SOURCE_PARAM);
+
+    if (this._conversionTrackingEnabled
+      && this._cookieID
+      && !this._hasTrackedListings
+      && sourceValue) {
+      await this._conversionTracker.trackListings({
+        cookieId: this._cookieID,
+        location: this._pageUrl.toString(),
+        source: sourceValue,
+      });
+      this._hasTrackedListings = true;
+    }
     return this.track(PageViewEvent);
   }
 

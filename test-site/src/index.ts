@@ -36,10 +36,10 @@ const pages = providePagesAnalytics({
   pageType: {
     name: 'entity',
     pageSetId: 'location',
-    id: '18718615',
+    id: 18718615,
   },
   referrer: 'https://www.google.com',
-  path: '/location/11291',
+  pageUrl: 'https://www.pagesanalyticstesting.com/location/11291?y_source=123353131212312312',
   businessId: 3350634,
   production: false,
   siteId: 40659,

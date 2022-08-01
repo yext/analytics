@@ -17,7 +17,7 @@ track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<v
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  event | [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | the pages event to track |
-|  conversionInfo | ConversionDetails | Optional parameter to pass with the CID from the conversion tag if this event should represent a conversion and conversion tracking is enabled. |
+|  conversionInfo | [ConversionDetails](./analytics.conversiondetails.md) | Optional parameter to pass with the CID from the conversion tag if this event should represent a conversion and conversion tracking is enabled. |
 
 <b>Returns:</b>
 

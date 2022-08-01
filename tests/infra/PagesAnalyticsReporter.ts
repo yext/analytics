@@ -8,17 +8,18 @@ beforeEach(() => {
 });
 
 it('The static page page view URL is constructed correctly', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const reporter = new PagesAnalyticsReporter({
     pageType: {
       staticPageId: 'My Page Set',
       name: 'static',
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
 
   reporter.pageView();
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
@@ -34,7 +35,7 @@ it('The static page page view URL is constructed correctly', () => {
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
 
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
 it('Should handle http errors properly', () => {
@@ -47,7 +48,7 @@ it('Should handle http errors properly', () => {
       name: 'static',
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
@@ -57,6 +58,7 @@ it('Should handle http errors properly', () => {
 });
 
 it('should track entity pages', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
@@ -77,17 +79,18 @@ it('should track entity pages', () => {
       id: 1,
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
 
   reporter.pageView();
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
 it('should track directory pages', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const reporter = new PagesAnalyticsReporter({
     pageType: {
       name: 'directory',
@@ -95,11 +98,11 @@ it('should track directory pages', () => {
       id: 1,
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
   reporter.pageView();
 
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
@@ -116,21 +119,22 @@ it('should track directory pages', () => {
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
 
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
 it('should track locator pages', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const reporter = new PagesAnalyticsReporter({
     pageType: {
       name: 'locator',
       searchId: 'My Locator Page Set',
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
   reporter.pageView();
 
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
@@ -145,23 +149,23 @@ it('should track locator pages', () => {
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
 
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
 it('should track custom events', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const eventName = 'my_event_type_name';
-
   const reporter = new PagesAnalyticsReporter({
     pageType: {
       name: 'static',
       staticPageId: 'My Page Set',
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
   reporter.track({eventType: eventName});
 
   const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
@@ -177,21 +181,22 @@ it('should track custom events', () => {
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
 
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
 it('should use set the visitor', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const reporter = new PagesAnalyticsReporter({
     pageType: {
       name: 'static',
       staticPageId: 'My Page Set',
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
 
   reporter.setVisitor({
     id: 'foo',
@@ -215,21 +220,22 @@ it('should use set the visitor', () => {
   expectedUrl.searchParams.set('visitorId', 'foo');
   expectedUrl.searchParams.set('visitorIdMethod', 'bar');
 
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
 });
 
 it('should use conversion tracking endpoint and set cookie', () => {
+  const httpRequesterService = mockHttpRequesterService();
   const reporter = new PagesAnalyticsReporter({
     pageType: {
       name: 'static',
       staticPageId: 'My Page Set',
     },
     referrer: 'https://www.google.com',
-    path: '/foo/bar',
+    pageUrl: 'https://www.foobar.com/foo/bar',
     businessId: 0,
     production: false,
     siteId: 0
-  }, mockHttpRequesterService);
+  }, httpRequesterService);
 
   reporter.setVisitor({
     id: 'foo',
@@ -255,6 +261,68 @@ it('should use conversion tracking endpoint and set cookie', () => {
   expectedUrl.searchParams.set('visitorId', 'foo');
   expectedUrl.searchParams.set('visitorIdMethod', 'bar');
 
-  console.log(expectedUrl.toString());
-  expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
+
+it('should throw an error if the pageUrl property is invalid', () => {
+  const httpRequesterService = mockHttpRequesterService();
+  expect.assertions(1);
+  const errMsg = 'pageUrl property must be a valid URL, was: \'foo/bar\'';
+  const thisShouldThrow = () => {
+    new PagesAnalyticsReporter({
+      pageType: {
+        staticPageId: 'My Page Set',
+        name: 'static',
+      },
+      referrer: 'https://www.google.com',
+      pageUrl: 'foo/bar',
+      businessId: 0,
+      production: false,
+      siteId: 0
+    }, httpRequesterService);
+  };
+
+  expect(thisShouldThrow).toThrow(errMsg);
+});
+
+it('should track listings with a pageview', async () => {
+  const httpRequesterService = mockHttpRequesterService();
+
+  const reporter = new PagesAnalyticsReporter({
+    pageType: {
+      name: 'static',
+      staticPageId: 'My Page Set',
+    },
+    referrer: 'https://www.google.com',
+    pageUrl: 'https://www.foobar.com/foo/bar?y_source=123455',
+    businessId: 0,
+    production: false,
+    siteId: 0
+  }, httpRequesterService);
+
+  reporter.setConversionTrackingEnabled(true, '123456');
+  await reporter.pageView();
+
+  const listingsUrl = new URL('https://realtimeanalytics.yext.com/listings');
+  listingsUrl.searchParams.set('y_source', '123455');
+  listingsUrl.searchParams.set('location', 'https://www.foobar.com/foo/bar?y_source=123455');
+  listingsUrl.searchParams.set('_yfpc', '123456');
+  listingsUrl.searchParams.set('v', '1001');
+
+  expect(httpRequesterService.get).toHaveBeenNthCalledWith(1, listingsUrl.toString());
+
+  const pageViewUrl = new URL('https://realtimeanalytics.yext.com/store_pagespixel');
+  pageViewUrl.searchParams.set('businessids', '0');
+  pageViewUrl.searchParams.set('product', 'sites');
+  pageViewUrl.searchParams.set('siteId', '0');
+  pageViewUrl.searchParams.set('isStaging', 'true');
+  pageViewUrl.searchParams.set('eventType', 'pageview');
+  pageViewUrl.searchParams.set('pageType', 'static');
+  pageViewUrl.searchParams.set('staticPageId', 'My Page Set');
+  pageViewUrl.searchParams.set('v', '1001');
+  pageViewUrl.searchParams.set('pageurl', '/foo/bar');
+  pageViewUrl.searchParams.set('pagesReferrer','https://www.google.com');
+
+  pageViewUrl.searchParams.set('_yfpc', '123456');
+  expect(httpRequesterService.get).toHaveBeenNthCalledWith(2, pageViewUrl.toString());
 });

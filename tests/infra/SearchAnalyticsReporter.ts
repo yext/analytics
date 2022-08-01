@@ -9,10 +9,11 @@ const config: SearchAnalyticsConfig = {
 };
 
 it('The URL is constructed correctly', () => {
-  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const expectedUrl = `https://answers.yext-pixel.com/realtimeanalytics/data/answers/${config.businessId}`;
-  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+  expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The URL is constructed correctly with custom domains', () => {
@@ -20,14 +21,16 @@ it('The URL is constructed correctly with custom domains', () => {
     ...config,
     domain: 'https://yext.com'
   };
-  const analyticsReporter = new SearchAnalyticsReporter(configWithCustomDomain, mockHttpRequesterService);
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(configWithCustomDomain, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1'});
   const expectedUrl = `https://yext.com/realtimeanalytics/data/answers/${config.businessId}`;
-  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+  expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
 it('The data is structured properly', () => {
-  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1'});
   const expectedData = {
     data: {
@@ -38,11 +41,12 @@ it('The data is structured properly', () => {
       queryId: '1'
     }
   };
-  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
+  expect(mockService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
 it('Additional params are sent properly', () => {
-  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockService);
   const additionalRequestAttributes = {
     ytag: 123
   };
@@ -57,12 +61,13 @@ it('Additional params are sent properly', () => {
     },
     ...additionalRequestAttributes
   };
-  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
+  expect(mockService.post).toHaveBeenLastCalledWith(expect.anything(), expectedData);
 });
 
 it('Returns a resolved promise after a successful report', () => {
   expect.assertions(1);
-  const analyticsReporter = new SearchAnalyticsReporter(config, mockHttpRequesterService);
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(config, mockService);
   const resPromise = analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   expect(resPromise).resolves.toEqual(undefined);
 });
@@ -77,7 +82,8 @@ it('Performs a promise rejection when the API responds with an error', () => {
 
 it('Visitor is set and passed properly', () => {
   const visitorParam = { visitor: { id: '123'} };
-  const analyticsReporter = new SearchAnalyticsReporter({...config, ...visitorParam}, mockHttpRequesterService);
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter({...config, ...visitorParam}, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const data = {
     businessId: 123,
@@ -92,10 +98,10 @@ it('Visitor is set and passed properly', () => {
       ...visitorParam
     }
   };
-  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(),
+  expect(mockService.post).toHaveBeenLastCalledWith(expect.anything(),
     expectedDataWithVisitor);
 
   analyticsReporter.setVisitor(undefined);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
-  expect(mockHttpRequesterService.post).toHaveBeenLastCalledWith(expect.anything(), { data });
+  expect(mockService.post).toHaveBeenLastCalledWith(expect.anything(), { data });
 });

@@ -29,6 +29,8 @@
 |  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md) | Base analytics configuration |
+|  [CommonConversionData](./analytics.commonconversiondata.md) | Shared properties of both ConversionEvent and ListingsClickEvent |
+|  [ConversionDetails](./analytics.conversiondetails.md) | The details of an individual conversion event, without the cookie id. |
 |  [ConversionEvent](./analytics.conversionevent.md) | An event representing a Conversion |
 |  [ConversionTrackingService](./analytics.conversiontrackingservice.md) | A service for tracking conversions |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
