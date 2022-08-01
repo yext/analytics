@@ -13,7 +13,7 @@ const reporter = new ConversionTrackingReporter(mockHttpRequesterService);
 it('should not set empty parameters', () => {
   reporter.trackConversion({
     cid: '12345',
-    firstPartyCookieId: '54321',
+    cookieId: '54321',
   });
   expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(
     'https://realtimeanalytics.yext.com/conversiontracking/conversion?cid=12345&_yfpc=54321&v=1001',
@@ -23,12 +23,11 @@ it('should not set empty parameters', () => {
 it('should set all parameters passed', () => {
   reporter.trackConversion({
     cid: '12345',
-    firstPartyCookieId: '54321',
-    thirdPartyCookieId: '098765',
+    cookieId: '54321',
     referrer: 'http://www.google.com/foo/bar',
   });
   expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/conversiontracking/conversion?cid=12345&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&cookieId=098765&v=1001',
+    'https://realtimeanalytics.yext.com/conversiontracking/conversion?cid=12345&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&v=1001',
   );
 });
 
@@ -37,31 +36,30 @@ it('should handle an error', () => {
   const conversionReporter = new ConversionTrackingReporter(mockErrorHttpRequesterService(message));
   const resPromise = conversionReporter.trackConversion({
     cid: '12345',
-    firstPartyCookieId: '54321',
+    cookieId: '54321',
   });
   expect(resPromise).rejects.toEqual(new Error(message));
 });
 
 it('should track listings', () => {
   reporter.trackListings({
+    cookieId: '54321',
     source: 'foo',
-    location: 'https://www.example.com/my/foo/page',
+    location: 'https://www.example.com/my/foo/page'
   });
   expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/listings?y_source=foo&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage&v=1001',
+    'https://realtimeanalytics.yext.com/listings?y_source=foo&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage&_yfpc=54321&v=1001',
   );
 });
-
 
 it('should track listings with more details', () => {
   reporter.trackListings({
     source: 'foo',
     location: 'https://www.example.com/my/foo/page',
-    firstPartyCookieId: '54321',
-    thirdPartyCookieId: '098765',
+    cookieId: '54321',
     referrer: 'http://www.google.com/foo/bar',
   });
   expect(mockHttpRequesterService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/listings?y_source=foo&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&_yfpc=54321&cookieId=098765&v=1001',
+    'https://realtimeanalytics.yext.com/listings?y_source=foo&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&v=1001',
   );
 });

@@ -1,13 +1,16 @@
+import { COOKIE_PARAM, DEFAULT_CONVERSION_TRACKING_DOMAIN } from '../models/constants';
+import { ConversionDetails } from '../models/conversiontracking/ConversionDetails';
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
 import { DefaultPagesEventNames, PagesAnalyticsConfig, Visitor } from '../models';
 import { PagesAnalyticsEvent } from '../models';
 import { PageViewEvent } from '../models';
 import { calculateSeed } from './CalculateSeed';
+import { ConversionTrackingReporter } from './ConversionTrackingReporter';
 
-const DEFAULT_DOMAIN_PAGES = 'https://www.yext-pixel.com';
-const PRODUCT_NAME = 'storepages';
+const DEFAULT_DOMAIN_PAGES = 'www.yext-pixel.com';
+const PRODUCT_NAME = 'sites';
+const ENDPOINT = 'store_pagespixel';
 
-// TODO: Implement conversion tracking
 enum urlParamNames {
   BusinessId = 'businessids',
   Product = 'product',
@@ -23,6 +26,8 @@ enum urlParamNames {
   SearchId = 'searchId',
   StaticPageId = 'staticPageId',
   PageType = 'pageType',
+  VisitorId = 'visitorId',
+  VisitorMethod = 'visitorIdMethod',
 }
 
 const eventTypeNameMapping = new Map<string, string>();
@@ -48,10 +53,14 @@ function getEventName(name: string): string {
 export class PagesAnalyticsReporter implements PagesAnalyticsService{
   private _visitor: Visitor |undefined;
   private _debug: boolean|undefined;
+  private _conversionTrackingEnabled: boolean|undefined;
+  private _cookieID: string|undefined;
+  private _conversionTracker: ConversionTrackingReporter;
   constructor(private config: PagesAnalyticsConfig,
               private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;
+    this._conversionTracker = new ConversionTrackingReporter(this.httpRequesterService, this._debug);
   }
 
   /**
@@ -94,7 +103,16 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
 
     params.set(urlParamNames.CacheBuster, calculateSeed().toString());
     params.set(urlParamNames.UrlPath, this.config.path);
-    params.set(urlParamNames.Referrer, this.config.pagesReferrer);
+    params.set(urlParamNames.Referrer, this.config.referrer);
+
+    if (this._conversionTrackingEnabled && this._cookieID) {
+      params.set(COOKIE_PARAM, this._cookieID);
+    }
+
+    if (this._visitor) {
+      params.set(urlParamNames.VisitorId, this._visitor.id);
+      if (this._visitor.method) params.set(urlParamNames.VisitorMethod, this._visitor.method);
+    }
 
     return params;
   }
@@ -104,13 +122,23 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     return this.track(PageViewEvent);
   }
 
+  /**
+   * returns the endpoint to hit depending on whether conversion tracking is enabled
+   * @private
+   */
+  private endpoint(): string {
+    if (this._conversionTrackingEnabled) {
+      return `https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${ENDPOINT}`;
+    }
+    return `https://${DEFAULT_DOMAIN_PAGES}/${ENDPOINT}`;
+  }
+
   /** {@inheritDoc PagesAnalyticsService.setDebugEnabled} */
-  async track(event: PagesAnalyticsEvent): Promise<void> {
+  async track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<void> {
     /** TODO: need to evaluate that the event name is valid, I think there are restrictions in the characters
       * that are accepted
       */
-    const urlStr = `${DEFAULT_DOMAIN_PAGES}/store_pagespixel`;
-    const url = new URL(urlStr);
+    const url = new URL(this.endpoint());
     url.search = this.urlParameters(event).toString();
     const res = await this.httpRequesterService.get(url.toString());
     // modern browsers won't let us access the status because of CORS
@@ -120,16 +148,33 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
       throw new Error(errorMessage);
     }
     this.printEvent(event);
+
+    if (this._conversionTrackingEnabled && this._cookieID && conversionInfo) {
+      this._conversionTracker.trackConversion({
+        cid: conversionInfo.cid,
+        cv: conversionInfo.cv,
+        cookieId: this._cookieID,
+      });
+    }
   }
 
   /** {@inheritDoc PagesAnalyticsService.setDebugEnabled} */
   setDebugEnabled(enabled: boolean): void {
     this._debug = enabled;
+    if (this._conversionTracker) {
+      this._conversionTracker.setDebugEnabled(enabled);
+    }
   }
 
   /** {@inheritDoc PagesAnalyticsService.setVisitor} */
   setVisitor(visitor: Visitor | undefined): void {
     this._visitor = visitor;
+  }
+
+  /** {@inheritDoc PagesAnalyticsService.setConversionTrackingEnabled} */
+  setConversionTrackingEnabled(enabled: boolean, cookieId: string): void {
+    this._conversionTrackingEnabled = enabled;
+    this._cookieID = cookieId;
   }
 }
 

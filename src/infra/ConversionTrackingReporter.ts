@@ -1,8 +1,9 @@
-import { CookieParam, ConversionEvent, ListingsClickEvent } from '../models';
+import { ConversionEvent, COOKIE_PARAM, ListingsClickEvent } from '../models';
+import { DEFAULT_CONVERSION_TRACKING_DOMAIN } from '../models/constants';
+import { CommonConversionData } from '../models/conversiontracking/CommonConversionData';
 import { ConversionTrackingService, HttpRequesterService } from '../services';
 import { calculateSeed } from './CalculateSeed';
 
-const domain = 'realtimeanalytics.yext.com';
 const conversionEndpoint = 'conversiontracking/conversion';
 const listingsEndpoint = 'listings';
 
@@ -37,33 +38,33 @@ export class ConversionTrackingReporter implements ConversionTrackingService {
     }
   }
 
+  private static formatBaseEvent(event: CommonConversionData, params: URLSearchParams): void {
+    params.set(COOKIE_PARAM, event.cookieId);
+    if (event.referrer) params.set('referrer', event.referrer);
+    params.set('v', calculateSeed().toString());
+  }
+
   /** {@inheritDoc ConversionTrackingService.trackConversion} */
   async trackConversion(event: ConversionEvent): Promise<void> {
-    const url = new URL(`https://${domain}/${conversionEndpoint}`);
+    const url = new URL(`https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${conversionEndpoint}`);
     const params = new URLSearchParams();
     params.set('cid', event.cid);
-    if (event.firstPartyCookieId) params.set(CookieParam, event.firstPartyCookieId);
-    if (event.referrer) params.set('referrer', event.referrer);
     if (event.cv) params.set('cv', event.cv);
-    if (event.thirdPartyCookieId) params.set('cookieId', event.thirdPartyCookieId);
-    params.set('v', calculateSeed().toString());
+    ConversionTrackingReporter.formatBaseEvent(event, params);
     url.search = params.toString();
-    const res = await this.handleRequest(url.toString());
+    await this.handleRequest(url.toString());
     this.printEvent(event.cid, 'Conversion');
   }
 
   /** {@inheritDoc ConversionTrackingService.trackListings} */
   async trackListings(event: ListingsClickEvent): Promise<void> {
-    const url = new URL(`https://${domain}/${listingsEndpoint}`);
+    const url = new URL(`https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${listingsEndpoint}`);
     const params = new URLSearchParams();
     params.set('y_source', event.source);
     params.set('location', event.location);
-    if (event.referrer) params.set('referrer', event.referrer);
-    if (event.firstPartyCookieId) params.set(CookieParam, event.firstPartyCookieId);
-    if (event.thirdPartyCookieId) params.set('cookieId', event.thirdPartyCookieId);
-    params.set('v', calculateSeed().toString());
+    ConversionTrackingReporter.formatBaseEvent(event, params);
     url.search = params.toString();
-    const res = await this.handleRequest(url.toString());
+    await this.handleRequest(url.toString());
     this.printEvent(event.source, 'Listings Click');
   }
 
