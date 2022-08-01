@@ -38,13 +38,11 @@ export interface BaseAnalyticsConfig {
     visitor?: Visitor;
 }
 
+// Warning: (ae-forgotten-export) The symbol "CommonConversionData" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ConversionDetails" needs to be exported by the entry point index.d.ts
+//
 // @public
-export interface ConversionEvent {
-    cid: string;
-    cv?: string;
-    firstPartyCookieId?: string;
-    referrer?: string;
-    thirdPartyCookieId?: string;
+export interface ConversionEvent extends CommonConversionData, ConversionDetails {
 }
 
 // @public
@@ -55,7 +53,7 @@ export interface ConversionTrackingService {
 }
 
 // @public
-export const CookieParam = "_yfpc";
+export const COOKIE_PARAM = "_yfpc";
 
 // @public
 export const CtaClick: PagesAnalyticsEvent;
@@ -108,12 +106,9 @@ export interface EntityPage extends PageType {
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
-export interface ListingsClickEvent {
-    firstPartyCookieId?: string;
+export interface ListingsClickEvent extends CommonConversionData {
     location: string;
-    referrer?: string;
     source: string;
-    thirdPartyCookieId?: string;
 }
 
 // @public
@@ -124,10 +119,10 @@ export interface LocatorPage extends PageType {
 
 // @public
 export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
-    pagesReferrer: string;
     pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
     path: string;
     production: boolean;
+    referrer: string;
     siteId: number;
 }
 
@@ -139,9 +134,10 @@ export interface PagesAnalyticsEvent {
 // @public
 export interface PagesAnalyticsService {
     pageView(): Promise<void>;
+    setConversionTrackingEnabled(enabled: boolean, cookieId: string): void;
     setDebugEnabled(enabled: boolean): void;
     setVisitor(visitor: Visitor | undefined): void;
-    track(event: PagesAnalyticsEvent): Promise<void>;
+    track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<void>;
 }
 
 // @public

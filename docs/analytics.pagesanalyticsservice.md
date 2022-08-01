@@ -17,7 +17,8 @@ export interface PagesAnalyticsService
 |  Method | Description |
 |  --- | --- |
 |  [pageView()](./analytics.pagesanalyticsservice.pageview.md) | Reports a page view event. Will preform a promise rejection if the API contains an error or if the parameters are misconfigured. |
+|  [setConversionTrackingEnabled(enabled, cookieId)](./analytics.pagesanalyticsservice.setconversiontrackingenabled.md) | Turns on conversion tracking. Will allow page views and other events to receive credit for conversion events. |
 |  [setDebugEnabled(enabled)](./analytics.pagesanalyticsservice.setdebugenabled.md) | Turns on debug logging for event details. Will log details to the console when report() is called. |
 |  [setVisitor(visitor)](./analytics.pagesanalyticsservice.setvisitor.md) | Sets the [Visitor](./analytics.visitor.md) object which is included with each subsequent request. |
-|  [track(event)](./analytics.pagesanalyticsservice.track.md) | Reports a user interaction event. Will perform a promis rejection if the API contains an error or if the parameters are misconfigured. |
+|  [track(event, conversionInfo)](./analytics.pagesanalyticsservice.track.md) | Reports a user interaction event. Will perform a promis rejection if the API contains an error or if the parameters are misconfigured. |
 

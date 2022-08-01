@@ -59,7 +59,7 @@
 
 |  Variable | Description |
 |  --- | --- |
-|  [CookieParam](./analytics.cookieparam.md) | URL Parameter &amp; Param name for Yext conversion pixels |
+|  [COOKIE\_PARAM](./analytics.cookie_param.md) | URL Parameter &amp; Param name for Yext conversion pixels |
 |  [CtaClick](./analytics.ctaclick.md) | A Pages CTA Event |
 |  [DrivingDirectionEvent](./analytics.drivingdirectionevent.md) | A Pages DrivingDirection Event |
 |  [PageViewEvent](./analytics.pageviewevent.md) | A Pages PageView Event |

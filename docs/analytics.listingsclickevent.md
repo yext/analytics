@@ -9,16 +9,14 @@ An event representing a user arriving at a landing page from a publisher site.
 <b>Signature:</b>
 
 ```typescript
-export interface ListingsClickEvent 
+export interface ListingsClickEvent extends CommonConversionData 
 ```
+<b>Extends:</b> CommonConversionData
 
 ## Properties
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [firstPartyCookieId?](./analytics.listingsclickevent.firstpartycookieid.md) | string | <i>(Optional)</i> A cookie id from a first party cookie (i.e. from a visit to a domain you control) |
 |  [location](./analytics.listingsclickevent.location.md) | string | The url of the landing page. |
-|  [referrer?](./analytics.listingsclickevent.referrer.md) | string | <i>(Optional)</i> Page went sent the user to the current page |
 |  [source](./analytics.listingsclickevent.source.md) | string | The source parameter signifying which listings publisher should get credit Comes from the y\_source URL Parameter. |
-|  [thirdPartyCookieId?](./analytics.listingsclickevent.thirdpartycookieid.md) | string | <i>(Optional)</i> A cookie id from a third party, e.g. a Yext listings publisher |
 

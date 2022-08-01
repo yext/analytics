@@ -9,16 +9,7 @@ An event representing a Conversion
 <b>Signature:</b>
 
 ```typescript
-export interface ConversionEvent 
+export interface ConversionEvent extends CommonConversionData, ConversionDetails 
 ```
-
-## Properties
-
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [cid](./analytics.conversionevent.cid.md) | string | The id of the conversion tag, you can find the value from the conversion tracking section in your Yext account. You can find a list of tags under: https://www.yext.com/s/\[your business id\]/reports/conversiontracking/setup |
-|  [cv?](./analytics.conversionevent.cv.md) | string | <i>(Optional)</i> Conversion Value Optional custom value supplied for this conversion |
-|  [firstPartyCookieId?](./analytics.conversionevent.firstpartycookieid.md) | string | <i>(Optional)</i> A cookie id from a first party cookie (i.e. from a visit to a domain you control) |
-|  [referrer?](./analytics.conversionevent.referrer.md) | string | <i>(Optional)</i> Page went sent the user to the current page |
-|  [thirdPartyCookieId?](./analytics.conversionevent.thirdpartycookieid.md) | string | <i>(Optional)</i> A cookie id from a third party, e.g. a Yext listings publisher |
+<b>Extends:</b> CommonConversionData, ConversionDetails
 
