@@ -65,6 +65,12 @@ export interface ConversionTrackingService {
 export const COOKIE_PARAM = "_yfpc";
 
 // @public
+export class CookieManager {
+    constructor(_outerWindow?: Window, _outerDocument?: Document);
+    setAndGetYextCookie(): string;
+}
+
+// @public
 export const CtaClick: PagesAnalyticsEvent;
 
 // @public

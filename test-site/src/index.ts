@@ -1,5 +1,5 @@
 import {CtaClick, PagesAnalyticsConfig, provideAnalytics, providePagesAnalytics} from '@yext/analytics';
-import { provideConversionTrackingAnalytics } from '../../src';
+import { CookieManager, provideConversionTrackingAnalytics } from '../../src';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
@@ -46,7 +46,8 @@ const pages = providePagesAnalytics({
   debug: true,
 });
 
-const cookieId = '12344501230234';
+const cookieManager = new CookieManager();
+const cookieId = cookieManager.setAndGetYextCookie();
 let enableConversionTracking = true;
 pages.setConversionTrackingEnabled(enableConversionTracking, cookieId);
 

@@ -4,6 +4,12 @@
 
 ## analytics package
 
+## Classes
+
+|  Class | Description |
+|  --- | --- |
+|  [CookieManager](./analytics.cookiemanager.md) | CookieManager will manager conversion tracking cookies |
+
 ## Enumerations
 
 |  Enumeration | Description |
