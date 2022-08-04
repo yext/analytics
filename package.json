@@ -43,7 +43,8 @@
     "collectCoverage": true,
     "testEnvironment": "jsdom",
     "collectCoverageFrom": [
-      "src/**"
+      "src/**",
+      "!src/utils/**"
     ],
     "moduleFileExtensions": [
       "js",
