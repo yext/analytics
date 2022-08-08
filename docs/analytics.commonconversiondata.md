@@ -17,5 +17,6 @@ export interface CommonConversionData
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [cookieId](./analytics.commonconversiondata.cookieid.md) | string | A cookie id from a first party cookie (i.e. from a visit to a domain you control) |
+|  [location](./analytics.commonconversiondata.location.md) | string | The url of the landing page. |
 |  [referrer?](./analytics.commonconversiondata.referrer.md) | string | <i>(Optional)</i> Page which sent the user to the current page, comes from typically Document.referrer |
 

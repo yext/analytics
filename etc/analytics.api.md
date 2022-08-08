@@ -41,6 +41,7 @@ export interface BaseAnalyticsConfig {
 // @public
 export interface CommonConversionData {
     cookieId: string;
+    location: string;
     referrer?: string;
 }
 
@@ -122,7 +123,6 @@ export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
 export interface ListingsClickEvent extends CommonConversionData {
-    location: string;
     source: string;
 }
 

@@ -17,6 +17,5 @@ export interface ListingsClickEvent extends CommonConversionData
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [location](./analytics.listingsclickevent.location.md) | string | The url of the landing page. |
 |  [source](./analytics.listingsclickevent.source.md) | string | The source parameter signifying which listings publisher should get credit Comes from the y\_source URL Parameter. |
 
