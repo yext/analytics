@@ -42,6 +42,7 @@ export class ConversionTrackingReporter implements ConversionTrackingService {
     params.set(COOKIE_PARAM, event.cookieId);
     if (event.referrer) params.set('referrer', event.referrer);
     params.set('v', calculateSeed().toString());
+    params.set('location', event.location);
   }
 
   /** {@inheritDoc ConversionTrackingService.trackConversion} */
@@ -61,7 +62,6 @@ export class ConversionTrackingReporter implements ConversionTrackingService {
     const url = new URL(`https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${listingsEndpoint}`);
     const params = new URLSearchParams();
     params.set(LISTINGS_SOURCE_PARAM, event.source);
-    params.set('location', event.location);
     ConversionTrackingReporter.formatBaseEvent(event, params);
     url.search = params.toString();
     await this.handleRequest(url.toString());

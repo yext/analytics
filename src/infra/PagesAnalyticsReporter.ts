@@ -1,5 +1,5 @@
 import { COOKIE_PARAM, DEFAULT_CONVERSION_TRACKING_DOMAIN, LISTINGS_SOURCE_PARAM } from '../models/constants';
-import { ConversionDetails } from '../models/conversiontracking/ConversionDetails';
+import { ConversionDetails } from '../models';
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
 import { DefaultPagesEventNames, PagesAnalyticsConfig, Visitor } from '../models';
 import { PagesAnalyticsEvent } from '../models';
@@ -175,6 +175,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
         cid: conversionInfo.cid,
         cv: conversionInfo.cv,
         cookieId: this._cookieID,
+        location: this._pageUrl.toString(),
       });
     }
   }

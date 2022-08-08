@@ -13,4 +13,9 @@ export interface CommonConversionData {
    * Page which sent the user to the current page, comes from typically Document.referrer
    */
   referrer?: string
+
+  /**
+   * The url of the landing page.
+   */
+  location: string,
 }

@@ -67,9 +67,18 @@ export function toggleConversionTracking() {
 }
 
 export function fireConversion(value?: number) {
-  conversions.trackConversion({cookieId: cookieId, cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556', cv: value.toString()});
+  conversions.trackConversion({
+    cookieId: cookieId,
+    cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556',
+    cv: value.toString(),
+    location: window.location.href,
+  });
 }
 
 export function fireListings() {
-  conversions.trackListings({cookieId: cookieId, source: '1_NjE0MzM5Mi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D', location: 'location/04500'});
+  conversions.trackListings({
+    cookieId: cookieId,
+    source: '1_NjE0MzM5Mi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D',
+    location: 'location/04500'
+  });
 }

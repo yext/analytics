@@ -305,9 +305,9 @@ it('should track listings with a pageview', async () => {
 
   const listingsUrl = new URL('https://realtimeanalytics.yext.com/listings');
   listingsUrl.searchParams.set('y_source', '123455');
-  listingsUrl.searchParams.set('location', 'https://www.foobar.com/foo/bar?y_source=123455');
   listingsUrl.searchParams.set('_yfpc', '123456');
   listingsUrl.searchParams.set('v', '1001');
+  listingsUrl.searchParams.set('location', 'https://www.foobar.com/foo/bar?y_source=123455');
 
   expect(httpRequesterService.get).toHaveBeenNthCalledWith(1, listingsUrl.toString());
 

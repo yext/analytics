@@ -11,9 +11,4 @@ export interface ListingsClickEvent extends CommonConversionData{
    * Comes from the y_source URL Parameter.
    */
   source: string,
-
-  /**
-   * The url of the landing page.
-   */
-  location: string,
 }
