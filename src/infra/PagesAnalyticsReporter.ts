@@ -171,7 +171,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     this.printEvent(event);
 
     if (this._conversionTrackingEnabled && this._cookieID && conversionInfo) {
-      this._conversionTracker.trackConversion({
+      await this._conversionTracker.trackConversion({
         cid: conversionInfo.cid,
         cv: conversionInfo.cv,
         cookieId: this._cookieID,
