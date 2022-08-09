@@ -1,9 +1,10 @@
 import { HttpRequester } from './infra/HttpRequester';
 import { AnalyticsReporter } from './infra/AnalyticsReporter';
+import { ConversionTrackingReporter } from './infra/ConversionTrackingReporter';
 import { SearchAnalyticsReporter } from './infra/SearchAnalyticsReporter';
 import { PagesAnalyticsReporter } from './infra/PagesAnalyticsReporter';
 import { AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig } from './models';
-import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService } from './services';
+import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService, ConversionTrackingService } from './services';
 
 /**
  * Maintained for backwards compatibility with older versions of the library
@@ -52,5 +53,27 @@ export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyt
   return new PagesAnalyticsReporter(config, httpRequester);
 }
 
+/**
+ * Provides a Conversion Tracking service given an optional debugging parameter
+ *
+ * @remarks
+ * Returns a conversion tracking service instance
+ *
+ * @param debug - turn on console log debugging for tracked events
+ *
+ * @public
+ */
+export function provideConversionTrackingAnalytics(debug?: boolean): ConversionTrackingService {
+  const httpRequester = new HttpRequester();
+  return new ConversionTrackingReporter(httpRequester, debug);
+}
+
 export * from './models';
-export { AnalyticsService, PagesAnalyticsService, SearchAnalyticsService } from './services';
+export {
+  AnalyticsService,
+  PagesAnalyticsService,
+  SearchAnalyticsService,
+  ConversionTrackingService,
+} from './services';
+
+export * from './utils';

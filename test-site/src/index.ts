@@ -1,4 +1,5 @@
 import {CtaClick, PagesAnalyticsConfig, provideAnalytics, providePagesAnalytics} from '@yext/analytics';
+import { CookieManager, provideConversionTrackingAnalytics } from '../../src';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
@@ -33,21 +34,51 @@ function fireAnalyticsEvent(event) {
 
 const pages = providePagesAnalytics({
   pageType: {
-    name: 'static',
-    staticPageId: 'turtlehead-tacos',
+    name: 'entity',
+    pageSetId: 'location',
+    id: 18718615,
   },
-  pagesReferrer: 'https://www.google.com',
-  path: '/foo/bar',
+  referrer: 'https://www.google.com',
+  pageUrl: 'https://www.pagesanalyticstesting.com/location/11291?y_source=123353131212312312',
   businessId: 3350634,
   production: false,
-  siteId: 25317,
+  siteId: 40659,
   debug: true,
 });
+
+const cookieManager = new CookieManager();
+const cookieId = cookieManager.setAndGetYextCookie();
+let enableConversionTracking = true;
+pages.setConversionTrackingEnabled(enableConversionTracking, cookieId);
 
 export function firePageView() {
   pages.pageView();
 }
 
 export function firePagesCTA() {
-  pages.track(CtaClick);
+  pages.track(CtaClick, {cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556'});
+}
+
+const conversions = provideConversionTrackingAnalytics(true);
+
+export function toggleConversionTracking() {
+  enableConversionTracking = !enableConversionTracking;
+  pages.setConversionTrackingEnabled(enableConversionTracking, cookieId);
+}
+
+export function fireConversion(value?: number) {
+  conversions.trackConversion({
+    cookieId: cookieId,
+    cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556',
+    cv: value.toString(),
+    location: window.location.href,
+  });
+}
+
+export function fireListings() {
+  conversions.trackListings({
+    cookieId: cookieId,
+    source: '1_NjE0MzM5Mi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D',
+    location: 'location/04500'
+  });
 }

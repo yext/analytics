@@ -39,6 +39,39 @@ export interface BaseAnalyticsConfig {
 }
 
 // @public
+export interface CommonConversionData {
+    cookieId: string;
+    location: string;
+    referrer?: string;
+}
+
+// @public
+export interface ConversionDetails {
+    cid: string;
+    cv?: string;
+}
+
+// @public
+export interface ConversionEvent extends CommonConversionData, ConversionDetails {
+}
+
+// @public
+export interface ConversionTrackingService {
+    setDebugEnabled(enabled: boolean): void;
+    trackConversion(event: ConversionEvent): void;
+    trackListings(event: ListingsClickEvent): Promise<void>;
+}
+
+// @public
+export const COOKIE_PARAM = "_yfpc";
+
+// @public
+export class CookieManager {
+    constructor(_outerWindow?: Window, _outerDocument?: Document);
+    setAndGetYextCookie(): string;
+}
+
+// @public
 export const CtaClick: PagesAnalyticsEvent;
 
 // @public
@@ -89,6 +122,11 @@ export interface EntityPage extends PageType {
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
+export interface ListingsClickEvent extends CommonConversionData {
+    source: string;
+}
+
+// @public
 export interface LocatorPage extends PageType {
     readonly name: 'locator';
     searchId: string;
@@ -96,10 +134,10 @@ export interface LocatorPage extends PageType {
 
 // @public
 export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
-    pagesReferrer: string;
     pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
-    path: string;
+    pageUrl: string;
     production: boolean;
+    referrer: string;
     siteId: number;
 }
 
@@ -111,9 +149,10 @@ export interface PagesAnalyticsEvent {
 // @public
 export interface PagesAnalyticsService {
     pageView(): Promise<void>;
+    setConversionTrackingEnabled(enabled: boolean, cookieId: string): void;
     setDebugEnabled(enabled: boolean): void;
     setVisitor(visitor: Visitor | undefined): void;
-    track(event: PagesAnalyticsEvent): Promise<void>;
+    track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<void>;
 }
 
 // @public
@@ -139,6 +178,9 @@ export const PhoneCallEvent: PagesAnalyticsEvent;
 
 // @public
 export function provideAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
+
+// @public
+export function provideConversionTrackingAnalytics(debug?: boolean): ConversionTrackingService;
 
 // @public
 export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService;

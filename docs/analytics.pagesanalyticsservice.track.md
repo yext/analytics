@@ -9,7 +9,7 @@ Reports a user interaction event. Will perform a promis rejection if the API con
 <b>Signature:</b>
 
 ```typescript
-track(event: PagesAnalyticsEvent): Promise<void>;
+track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<void>;
 ```
 
 ## Parameters
@@ -17,6 +17,7 @@ track(event: PagesAnalyticsEvent): Promise<void>;
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  event | [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | the pages event to track |
+|  conversionInfo | [ConversionDetails](./analytics.conversiondetails.md) | Optional parameter to pass with the CID from the conversion tag if this event should represent a conversion and conversion tracking is enabled. |
 
 <b>Returns:</b>
 

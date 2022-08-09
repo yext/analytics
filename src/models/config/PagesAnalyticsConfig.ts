@@ -1,8 +1,8 @@
-import {BaseAnalyticsConfig} from './BaseAnalyticsConfig';
-import {DirectoryPage} from '../pages';
-import {EntityPage} from '../pages';
-import {LocatorPage} from '../pages';
-import {StaticPage} from '../pages';
+import { BaseAnalyticsConfig } from './BaseAnalyticsConfig';
+import { DirectoryPage } from '../pages';
+import { EntityPage } from '../pages';
+import { LocatorPage } from '../pages';
+import { StaticPage } from '../pages';
 
 /**
  * The main configuration options for Pages Analytics.  Contains all page or session level information.
@@ -24,14 +24,14 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
   production: boolean,
 
   /**
-   * The path component of the page url
+   * The full url of the page we are on, typically window.location.href
    */
-  path: string
+  pageUrl: string
 
   /**
-   * The url the user came from
-   * */
-  pagesReferrer: string,
+   * Page which sent the user to the current page, comes from typically Document.referrer
+   */
+  referrer: string
 
   /**
    * The details of the page type

@@ -4,6 +4,12 @@
 
 ## analytics package
 
+## Classes
+
+|  Class | Description |
+|  --- | --- |
+|  [CookieManager](./analytics.cookiemanager.md) | CookieManager will manager conversion tracking cookies |
+
 ## Enumerations
 
 |  Enumeration | Description |
@@ -16,6 +22,7 @@
 |  Function | Description |
 |  --- | --- |
 |  [provideAnalytics(config)](./analytics.provideanalytics.md) | Maintained for backwards compatibility with older versions of the library provideAnalytics uses the AnalyticsConfig, AnalyticsService, and AnalyticsReporter aliases for SearchAnalyticsConfig, SearchAnalyticsService, and SearchAnalyticsReporter |
+|  [provideConversionTrackingAnalytics(debug)](./analytics.provideconversiontrackinganalytics.md) | Provides a Conversion Tracking service given an optional debugging parameter |
 |  [providePagesAnalytics(config)](./analytics.providepagesanalytics.md) | Provides a Pages Analytics service given a Pages specific config |
 |  [provideSearchAnalytics(config)](./analytics.providesearchanalytics.md) | Provides a Search Analytics service given a Search specific config |
 
@@ -28,9 +35,14 @@
 |  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md) | Base analytics configuration |
+|  [CommonConversionData](./analytics.commonconversiondata.md) | Shared properties of both ConversionEvent and ListingsClickEvent |
+|  [ConversionDetails](./analytics.conversiondetails.md) | The details of an individual conversion event, without the cookie id. |
+|  [ConversionEvent](./analytics.conversionevent.md) | An event representing a Conversion |
+|  [ConversionTrackingService](./analytics.conversiontrackingservice.md) | A service for tracking conversions |
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
 |  [DirectoryPage](./analytics.directorypage.md) | Represents the analytics parameters required to track events on a directory page |
 |  [EntityPage](./analytics.entitypage.md) | Represents the analytics parameters required to track events on an Entity Page |
+|  [ListingsClickEvent](./analytics.listingsclickevent.md) | An event representing a user arriving at a landing page from a publisher site. |
 |  [LocatorPage](./analytics.locatorpage.md) | Represents the analytics parameters required to track events on a Locator Page |
 |  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics. Contains all page or session level information. |
 |  [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | An event from the Pages system |
@@ -55,6 +67,7 @@
 
 |  Variable | Description |
 |  --- | --- |
+|  [COOKIE\_PARAM](./analytics.cookie_param.md) | URL Parameter &amp; Param name for Yext conversion pixels |
 |  [CtaClick](./analytics.ctaclick.md) | A Pages CTA Event |
 |  [DrivingDirectionEvent](./analytics.drivingdirectionevent.md) | A Pages DrivingDirection Event |
 |  [PageViewEvent](./analytics.pageviewevent.md) | A Pages PageView Event |
