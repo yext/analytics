@@ -21,7 +21,7 @@ enum urlParamNames {
   Referrer = 'pagesReferrer',
   EventType = 'eventType',
   PageSetId = 'pageSetId',
-  EntityInternalId = 'id',
+  EntityInternalId = 'ids',
   DirectoryId = 'directoryId',
   SearchId = 'searchId',
   StaticPageId = 'staticPageId',

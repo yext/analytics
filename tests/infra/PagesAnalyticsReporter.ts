@@ -67,7 +67,7 @@ it('should track entity pages', () => {
   expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('pageType', 'entity');
   expectedUrl.searchParams.set('pageSetId', 'My Page Set');
-  expectedUrl.searchParams.set('id', '1');
+  expectedUrl.searchParams.set('ids', '1');
   expectedUrl.searchParams.set('v', '1001');
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
@@ -114,7 +114,7 @@ it('should track directory pages', () => {
   expectedUrl.searchParams.set('eventType', 'pageview');
   expectedUrl.searchParams.set('pageType', 'directory');
   expectedUrl.searchParams.set('directoryId', 'My Directory Page Set');
-  expectedUrl.searchParams.set('id', '1');
+  expectedUrl.searchParams.set('ids', '1');
   expectedUrl.searchParams.set('v', '1001');
   expectedUrl.searchParams.set('pageurl', '/foo/bar');
   expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
