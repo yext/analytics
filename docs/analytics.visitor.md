@@ -17,5 +17,5 @@ export interface Visitor
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [id](./analytics.visitor.id.md) | string | The ID associated with the user. |
-|  [method?](./analytics.visitor.method.md) | string | <i>(Optional)</i> The type of visitor. |
+|  [idMethod?](./analytics.visitor.idmethod.md) | string | <i>(Optional)</i> The type of visitor. |
 
