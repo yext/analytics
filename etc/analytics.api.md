@@ -347,7 +347,7 @@ export interface VerticalViewAllEvent {
 // @public
 export interface Visitor {
     id: string;
-    method?: string;
+    idMethod?: string;
 }
 
 // @public

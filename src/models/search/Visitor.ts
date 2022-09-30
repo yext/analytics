@@ -11,5 +11,5 @@ export interface Visitor {
    *
    * @example 'YEXT_USER' for Yext Auth
    */
-  method?: string
+   idMethod?: string
 }

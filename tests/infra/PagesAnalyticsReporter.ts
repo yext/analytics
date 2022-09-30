@@ -200,7 +200,7 @@ it('should use set the visitor', () => {
 
   reporter.setVisitor({
     id: 'foo',
-    method: 'bar',
+    idMethod: 'bar',
   });
 
   reporter.pageView();
@@ -239,7 +239,7 @@ it('should use conversion tracking endpoint and set cookie', () => {
 
   reporter.setVisitor({
     id: 'foo',
-    method: 'bar',
+    idMethod: 'bar',
   });
 
   reporter.setConversionTrackingEnabled(true, '123456');

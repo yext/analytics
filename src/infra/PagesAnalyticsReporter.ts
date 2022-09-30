@@ -119,7 +119,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
 
     if (this._visitor) {
       params.set(urlParamNames.VisitorId, this._visitor.id);
-      if (this._visitor.method) params.set(urlParamNames.VisitorMethod, this._visitor.method);
+      if (this._visitor.idMethod) params.set(urlParamNames.VisitorMethod, this._visitor.idMethod);
     }
 
     return params;
