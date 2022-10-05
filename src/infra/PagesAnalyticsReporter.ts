@@ -28,6 +28,7 @@ enum urlParamNames {
   PageType = 'pageType',
   VisitorId = 'visitorId',
   VisitorMethod = 'visitorIdMethod',
+  PageDomain = 'pageDomain'
 }
 
 const eventTypeNameMapping = new Map<string, string>();
@@ -112,6 +113,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     params.set(urlParamNames.CacheBuster, calculateSeed().toString());
     params.set(urlParamNames.UrlPath, this._pageUrl.pathname);
     params.set(urlParamNames.Referrer, this.config.referrer);
+    this.config.pageDomain && params.set(urlParamNames.PageDomain, this.config.pageDomain);
 
     if (this._conversionTrackingEnabled && this._cookieID) {
       params.set(COOKIE_PARAM, this._cookieID);

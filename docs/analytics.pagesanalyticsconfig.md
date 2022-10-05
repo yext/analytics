@@ -17,6 +17,7 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [pageDomain?](./analytics.pagesanalyticsconfig.pagedomain.md) | string | <i>(Optional)</i> The domain of the page. If none is specified, the hostname for the site ID is used. |
 |  [pageType](./analytics.pagesanalyticsconfig.pagetype.md) | [DirectoryPage](./analytics.directorypage.md) \| [EntityPage](./analytics.entitypage.md) \| [LocatorPage](./analytics.locatorpage.md) \| [StaticPage](./analytics.staticpage.md) | The details of the page type |
 |  [pageUrl](./analytics.pagesanalyticsconfig.pageurl.md) | string | The full url of the page we are on, typically window.location.href |
 |  [production](./analytics.pagesanalyticsconfig.production.md) | boolean | Set to true if the environment is production If set to true events will appear in Analytics Reports in your Yext Account |

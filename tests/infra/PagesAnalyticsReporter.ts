@@ -326,3 +326,36 @@ it('should track listings with a pageview', async () => {
   pageViewUrl.searchParams.set('_yfpc', '123456');
   expect(httpRequesterService.get).toHaveBeenNthCalledWith(2, pageViewUrl.toString());
 });
+
+it('should set pageDomain when specified', () => {
+  const httpRequesterService = mockHttpRequesterService();
+  const reporter = new PagesAnalyticsReporter({
+    pageType: {
+      staticPageId: 'My Page Set',
+      name: 'static',
+    },
+    referrer: 'https://www.google.com',
+    pageUrl: 'https://www.foobar.com/foo/bar',
+    businessId: 0,
+    production: false,
+    siteId: 0,
+    pageDomain: 'foo'
+  }, httpRequesterService);
+
+  reporter.pageView();
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessids', '0');
+  expectedUrl.searchParams.set('product', 'sites');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('pageType', 'static');
+  expectedUrl.searchParams.set('staticPageId', 'My Page Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '/foo/bar');
+  expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
+  expectedUrl.searchParams.set('pageDomain', 'foo');
+
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
