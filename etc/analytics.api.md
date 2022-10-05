@@ -134,6 +134,7 @@ export interface LocatorPage extends PageType {
 
 // @public
 export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
+    pageDomain?: string;
     pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
     pageUrl: string;
     production: boolean;

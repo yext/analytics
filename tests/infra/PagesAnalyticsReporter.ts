@@ -326,3 +326,74 @@ it('should track listings with a pageview', async () => {
   pageViewUrl.searchParams.set('_yfpc', '123456');
   expect(httpRequesterService.get).toHaveBeenNthCalledWith(2, pageViewUrl.toString());
 });
+
+it('should set pageDomain when specified and valid', () => {
+  const httpRequesterService = mockHttpRequesterService();
+  const reporter = new PagesAnalyticsReporter({
+    pageType: {
+      staticPageId: 'My Page Set',
+      name: 'static',
+    },
+    referrer: 'https://www.google.com',
+    pageUrl: 'https://www.foobar.com/foo/bar',
+    businessId: 0,
+    production: false,
+    siteId: 0,
+    pageDomain: 'https://www.test.com/'
+  }, httpRequesterService);
+
+  reporter.pageView();
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessids', '0');
+  expectedUrl.searchParams.set('product', 'sites');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('pageType', 'static');
+  expectedUrl.searchParams.set('staticPageId', 'My Page Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '/foo/bar');
+  expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
+  expectedUrl.searchParams.set('pageDomain', 'https://www.test.com/');
+
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});
+
+it('should log a warning and not include the pageDomain if it is missing a scheme', () => {
+  jest.spyOn(console, 'warn');
+
+  const httpRequesterService = mockHttpRequesterService();
+  const reporter = new PagesAnalyticsReporter({
+    pageType: {
+      staticPageId: 'My Page Set',
+      name: 'static',
+    },
+    referrer: 'https://www.google.com',
+    pageUrl: 'https://www.foobar.com/foo/bar',
+    businessId: 0,
+    production: false,
+    siteId: 0,
+    pageDomain: 'www.test.com'
+  }, httpRequesterService);
+
+  const errMsg1 = 'pageDomain \'www.test.com\' is not a valid URL.';
+  const errMsg2 = 'It will not be included as a query param sent to the API.';
+  expect(console.warn).toBeCalledWith(errMsg1, errMsg2);
+
+  reporter.pageView();
+  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+
+  expectedUrl.searchParams.set('businessids', '0');
+  expectedUrl.searchParams.set('product', 'sites');
+  expectedUrl.searchParams.set('siteId', '0');
+  expectedUrl.searchParams.set('isStaging', 'true');
+  expectedUrl.searchParams.set('eventType', 'pageview');
+  expectedUrl.searchParams.set('pageType', 'static');
+  expectedUrl.searchParams.set('staticPageId', 'My Page Set');
+  expectedUrl.searchParams.set('v', '1001');
+  expectedUrl.searchParams.set('pageurl', '/foo/bar');
+  expectedUrl.searchParams.set('pagesReferrer','https://www.google.com');
+
+  expect(httpRequesterService.get).toHaveBeenLastCalledWith(expectedUrl.toString());
+});

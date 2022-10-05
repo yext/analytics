@@ -37,4 +37,12 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
    * The details of the page type
    */
   pageType: DirectoryPage|EntityPage|LocatorPage|StaticPage
+
+  /**
+   * The domain of the page. If none is specified, the hostname for the site ID is used.
+   *
+   * @remarks
+   * The domain string must include the scheme (e.g. https://foo.com).
+   */
+  pageDomain?: string
 }
