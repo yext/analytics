@@ -59,6 +59,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
   private readonly _conversionTracker: ConversionTrackingReporter;
   private _hasTrackedListings: boolean;
   private readonly _pageUrl: URL;
+  private readonly _pageDomain: URL | undefined;
   constructor(private config: PagesAnalyticsConfig,
               private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
@@ -69,6 +70,14 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
       this._pageUrl = new URL(config.pageUrl);
     } catch {
       throw new Error(`pageUrl property must be a valid URL, was: '${config.pageUrl}'`);
+    }
+    if (config.pageDomain) {
+      try {
+        this._pageDomain = new URL(config.pageDomain);
+      } catch {
+        console.warn(`pageDomain '${config.pageDomain}' is not a valid URL.`,
+          'It will not be included as a query param sent to the API.');
+      }
     }
   }
 
@@ -113,7 +122,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     params.set(urlParamNames.CacheBuster, calculateSeed().toString());
     params.set(urlParamNames.UrlPath, this._pageUrl.pathname);
     params.set(urlParamNames.Referrer, this.config.referrer);
-    this.config.pageDomain && params.set(urlParamNames.PageDomain, this.config.pageDomain);
+    this._pageDomain && params.set(urlParamNames.PageDomain, this._pageDomain.toString());
 
     if (this._conversionTrackingEnabled && this._cookieID) {
       params.set(COOKIE_PARAM, this._cookieID);

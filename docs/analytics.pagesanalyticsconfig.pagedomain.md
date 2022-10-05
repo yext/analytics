@@ -11,3 +11,8 @@ The domain of the page. If none is specified, the hostname for the site ID is us
 ```typescript
 pageDomain?: string;
 ```
+
+## Remarks
+
+The domain string must include the scheme (e.g. https://foo.com).
+
