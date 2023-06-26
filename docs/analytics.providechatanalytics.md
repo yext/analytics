@@ -9,18 +9,18 @@ Provides a Chat Analytics service
 <b>Signature:</b>
 
 ```typescript
-export declare function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsReporter;
+export declare function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsService;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  config | ChatAnalyticsConfig |  |
+|  config | [ChatAnalyticsConfig](./analytics.chatanalyticsconfig.md) |  |
 
 <b>Returns:</b>
 
-ChatAnalyticsReporter
+[ChatAnalyticsService](./analytics.chatanalyticsservice.md)
 
 ## Remarks
 

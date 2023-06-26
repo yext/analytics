@@ -1,57 +1,61 @@
 import { ChatAnalyticsReporter } from '../../src/infra/ChatAnalyticsReporter';
-import type ChatAnalyticsConfig from '../../src/models/config/ChatAnalyticsConfig';
-import fetchMock from 'jest-fetch-mock';
-import { config } from 'dotenv';
-
-config();
-
-beforeEach(() => {
-  fetchMock.resetMocks();
-  fetchMock.mockResponseOnce(JSON.stringify({ id: '12345' })); // mock response
-});
+import { ChatAnalyticsConfig, EventAPIResponse } from '../../src/models';
+import { mockErrorHttpRequesterService, mockHttpRequesterService } from '../../src/services/__mocks__/MockHttpRequesterService';
 
 const prodConfig: ChatAnalyticsConfig = {
-  apiKey: process.env.PROD_EVENTS_API_KEY || '',
+  apiKey: 'mock-api-key',
   env: 'PROD',
 };
 
+const mockedResponse: EventAPIResponse = { id: '12345' };
+
 it('should send events to the prod domain when configured', async () => {
-  const reporter = new ChatAnalyticsReporter(prodConfig);
+  const mockService = mockHttpRequesterService(mockedResponse);
+  const reporter = new ChatAnalyticsReporter(prodConfig, mockService);
   const expectedUrl ='https://www.us.yextevents.com/accounts/me/events';
   expect(reporter.endpoint).toBe(expectedUrl);
-  const response = await reporter.report({
-    action: 'ADD_TO_CART',
-  });
-  expect(response.id).toBeDefined();
-  expect(response.id).not.toBeNull();
-});
-
-it('should be able to send complex events with a chat domain', async () => {
-  const reporter = new ChatAnalyticsReporter(prodConfig);
   const response = await reporter.report({
     action: 'ADD_TO_CART',
     chat: {
       botId: 'davish-playground',
     },
   });
-  expect(response.id).toBeDefined();
-  expect(response.id).not.toBeNull();
+  expect(response).toEqual(mockedResponse);
 });
 
-it('should error when called with a bogus API key', async () => {
-  const bogusRepoter = new ChatAnalyticsReporter({
-    apiKey: 'bogus',
-    env: 'PROD',
+it('throws an error on an invalid env and region', () => {
+  const errMessage = 'mocked error message';
+  const mockService = mockErrorHttpRequesterService(errMessage);
+  expect(() => new ChatAnalyticsReporter({
+    apiKey: 'dummy key',
+    env: 'SANDBOX',
+    region: 'EU'
+  }, mockService)).toThrow('Endpoint for env "SANDBOX" and region "EU" is not supported.');
+});
+
+
+it('Performs a promise rejection when the API responds with an error', async () => {
+  const errMessage = 'mocked error message';
+  const mockService = mockErrorHttpRequesterService(errMessage);
+  const analyticsReporter = new ChatAnalyticsReporter(prodConfig, mockService);
+  const resPromise = analyticsReporter.report({
+    action: 'ADD_TO_CART',
+    chat: {
+      botId: 'dummy bot'
+    }
   });
-  await expect(bogusRepoter.report({ action: 'CHAT_IMPRESSION' })).rejects.toThrow();
+  await expect(resPromise).rejects.toThrowError('Events API responded with 400. Bad Request: ' + errMessage);
 });
 
 it('should convert timestamps to ISO strings', async () => {
-  const reporter = new ChatAnalyticsReporter(prodConfig);
+  const mockService = mockHttpRequesterService(mockedResponse);
+  const reporter = new ChatAnalyticsReporter(prodConfig, mockService);
   const response = await reporter.report({
     action: 'ADD_TO_CART',
     timestamp: new Date(2020, 1, 1),
+    chat: {
+      botId: 'dummy bot'
+    }
   });
-  expect(response.id).toBeDefined();
-  expect(response.id).not.toBeNull();
+  expect(response).toEqual(mockedResponse);
 });

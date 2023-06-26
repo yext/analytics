@@ -3,7 +3,7 @@
  *
  * @public
  */
-export default interface ChatAnalyticsConfig {
+export interface ChatAnalyticsConfig {
   /** The API key for accessing the Analytics Events API. */
   apiKey: string; // TODO: Add optional "token" for JWT auth
   /** The environment to send the requests to. */

@@ -1,5 +1,5 @@
 import { HttpRequesterService } from '../services';
-import { AnalyticsPayload } from '../models';
+import { AnalyticsPayload, EventPayload } from '../models';
 import fetch from 'cross-fetch';
 
 /**
@@ -7,11 +7,16 @@ import fetch from 'cross-fetch';
  *
  */
 export class HttpRequester implements HttpRequesterService {
-  post(url: string, body: AnalyticsPayload): Promise<Response> {
+  post(
+    url: string,
+    body: AnalyticsPayload | EventPayload,
+    headers?: Record<string, string>
+  ): Promise<Response> {
     const data = JSON.stringify(body);
 
     const fetchInit: RequestInit = {
       method: 'POST',
+      headers,
       body: data,
       keepalive: true
     };

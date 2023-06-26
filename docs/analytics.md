@@ -36,6 +36,10 @@
 |  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
 |  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
 |  [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md) | Base analytics configuration |
+|  [ChatAnalyticsConfig](./analytics.chatanalyticsconfig.md) | The main configuration options for Chat Analytics. |
+|  [ChatAnalyticsService](./analytics.chatanalyticsservice.md) | A service for reporting chat analytics events. |
+|  [ChatDomainProperties](./analytics.chatdomainproperties.md) | Analytics event properties specific to Yext Chat. |
+|  [ChatEventPayLoad](./analytics.chateventpayload.md) | The payload accepted by the Analytics Events API for Chat related analytics. |
 |  [CommonConversionData](./analytics.commonconversiondata.md) | Shared properties of both ConversionEvent and ListingsClickEvent |
 |  [ConversionDetails](./analytics.conversiondetails.md) | The details of an individual conversion event, without the cookie id. |
 |  [ConversionEvent](./analytics.conversionevent.md) | An event representing a Conversion |
@@ -43,6 +47,8 @@
 |  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
 |  [DirectoryPage](./analytics.directorypage.md) | Represents the analytics parameters required to track events on a directory page |
 |  [EntityPage](./analytics.entitypage.md) | Represents the analytics parameters required to track events on an Entity Page |
+|  [EventAPIResponse](./analytics.eventapiresponse.md) | Response from an analytic request. |
+|  [EventPayload](./analytics.eventpayload.md) | The payload accepted by the Analytics Events API. |
 |  [ListingsClickEvent](./analytics.listingsclickevent.md) | An event representing a user arriving at a landing page from a publisher site. |
 |  [LocatorPage](./analytics.locatorpage.md) | Represents the analytics parameters required to track events on a Locator Page |
 |  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics. Contains all page or session level information. |
@@ -79,6 +85,7 @@
 
 |  Type Alias | Description |
 |  --- | --- |
+|  [Action](./analytics.action.md) | The action types accepted by the Analytics Events API. |
 |  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
 |  [SearchAnalyticsEvent](./analytics.searchanalyticsevent.md) | An analytics event. |
 |  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |

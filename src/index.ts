@@ -4,9 +4,9 @@ import { ConversionTrackingReporter } from './infra/ConversionTrackingReporter';
 import { SearchAnalyticsReporter } from './infra/SearchAnalyticsReporter';
 import { PagesAnalyticsReporter } from './infra/PagesAnalyticsReporter';
 import { ChatAnalyticsReporter } from './infra/ChatAnalyticsReporter';
-import { AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig } from './models';
+import { AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig, ChatAnalyticsConfig } from './models';
 import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService, ConversionTrackingService } from './services';
-import ChatAnalyticsConfig from './models/config/ChatAnalyticsConfig';
+import { ChatAnalyticsService } from './services/ChatAnalyticsService';
 
 /**
  * Maintained for backwards compatibility with older versions of the library
@@ -78,8 +78,9 @@ export function provideConversionTrackingAnalytics(debug?: boolean): ConversionT
  *
  * @public
  */
-export function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsReporter {
-  return new ChatAnalyticsReporter(config);
+export function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsService {
+  const httpRequester = new HttpRequester();
+  return new ChatAnalyticsReporter(config, httpRequester);
 }
 
 export * from './models';
@@ -88,6 +89,7 @@ export {
   PagesAnalyticsService,
   SearchAnalyticsService,
   ConversionTrackingService,
+  ChatAnalyticsService
 } from './services';
 
 export * from './utils';

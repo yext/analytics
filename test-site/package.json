@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@yext/analytics": "file:..",
-    "babel-loader": "^8.2.2"
+    "babel-loader": "^8.2.2",
+    "dotenv": "^16.3.1"
   }
 }

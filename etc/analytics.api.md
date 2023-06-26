@@ -14,6 +14,9 @@ export interface AccordionToggleEvent {
 }
 
 // @public
+export type Action = 'ADD_TO_CART' | 'ALL_TAB_NAVIGATION' | 'APPLY' | 'AUTO_COMPLETE_SELECTION' | 'BACKWARD_PAGINATE' | 'BOOK' | 'BRAND_ICON' | 'CALL_TO_ACTION' | 'CASE_START' | 'CASE_SUBMITTED' | 'CHAT_IMPRESSION' | 'CHAT_LINK_CLICK' | 'CHAT_RESPONSE' | 'COLLAPSE' | 'DIRECTIONS' | 'EVENT' | 'EXPAND' | 'FEATURED_MESSAGE' | 'FILTERING_WITHIN_SECTION' | 'FORWARD_PAGINATE' | 'HEADER_LINKS' | 'ITEM_IN_LIST' | 'MAP_CARD' | 'MAP_PIN' | 'MENU' | 'MESSAGE' | 'ORDER' | 'PAGINATE' | 'PHONE' | 'POST' | 'PRESET_PROMPT' | 'PRODUCT' | 'PROFILE' | 'QUESTION_FOCUS' | 'QUESTION_SUBMIT' | 'REMOVED_FILTER' | 'REVIEW' | 'SCROLL_TO_BOTTOM_OF_PAGE' | 'SEARCH_BAR_IMPRESSION' | 'SEARCH_CLEAR_BUTTON' | 'THUMBS_DOWN' | 'THUMBS_UP' | 'TICKET_URL' | 'TITLE' | 'VERTICAL_TAB_NAVIGATION' | 'VERTICAL_VIEW_ALL' | 'VOICE_START' | 'VOICE_STOP' | 'WEBSITE';
+
+// @public
 export interface AllTabNavigationEvent {
     queryId?: string;
     type: EnumOrString<SearchAnalyticsEventType.AllTabNavigation>;
@@ -36,6 +39,30 @@ export interface BaseAnalyticsConfig {
     businessId: number;
     debug?: boolean;
     visitor?: Visitor;
+}
+
+// @public
+export interface ChatAnalyticsConfig {
+    apiKey: string;
+    env?: 'PROD' | 'SANDBOX';
+    region?: 'US' | 'EU';
+}
+
+// @public
+export interface ChatAnalyticsService {
+    report(event: ChatEventPayLoad): Promise<EventAPIResponse>;
+}
+
+// @public
+export interface ChatDomainProperties {
+    botId: string;
+    conversationId?: string;
+    responseId?: string;
+}
+
+// @public
+export interface ChatEventPayLoad extends EventPayload {
+    chat: ChatDomainProperties;
 }
 
 // @public
@@ -122,6 +149,45 @@ export interface EntityPage extends PageType {
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
+export interface EventAPIResponse {
+    id: string;
+}
+
+// @public
+export interface EventPayload {
+    action: Action;
+    bot?: string;
+    browserAgent?: {
+        browser?: string;
+        browserVersion?: string;
+        os?: string;
+        osVersion?: string;
+        device?: string;
+        deviceClass?: string;
+        userAgent?: string;
+    };
+    clientSdk?: Record<string, string>;
+    count?: number;
+    customTags?: Record<string, string>;
+    customValues?: Record<string, number>;
+    destinationUrl?: string;
+    entity?: {
+        entityId: string;
+    } | {
+        entityUid: number;
+    };
+    ip?: {
+        address: string;
+        algorithm?: string;
+    };
+    label?: string;
+    locale?: string;
+    pageUrl?: string;
+    sessionId?: string;
+    timestamp?: Date | string;
+}
+
+// @public
 export interface ListingsClickEvent extends CommonConversionData {
     source: string;
 }
@@ -180,11 +246,8 @@ export const PhoneCallEvent: PagesAnalyticsEvent;
 // @public
 export function provideAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
 
-// Warning: (ae-forgotten-export) The symbol "ChatAnalyticsConfig" needs to be exported by the entry point index.d.ts
-// Warning: (ae-forgotten-export) The symbol "ChatAnalyticsReporter" needs to be exported by the entry point index.d.ts
-//
 // @public
-export function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsReporter;
+export function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsService;
 
 // @public
 export function provideConversionTrackingAnalytics(debug?: boolean): ConversionTrackingService;
