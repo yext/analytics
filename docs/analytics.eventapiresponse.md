@@ -16,5 +16,6 @@ export interface EventAPIResponse
 
 |  Property | Type | Description |
 |  --- | --- | --- |
+|  [errors?](./analytics.eventapiresponse.errors.md) | string\[\] | <i>(Optional)</i> Errors returned for non-successful requests. |
 |  [id](./analytics.eventapiresponse.id.md) | string | Generated ID for the event. |
 

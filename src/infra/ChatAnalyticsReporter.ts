@@ -75,10 +75,10 @@ export class ChatAnalyticsReporter {
       headers);
 
     if (!res.ok) {
-      const errorMessage = await res.text();
-      throw new Error(
-        `Events API responded with ${res.status}. ${res.statusText}: ${errorMessage}`
-      );
+      const body: EventAPIResponse = await res.json();
+      let errorMessage = `Events API responded with ${res.status}: ${res.statusText}`;
+      body.errors?.forEach(e => errorMessage += `\nError: ${e}.`);
+      throw new Error(errorMessage);
     }
     const resJson = await res.json();
     return resJson;

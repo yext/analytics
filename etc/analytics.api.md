@@ -150,6 +150,7 @@ export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
 export interface EventAPIResponse {
+    errors?: string[];
     id: string;
 }
 

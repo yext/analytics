@@ -35,8 +35,11 @@ it('throws an error on an invalid env and region', () => {
 
 
 it('Performs a promise rejection when the API responds with an error', async () => {
-  const errMessage = 'mocked error message';
-  const mockService = mockErrorHttpRequesterService(errMessage);
+  const errors: EventAPIResponse = {
+    id: 'some-id',
+    errors: ['test 1', 'test 2']
+  };
+  const mockService = mockErrorHttpRequesterService(JSON.stringify(errors));
   const analyticsReporter = new ChatAnalyticsReporter(prodConfig, mockService);
   const resPromise = analyticsReporter.report({
     action: 'ADD_TO_CART',
@@ -44,7 +47,8 @@ it('Performs a promise rejection when the API responds with an error', async () 
       botId: 'dummy bot'
     }
   });
-  await expect(resPromise).rejects.toThrowError('Events API responded with 400. Bad Request: ' + errMessage);
+  await expect(resPromise).rejects.toThrowError('Events API responded with 400: Bad Request'
+  +'\nError: test 1.\nError: test 2.');
 });
 
 it('should convert timestamps to ISO strings', async () => {
