@@ -180,6 +180,12 @@ export const PhoneCallEvent: PagesAnalyticsEvent;
 // @public
 export function provideAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
 
+// Warning: (ae-forgotten-export) The symbol "ChatAnalyticsConfig" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "ChatAnalyticsReporter" needs to be exported by the entry point index.d.ts
+//
+// @public
+export function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsReporter;
+
 // @public
 export function provideConversionTrackingAnalytics(debug?: boolean): ConversionTrackingService;
 

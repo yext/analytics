@@ -3,7 +3,7 @@ import { AnalyticsReporter } from './infra/AnalyticsReporter';
 import { ConversionTrackingReporter } from './infra/ConversionTrackingReporter';
 import { SearchAnalyticsReporter } from './infra/SearchAnalyticsReporter';
 import { PagesAnalyticsReporter } from './infra/PagesAnalyticsReporter';
-import ChatAnalyticsReporter from './infra/ChatAnalyticsReporter';
+import { ChatAnalyticsReporter } from './infra/ChatAnalyticsReporter';
 import { AnalyticsConfig, PagesAnalyticsConfig, SearchAnalyticsConfig } from './models';
 import { AnalyticsService, SearchAnalyticsService, PagesAnalyticsService, ConversionTrackingService } from './services';
 import ChatAnalyticsConfig from './models/config/ChatAnalyticsConfig';

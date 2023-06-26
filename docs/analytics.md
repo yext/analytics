@@ -22,6 +22,7 @@
 |  Function | Description |
 |  --- | --- |
 |  [provideAnalytics(config)](./analytics.provideanalytics.md) | Maintained for backwards compatibility with older versions of the library provideAnalytics uses the AnalyticsConfig, AnalyticsService, and AnalyticsReporter aliases for SearchAnalyticsConfig, SearchAnalyticsService, and SearchAnalyticsReporter |
+|  [provideChatAnalytics(config)](./analytics.providechatanalytics.md) | Provides a Chat Analytics service |
 |  [provideConversionTrackingAnalytics(debug)](./analytics.provideconversiontrackinganalytics.md) | Provides a Conversion Tracking service given an optional debugging parameter |
 |  [providePagesAnalytics(config)](./analytics.providepagesanalytics.md) | Provides a Pages Analytics service given a Pages specific config |
 |  [provideSearchAnalytics(config)](./analytics.providesearchanalytics.md) | Provides a Search Analytics service given a Search specific config |
