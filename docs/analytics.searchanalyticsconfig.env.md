@@ -4,7 +4,7 @@
 
 ## SearchAnalyticsConfig.env property
 
-The Yext environment to send the requests to. Defaults to 'PRODUCTION'
+The Yext environment to send the requests to. Defaults to 'PRODUCTION'.
 
 <b>Signature:</b>
 

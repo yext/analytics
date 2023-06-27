@@ -4,7 +4,7 @@
 
 ## ChatAnalyticsConfig.region property
 
-The physical region of the Yext account
+The region to send the requests to. Defaults to 'US'.
 
 <b>Signature:</b>
 

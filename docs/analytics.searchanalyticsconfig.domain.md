@@ -9,7 +9,7 @@
 > Use a combination of [SearchAnalyticsConfig.region](./analytics.searchanalyticsconfig.region.md) and [SearchAnalyticsConfig.env](./analytics.searchanalyticsconfig.env.md) instead.
 > 
 
-The domain to send the requests to.
+The domain to send the requests to. Overrides the 'region' and 'env' config options.
 
 <b>Signature:</b>
 

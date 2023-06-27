@@ -4,7 +4,7 @@
 
 ## PagesAnalyticsConfig.region property
 
-Determines the domain to send the requests to. Defaults to 'US', and is overridden by the domain property if it is set.
+The region to send the requests to. Defaults to 'US'.
 
 <b>Signature:</b>
 

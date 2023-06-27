@@ -4,7 +4,7 @@
 
 ## ChatAnalyticsConfig.env property
 
-The environment to send the requests to.
+The Yext environment to send the requests to. Defaults to 'PRODUCTION'.
 
 <b>Signature:</b>
 
