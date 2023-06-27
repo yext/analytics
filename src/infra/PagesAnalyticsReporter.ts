@@ -1,5 +1,5 @@
 import { COOKIE_PARAM, LISTINGS_SOURCE_PARAM } from '../models/constants';
-import {ConversionDetails, Region} from '../models';
+import { ConversionDetails, Region } from '../models';
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
 import { DefaultPagesEventNames, PagesAnalyticsConfig, Visitor } from '../models';
 import { PagesAnalyticsEvent } from '../models';

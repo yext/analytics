@@ -1,5 +1,5 @@
 import { HttpRequesterService, SearchAnalyticsService } from '../services';
-import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor, Region } from '../models';
+import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor } from '../models';
 import { getSearchEndpoint, getSearchEndpointWithDomain } from '../utils/endpointProviders';
 
 /**

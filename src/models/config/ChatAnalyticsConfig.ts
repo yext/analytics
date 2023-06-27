@@ -9,8 +9,8 @@ import {Region} from './Region';
 export interface ChatAnalyticsConfig {
   /** The API key for accessing the Analytics Events API. */
   apiKey: string; // TODO: Add optional "token" for JWT auth
-  /** The environment to send the requests to. */
+  /** {@inheritDoc SearchAnalyticsConfig.env} */
   env?: Environment;
-  /** The physical region of the Yext account */
+  /** {@inheritDoc SearchAnalyticsConfig.region} */
   region?: Region;
 }

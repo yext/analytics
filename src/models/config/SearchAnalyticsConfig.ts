@@ -1,5 +1,5 @@
-import {BaseAnalyticsConfig} from './BaseAnalyticsConfig';
-import {Region, Environment} from '../config';
+import { BaseAnalyticsConfig } from './BaseAnalyticsConfig';
+import { Region, Environment } from '../config';
 
 /**
  * The main configuration options for Search Analytics.
@@ -11,15 +11,12 @@ export interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
   experienceKey: string,
   /** The experience version of the answers experience. */
   experienceVersion: 'PRODUCTION' | 'STAGING' | string,
-  /**
-   * Determines the domain to send the requests to. Defaults to 'US',
-   * and is overridden by the domain property if it is set.
-   */
+  /** The region to send the requests to. Defaults to 'US'. */
   region?: Region;
-  /** The Yext environment to send the requests to. Defaults to 'PRODUCTION' */
+  /** The Yext environment to send the requests to. Defaults to 'PRODUCTION'. */
   env?: Environment,
   /**
-   * The domain to send the requests to.
+   * The domain to send the requests to. Overrides the 'region' and 'env' config options.
    *
    * @deprecated
    * Use a combination of {@link SearchAnalyticsConfig.region} and {@link SearchAnalyticsConfig.env} instead.

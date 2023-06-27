@@ -3,7 +3,7 @@ import { DirectoryPage } from '../pages';
 import { EntityPage } from '../pages';
 import { LocatorPage } from '../pages';
 import { StaticPage } from '../pages';
-import {Region} from './Region';
+import { Region } from './Region';
 
 /**
  * The main configuration options for Pages Analytics.  Contains all page or session level information.
