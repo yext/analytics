@@ -4,7 +4,7 @@ import { mockErrorHttpRequesterService, mockHttpRequesterService } from '../../s
 
 const prodConfig: ChatAnalyticsConfig = {
   apiKey: 'mock-api-key',
-  env: 'PROD',
+  env: 'PRODUCTION',
 };
 
 const mockedResponse: EventAPIResponse = { id: '12345' };

@@ -11,7 +11,7 @@ import { HttpRequesterService } from '../services';
 export class ChatAnalyticsReporter {
   /** A Yext API Key with access to Analytics */
   public readonly apiKey: string;
-  /** The Yext environment (PROD or SANDBOX) */
+  /** The Yext environment (PRODUCTION or SANDBOX) */
   public readonly env: NonNullable<ChatAnalyticsConfig['env']>;
   /** The Yext region (US or EU) */
   public readonly region: NonNullable<ChatAnalyticsConfig['region']>;
@@ -23,11 +23,11 @@ export class ChatAnalyticsReporter {
     Partial<Record<NonNullable<ChatAnalyticsConfig['env']>, string>>
   > = {
     US: {
-      PROD: 'https://www.us.yextevents.com/accounts/me/events',
+      PRODUCTION: 'https://www.us.yextevents.com/accounts/me/events',
       SANDBOX: 'https://www.sbx.us.yextevents.com/accounts/me/events',
     },
     EU: {
-      PROD: 'https://www.eu.yextevents.com/accounts/me/events',
+      PRODUCTION: 'https://www.eu.yextevents.com/accounts/me/events',
     }
   };
 
@@ -36,7 +36,7 @@ export class ChatAnalyticsReporter {
     private httpRequesterService: HttpRequesterService
   ) {
     this.apiKey = apiKey;
-    this.env = env ?? 'PROD';
+    this.env = env ?? 'PRODUCTION';
     this.region = region ?? 'US';
     const endpoint = this.endpoints[this.region][this.env];
     if (!endpoint) {

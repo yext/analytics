@@ -44,7 +44,7 @@ export interface BaseAnalyticsConfig {
 // @public
 export interface ChatAnalyticsConfig {
     apiKey: string;
-    env?: 'PROD' | 'SANDBOX';
+    env?: 'PRODUCTION' | 'SANDBOX';
     region?: 'US' | 'EU';
 }
 
