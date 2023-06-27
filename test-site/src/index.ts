@@ -1,5 +1,5 @@
 import {CtaClick, PagesAnalyticsConfig, provideAnalytics, providePagesAnalytics} from '@yext/analytics';
-import { CookieManager, provideConversionTrackingAnalytics } from '../../src';
+import { CookieManager, provideChatAnalytics, provideConversionTrackingAnalytics } from '../../src';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
@@ -81,4 +81,17 @@ export function fireListings() {
     source: '1_NjE0MzM5Mi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D',
     location: 'location/04500'
   });
+}
+
+const chat = provideChatAnalytics({
+  apiKey: process.env.CHAT_API_KEY,
+});
+
+export function fireChatEvent() {
+  chat.report({
+    action: "CHAT_LINK_CLICK",
+    chat: {
+      botId: "analytics-test-bot"
+    }
+  })
 }

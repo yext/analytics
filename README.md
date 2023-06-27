@@ -28,9 +28,7 @@ First, install the library via [npm](https://www.npmjs.com/get-npm):
 npm install @yext/analytics
 ```
 
-Next, import and initialize the library in your application.  Yext currently has different analytics reporting features 
-between Search and Pages and so they have slightly different interfaces for working with them.  There is also a combined
-interface that you can use when you are building a Search experience entirely on Pages (e.g. a Locator or a Help Site).
+Next, import and initialize the library in your application.  Yext currently has different analytics reporting features between Search and Pages and so they have slightly different interfaces for working with them.  There is also a combined interface that you can use when you are building a Search experience entirely on Pages (e.g. a Locator or a Help Site).
 
 ### Search Analytics
 
@@ -62,8 +60,7 @@ searchAnalytics.report({
 ```
 
 #### Search Analytics Event Types
-When specifying the analytics type, either the [SearchAnalyticsEventType](./docs/analytics.searchanalyticseventtype.md) enum
-or its corresponding string can be specified. For example, you can specify the 'CTA_CLICK' event with either 'CTA_CLICK' or
+When specifying the analytics type, either the [SearchAnalyticsEventType](./docs/analytics.searchanalyticseventtype.md) enum or its corresponding string can be specified. For example, you can specify the 'CTA_CLICK' event with either 'CTA_CLICK' or
 with `AnalyticsEventType.CtaClick`. Once the event type is specified, TypeScript is able to enforce the required and
 optional properties for that event type.
 
@@ -105,6 +102,23 @@ We can also fire an event on any other type of user interaction and give it a cu
 pagesAnalytics.track({eventType: 'C_MY_CUSTOM_EVENT'});
 ```
 
+### Chat Analytics
+Chat Analytics work somewhat differently. For Chat Analytics, you only need to provide an API Key,  and other attributes such as your business ID will be automatically inferred. You can acquire this API key in the developer console of the Yext Platform.
+```ts
+import { provideChatAnalytics } from '@yext/analytics';
+const chatAnalytics = provideChatAnalytics({
+  apiKey: '<your api key>',
+});
+
+analytics.report({
+  action: 'CHAT_IMPRESSION',
+  sessionId: 'e790f75d-4f1e-4a1b-b57b-9a456019b176',
+  chat: {
+    botId: 'my-chat-bot',
+  }
+})
+```
+
 ### Conversion Tracking
 
 Yext offers conversion tracking that can attribute values to conversion events that are driven by user interaction
@@ -127,16 +141,13 @@ conversionTracker.trackConversion({
 })
 ```
 
-Additionally, if you are implementing Conversion tracking on a pages site, once you have setup the pages analytics
-tracker, you should turn on conversion tracking so that interactions on your pages site can be properly credited with 
-conversions.  That can be done like so:
+Additionally, if you are implementing Conversion tracking on a pages site, once you have setup the pages analytics tracker, you should turn on conversion tracking so that interactions on your pages site can be properly credited with conversions.  That can be done like so:
 
 ```ts
 pagesAnalytics.setConversionTrackingEnabled(true, 'cookie id of the user goes here');
 ```
 
-Then, when you track a page view it will automatically be credited for conversion tracking purposes. Additionally, if
-an event on your pages should be treated as a conversion, you would track it like so:
+Then, when you track a page view it will automatically be credited for conversion tracking purposes. Additionally, if an event on your pages should be treated as a conversion, you would track it like so:
 
 ```ts
 pagesAnalytics.track('event_to_track', {

@@ -1,5 +1,8 @@
 const path = require('path');
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
+const dotenv = require('dotenv')
+dotenv.config();
 
 const babelOptions = {
   presets: [['@babel/preset-env', { useBuiltIns: 'entry', corejs: 3, targets: {ie: 11} }]],
@@ -30,6 +33,9 @@ module.exports = [{
         { from: 'src/index.html' },
       ],
     }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(process.env)
+   })
   ],
   output: {
     filename: 'bundle.js',

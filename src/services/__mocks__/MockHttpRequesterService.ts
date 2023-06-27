@@ -1,9 +1,9 @@
 import 'isomorphic-fetch';
 import { HttpRequesterService } from '../HttpRequesterService';
 
-export function mockHttpRequesterService(): HttpRequesterService {
+export function mockHttpRequesterService(body?: unknown): HttpRequesterService {
   return {
-    post: jest.fn(() => Promise.resolve(new Response())),
+    post: jest.fn(() => Promise.resolve(new Response(JSON.stringify(body)))),
     get: jest.fn(() => Promise.resolve(new Response())),
   };
 }
