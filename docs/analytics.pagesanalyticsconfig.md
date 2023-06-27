@@ -22,5 +22,6 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig
 |  [pageUrl](./analytics.pagesanalyticsconfig.pageurl.md) | string | The full url of the page we are on, typically window.location.href |
 |  [production](./analytics.pagesanalyticsconfig.production.md) | boolean | Set to true if the environment is production If set to true events will appear in Analytics Reports in your Yext Account |
 |  [referrer](./analytics.pagesanalyticsconfig.referrer.md) | string | Page which sent the user to the current page, comes from typically Document.referrer |
+|  [region?](./analytics.pagesanalyticsconfig.region.md) | [Region](./analytics.region.md) | <i>(Optional)</i> Determines the domain to send the requests to. Defaults to 'US', and is overridden by the domain property if it is set. |
 |  [siteId](./analytics.pagesanalyticsconfig.siteid.md) | number | The ID of the Pages Site Can be easily found from the url of the Deploy Page in your Yext Account e.g. https://www.yext.com/s/\[businessId\]/yextsites/\[siteid\]/branch/\[branchId\]/deploys/recent |
 

@@ -22,7 +22,7 @@ it('The static page page view URL is constructed correctly', () => {
   }, httpRequesterService);
 
   reporter.pageView();
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
 
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
@@ -59,7 +59,7 @@ it('Should handle http errors properly', () => {
 
 it('should track entity pages', () => {
   const httpRequesterService = mockHttpRequesterService();
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
   expectedUrl.searchParams.set('siteId', '0');
@@ -105,7 +105,7 @@ it('should track directory pages', () => {
   }, httpRequesterService);
   reporter.pageView();
 
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
 
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
@@ -137,7 +137,7 @@ it('should track locator pages', () => {
   }, httpRequesterService);
   reporter.pageView();
 
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
   expectedUrl.searchParams.set('siteId', '0');
@@ -168,7 +168,7 @@ it('should track custom events', () => {
   }, httpRequesterService);
   reporter.track({eventType: eventName});
 
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
 
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
@@ -205,7 +205,7 @@ it('should use set the visitor', () => {
 
   reporter.pageView();
 
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
 
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
@@ -343,7 +343,7 @@ it('should set pageDomain when specified and valid', () => {
   }, httpRequesterService);
 
   reporter.pageView();
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
 
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');
@@ -382,7 +382,7 @@ it('should log a warning and not include the pageDomain if it is missing a schem
   expect(console.warn).toBeCalledWith(errMsg1, errMsg2);
 
   reporter.pageView();
-  const expectedUrl = new URL('https://www.yext-pixel.com/store_pagespixel');
+  const expectedUrl = new URL('https://www.us.yextevents.com/store_pagespixel');
 
   expectedUrl.searchParams.set('businessids', '0');
   expectedUrl.searchParams.set('product', 'sites');

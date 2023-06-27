@@ -18,6 +18,8 @@ export interface SearchAnalyticsConfig extends BaseAnalyticsConfig
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [domain?](./analytics.searchanalyticsconfig.domain.md) | string | <i>(Optional)</i> The domain to send the requests to. |
+|  [env?](./analytics.searchanalyticsconfig.env.md) | [Environment](./analytics.environment.md) | <i>(Optional)</i> The Yext environment to send the requests to. Defaults to 'PRODUCTION' |
 |  [experienceKey](./analytics.searchanalyticsconfig.experiencekey.md) | string | The experience key of the answers experience. |
 |  [experienceVersion](./analytics.searchanalyticsconfig.experienceversion.md) | 'PRODUCTION' \| 'STAGING' \| string | The experience version of the answers experience. |
+|  [region?](./analytics.searchanalyticsconfig.region.md) | [Region](./analytics.region.md) | <i>(Optional)</i> Determines the domain to send the requests to. Defaults to 'US', and is overridden by the domain property if it is set. |
 

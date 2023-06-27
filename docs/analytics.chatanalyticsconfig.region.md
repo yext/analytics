@@ -9,5 +9,5 @@ The physical region of the Yext account
 <b>Signature:</b>
 
 ```typescript
-region?: 'US' | 'EU';
+region?: Region;
 ```

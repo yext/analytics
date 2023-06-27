@@ -4,6 +4,11 @@
 
 ## SearchAnalyticsConfig.domain property
 
+> Warning: This API is now obsolete.
+> 
+> Use a combination of [SearchAnalyticsConfig.region](./analytics.searchanalyticsconfig.region.md) and [SearchAnalyticsConfig.env](./analytics.searchanalyticsconfig.env.md) instead.
+> 
+
 The domain to send the requests to.
 
 <b>Signature:</b>

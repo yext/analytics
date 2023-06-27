@@ -9,5 +9,5 @@ The environment to send the requests to.
 <b>Signature:</b>
 
 ```typescript
-env?: 'PRODUCTION' | 'SANDBOX';
+env?: Environment;
 ```

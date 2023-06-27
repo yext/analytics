@@ -1,19 +1,21 @@
 import { ConversionEvent, COOKIE_PARAM, ListingsClickEvent } from '../models';
-import { DEFAULT_CONVERSION_TRACKING_DOMAIN, LISTINGS_SOURCE_PARAM } from '../models/constants';
+import { LISTINGS_SOURCE_PARAM } from '../models/constants';
 import { CommonConversionData } from '../models/conversiontracking/CommonConversionData';
 import { ConversionTrackingService, HttpRequesterService } from '../services';
 import { calculateSeed } from './CalculateSeed';
-
-const conversionEndpoint = 'conversiontracking/conversion';
-const listingsEndpoint = 'listings';
+import { getConversionTrackingEndpoint, getConversionTrackingListingsEndpoint } from '../utils/endpointProviders';
 
 export class ConversionTrackingReporter implements ConversionTrackingService {
   private _debug: boolean|undefined;
+  private _conversionTrackingEndpoint: string;
+  private _conversionTrackingListingsEndpoint: string;
   constructor(
     private httpRequesterService: HttpRequesterService,
     private debug?: boolean|undefined,
   ) {
     this._debug = debug;
+    this._conversionTrackingEndpoint = getConversionTrackingEndpoint();
+    this._conversionTrackingListingsEndpoint = getConversionTrackingListingsEndpoint();
   }
 
   /**
@@ -47,7 +49,7 @@ export class ConversionTrackingReporter implements ConversionTrackingService {
 
   /** {@inheritDoc ConversionTrackingService.trackConversion} */
   async trackConversion(event: ConversionEvent): Promise<void> {
-    const url = new URL(`https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${conversionEndpoint}`);
+    const url = new URL(this._conversionTrackingEndpoint);
     const params = new URLSearchParams();
     params.set('cid', event.cid);
     if (event.cv) params.set('cv', event.cv);
@@ -59,7 +61,7 @@ export class ConversionTrackingReporter implements ConversionTrackingService {
 
   /** {@inheritDoc ConversionTrackingService.trackListings} */
   async trackListings(event: ListingsClickEvent): Promise<void> {
-    const url = new URL(`https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${listingsEndpoint}`);
+    const url = new URL(this._conversionTrackingListingsEndpoint);
     const params = new URLSearchParams();
     params.set(LISTINGS_SOURCE_PARAM, event.source);
     ConversionTrackingReporter.formatBaseEvent(event, params);

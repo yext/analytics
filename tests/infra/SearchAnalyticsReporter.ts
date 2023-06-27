@@ -12,7 +12,33 @@ it('The URL is constructed correctly', () => {
   const mockService = mockHttpRequesterService();
   const analyticsReporter = new SearchAnalyticsReporter(config, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
-  const expectedUrl = `https://answers.yext-pixel.com/realtimeanalytics/data/answers/${config.businessId}`;
+  const expectedUrl = `https://www.us.yextevents.com/realtimeanalytics/data/answers/${config.businessId}`;
+  expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+});
+
+it('The URL is constructed correctly for EU', () => {
+  const configWithEURegion: SearchAnalyticsConfig = {
+    ...config,
+    region: 'EU'
+  };
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(configWithEURegion, mockService);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
+  const expectedUrl
+    = `https://www.eu.yextevents.com/realtimeanalytics/data/answers/${configWithEURegion.businessId}`;
+  expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
+});
+
+it('The URL is constructed correctly for Sandbox', () => {
+  const configWithSandboxEnv: SearchAnalyticsConfig = {
+    ...config,
+    env: 'SANDBOX'
+  };
+  const mockService = mockHttpRequesterService();
+  const analyticsReporter = new SearchAnalyticsReporter(configWithSandboxEnv, mockService);
+  analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
+  const expectedUrl
+    = `https://www.sbx.us.yextevents.com/realtimeanalytics/data/answers/${configWithSandboxEnv.businessId}`;
   expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
