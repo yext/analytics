@@ -31,7 +31,8 @@ it('throws an error on an invalid env and region', () => {
     env: 'SANDBOX',
     region: 'EU'
   }, mockService))
-    .toThrow('The combination of the environment "SANDBOX" and the region "EU" is unsupported.');
+    .toThrow('The combination of the environment: "SANDBOX", region: "EU",'
+      + 'and conversionTrackingEnabled: "false" is unsupported.');
 });
 
 
