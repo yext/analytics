@@ -1,6 +1,6 @@
 import { HttpRequesterService, SearchAnalyticsService } from '../services';
 import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor } from '../models';
-import { getSearchEndpoint, getSearchEndpointWithDomain } from '../utils/endpointProviders';
+import { getSearchEndpoint } from '../utils/endpointProviders';
 
 /**
  * Responsible for reporting Analytics events.
@@ -14,9 +14,12 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
   constructor(private config: SearchAnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;
-    this._endpoint = this.config.domain
-      ? getSearchEndpointWithDomain(this.config.domain, this.config.businessId)
-      : getSearchEndpoint(this.config.businessId, this.config.region, this.config.env);
+    this._endpoint = getSearchEndpoint(
+      this.config.businessId,
+      this.config.region,
+      this.config.env,
+      this.config.domain
+    );
   }
 
   /**

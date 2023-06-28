@@ -29,12 +29,13 @@ export function getChatEndpoint(region?: Region, environment?: Environment): str
   return `${domain}/accounts/me/events`;
 }
 
-export function getSearchEndpoint(businessId: number, region?: Region, environment?: Environment): string {
-  const domain = getEventDomain(region, environment);
-  return `${domain}/realtimeanalytics/data/answers/${businessId}`;
-}
-
-export function getSearchEndpointWithDomain(domain: string, businessId: number): string {
+export function getSearchEndpoint(
+  businessId: number,
+  region?: Region,
+  environment?: Environment,
+  customDomain?: string
+): string {
+  const domain = customDomain ? customDomain : getEventDomain(region, environment);
   return `${domain}/realtimeanalytics/data/answers/${businessId}`;
 }
 
@@ -69,15 +70,9 @@ function getEventDomain(region?: Region, env?: Environment): string {
 
 function getDomain(
   domainMap: DomainMap,
-  region?: Region,
-  env?: Environment)
+  region: Region = 'US',
+  env: Environment = 'PRODUCTION')
 {
-  if (!region) {
-    region = 'US';
-  }
-  if (!env) {
-    env = 'PRODUCTION';
-  }
   const domain = domainMap[region][env];
   if (!domain) {
     throw Error(`The combination of the environment "${env}" and the region "${region}" is unsupported.`);
