@@ -11,9 +11,9 @@ import { getChatEndpoint } from '../utils/endpointProviders';
  */
 export class ChatAnalyticsReporter {
   /** A Yext API Key with access to Analytics */
-  public readonly apiKey: string;
+  private readonly apiKey: string;
   /** The endpoint to report events to, inferred by the env and region */
-  public readonly endpoint: string;
+  private readonly endpoint: string;
 
   constructor(
     { apiKey, env, region }: ChatAnalyticsConfig,
