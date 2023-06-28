@@ -11,7 +11,7 @@ The physical region of the Yext account
 ```typescript
 export declare type Region = EnumOrString<RegionEnum>;
 ```
-<b>References:</b> [EnumOrString](./analytics.enumorstring.md)
+<b>References:</b> [EnumOrString](./analytics.enumorstring.md)<!-- -->, [RegionEnum](./analytics.regionenum.md)
 
 ## Remarks
 

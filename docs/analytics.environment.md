@@ -11,7 +11,7 @@ The Yext Environments
 ```typescript
 export declare type Environment = EnumOrString<EnvironmentEnum>;
 ```
-<b>References:</b> [EnumOrString](./analytics.enumorstring.md)
+<b>References:</b> [EnumOrString](./analytics.enumorstring.md)<!-- -->, [EnvironmentEnum](./analytics.environmentenum.md)
 
 ## Remarks
 

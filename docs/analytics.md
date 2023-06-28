@@ -15,6 +15,8 @@
 |  Enumeration | Description |
 |  --- | --- |
 |  [DefaultPagesEventNames](./analytics.defaultpageseventnames.md) | Default pages analytics event types. |
+|  [EnvironmentEnum](./analytics.environmentenum.md) | An enum for the Yext Environments |
+|  [RegionEnum](./analytics.regionenum.md) | An enum of the physical region the Yext account |
 |  [SearchAnalyticsEventType](./analytics.searchanalyticseventtype.md) | Represents the possible analytics event types. |
 
 ## Functions
