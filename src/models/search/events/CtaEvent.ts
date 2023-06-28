@@ -1,6 +1,6 @@
 import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
 import { Searcher } from '../Searcher';
-import { EnumOrString } from '../utils';
+import { EnumOrString } from '../../../utils';
 
 
 /**

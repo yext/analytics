@@ -9,8 +9,9 @@ The Yext Environments
 <b>Signature:</b>
 
 ```typescript
-export declare type Environment = 'PRODUCTION' | 'SANDBOX';
+export declare type Environment = EnumOrString<EnvironmentEnum>;
 ```
+<b>References:</b> [EnumOrString](./analytics.enumorstring.md)
 
 ## Remarks
 

@@ -148,8 +148,10 @@ export interface EntityPage extends PageType {
 // @public
 export type EnumOrString<T extends string> = T | `${T}`;
 
+// Warning: (ae-forgotten-export) The symbol "EnvironmentEnum" needs to be exported by the entry point index.d.ts
+//
 // @public
-export type Environment = 'PRODUCTION' | 'SANDBOX';
+export type Environment = EnumOrString<EnvironmentEnum>;
 
 // @public
 export interface EventAPIResponse {
@@ -271,8 +273,10 @@ export interface QuestionSubmissionEvent {
     verticalKey: string;
 }
 
+// Warning: (ae-forgotten-export) The symbol "RegionEnum" needs to be exported by the entry point index.d.ts
+//
 // @public
-export type Region = 'US' | 'EU';
+export type Region = EnumOrString<RegionEnum>;
 
 // @public
 export interface ScrollEvent {
