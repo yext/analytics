@@ -161,7 +161,7 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
       * that are accepted
       */
     const endpoint
-      = getPagesEndpoint(this._region, 'PRODUCTION', this._conversionTrackingEnabled);
+      = getPagesEndpoint(this._region, this._conversionTrackingEnabled);
     const url = new URL(endpoint);
     url.search = this.urlParameters(event).toString();
     const res = await this.httpRequesterService.get(url.toString());

@@ -41,12 +41,11 @@ export function getSearchEndpoint(
 
 export function getPagesEndpoint(
   region?: Region,
-  environment?: Environment,
   isConversionTrackingEnabled?: boolean
 ): string {
   const domain = isConversionTrackingEnabled
-    ? getConversionTrackingDomain(region, environment)
-    : getEventDomain(region, environment);
+    ? getConversionTrackingDomain(region)
+    : getEventDomain(region);
   return `${domain}/store_pagespixel`;
 }
 
