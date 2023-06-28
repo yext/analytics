@@ -60,7 +60,7 @@ export function getConversionTrackingListingsEndpoint(): string {
 }
 
 function getConversionTrackingDomain(region?: Region, env?: Environment): string {
-  return getDomain(CONVERSION_TRACKING_DOMAINS, region, env);
+  return getDomain(CONVERSION_TRACKING_DOMAINS, region, env, true);
 }
 
 function getEventDomain(region?: Region, env?: Environment): string {
@@ -70,11 +70,13 @@ function getEventDomain(region?: Region, env?: Environment): string {
 function getDomain(
   domainMap: DomainMap,
   region: Region = 'US',
-  env: Environment = 'PRODUCTION')
+  env: Environment = 'PRODUCTION',
+  conversionTrackingEnabled = false)
 {
   const domain = domainMap[region][env];
   if (!domain) {
-    throw Error(`The combination of the environment "${env}" and the region "${region}" is unsupported.`);
+    throw Error(`The combination of the environment: "${env}", region: "${region}",`
+      + `and conversionTrackingEnabled: "${conversionTrackingEnabled}" is unsupported.`);
   }
   return domain;
 }
