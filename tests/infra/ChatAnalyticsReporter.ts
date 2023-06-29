@@ -1,10 +1,22 @@
 import { ChatAnalyticsReporter } from '../../src/infra/ChatAnalyticsReporter';
-import { ChatAnalyticsConfig, EventAPIResponse } from '../../src/models';
+import { ChatAnalyticsConfig, ChatEventPayLoad, EventAPIResponse } from '../../src/models';
 import { mockErrorHttpRequesterService, mockHttpRequesterService } from '../../src/services/__mocks__/MockHttpRequesterService';
 
 const prodConfig: ChatAnalyticsConfig = {
   apiKey: 'mock-api-key',
   env: 'PRODUCTION',
+};
+
+const expectedHeaders: Record<string, string> = {
+  Authorization: 'KEY mock-api-key',
+  'Content-Type': 'application/json',
+};
+
+const payload: ChatEventPayLoad = {
+  action: 'ADD_TO_CART',
+  chat: {
+    botId: 'davish-playground',
+  },
 };
 
 const mockedResponse: EventAPIResponse = { id: '12345' };
@@ -13,14 +25,29 @@ it('should send events to the prod domain when configured', async () => {
   const mockService = mockHttpRequesterService(mockedResponse);
   const reporter = new ChatAnalyticsReporter(prodConfig, mockService);
   const expectedUrl ='https://www.us.yextevents.com/accounts/me/events';
-  expect(reporter.endpoint).toBe(expectedUrl);
-  const response = await reporter.report({
-    action: 'ADD_TO_CART',
-    chat: {
-      botId: 'davish-playground',
-    },
-  });
+  const response = await reporter.report(payload);
   expect(response).toEqual(mockedResponse);
+  expect(mockService.post).toBeCalledWith(
+    expectedUrl,
+    payload,
+    expectedHeaders
+  );
+});
+
+it('should send events to the custom endpoint when configured', async () => {
+  const mockService = mockHttpRequesterService(mockedResponse);
+  const expectedUrl = 'https://my-custom-endpoint.com';
+  const reporter = new ChatAnalyticsReporter({
+    apiKey: 'mock-api-key',
+    endpoint: expectedUrl,
+  }, mockService);
+  const response = await reporter.report(payload);
+  expect(response).toEqual(mockedResponse);
+  expect(mockService.post).toBeCalledWith(
+    expectedUrl,
+    payload,
+    expectedHeaders
+  );
 });
 
 it('throws an error on an invalid env and region', () => {
