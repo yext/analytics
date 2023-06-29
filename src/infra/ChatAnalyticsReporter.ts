@@ -1,6 +1,7 @@
 import { ChatEventPayLoad, EventAPIResponse } from '../models/chat';
 import { ChatAnalyticsConfig } from '../models/config/ChatAnalyticsConfig';
 import { HttpRequesterService } from '../services';
+import { acquireSessionId } from '../utils/acquireSessionId';
 import { getChatEndpoint } from '../utils/endpointProviders';
 
 /**
@@ -14,12 +15,15 @@ export class ChatAnalyticsReporter {
   private readonly apiKey: string;
   /** The endpoint to report events to, inferred by the env and region */
   private readonly endpoint: string;
+  /** Whether to enable session tracking for analytics events */
+  private readonly sessionTrackingEnabled: boolean;
 
   constructor(
-    { apiKey, env, region }: ChatAnalyticsConfig,
+    { apiKey, env, region, sessionTrackingEnabled = false }: ChatAnalyticsConfig,
     private httpRequesterService: HttpRequesterService
   ) {
     this.apiKey = apiKey;
+    this.sessionTrackingEnabled = sessionTrackingEnabled;
     this.endpoint = getChatEndpoint(region, env);
   }
 
@@ -47,9 +51,16 @@ export class ChatAnalyticsReporter {
       Authorization: `KEY ${this.apiKey}`,
       'Content-Type': 'application/json',
     };
+
+    const sessionId: string | undefined = this.sessionTrackingEnabled
+      ? (event.sessionId ?? acquireSessionId() ?? undefined)
+      : undefined;
     const res = await this.httpRequesterService.post(
       this.endpoint,
-      event,
+      {
+        ...event,
+        sessionId
+      },
       headers);
 
     if (!res.ok) {

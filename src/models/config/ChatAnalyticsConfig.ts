@@ -13,4 +13,12 @@ export interface ChatAnalyticsConfig {
   env?: Environment;
   /** {@inheritDoc SearchAnalyticsConfig.region} */
   region?: Region;
+  /**
+   * Whether to enable session tracking for analytics events.
+   * Defaults to false.
+   *
+   * @remarks
+   * This generates a ULID to tie together events in a single browsing session.
+   */
+  sessionTrackingEnabled?: boolean;
 }

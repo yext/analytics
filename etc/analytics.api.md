@@ -46,6 +46,7 @@ export interface ChatAnalyticsConfig {
     apiKey: string;
     env?: Environment;
     region?: Region;
+    sessionTrackingEnabled?: boolean;
 }
 
 // @public

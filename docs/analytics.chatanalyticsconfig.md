@@ -19,4 +19,5 @@ export interface ChatAnalyticsConfig
 |  [apiKey](./analytics.chatanalyticsconfig.apikey.md) | string | The API key for accessing the Analytics Events API. |
 |  [env?](./analytics.chatanalyticsconfig.env.md) | [Environment](./analytics.environment.md) | <i>(Optional)</i> The Yext environment to send the requests to. Defaults to 'PRODUCTION'. |
 |  [region?](./analytics.chatanalyticsconfig.region.md) | [Region](./analytics.region.md) | <i>(Optional)</i> The region to send the requests to. Defaults to 'US'. |
+|  [sessionTrackingEnabled?](./analytics.chatanalyticsconfig.sessiontrackingenabled.md) | boolean | <i>(Optional)</i> Whether to enable session tracking for analytics events. Defaults to false. |
 
