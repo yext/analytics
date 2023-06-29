@@ -1,6 +1,7 @@
 import { ChatEventPayLoad, EventAPIResponse } from '../models/chat';
 import { ChatAnalyticsConfig } from '../models/config/ChatAnalyticsConfig';
 import { HttpRequesterService } from '../services';
+import { getChatEndpoint } from '../utils/endpointProviders';
 
 /**
  * A class to report chat analytics data. Uses the provided API key, environment,
@@ -10,39 +11,16 @@ import { HttpRequesterService } from '../services';
  */
 export class ChatAnalyticsReporter {
   /** A Yext API Key with access to Analytics */
-  public readonly apiKey: string;
-  /** The Yext environment (PRODUCTION or SANDBOX) */
-  public readonly env: NonNullable<ChatAnalyticsConfig['env']>;
-  /** The Yext region (US or EU) */
-  public readonly region: NonNullable<ChatAnalyticsConfig['region']>;
+  private readonly apiKey: string;
   /** The endpoint to report events to, inferred by the env and region */
-  public readonly endpoint: string;
-
-  private endpoints: Record<
-    NonNullable<ChatAnalyticsConfig['region']>,
-    Partial<Record<NonNullable<ChatAnalyticsConfig['env']>, string>>
-  > = {
-    US: {
-      PRODUCTION: 'https://www.us.yextevents.com/accounts/me/events',
-      SANDBOX: 'https://www.sbx.us.yextevents.com/accounts/me/events',
-    },
-    EU: {
-      PRODUCTION: 'https://www.eu.yextevents.com/accounts/me/events',
-    }
-  };
+  private readonly endpoint: string;
 
   constructor(
     { apiKey, env, region }: ChatAnalyticsConfig,
     private httpRequesterService: HttpRequesterService
   ) {
     this.apiKey = apiKey;
-    this.env = env ?? 'PRODUCTION';
-    this.region = region ?? 'US';
-    const endpoint = this.endpoints[this.region][this.env];
-    if (!endpoint) {
-      throw Error(`Endpoint for env "${env}" and region "${region}" is not supported.`);
-    }
-    this.endpoint = endpoint;
+    this.endpoint = getChatEndpoint(region, env);
   }
 
   /**

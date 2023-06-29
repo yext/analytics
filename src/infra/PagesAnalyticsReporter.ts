@@ -1,15 +1,14 @@
-import { COOKIE_PARAM, DEFAULT_CONVERSION_TRACKING_DOMAIN, LISTINGS_SOURCE_PARAM } from '../models/constants';
-import { ConversionDetails } from '../models';
+import { COOKIE_PARAM, LISTINGS_SOURCE_PARAM } from '../models/constants';
+import { ConversionDetails, Region } from '../models';
 import { HttpRequesterService, PagesAnalyticsService } from '../services';
 import { DefaultPagesEventNames, PagesAnalyticsConfig, Visitor } from '../models';
 import { PagesAnalyticsEvent } from '../models';
 import { PageViewEvent } from '../models';
 import { calculateSeed } from './CalculateSeed';
 import { ConversionTrackingReporter } from './ConversionTrackingReporter';
+import { getPagesEndpoint } from '../utils/endpointProviders';
 
-const DEFAULT_DOMAIN_PAGES = 'www.yext-pixel.com';
 const PRODUCT_NAME = 'sites';
-const ENDPOINT = 'store_pagespixel';
 
 enum urlParamNames {
   BusinessId = 'businessids',
@@ -60,12 +59,14 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
   private _hasTrackedListings: boolean;
   private readonly _pageUrl: URL;
   private readonly _pageDomain: URL | undefined;
+  private readonly _region: Region | undefined;
   constructor(private config: PagesAnalyticsConfig,
               private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;
     this._conversionTracker = new ConversionTrackingReporter(this.httpRequesterService, this._debug);
     this._hasTrackedListings = false;
+    this._region = config.region;
     try {
       this._pageUrl = new URL(config.pageUrl);
     } catch {
@@ -154,23 +155,14 @@ export class PagesAnalyticsReporter implements PagesAnalyticsService{
     return this.track(PageViewEvent);
   }
 
-  /**
-   * returns the endpoint to hit depending on whether conversion tracking is enabled
-   * @private
-   */
-  private endpoint(): string {
-    if (this._conversionTrackingEnabled) {
-      return `https://${DEFAULT_CONVERSION_TRACKING_DOMAIN}/${ENDPOINT}`;
-    }
-    return `https://${DEFAULT_DOMAIN_PAGES}/${ENDPOINT}`;
-  }
-
   /** {@inheritDoc PagesAnalyticsService.setDebugEnabled} */
   async track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<void> {
     /** TODO: need to evaluate that the event name is valid, I think there are restrictions in the characters
       * that are accepted
       */
-    const url = new URL(this.endpoint());
+    const endpoint
+      = getPagesEndpoint(this._region, this._conversionTrackingEnabled);
+    const url = new URL(endpoint);
     url.search = this.urlParameters(event).toString();
     const res = await this.httpRequesterService.get(url.toString());
     // modern browsers won't let us access the status because of CORS

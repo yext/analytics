@@ -15,6 +15,8 @@
 |  Enumeration | Description |
 |  --- | --- |
 |  [DefaultPagesEventNames](./analytics.defaultpageseventnames.md) | Default pages analytics event types. |
+|  [EnvironmentEnum](./analytics.environmentenum.md) | An enum for the Yext Environments |
+|  [RegionEnum](./analytics.regionenum.md) | An enum of the physical region the Yext account |
 |  [SearchAnalyticsEventType](./analytics.searchanalyticseventtype.md) | Represents the possible analytics event types. |
 
 ## Functions
@@ -87,6 +89,8 @@
 |  --- | --- |
 |  [Action](./analytics.action.md) | The action types accepted by the Analytics Events API. |
 |  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
+|  [Environment](./analytics.environment.md) | The Yext Environments |
+|  [Region](./analytics.region.md) | The physical region of the Yext account |
 |  [SearchAnalyticsEvent](./analytics.searchanalyticsevent.md) | An analytics event. |
 |  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 

@@ -30,7 +30,9 @@ it('throws an error on an invalid env and region', () => {
     apiKey: 'dummy key',
     env: 'SANDBOX',
     region: 'EU'
-  }, mockService)).toThrow('Endpoint for env "SANDBOX" and region "EU" is not supported.');
+  }, mockService))
+    .toThrow('The combination of the environment: "SANDBOX", region: "EU",'
+      + 'and conversionTrackingEnabled: "false" is unsupported.');
 });
 
 

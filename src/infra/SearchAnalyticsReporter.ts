@@ -1,7 +1,6 @@
 import { HttpRequesterService, SearchAnalyticsService } from '../services';
 import { AnalyticsPayload, SearchAnalyticsConfig, SearchAnalyticsEvent, Visitor } from '../models';
-
-const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
+import { getSearchEndpoint } from '../utils/endpointProviders';
 
 /**
  * Responsible for reporting Analytics events.
@@ -11,9 +10,16 @@ const DEFAULT_DOMAIN = 'https://answers.yext-pixel.com';
 export class SearchAnalyticsReporter implements SearchAnalyticsService {
   private _visitor: Visitor | undefined;
   private _debug: boolean|undefined;
+  private readonly _endpoint: string;
   constructor(private config: SearchAnalyticsConfig, private httpRequesterService: HttpRequesterService) {
     this.setVisitor(config.visitor);
     this._debug = config.debug;
+    this._endpoint = getSearchEndpoint(
+      this.config.businessId,
+      this.config.region,
+      this.config.env,
+      this.config.domain
+    );
   }
 
   /**
@@ -34,8 +40,6 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
     event: SearchAnalyticsEvent,
     additionalRequestAttributes?: AnalyticsPayload
   ): Promise<void> {
-    const domain = this.config.domain ?? DEFAULT_DOMAIN;
-    const url = `${domain}/realtimeanalytics/data/answers/${this.config.businessId}`;
     const { type, ...eventData } = event;
     const data = {
       eventType: type,
@@ -46,7 +50,7 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
       ...SearchAnalyticsReporter._formatForApi(eventData)
     };
     const res = await this.httpRequesterService.post(
-      url, { data, ...additionalRequestAttributes }
+      this._endpoint, { data, ...additionalRequestAttributes }
     );
     if (res.status !== 200) {
       const errorMessage = await res.text();

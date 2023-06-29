@@ -3,4 +3,3 @@ export { AnalyticsEventType, SearchAnalyticsEventType } from './SearchAnalyticsE
 export { AnalyticsPayload } from '../AnalyticsPayload';
 export { Visitor } from './Visitor';
 export { Searcher } from './Searcher';
-export { EnumOrString } from './utils';

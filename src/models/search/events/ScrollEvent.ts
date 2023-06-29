@@ -1,5 +1,5 @@
 import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
-import { EnumOrString } from '../utils';
+import { EnumOrString } from '../../../utils';
 
 /**
  * Event for scrolling to the bottom of the page.

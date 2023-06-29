@@ -1,5 +1,5 @@
 import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
-import { EnumOrString } from '../utils';
+import { EnumOrString } from '../../../utils';
 
 /**
  * Event for clicking on a vertical's View All button on a universal page.

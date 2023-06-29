@@ -17,7 +17,8 @@ it('should not set empty parameters', () => {
     location: 'foo',
   });
   expect(mockService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/conversiontracking/conversion?cid=12345&_yfpc=54321&v=1001&location=foo',
+    'https://realtimeanalytics.yext.com/conversiontracking/conversion'
+    + '?cid=12345&_yfpc=54321&v=1001&location=foo',
   );
 });
 
@@ -31,7 +32,8 @@ it('should set all parameters passed', () => {
     location: 'foo',
   });
   expect(mockService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/conversiontracking/conversion?cid=12345&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&v=1001&location=foo',
+    'https://realtimeanalytics.yext.com/conversiontracking/conversion'
+    + '?cid=12345&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&v=1001&location=foo',
   );
 });
 
@@ -55,7 +57,8 @@ it('should track listings', () => {
     location: 'https://www.example.com/my/foo/page'
   });
   expect(mockService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/listings?y_source=foo&_yfpc=54321&v=1001&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage',
+    'https://realtimeanalytics.yext.com/listings'
+    + '?y_source=foo&_yfpc=54321&v=1001&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage',
   );
 });
 
@@ -69,6 +72,8 @@ it('should track listings with more details', () => {
     referrer: 'http://www.google.com/foo/bar',
   });
   expect(mockService.get).toHaveBeenLastCalledWith(
-    'https://realtimeanalytics.yext.com/listings?y_source=foo&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&v=1001&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage',
+    'https://realtimeanalytics.yext.com/listings'
+    + '?y_source=foo&_yfpc=54321&referrer=http%3A%2F%2Fwww.google.com%2Ffoo%2Fbar&v=1001'
+    + '&location=https%3A%2F%2Fwww.example.com%2Fmy%2Ffoo%2Fpage',
   );
 });

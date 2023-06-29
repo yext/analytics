@@ -44,8 +44,8 @@ export interface BaseAnalyticsConfig {
 // @public
 export interface ChatAnalyticsConfig {
     apiKey: string;
-    env?: 'PRODUCTION' | 'SANDBOX';
-    region?: 'US' | 'EU';
+    env?: Environment;
+    region?: Region;
 }
 
 // @public
@@ -149,6 +149,17 @@ export interface EntityPage extends PageType {
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
+export type Environment = EnumOrString<EnvironmentEnum>;
+
+// @public
+export enum EnvironmentEnum {
+    // (undocumented)
+    Production = "PRODUCTION",
+    // (undocumented)
+    Sandbox = "SANDBOX"
+}
+
+// @public
 export interface EventAPIResponse {
     errors?: string[];
     id: string;
@@ -206,6 +217,7 @@ export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
     pageUrl: string;
     production: boolean;
     referrer: string;
+    region?: Region;
     siteId: number;
 }
 
@@ -268,6 +280,17 @@ export interface QuestionSubmissionEvent {
 }
 
 // @public
+export type Region = EnumOrString<RegionEnum>;
+
+// @public
+export enum RegionEnum {
+    // (undocumented)
+    EU = "EU",
+    // (undocumented)
+    US = "US"
+}
+
+// @public
 export interface ScrollEvent {
     queryId: string;
     type: EnumOrString<SearchAnalyticsEventType.ScrollToBottomOfPage>;
@@ -275,9 +298,12 @@ export interface ScrollEvent {
 
 // @public
 interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
+    // @deprecated
     domain?: string;
+    env?: Environment;
     experienceKey: string;
     experienceVersion: 'PRODUCTION' | 'STAGING' | string;
+    region?: Region;
 }
 export { SearchAnalyticsConfig as AnalyticsConfig }
 export { SearchAnalyticsConfig }

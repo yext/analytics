@@ -1,5 +1,5 @@
 import { SearchAnalyticsEventType } from '../SearchAnalyticsEventType';
-import { EnumOrString } from '../utils';
+import { EnumOrString } from '../../../utils';
 
 /**
  * Event for clicking on the button to clear the search input.

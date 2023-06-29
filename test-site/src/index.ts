@@ -1,5 +1,5 @@
-import {CtaClick, PagesAnalyticsConfig, provideAnalytics, providePagesAnalytics} from '@yext/analytics';
-import { CookieManager, provideChatAnalytics, provideConversionTrackingAnalytics } from '../../src';
+import {CtaClick, provideAnalytics, providePagesAnalytics, provideChatAnalytics} from '@yext/analytics';
+import { CookieManager, provideConversionTrackingAnalytics } from '../../src';
 
 const analytics = provideAnalytics({
   experienceKey: 'slanswers',
