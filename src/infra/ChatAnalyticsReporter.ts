@@ -22,7 +22,7 @@ export class ChatAnalyticsReporter {
   private readonly sessionTrackingEnabled: boolean;
 
   constructor(
-    { apiKey, env, region, endpoint, sessionTrackingEnabled = false }: ChatAnalyticsConfig,
+    { apiKey, env, region, endpoint, sessionTrackingEnabled = true }: ChatAnalyticsConfig,
     private httpRequesterService: HttpRequesterService
   ) {
     this.apiKey = apiKey;

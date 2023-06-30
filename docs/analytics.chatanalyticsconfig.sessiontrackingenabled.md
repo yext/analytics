@@ -4,7 +4,7 @@
 
 ## ChatAnalyticsConfig.sessionTrackingEnabled property
 
-Whether to enable session tracking for analytics events. Defaults to false.
+Whether to enable session tracking for analytics events. Defaults to true.
 
 <b>Signature:</b>
 

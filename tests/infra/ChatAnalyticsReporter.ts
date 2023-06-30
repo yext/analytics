@@ -18,7 +18,12 @@ const payload: ChatEventPayLoad = {
   chat: {
     botId: 'dummy-bot',
   },
+  sessionId: 'mocked-ulid-value'
 };
+
+beforeEach(() => {
+  jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+});
 
 const mockedResponse: EventAPIResponse = { id: '12345' };
 
@@ -99,29 +104,23 @@ describe('sessionId handling', () => {
     jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
   });
 
-  it('generates sessionId for payload when sessionTrackingEnabled is true', async () => {
+  it('generates sessionId for payload when sessionTrackingEnabled is true (by default)', async () => {
     const mockService = mockHttpRequesterService(mockedResponse);
     const reporter = new ChatAnalyticsReporter({
-      ...prodConfig,
-      sessionTrackingEnabled: true,
+      apiKey: 'mock-api-key',
+      env: 'PRODUCTION',
     }, mockService);
     await reporter.report(payload);
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
-      {
-        ...payload,
-        sessionId: 'mocked-ulid-value',
-      },
+      payload,
       expect.any(Object)
     );
   });
 
-  it('uses provided sessionId for payload when sessionTrackingEnabled is true', async () => {
+  it('uses provided sessionId for payload when sessionTrackingEnabled is true (by default)', async () => {
     const mockService = mockHttpRequesterService(mockedResponse);
-    const reporter = new ChatAnalyticsReporter({
-      ...prodConfig,
-      sessionTrackingEnabled: true,
-    }, mockService);
+    const reporter = new ChatAnalyticsReporter(prodConfig, mockService);
     await reporter.report({
       ...payload,
       sessionId: 'custom-ulid-value',
@@ -136,14 +135,20 @@ describe('sessionId handling', () => {
     );
   });
 
-  it('omits sessionId from payload when sessionTrackingEnabled is false (by default)', async () => {
+  it('omits sessionId from payload when sessionTrackingEnabled is false', async () => {
     const mockService = mockHttpRequesterService(mockedResponse);
 
-    let reporter = new ChatAnalyticsReporter(prodConfig, mockService);
+    let reporter = new ChatAnalyticsReporter({
+      ...prodConfig,
+      sessionTrackingEnabled: false,
+    }, mockService);
     await reporter.report(payload);
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
-      payload,
+      {
+        ...payload,
+        sessionId: undefined
+      },
       expect.any(Object)
     );
 
@@ -154,7 +159,10 @@ describe('sessionId handling', () => {
     });
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
-      payload,
+      {
+        ...payload,
+        sessionId: undefined
+      },
       expect.any(Object)
     );
   });

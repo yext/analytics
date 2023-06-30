@@ -17,7 +17,7 @@ export interface ChatAnalyticsConfig {
   endpoint?: string;
   /**
    * Whether to enable session tracking for analytics events.
-   * Defaults to false.
+   * Defaults to true.
    *
    * @remarks
    * This generates a ULID to tie together events in a single browsing session.
