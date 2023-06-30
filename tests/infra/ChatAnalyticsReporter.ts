@@ -16,7 +16,7 @@ const expectedHeaders: Record<string, string> = {
 const payload: ChatEventPayLoad = {
   action: 'ADD_TO_CART',
   chat: {
-    botId: 'davish-playground',
+    botId: 'dummy-bot',
   },
 };
 
@@ -93,13 +93,6 @@ it('converts timestamps to ISO strings', async () => {
   });
   expect(response).toEqual(mockedResponse);
 });
-
-const payload: ChatEventPayLoad = {
-  action: 'ADD_TO_CART',
-  chat: {
-    botId: 'dummy-bot',
-  },
-};
 
 describe('sessionId handling', () => {
   beforeEach(() => {

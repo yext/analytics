@@ -1,9 +1,9 @@
-import { SESSION_ID_KEY, acquireSessionId } from '../../src/utils/acquireSessionId';
+import { SESSION_ID_KEY, getOrSetupSessionId } from '../../src/utils/getOrSetupSessionId';
 import * as ulidLib from 'ulid';
 
 it('returns generated ulid as expected', () => {
   const mockedUlidFn = jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
-  const id = acquireSessionId();
+  const id = getOrSetupSessionId();
 
   expect(mockedUlidFn).toBeCalledTimes(1);
   expect(id).toEqual('mocked-ulid-value');
@@ -17,7 +17,7 @@ it('fetches existing ulid from session storage', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any));
   const mockedUlidFn = jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
-  const id = acquireSessionId();
+  const id = getOrSetupSessionId();
 
   expect(mockedUlidFn).not.toBeCalled();
   expect(id).toEqual('ulid-id-in-session');
@@ -30,7 +30,7 @@ it('returns without error when window is undefined', () => {
   const windowSpy = jest.spyOn(window, 'window', 'get');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   windowSpy.mockImplementationOnce(() => undefined as any);
-  const id = acquireSessionId();
+  const id = getOrSetupSessionId();
 
   expect(mockedUlidFn).not.toBeCalled();
   expect(id).toBeNull();
@@ -44,7 +44,7 @@ it('logs a warning in console when sessionStorage is not accessible', () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any));
   const consoleWarnSpy = jest.spyOn(console, 'warn').mockImplementation();
-  const id = acquireSessionId();
+  const id = getOrSetupSessionId();
 
   expect(mockedUlidFn).not.toBeCalled();
   expect(id).toBeNull();

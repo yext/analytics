@@ -1,7 +1,7 @@
 import { ChatEventPayLoad, EventAPIResponse } from '../models/chat';
 import { ChatAnalyticsConfig } from '../models/config/ChatAnalyticsConfig';
 import { HttpRequesterService } from '../services';
-import { acquireSessionId } from '../utils/acquireSessionId';
+import { getOrSetupSessionId } from '../utils/getOrSetupSessionId';
 import { getChatEndpoint } from '../utils/endpointProviders';
 
 /**
@@ -56,7 +56,7 @@ export class ChatAnalyticsReporter {
     };
 
     const sessionId: string | undefined = this.sessionTrackingEnabled
-      ? (event.sessionId ?? acquireSessionId() ?? undefined)
+      ? (event.sessionId ?? getOrSetupSessionId() ?? undefined)
       : undefined;
     const res = await this.httpRequesterService.post(
       this.endpoint,
