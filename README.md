@@ -105,7 +105,7 @@ pagesAnalytics.track({eventType: 'C_MY_CUSTOM_EVENT'});
 ### Chat Analytics
 Chat Analytics work somewhat differently. For Chat Analytics, you only need to provide an API Key,  and other attributes such as your business ID will be automatically inferred. You can acquire this API key in the developer console of the Yext Platform.
 
-When `sessionTrackingEnabled` is set to true, Chat Analytics will automatically generates a ULID for `sessionId` and append to events from the same browser session. User may also provide their own `sessionId`, which takes precedence over the auto-generated id by Chat Analytics.
+When `sessionTrackingEnabled` is set to true, Chat Analytics will automatically generate a ULID for `sessionId` and append to events from the same browser session. User may also provide their own `sessionId`, which takes precedence over the auto-generated id by Chat Analytics.
 
 ```ts
 import { provideChatAnalytics } from '@yext/analytics';
@@ -122,8 +122,6 @@ analytics.report({
   }
 })
 ```
-
-
 
 ### Conversion Tracking
 
