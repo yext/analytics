@@ -17,6 +17,7 @@ export interface ChatAnalyticsConfig
 |  Property | Type | Description |
 |  --- | --- | --- |
 |  [apiKey](./analytics.chatanalyticsconfig.apikey.md) | string | The API key for accessing the Analytics Events API. |
+|  [endpoint?](./analytics.chatanalyticsconfig.endpoint.md) | string | <i>(Optional)</i> Override for the URL which are used when making requests to the Analytics API. |
 |  [env?](./analytics.chatanalyticsconfig.env.md) | [Environment](./analytics.environment.md) | <i>(Optional)</i> The Yext environment to send the requests to. Defaults to 'PRODUCTION'. |
 |  [region?](./analytics.chatanalyticsconfig.region.md) | [Region](./analytics.region.md) | <i>(Optional)</i> The region to send the requests to. Defaults to 'US'. |
 
