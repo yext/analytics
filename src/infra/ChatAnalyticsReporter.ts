@@ -22,11 +22,15 @@ export class ChatAnalyticsReporter {
   private readonly sessionTrackingEnabled: boolean;
 
   constructor(
-    { apiKey, env, region, endpoint, sessionTrackingEnabled = true }: ChatAnalyticsConfig,
+    { apiKey, env, region = 'US', endpoint, sessionTrackingEnabled }: ChatAnalyticsConfig,
     private httpRequesterService: HttpRequesterService
   ) {
     this.apiKey = apiKey;
-    this.sessionTrackingEnabled = sessionTrackingEnabled;
+    if (sessionTrackingEnabled === undefined) {
+      this.sessionTrackingEnabled = region === 'US' ? true : false;
+    } else {
+      this.sessionTrackingEnabled = sessionTrackingEnabled;
+    }
     this.endpoint = endpoint ?? getChatEndpoint(region, env);
   }
 
