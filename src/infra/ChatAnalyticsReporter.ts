@@ -13,18 +13,21 @@ import { getChatEndpoint } from '../utils/endpointProviders';
 export class ChatAnalyticsReporter {
   /** A Yext API Key with access to Analytics */
   private readonly apiKey: string;
-  /** The endpoint to report events to, inferred by the env and region */
+  /**
+   * The endpoint to report events to, inferred by the env and region
+   * when the endpoint field from config is not provided.
+   */
   private readonly endpoint: string;
   /** Whether to enable session tracking for analytics events */
   private readonly sessionTrackingEnabled: boolean;
 
   constructor(
-    { apiKey, env, region, sessionTrackingEnabled = false }: ChatAnalyticsConfig,
+    { apiKey, env, region, endpoint, sessionTrackingEnabled = false }: ChatAnalyticsConfig,
     private httpRequesterService: HttpRequesterService
   ) {
     this.apiKey = apiKey;
     this.sessionTrackingEnabled = sessionTrackingEnabled;
-    this.endpoint = getChatEndpoint(region, env);
+    this.endpoint = endpoint ?? getChatEndpoint(region, env);
   }
 
   /**

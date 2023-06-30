@@ -13,6 +13,8 @@ export interface ChatAnalyticsConfig {
   env?: Environment;
   /** {@inheritDoc SearchAnalyticsConfig.region} */
   region?: Region;
+  /** Override for the URL which are used when making requests to the Analytics API. */
+  endpoint?: string;
   /**
    * Whether to enable session tracking for analytics events.
    * Defaults to false.
