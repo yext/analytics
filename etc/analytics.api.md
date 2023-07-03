@@ -47,6 +47,7 @@ export interface ChatAnalyticsConfig {
     endpoint?: string;
     env?: Environment;
     region?: Region;
+    sessionTrackingEnabled?: boolean;
 }
 
 // @public

@@ -1,6 +1,7 @@
 import { ChatAnalyticsReporter } from '../../src/infra/ChatAnalyticsReporter';
 import { ChatAnalyticsConfig, ChatEventPayLoad, EventAPIResponse } from '../../src/models';
 import { mockErrorHttpRequesterService, mockHttpRequesterService } from '../../src/services/__mocks__/MockHttpRequesterService';
+import * as ulidLib from 'ulid';
 
 const prodConfig: ChatAnalyticsConfig = {
   apiKey: 'mock-api-key',
@@ -15,9 +16,14 @@ const expectedHeaders: Record<string, string> = {
 const payload: ChatEventPayLoad = {
   action: 'ADD_TO_CART',
   chat: {
-    botId: 'davish-playground',
+    botId: 'dummy-bot',
   },
+  sessionId: 'mocked-ulid-value'
 };
+
+beforeEach(() => {
+  jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+});
 
 const mockedResponse: EventAPIResponse = { id: '12345' };
 
@@ -80,7 +86,7 @@ it('Performs a promise rejection when the API responds with an error', async () 
   +'\nError: test 1.\nError: test 2.');
 });
 
-it('should convert timestamps to ISO strings', async () => {
+it('converts timestamps to ISO strings', async () => {
   const mockService = mockHttpRequesterService(mockedResponse);
   const reporter = new ChatAnalyticsReporter(prodConfig, mockService);
   const response = await reporter.report({
@@ -91,4 +97,95 @@ it('should convert timestamps to ISO strings', async () => {
     }
   });
   expect(response).toEqual(mockedResponse);
+});
+
+describe('sessionId handling', () => {
+  beforeEach(() => {
+    jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+  });
+
+  it('defaults sessionTrackingEnabled to true for US', async () => {
+    const mockService = mockHttpRequesterService(mockedResponse);
+    const reporter = new ChatAnalyticsReporter({
+      apiKey: 'mock-api-key',
+      env: 'PRODUCTION',
+      region: 'US',
+    }, mockService);
+    await reporter.report(payload);
+    expect(mockService.post).toBeCalledWith(
+      expect.any(String),
+      payload,
+      expect.any(Object)
+    );
+  });
+
+  it('defaults sessionTrackingEnabled to false for EU', async () => {
+    const mockService = mockHttpRequesterService(mockedResponse);
+    const reporter = new ChatAnalyticsReporter({
+      apiKey: 'mock-api-key',
+      env: 'PRODUCTION',
+      region: 'EU',
+    }, mockService);
+    await reporter.report(payload);
+    expect(mockService.post).toBeCalledWith(
+      expect.any(String),
+      {
+        ...payload,
+        sessionId: undefined
+      },
+      expect.any(Object)
+    );
+  });
+
+  it('uses provided sessionId in payload when sessionTrackingEnabled is true', async () => {
+    const mockService = mockHttpRequesterService(mockedResponse);
+    const reporter = new ChatAnalyticsReporter({
+      ...prodConfig,
+      sessionTrackingEnabled: true
+    }, mockService);
+    await reporter.report({
+      ...payload,
+      sessionId: 'custom-ulid-value',
+    });
+    expect(mockService.post).toBeCalledWith(
+      expect.any(String),
+      {
+        ...payload,
+        sessionId: 'custom-ulid-value',
+      },
+      expect.any(Object)
+    );
+  });
+
+  it('omits sessionId from payload when sessionTrackingEnabled is false', async () => {
+    const mockService = mockHttpRequesterService(mockedResponse);
+
+    let reporter = new ChatAnalyticsReporter({
+      ...prodConfig,
+      sessionTrackingEnabled: false,
+    }, mockService);
+    await reporter.report(payload);
+    expect(mockService.post).toBeCalledWith(
+      expect.any(String),
+      {
+        ...payload,
+        sessionId: undefined
+      },
+      expect.any(Object)
+    );
+
+    reporter = new ChatAnalyticsReporter(prodConfig, mockService);
+    await reporter.report({
+      ...payload,
+      sessionId: 'custom-ulid-value',
+    });
+    expect(mockService.post).toBeCalledWith(
+      expect.any(String),
+      {
+        ...payload,
+        sessionId: undefined
+      },
+      expect.any(Object)
+    );
+  });
 });
