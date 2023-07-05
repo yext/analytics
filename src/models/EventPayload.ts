@@ -44,6 +44,8 @@ export interface EventPayload {
    * the names of those SDKs to the version labels of those SDKs.
    */
   clientSdk?: Record<string, string>;
+  /** Indicates whether the event is the result of internal activity. */
+  internalUser?: boolean;
   /**
    * When the record summarizes multiple events, the number of events the record represents.
    * The event is treated as if it is duplicated this many times.
