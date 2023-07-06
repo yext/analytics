@@ -190,6 +190,7 @@ export interface EventPayload {
     } | {
         entityUid: number;
     };
+    internalUser?: boolean;
     ip?: {
         address: string;
         algorithm?: string;
