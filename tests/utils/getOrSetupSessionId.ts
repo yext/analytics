@@ -1,8 +1,8 @@
 import { SESSION_ID_KEY, getOrSetupSessionId } from '../../src/utils/getOrSetupSessionId';
-import * as ulidLib from 'ulid';
+import ulidxLib from 'ulidx';
 
 it('returns generated ulid as expected', () => {
-  const mockedUlidFn = jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+  const mockedUlidFn = jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
   const id = getOrSetupSessionId();
 
   expect(mockedUlidFn).toBeCalledTimes(1);
@@ -16,7 +16,7 @@ it('fetches existing ulid from session storage', () => {
     }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } as any));
-  const mockedUlidFn = jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+  const mockedUlidFn = jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
   const id = getOrSetupSessionId();
 
   expect(mockedUlidFn).not.toBeCalled();
@@ -25,7 +25,7 @@ it('fetches existing ulid from session storage', () => {
 });
 
 it('returns without error when window is undefined', () => {
-  const mockedUlidFn = jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+  const mockedUlidFn = jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
   // Simulate a node environment where the window is undefined
   const windowSpy = jest.spyOn(window, 'window', 'get');
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,7 +38,7 @@ it('returns without error when window is undefined', () => {
 });
 
 it('logs a warning in console when sessionStorage is not accessible', () => {
-  const mockedUlidFn = jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+  const mockedUlidFn = jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
   const windowSpy = jest.spyOn(window, 'window', 'get').mockImplementation(() => ({
     sessionStorage: undefined
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
