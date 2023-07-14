@@ -1,4 +1,4 @@
-import { ulid } from 'ulid';
+import { ulid } from 'ulidx';
 
 export const SESSION_ID_KEY = 'yext_analytics_session_id';
 

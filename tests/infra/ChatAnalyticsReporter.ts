@@ -1,7 +1,7 @@
 import { ChatAnalyticsReporter } from '../../src/infra/ChatAnalyticsReporter';
 import { ChatAnalyticsConfig, ChatEventPayLoad, EventAPIResponse } from '../../src/models';
 import { mockErrorHttpRequesterService, mockHttpRequesterService } from '../../src/services/__mocks__/MockHttpRequesterService';
-import * as ulidLib from 'ulid';
+import ulidxLib from 'ulidx';
 
 const prodConfig: ChatAnalyticsConfig = {
   apiKey: 'mock-api-key',
@@ -22,7 +22,7 @@ const payload: ChatEventPayLoad = {
 };
 
 beforeEach(() => {
-  jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+  jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
 });
 
 const mockedResponse: EventAPIResponse = { id: '12345' };
@@ -101,7 +101,7 @@ it('converts timestamps to ISO strings', async () => {
 
 describe('sessionId handling', () => {
   beforeEach(() => {
-    jest.spyOn(ulidLib, 'ulid').mockReturnValue('mocked-ulid-value');
+    jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
   });
 
   it('defaults sessionTrackingEnabled to true for US', async () => {
