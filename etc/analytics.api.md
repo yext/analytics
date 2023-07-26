@@ -198,8 +198,10 @@ export interface EventPayload {
     label?: string;
     locale?: string;
     pageUrl?: string;
+    referrerUrl?: string;
     sessionId?: string;
     timestamp?: Date | string;
+    visitor?: Record<string, string>;
 }
 
 // @public
