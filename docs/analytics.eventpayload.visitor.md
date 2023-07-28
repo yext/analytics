@@ -14,5 +14,5 @@ visitor?: Record<string, string>;
 
 ## Remarks
 
-Keys are visitor methods and values are visitor IDs
+Keys are visitor methods and values are visitor IDs. Key pattern: `^[a-zA-Z0-9_-]\{1,16}$`<!-- -->. Value pattern: `^[\\x20-\\x7E]\{1,64\}$`
 

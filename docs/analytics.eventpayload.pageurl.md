@@ -4,7 +4,7 @@
 
 ## EventPayload.pageUrl property
 
-The URL of the page where the event occurred
+The URI of the page where the event occurred
 
 <b>Signature:</b>
 

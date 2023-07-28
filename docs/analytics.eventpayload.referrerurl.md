@@ -4,7 +4,7 @@
 
 ## EventPayload.referrerUrl property
 
-The URL of the page which the visitor came from prior to the event.
+The URI of the page which the visitor came from prior to the event.
 
 <b>Signature:</b>
 

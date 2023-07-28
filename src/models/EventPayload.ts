@@ -10,11 +10,11 @@ export interface EventPayload {
   action: Action;
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string;
-  /** The URL of the page where the event occurred */
+  /** The URI of the page where the event occurred */
   pageUrl?: string;
-  /** The URL of the page the event is directing the visitor to. */
+  /** The URI of the page the event is directing the visitor to. */
   destinationUrl?: string;
-  /** The URL of the page which the visitor came from prior to the event. */
+  /** The URI of the page which the visitor came from prior to the event. */
   referrerUrl?: string;
   /** A label assigned to the event, e.g. a CTA label. */
   label?: string;
@@ -84,7 +84,9 @@ export interface EventPayload {
    * Information used to associate analytics with a particular user.
    *
    * @remarks
-   * Keys are visitor methods and values are visitor IDs
+   * Keys are visitor methods and values are visitor IDs.
+   * Key pattern: `^[a-zA-Z0-9_-]\{1,16}$`.
+   * Value pattern: `^[\\x20-\\x7E]\{1,64\}$`
    *
    * @public
    */

@@ -4,7 +4,7 @@
 
 ## EventPayload.destinationUrl property
 
-The URL of the page the event is directing the visitor to.
+The URI of the page the event is directing the visitor to.
 
 <b>Signature:</b>
 
