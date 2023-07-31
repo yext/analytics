@@ -30,6 +30,8 @@ export interface EventPayload
 |  [label?](./analytics.eventpayload.label.md) | string | <i>(Optional)</i> A label assigned to the event, e.g. a CTA label. |
 |  [locale?](./analytics.eventpayload.locale.md) | string | <i>(Optional)</i> The locale of the user who generated the event. |
 |  [pageUrl?](./analytics.eventpayload.pageurl.md) | string | <i>(Optional)</i> The URL of the page where the event occurred |
+|  [referrerUrl?](./analytics.eventpayload.referrerurl.md) | string | <i>(Optional)</i> The URL of the page which the visitor came from prior to the event. |
 |  [sessionId?](./analytics.eventpayload.sessionid.md) | string | <i>(Optional)</i> Unique identifier to tie together events in a single browsing session |
 |  [timestamp?](./analytics.eventpayload.timestamp.md) | Date \| string | <i>(Optional)</i> The timestamp at which the event occurred, in ISO format. |
+|  [visitor?](./analytics.eventpayload.visitor.md) | Record&lt;string, string&gt; | <i>(Optional)</i> Information used to associate analytics with a particular user. |
 

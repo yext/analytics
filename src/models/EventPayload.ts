@@ -14,6 +14,8 @@ export interface EventPayload {
   pageUrl?: string;
   /** The URL of the page the event is directing the visitor to. */
   destinationUrl?: string;
+  /** The URL of the page which the visitor came from prior to the event. */
+  referrerUrl?: string;
   /** A label assigned to the event, e.g. a CTA label. */
   label?: string;
   /** The locale of the user who generated the event. */
@@ -78,4 +80,15 @@ export interface EventPayload {
     /** The algorithm to use to anonymize the IP address after collection. */
     algorithm?: string;
   };
+  /**
+   * Information used to associate analytics with a particular user.
+   *
+   * @remarks
+   * Keys are visitor methods and values are visitor IDs.
+   * Key pattern: `^[a-zA-Z0-9_-]{1,16}$`.
+   * Value pattern: `^[\x20-\x7E]{1,64}$`
+   *
+   * @public
+   */
+  visitor?: Record<string, string>;
 }
