@@ -30,7 +30,7 @@ const mockedResponse: EventAPIResponse = { id: '12345' };
 it('should send events to the prod domain when configured', async () => {
   const mockService = mockHttpRequesterService(mockedResponse);
   const reporter = new ChatAnalyticsReporter(prodConfig, mockService);
-  const expectedUrl ='https://www.us.yextevents.com/accounts/me/events';
+  const expectedUrl ='https://us.yextevents.com/accounts/me/events';
   const response = await reporter.report(payload);
   expect(response).toEqual(mockedResponse);
   expect(mockService.post).toBeCalledWith(

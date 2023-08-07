@@ -12,7 +12,7 @@ it('The URL is constructed correctly', () => {
   const mockService = mockHttpRequesterService();
   const analyticsReporter = new SearchAnalyticsReporter(config, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
-  const expectedUrl = `https://www.us.yextevents.com/realtimeanalytics/data/answers/${config.businessId}`;
+  const expectedUrl = `https://us.yextevents.com/realtimeanalytics/data/answers/${config.businessId}`;
   expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
@@ -25,7 +25,7 @@ it('The URL is constructed correctly for EU', () => {
   const analyticsReporter = new SearchAnalyticsReporter(configWithEURegion, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const expectedUrl
-    = `https://www.eu.yextevents.com/realtimeanalytics/data/answers/${configWithEURegion.businessId}`;
+    = `https://eu.yextevents.com/realtimeanalytics/data/answers/${configWithEURegion.businessId}`;
   expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
@@ -38,7 +38,7 @@ it('The URL is constructed correctly for Sandbox', () => {
   const analyticsReporter = new SearchAnalyticsReporter(configWithSandboxEnv, mockService);
   analyticsReporter.report({ type: 'SCROLL_TO_BOTTOM_OF_PAGE', queryId: '1' });
   const expectedUrl
-    = `https://www.sbx.us.yextevents.com/realtimeanalytics/data/answers/${configWithSandboxEnv.businessId}`;
+    = `https://sbx.us.yextevents.com/realtimeanalytics/data/answers/${configWithSandboxEnv.businessId}`;
   expect(mockService.post).toHaveBeenLastCalledWith(expectedUrl, expect.anything());
 });
 
