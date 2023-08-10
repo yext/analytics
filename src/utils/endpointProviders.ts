@@ -4,11 +4,11 @@ type DomainMap = Record<Region, Record<Environment, string | undefined>>;
 
 const EVENT_DOMAINS: DomainMap = {
   US: {
-    PRODUCTION: 'https://www.us.yextevents.com',
-    SANDBOX: 'https://www.sbx.us.yextevents.com',
+    PRODUCTION: 'https://us.yextevents.com',
+    SANDBOX: 'https://sbx.us.yextevents.com',
   },
   EU: {
-    PRODUCTION: 'https://www.eu.yextevents.com',
+    PRODUCTION: 'https://eu.yextevents.com',
     SANDBOX: undefined
   }
 };
