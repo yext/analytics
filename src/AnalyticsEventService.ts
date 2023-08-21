@@ -2,9 +2,6 @@ import {AnalyticsConfig} from "./AnalyticsConfig";
 import {EventAPIResponse, EventPayload} from "./models";
 
 export interface AnalyticsEventService {
-
-    constructor(config: AnalyticsConfig);
-
     /**
      * Creates a new AnalyticsEventService with the following values defined
      * as the default when making a report.
