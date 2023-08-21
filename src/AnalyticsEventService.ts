@@ -1,5 +1,5 @@
-import {AnalyticsConfig} from "./AnalyticsConfig";
-import {EventAPIResponse, EventPayload} from "./models";
+import {EventAPIResponse} from "./EventAPIResponse";
+import {EventPayload} from "./EventPayload";
 
 export interface AnalyticsEventService {
     /**
