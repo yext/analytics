@@ -70,7 +70,7 @@
     "resetMocks": true,
     "restoreMocks": true,
     "clearMocks": true,
-    "passWithNoTest": true
+    "passWithNoTests": true
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
