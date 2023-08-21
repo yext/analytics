@@ -1,8 +1,8 @@
 {
   "name": "@yext/analytics",
-  "version": "0.6.4",
+  "version": "1.0.0-beta.0",
   "description": "An analytics library for Yext",
-  "author": "slapshot@yext.com",
+  "author": "fusion@yext.com",
   "license": "BSD-3-Clause",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/esm/index.js",
@@ -69,7 +69,8 @@
     ],
     "resetMocks": true,
     "restoreMocks": true,
-    "clearMocks": true
+    "clearMocks": true,
+    "passWithNoTests": true
   },
   "dependencies": {
     "cross-fetch": "^3.1.5",
