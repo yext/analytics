@@ -1,5 +1,4 @@
-import {EnumOrString} from '../../utils';
-
+import { EnumOrString } from './EnumOrString';
 /**
  * An enum of the physical region the Yext account
  *

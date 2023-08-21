@@ -1,5 +1,4 @@
-import { EnumOrString } from '../../utils';
-
+import { EnumOrString } from './EnumOrString';
 /**
  * An enum for the Yext Environments
  *
