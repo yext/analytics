@@ -7,7 +7,13 @@ import {Region} from './models';
  * @public
  */
 export interface AnalyticsConfig {
+    /** The API Key or OAuth for accessing the Analytics Events API
+     * Only one of key or bearer should be set.
+     * */
     key?: string;
+    /** The bearer token for accessing the Analytics Events API.
+     * Only one of key or bearer should be set.
+     * */
     bearer?: string;
     /** The Yext environment to send requests to. Defaults to 'PRODUCTION'. */
     env?: Environment;
