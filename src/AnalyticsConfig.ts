@@ -1,5 +1,5 @@
-import {Environment} from './models';
-import {Region} from './models';
+import {Environment} from './Environment';
+import {Region} from './Region';
 
 /**
  * The main configuration options for Analytics Events.
