@@ -1,4 +1,5 @@
-import {Environment, Region} from '../models';
+import { Environment } from './Environment';
+import { Region } from './Region';
 
 type DomainMap = Record<Region, Record<Environment, string | undefined>>;
 

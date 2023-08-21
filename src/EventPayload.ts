@@ -1,4 +1,4 @@
-import { Action } from './chat/Action';
+import { Action } from './Action';
 
 /**
  * The payload accepted by the Analytics Events API.
@@ -48,6 +48,15 @@ export interface EventPayload {
   clientSdk?: Record<string, string>;
   /** Indicates whether the event is the result of internal activity. */
   internalUser?: boolean;
+  /** Fields specific to reporting Chat Analytics Events */
+  chat?: {
+    /** The ID of the bot that generated the event. */
+    botId: string;
+    /** The ID of the conversation in which the event occurred. */
+    conversationId?: string;
+    /** The ID of the individual response in which the event occurred. */
+    responseId?: string;
+  };
   /**
    * When the record summarizes multiple events, the number of events the record represents.
    * The event is treated as if it is duplicated this many times.
