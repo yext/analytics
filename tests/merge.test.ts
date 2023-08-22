@@ -32,9 +32,6 @@ describe('Merge Function Test', () => {
   it('should merge objects with no overlap correctly', () => {
     const event1: EventPayload = {
       action: 'APPLY',
-      browserAgent: {
-        device: 'iPhone',
-      },
       chat: {
         botId: 'botId',
       }
@@ -45,6 +42,7 @@ describe('Merge Function Test', () => {
     const event2: Record<string, unknown> = {
       action: 'APPLY',
       browserAgent: {
+        device: 'iPhone',
         deviceClass: 'Mobile',
       },
       chat: {
