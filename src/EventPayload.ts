@@ -23,7 +23,7 @@ export interface EventPayload {
   /** The timestamp at which the event occurred, in ISO format. */
   timestamp?: Date | string;
   /** Whether the event is the result of bot activity. */
-  bot?: string;
+  bot?: boolean;
   /** Information about the visitors device and browser. */
   browserAgent?: {
     /** The browser associated with the event. */
