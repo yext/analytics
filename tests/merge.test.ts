@@ -11,7 +11,7 @@ describe('Merge Function Test', () => {
 
     const uneffectedEvent1: EventPayload = {...event1};
 
-    const event2: Record<string, unknown> = {
+    const event2 = {
       label: 'label',
       bot: null,
       locale: 'en_UK',
@@ -39,7 +39,7 @@ describe('Merge Function Test', () => {
 
     const uneffectedEvent1: EventPayload = {...event1};
 
-    const event2: Record<string, unknown> = {
+    const event2 = {
       action: 'APPLY',
       browserAgent: {
         device: 'iPhone',
@@ -83,7 +83,7 @@ describe('Merge Function Test', () => {
 
     const uneffectedEvent1: EventPayload = {...event1};
 
-    const event2: Record<string, unknown> = {
+    const event2 = {
       action: 'ADD_TO_CART',
       browserAgent: {
         os: undefined,
