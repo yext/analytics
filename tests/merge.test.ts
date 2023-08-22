@@ -24,14 +24,17 @@ describe('Merge Function Test', () => {
       locale: 'en_UK',
       action: 'APPLY'
     };
+
     expect(result).toEqual(expected);
     expect(event1).toEqual(uneffectedEvent1); // confirm event1 uneffected
-
   });
 
   it('should merge objects with no overlap correctly', () => {
     const event1: EventPayload = {
       action: 'APPLY',
+      browserAgent: {
+        device: 'iPhone',
+      },
       chat: {
         botId: 'botId',
       }
@@ -41,6 +44,9 @@ describe('Merge Function Test', () => {
 
     const event2: Record<string, unknown> = {
       action: 'APPLY',
+      browserAgent: {
+        deviceClass: 'Mobile',
+      },
       chat: {
         responseId: 'responseId',
       }
@@ -50,10 +56,14 @@ describe('Merge Function Test', () => {
 
     const expected: EventPayload = {
       action: 'APPLY',
+      browserAgent: {
+        device: 'iPhone',
+        deviceClass: 'Mobile',
+      },
       chat: {
         botId: 'botId',
         responseId: 'responseId',
-      }
+      },
     };
 
     expect(result).toEqual(expected);
