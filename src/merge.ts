@@ -28,7 +28,7 @@ export const merge = (original: EventPayload, newValues: Partial<PartialPayload>
           if (!target[EventKey]) {
             target[EventKey] = {};
           }
-          stack.push([target[EventKey] as PartialPayload ?? {}, value]);
+          stack.push([target[EventKey] as PartialPayload, value]);
         }
       });
     }
