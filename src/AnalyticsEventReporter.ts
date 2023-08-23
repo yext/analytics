@@ -16,15 +16,14 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
      * @param payload - (optional) desired event values to report
      */
     constructor(config: AnalyticsConfig, payload?: EventPayload) {
-        const configIsValid: boolean = ('key' in config || 'bearer' in config) 
-            && !('key' in config && 'bearer' in config);
+        const apiKeyIsSet = typeof config.key === 'string' && config.key.trim().length !== 0;
+        const bearerTokenIsSet = typeof config.bearer === 'string' && config.bearer.trim().length !== 0;
+        const configIsValid = (apiKeyIsSet || bearerTokenIsSet) && !(apiKeyIsSet && bearerTokenIsSet);
         if (!configIsValid) {
             throw new Error("Provide one and only one of API Key or Bearer Token.")
         }
         this.config = config;
-        if (payload !== undefined) {
-            this.payload = payload;
-        }
+        this.payload = payload;
     }
 
     with(payload: EventPayload): AnalyticsEventService {
