@@ -10,28 +10,28 @@ import { EventPayload } from './EventPayload';
  *  Merging a non-existing key adds the key/value.
  *  When the value is an object, the above is applied iteratively.
  */
-export const merge = (
-  original: EventPayload,
-  newValues: Partial<Record<keyof EventPayload, unknown>>
-): EventPayload => {
+export const merge = (original: EventPayload, newValues: Partial<PartialPayload>): EventPayload => {
   const copy = { ...original };
-  const stack: Array<[Record<string, unknown>,
-     Partial<Record<keyof EventPayload, unknown>>]> = [[copy, newValues]];
+  const stack: Array<[PartialPayload, PartialPayload]> = [[copy, newValues]];
 
   while (stack.length) {
     const [target, source] = stack.pop() || [];
     if (target && source) {
       Object.keys(source).forEach((key) => {
-        const value = source[key as keyof EventPayload];
+        console.log('Stack: ' + JSON.stringify(stack));
+        const EventKey = key as keyof EventPayload;
+        console.log('key' + EventKey);
+        const value = source[EventKey];
         if (value === null || value === undefined) {
-          delete target[key];
+          delete target[EventKey];
         } else if (typeof value !== 'object') {
-          target[key] = value;
+          target[EventKey] = value;
         } else {
-          if (!target[key]) {
-            target[key] = {};
+          if (!target[EventKey]) {
+            target[EventKey] = {};
           }
-          stack.push([target[key] as Record<keyof EventPayload, unknown>, value]);
+          console.log('target: ' + JSON.stringify(target) + '\nsource: ' + JSON.stringify(source));
+          stack.push([target[EventKey] ?? {}, value]);
         }
       });
     }
@@ -42,3 +42,5 @@ export const merge = (
     action: copy.action as EventPayload['action']
   };
 };
+
+type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
