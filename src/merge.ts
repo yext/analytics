@@ -11,24 +11,24 @@ import { EventPayload } from './EventPayload';
  *  When the value is an object, the above is applied iteratively.
  */
 export const merge = (original: EventPayload, newValues: PartialPayload): EventPayload => {
-  const copy = { ...original };
+  const copy = JSON.parse(JSON.stringify(original));
   const stack: Array<[PartialPayload, PartialPayload]> = [[copy, newValues]];
 
   while (stack.length) {
     const [target, source] = stack.pop() ?? [];
     if (target && source) {
       Object.keys(source).forEach((key) => {
-        const EventKey = key as keyof EventPayload;
-        const value = source[EventKey];
+        const eventKey = key as keyof EventPayload;
+        const value = source[eventKey];
         if (value === null || value === undefined) {
-          delete target[EventKey];
+          target[eventKey] = undefined;
         } else if (typeof value !== 'object') {
-          target[EventKey] = value;
+          target[eventKey] = value;
         } else {
-          if (!target[EventKey]) {
-            target[EventKey] = {};
+          if (!target[eventKey]) {
+            target[eventKey] = {};
           }
-          stack.push([target[EventKey] as PartialPayload, value]);
+          stack.push([target[eventKey] as PartialPayload, value]);
         }
       });
     }
