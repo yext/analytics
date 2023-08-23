@@ -2,33 +2,43 @@ import { EventPayload } from './EventPayload';
 
 /**
  * Used for merging request JSON into an existing EventPayload.
- * Returns a new EventPayload, with the original object uneffected.
+ * Returns a new EventPayload, with the original object unaffected.
  * The merge occurs using the following conventions:
  *
  *  Merging an existing key with null/undefined deletes the key.
- *  Merging an existing key with non-null value update the value.
+ *  Merging an existing key with non-null value updates the value.
  *  Merging a non-existing key adds the key/value.
- *  When the value is an object, the above is applied recursivley.
+ *  When the value is an object, the above is applied iteratively.
  */
-export const merge = (original: EventPayload, newValues: Partial<Record<keyof EventPayload, unknown>>): EventPayload => {
+export const merge = (
+  original: EventPayload,
+  newValues: Partial<Record<keyof EventPayload, unknown>>
+): EventPayload => {
   const copy: Record<string, unknown> = { ...original };
+  const stack: Array<[Record<string, unknown>,
+     Partial<Record<keyof EventPayload, unknown>>]> = [[copy, newValues]];
 
-  for (const key in newValues) {
-    if (newValues.hasOwnProperty(key)) {
-      const value = (newValues as Record<string, unknown>)[key];
-      if (value === null || value === undefined) {
-        delete copy[key];
-      } else if (typeof value !== 'object') {
-        copy[key] = value;
-      } else {
-        copy[key] = merge(copy[key] as EventPayload, value as Record<string, unknown>);
-      }
+  while (stack.length > 0) {
+    const [target, source] = stack.pop() || [];
+    if (target && source) {
+      Object.keys(source).forEach((key) => {
+        const value = source[key as keyof EventPayload];
+        if (value === null || value === undefined) {
+          delete target[key];
+        } else if (typeof value !== 'object' || value === null) {
+          target[key] = value;
+        } else {
+          if (!target[key]) {
+            target[key] = {};
+          }
+          stack.push([target[key] as Record<keyof EventPayload, unknown>, value]);
+        }
+      });
     }
   }
 
-  const result: EventPayload = {
+  return {
     ...copy,
     action: copy.action as EventPayload['action']
   };
-  return result;
 };
