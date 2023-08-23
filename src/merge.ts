@@ -10,12 +10,12 @@ import { EventPayload } from './EventPayload';
  *  Merging a non-existing key adds the key/value.
  *  When the value is an object, the above is applied iteratively.
  */
-export const merge = (original: EventPayload, newValues: Partial<PartialPayload>): EventPayload => {
+export const merge = (original: EventPayload, newValues: PartialPayload): EventPayload => {
   const copy = { ...original };
   const stack: Array<[PartialPayload, PartialPayload]> = [[copy, newValues]];
 
   while (stack.length) {
-    const [target, source] = stack.pop() || [];
+    const [target, source] = stack.pop() ?? [];
     if (target && source) {
       Object.keys(source).forEach((key) => {
         const EventKey = key as keyof EventPayload;
