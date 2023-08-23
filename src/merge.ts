@@ -18,14 +18,14 @@ export const merge = (
   const stack: Array<[Record<string, unknown>,
      Partial<Record<keyof EventPayload, unknown>>]> = [[copy, newValues]];
 
-  while (stack.length > 0) {
+  while (stack.length) {
     const [target, source] = stack.pop() || [];
     if (target && source) {
       Object.keys(source).forEach((key) => {
         const value = source[key as keyof EventPayload];
         if (value === null || value === undefined) {
           delete target[key];
-        } else if (typeof value !== 'object' || value === null) {
+        } else if (typeof value !== 'object') {
           target[key] = value;
         } else {
           if (!target[key]) {
