@@ -14,7 +14,7 @@ export const merge = (
   original: EventPayload,
   newValues: Partial<Record<keyof EventPayload, unknown>>
 ): EventPayload => {
-  const copy: Record<string, unknown> = { ...original };
+  const copy = { ...original };
   const stack: Array<[Record<string, unknown>,
      Partial<Record<keyof EventPayload, unknown>>]> = [[copy, newValues]];
 
