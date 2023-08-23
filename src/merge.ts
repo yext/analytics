@@ -18,9 +18,7 @@ export const merge = (original: EventPayload, newValues: Partial<PartialPayload>
     const [target, source] = stack.pop() || [];
     if (target && source) {
       Object.keys(source).forEach((key) => {
-        console.log('Stack: ' + JSON.stringify(stack));
         const EventKey = key as keyof EventPayload;
-        console.log('key' + EventKey);
         const value = source[EventKey];
         if (value === null || value === undefined) {
           delete target[EventKey];
@@ -30,7 +28,6 @@ export const merge = (original: EventPayload, newValues: Partial<PartialPayload>
           if (!target[EventKey]) {
             target[EventKey] = {};
           }
-          console.log('target: ' + JSON.stringify(target) + '\nsource: ' + JSON.stringify(source));
           stack.push([target[EventKey] ?? {}, value]);
         }
       });
