@@ -1,4 +1,5 @@
 import {EventPayload} from './EventPayload';
+import useBeacon from './browser';
 
 /**
  * Used by the AnalyticsEventReport report() method to send an analytics event request via
@@ -15,10 +16,7 @@ const post = async (
     body: EventPayload,
     forceFetch: boolean,
 ) => {
-    const agent = body.browserAgent;
-    // fetch + keepalive is not supported in Firefox
-    let useBeacon = (agent && agent.browser && agent.browser.startsWith('Firefox')) || (navigator.userAgent && navigator.userAgent.includes('Firefox'));
-    if (!forceFetch && useBeacon) {
+    if (!forceFetch && useBeacon(body)) {
         return navigator.sendBeacon(url, JSON.stringify(body));
     }
     return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
