@@ -1,7 +1,6 @@
 import { EventPayload } from '../src/EventPayload';
 import { EventAPIResponse } from '../src/EventAPIResponse';
-import post from '../src/post';
-import useBeacon from '../src/browser'
+import { post, useBeacon } from '../src/post';
 const fetchMock = /** @type {FetchMockJest} */ (require('fetch-mock-jest'));
 
 describe('Test post util function', () => {
