@@ -1,6 +1,7 @@
 import { EventPayload } from '../src/EventPayload';
 import { EventAPIResponse } from '../src/EventAPIResponse';
 import post from '../src/post';
+import useBeacon from '../src/browser'
 const fetchMock = /** @type {FetchMockJest} */ (require('fetch-mock-jest'));
 
 describe('Test post util function', () => {
@@ -32,6 +33,24 @@ describe('Test post util function', () => {
     const optionsA = {method: 'POST', body: JSON.stringify(eventPayloadA), keepalive: true};
 
     fetchMock.post(url, JSON.stringify(eventResponseA));
+
+    it('should use fetch', () => {
+        const navigator = { userAgent: 'Chrome' };
+        Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+
+        const result = useBeacon(eventPayloadA);
+        expect(result).toBe(false);
+    })
+
+    it('should use beacon', () => {
+        // userAgent is Firefox
+        let result = useBeacon(eventPayloadA);
+        expect(result).toBe(true);
+
+        // browser field in EventPayload is Firefox
+        result = useBeacon(eventPayloadB);
+        expect(result).toBe(true);
+    })
 
     it('should send fetch request', async () => {
         // forceFetch: true
