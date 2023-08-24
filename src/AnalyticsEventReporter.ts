@@ -2,6 +2,7 @@ import { AnalyticsEventService } from "./AnalyticsEventService"
 import { AnalyticsConfig } from "./AnalyticsConfig";
 import { EventPayload } from "./EventPayload";
 import { EventAPIResponse } from "./EventAPIResponse";
+import { merge } from "./merge";
 
 /** Represents an reporter is responsible for reporting analytics events. */
 export class AnalyticsEventReporter implements AnalyticsEventService {
@@ -27,7 +28,8 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     }
 
     with(payload: EventPayload): AnalyticsEventService {
-        return new AnalyticsEventReporter(this.config);
+        const currentPayload = this.payload === undefined ? payload : merge(this.payload, payload);
+        return new AnalyticsEventReporter(this.config, currentPayload);
     }
 
     report(payload: object): Promise<EventAPIResponse> | boolean {
