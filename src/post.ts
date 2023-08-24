@@ -1,5 +1,4 @@
 import {EventPayload} from './EventPayload';
-import useBeacon from './browser';
 
 /**
  * Used by the AnalyticsEventReport report() method to send an analytics event request via
@@ -11,15 +10,23 @@ import useBeacon from './browser';
  * @param forceFetch if true, it will force the browser to call fetch instead of sendBeacon,
  * regardless of whether keepAlive is supported
  */
-const post = async (
-    url: string,
-    body: EventPayload,
-    forceFetch: boolean,
-) => {
+export function post(url: string, body: EventPayload, forceFetch: boolean) {
     if (!forceFetch && useBeacon(body)) {
         return navigator.sendBeacon(url, JSON.stringify(body));
     }
     return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
 }
 
-export default post;
+/**
+ * Returns a boolean that determines whether the post method should use beacon. Firefox and Firefox
+ * for Android do not support fetch + keepAlive, so useBeacon will return true if the browser is
+ * Firefox or Firefox for Android.
+ *
+ * @param body the EventPayload object
+ */
+export function useBeacon(body: EventPayload) {
+    const agent = body.browserAgent;
+    // keepAlive is not supported in Firefox or Firefox for Android
+    return (agent && agent.browser && agent.browser.toLowerCase().startsWith('firefox'))
+        || (navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox'));
+}
