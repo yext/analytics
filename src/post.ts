@@ -11,10 +11,17 @@ import {EventPayload} from './EventPayload';
  * regardless of whether keepAlive is supported
  */
 export function post(url: string, body: EventPayload, forceFetch: boolean) {
+<<<<<<< HEAD
     if (useBeacon(body, forceFetch)) {
         return navigator.sendBeacon(url, JSON.stringify(body));
     }
     return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
+=======
+  if (!forceFetch && useBeacon(body)) {
+    return navigator.sendBeacon(url, JSON.stringify(body));
+  }
+  return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
+>>>>>>> 5cd5504 (EventsAPi: Implement report)
 }
 
 /**
@@ -24,7 +31,16 @@ export function post(url: string, body: EventPayload, forceFetch: boolean) {
  *
  * @param body the EventPayload object
  */
+<<<<<<< HEAD
 export function useBeacon(body: EventPayload, forceFetch: boolean) {
     // keepAlive is not supported in Firefox or Firefox for Android
     return !forceFetch && navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox');
 }
+=======
+export function useBeacon(body: EventPayload) {
+  const agent = body.browserAgent;
+  // keepAlive is not supported in Firefox or Firefox for Android
+  return (agent && agent.browser && agent.browser.toLowerCase().startsWith('firefox'))
+        || (navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox'));
+}
+>>>>>>> 5cd5504 (EventsAPi: Implement report)

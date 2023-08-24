@@ -1,5 +1,5 @@
 import { EventPayload } from '../src/EventPayload';
-import { merge } from '../src/merge';
+import merge from '../src/merge';
 
 describe('Merge Function Test', () => {
   it('should merge primitives values correctly', () => {

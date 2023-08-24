@@ -4,22 +4,22 @@ import { Region } from './Region';
 type DomainMap = Record<Region, Record<Environment, string | undefined>>;
 
 const EVENT_DOMAINS: DomainMap = {
-  US: {
+  us: {
     PRODUCTION: 'https://us.yextevents.com',
     SANDBOX: 'https://sbx.us.yextevents.com',
   },
-  EU: {
+  eu: {
     PRODUCTION: 'https://eu.yextevents.com',
     SANDBOX: undefined
   }
 };
 
 const CONVERSION_TRACKING_DOMAINS: DomainMap = {
-  US: {
+  us: {
     PRODUCTION: 'https://realtimeanalytics.yext.com',
     SANDBOX: 'https://sandbox-realtimeanalytics.yext.com',
   },
-  EU: {
+  eu: {
     PRODUCTION: undefined,
     SANDBOX: undefined
   }
@@ -51,12 +51,12 @@ export function getPagesEndpoint(
 }
 
 export function getConversionTrackingEndpoint(): string {
-  const domain = getConversionTrackingDomain('US', 'PRODUCTION');
+  const domain = getConversionTrackingDomain('us', 'PRODUCTION');
   return `${domain}/conversiontracking/conversion`;
 }
 
 export function getConversionTrackingListingsEndpoint(): string {
-  const domain = getConversionTrackingDomain('US', 'PRODUCTION');
+  const domain = getConversionTrackingDomain('us', 'PRODUCTION');
   return `${domain}/listings`;
 }
 
@@ -70,7 +70,7 @@ function getEventDomain(region?: Region, env?: Environment): string {
 
 function getDomain(
   domainMap: DomainMap,
-  region: Region = 'US',
+  region: Region = 'us',
   env: Environment = 'PRODUCTION',
   conversionTrackingEnabled = false)
 {

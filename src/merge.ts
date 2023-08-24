@@ -1,4 +1,4 @@
-import { EventPayload } from './EventPayload';
+import { EventPayload, PartialPayload } from './EventPayload';
 
 /**
  * Used for merging request JSON into an existing EventPayload.
@@ -10,7 +10,7 @@ import { EventPayload } from './EventPayload';
  *  Merging a non-existing key adds the key/value.
  *  When the value is an object, the above is applied iteratively.
  */
-export const merge = (original: EventPayload, newValues: PartialPayload): EventPayload => {
+const merge = (original: EventPayload, newValues: PartialPayload): EventPayload => {
   const copy = JSON.parse(JSON.stringify(original));
   const stack: Array<[PartialPayload, PartialPayload]> = [[copy, newValues]];
 
@@ -40,4 +40,5 @@ export const merge = (original: EventPayload, newValues: PartialPayload): EventP
   };
 };
 
-type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
+export default merge;
+
