@@ -38,9 +38,11 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       const finalPayload = (this.payload && newPayload) ? (merge(this.payload, newPayload))
         : this.payload ?? newPayload ?? function(){throw Error('EventPayload is empty');}();
 
-      if (this.config.sessionTrackingEnabled) {
-        const sessionId = newPayload?.sessionId ?? getOrSetupSessionId();
-        finalPayload.sessionId = sessionId;
+      /** If session tracking is enabled, and sessionId was not already manually added to the event payload,
+       * call getOrSetupSessionId to set value.
+       */
+      if (this.config.sessionTrackingEnabled && !finalPayload.sessionId) {
+        finalPayload.sessionId = getOrSetupSessionId();
       }
 
       finalPayload.clientSdk = {
