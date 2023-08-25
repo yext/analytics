@@ -138,7 +138,7 @@ describe('Test report function', () => {
           destinationUrl: 'https://google.com',
           count: 5,
         },
-        true);
+        undefined);
     });
 
   it('should call post with correct fields, report should return error json  post returns an error',
@@ -201,7 +201,7 @@ describe('Test report function', () => {
           count: 5,
           sessionId: 'ULID1234'
         },
-        true);
+        undefined);
     });
 });
 

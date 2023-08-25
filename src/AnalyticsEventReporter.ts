@@ -54,7 +54,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
           this.config.env,
           this.config.region),
         finalPayload as EventPayload,
-        this.config.forceFetch ?? true);
+        this.config.forceFetch);
 
 
       if (typeof res === 'boolean') {
