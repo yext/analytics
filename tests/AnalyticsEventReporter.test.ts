@@ -141,7 +141,7 @@ describe('Test report function', () => {
         undefined);
     });
 
-  it('should call post with correct fields, report should return error json  post returns an error',
+  it('should call post with correct fields, report should return error json if post returns an error',
     async () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
@@ -178,6 +178,9 @@ describe('Test report function', () => {
       const res = await reporter.report({
         authorization: 'Bearer shouldNotUpdate',
         destinationUrl: 'https://google.com',
+        clientSdk: {
+          chat: '1.0.1.0',
+        },
       });
 
       // Expect Unauthorized response
@@ -187,14 +190,15 @@ describe('Test report function', () => {
       /** Expect merge to have completed correctly,
        * the url to be constructed correctly defaulting to Production,
        * authorization to be from the config and not overriden by reprt(),
-       * and sessionId and clientSdk to be added to the request body in the correct format.. **/
+       * and sessionId and clientSdk to be added to the request body in the correct format. **/
       expect(mockPost).toHaveBeenCalledWith(
         'https://us.yextevents.com/accounts/me/events',
         {
           action: 'ADD_TO_CART',
           authorization: 'Bearer bearerToken',
           clientSdk: {
-            '@yext/analytics': '1.0.0-beta.0'
+            '@yext/analytics': '1.0.0-beta.0',
+            chat: '1.0.1.0',
           },
           destinationUrl: 'https://google.com',
           referrerUrl: 'https://yext.com',

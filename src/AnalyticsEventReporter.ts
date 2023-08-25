@@ -35,7 +35,8 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     }
 
     public async report(newPayload?: PartialPayload): Promise<boolean | EventAPIResponse> {
-      const finalPayload = (this.payload && newPayload) ? (merge(this.payload, newPayload))
+      const finalPayload = this.payload && newPayload
+        ? merge(this.payload, newPayload)
         : this.payload ?? newPayload ?? function(){throw Error('EventPayload is empty');}();
 
       /** If session tracking is enabled, and sessionId was not already manually added to the event payload,
@@ -45,9 +46,11 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
         finalPayload.sessionId = getOrSetupSessionId();
       }
 
-      finalPayload.clientSdk = {
-        [name]: version,
-      };
+      finalPayload.clientSdk
+        ? (finalPayload.clientSdk as Record<string, string>)[name] = version
+        : finalPayload.clientSdk = {
+          [name]: version,
+        };
 
       finalPayload.authorization = this.config.key
         ? 'KEY ' + this.config.key
