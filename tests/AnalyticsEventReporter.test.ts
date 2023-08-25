@@ -63,11 +63,13 @@ describe('Test report function', () => {
       count: 5,
     });
 
-    reporter.report({
+    const res = await reporter.report({
       action: 'APPLY',
       destinationUrl: 'https://google.com',
     });
 
+    // Expect true to be returned for beacon request
+    expect(res).toEqual(true);
     /** Expect merge to have completed correctly, the url to be constructed correctly,
     and the clientSdk and authorization to be added to the request body. **/
     expect(mockPost).toHaveBeenCalledWith(
@@ -115,11 +117,13 @@ describe('Test report function', () => {
         count: 5,
       });
 
-      reporter.report({
+      const res = await reporter.report({
         destinationUrl: 'https://google.com',
         referrerUrl: null,
       });
 
+      // Expect Successful Response
+      expect(res).toEqual({id: 1111});
       /** Expect merge to have completed correctly (with referrerUrl being removed),
        * the url to be constructed correctly defaulting to US,
        * and the clientSdk and authorization to be added to the request body. **/
@@ -137,7 +141,7 @@ describe('Test report function', () => {
         true);
     });
 
-  it('should call post with correct fields, report should return error json if post returns an error',
+  it('should call post with correct fields, report should return error json  post returns an error',
     async () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
@@ -171,17 +175,19 @@ describe('Test report function', () => {
         count: 5,
       });
 
-      reporter.report({
+      const res = await reporter.report({
         authorization: 'Bearer shouldNotUpdate',
         destinationUrl: 'https://google.com',
       });
 
+      // Expect Unauthorized response
+      expect(res).toEqual({id: 1111, errors: ['Unauthorized request']});
       // Expect getOrSetupSessionId to be called as sessionTrackingEnabled is set to true
       expect(mockSetupSessionId).toHaveBeenCalled();
-
       /** Expect merge to have completed correctly,
        * the url to be constructed correctly defaulting to Production,
-       * and the clientSdk, authorization, and sessionId to be added to the request body. **/
+       * authorization to be from the config and not overriden by reprt(),
+       * and sessionId and clientSdk to be added to the request body. **/
       expect(mockPost).toHaveBeenCalledWith(
         'https://us.yextevents.com/accounts/me/events',
         {
