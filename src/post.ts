@@ -25,7 +25,6 @@ export function post(url: string, body: EventPayload, forceFetch: boolean) {
  * @param body the EventPayload object
  */
 export function useBeacon(body: EventPayload, forceFetch: boolean) {
-    const agent = body.browserAgent;
     // keepAlive is not supported in Firefox or Firefox for Android
     return !forceFetch && navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox');
 }
