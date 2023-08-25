@@ -4,12 +4,15 @@ import { AnalyticsEventReporter } from "../src/AnalyticsEventReporter";
 it("Invalid config with no authorization field", () => {
     expect(() => new AnalyticsEventReporter({}))
         .toThrowError("Provide one and only one of API Key or Bearer Token.")
+<<<<<<< HEAD
 
     const InvalidConfig: AnalyticsConfig = {
         key: undefined
     };
     expect(() => new AnalyticsEventReporter(InvalidConfig))
         .toThrowError("Provide one and only one of API Key or Bearer Token.")
+=======
+>>>>>>> 505792c (add AnalyticsEventReporter constructor)
 })
 
 it("Invalid config with both authorization field", () => {
@@ -20,6 +23,7 @@ it("Invalid config with both authorization field", () => {
     expect(() => new AnalyticsEventReporter(InvalidConfig))
         .toThrowError("Provide one and only one of API Key or Bearer Token.")
 })
+<<<<<<< HEAD
 
 it("Valid config will not throw error", () => {
     const configwithAPI: AnalyticsConfig = {
@@ -32,3 +36,5 @@ it("Valid config will not throw error", () => {
     }
     expect(() => new AnalyticsEventReporter(configwithBearer)).not.toThrow();
 })
+=======
+>>>>>>> 505792c (add AnalyticsEventReporter constructor)

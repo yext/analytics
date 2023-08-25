@@ -6,10 +6,8 @@ import { merge } from "./merge";
 
 /** Represents an reporter is responsible for reporting analytics events. */
 export class AnalyticsEventReporter implements AnalyticsEventService {
-
     private config: AnalyticsConfig;
     private payload?: EventPayload;
-
     /**
      * @param config - necessary analytics config: Must provide one and only
      * one of API Key or Bearer Token.
@@ -30,6 +28,14 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     with(payload: EventPayload): AnalyticsEventService {
         const currentPayload = this.payload === undefined ? payload : merge(this.payload, payload);
         return new AnalyticsEventReporter(this.config, currentPayload);
+        if (payload !== undefined) {
+            this.payload = payload;
+        }
+        this.payload = payload;
+    }
+
+    with(payload: EventPayload): AnalyticsEventService {
+        return new AnalyticsEventReporter(this.config);
     }
 
     report(payload: object): Promise<EventAPIResponse> | boolean {
