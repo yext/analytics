@@ -47,7 +47,9 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
         [name]: version,
       };
 
-      finalPayload.authorization = this.config.key ?? this.config.bearer;
+      finalPayload.authorization = this.config.key
+        ? 'KEY ' + this.config.key
+        : 'Bearer ' + this.config.bearer;
 
       const res = await post(
         setupRequestUrl(

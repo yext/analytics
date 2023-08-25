@@ -53,7 +53,7 @@ describe('Test report function', () => {
     mockPost.mockResolvedValue(true as any);
 
     const config: AnalyticsConfig = {
-      key: 'Key validKey',
+      key: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false,
     };
@@ -71,12 +71,12 @@ describe('Test report function', () => {
     // Expect true to be returned for beacon request
     expect(res).toEqual(true);
     /** Expect merge to have completed correctly, the url to be constructed correctly,
-    and the clientSdk and authorization to be added to the request body. **/
+    and the clientSdk and authorization to be added to the request body in the correct format.. **/
     expect(mockPost).toHaveBeenCalledWith(
       'https://eu.yextevents.com/accounts/me/events',
       {
         action: 'APPLY',
-        authorization: 'Key validKey',
+        authorization: 'KEY validKey',
         clientSdk: {
           '@yext/analytics': '1.0.0-beta.0'
         },
@@ -108,7 +108,7 @@ describe('Test report function', () => {
       });
 
       const config: AnalyticsConfig = {
-        bearer: 'Bearer bearerToken',
+        bearer: 'bearerToken',
         env: EnvironmentEnum.Sandbox,
       };
       const reporter = new AnalyticsEventReporter(config).with({
@@ -126,7 +126,7 @@ describe('Test report function', () => {
       expect(res).toEqual({id: 1111});
       /** Expect merge to have completed correctly (with referrerUrl being removed),
        * the url to be constructed correctly defaulting to US,
-       * and the clientSdk and authorization to be added to the request body. **/
+       * and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPost).toHaveBeenCalledWith(
         'https://sbx.us.yextevents.com/accounts/me/events',
         {
@@ -166,7 +166,7 @@ describe('Test report function', () => {
       });
 
       const config: AnalyticsConfig = {
-        bearer: 'Bearer bearerToken',
+        bearer: 'bearerToken',
         sessionTrackingEnabled: true,
       };
       const reporter = new AnalyticsEventReporter(config).with({
@@ -187,7 +187,7 @@ describe('Test report function', () => {
       /** Expect merge to have completed correctly,
        * the url to be constructed correctly defaulting to Production,
        * authorization to be from the config and not overriden by reprt(),
-       * and sessionId and clientSdk to be added to the request body. **/
+       * and sessionId and clientSdk to be added to the request body in the correct format.. **/
       expect(mockPost).toHaveBeenCalledWith(
         'https://us.yextevents.com/accounts/me/events',
         {
