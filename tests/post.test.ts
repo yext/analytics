@@ -36,6 +36,10 @@ describe('Test post util function', () => {
         // userAgent is Chrome and forceFetch = false
         result = useBeacon(eventPayloadA, false);
         expect(result).toBe(false);
+
+        // userAgent is Chrome and forceFetch = true
+        result = useBeacon(eventPayloadA, true);
+        expect(result).toBe(false);
     })
 
     it('should use beacon', () => {
@@ -47,13 +51,20 @@ describe('Test post util function', () => {
     it('should send fetch request', async () => {
         // forceFetch: true
         await post(url, eventPayloadA, true);
+        expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length).toEqual(1);
         expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events')[0][1]).toEqual(optionsA);
 
         // forceFetch: false, but browser is not Firefox
         const navigator = { userAgent: 'Chrome', sendBeacon: () => { return true }};
         Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
         await post(url, eventPayloadA, false);
+        expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length).toEqual(2);
         expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events')[1][1]).toEqual(optionsA);
+
+        // forceFetch: true, browser is not Firefox
+        await post(url, eventPayloadA, true);
+        expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length).toEqual(3);
+        expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events')[2][1]).toEqual(optionsA);
 
         fetchMock.mockClear();
     })
