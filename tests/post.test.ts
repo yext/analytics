@@ -19,14 +19,6 @@ describe('Test post util function', () => {
         locale: 'en_US',
     };
 
-    const eventPayloadB: EventPayload = {
-        action: 'ADD_TO_CART',
-        locale: 'en_US',
-        browserAgent: {
-            browser: 'Firefox'
-        }
-    };
-
     const url = 'https://dev.us.yextevents.com/accounts/me/events';
 
     const optionsA = {method: 'POST', body: JSON.stringify(eventPayloadA), keepalive: true};
@@ -34,20 +26,21 @@ describe('Test post util function', () => {
     fetchMock.post(url, JSON.stringify(eventResponseA));
 
     it('should use fetch', () => {
+        // userAgent is Firefox but forceFetch = true
+        let result = useBeacon(eventPayloadA, true);
+        expect(result).toBe(false);
+
         const navigator = { userAgent: 'Chrome' };
         Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
 
-        const result = useBeacon(eventPayloadA);
+        // userAgent is Chrome and forceFetch = false
+        result = useBeacon(eventPayloadA, false);
         expect(result).toBe(false);
     })
 
     it('should use beacon', () => {
         // userAgent is Firefox
-        let result = useBeacon(eventPayloadA);
-        expect(result).toBe(true);
-
-        // browser field in EventPayload is Firefox
-        result = useBeacon(eventPayloadB);
+        let result = useBeacon(eventPayloadA, false);
         expect(result).toBe(true);
     })
 
@@ -68,13 +61,6 @@ describe('Test post util function', () => {
     it('should send beacon request', async () => {
         // forceFetch: false and browser defined in navigator is Firefox
         let result = await post(url, eventPayloadA, false);
-        expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length).toEqual(0);
-        expect(result).toBe(true);
-
-        // forceFetch: false and browser defined in EventPayload object is Firefox
-        const navigator = { sendBeacon: () => { return true }};
-        Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
-        result = await post(url, eventPayloadB, false);
         expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length).toEqual(0);
         expect(result).toBe(true);
     })
