@@ -34,15 +34,12 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       return new AnalyticsEventReporter(this.config, currentPayload);
     }
 
-    public async report(payload?: PartialPayload): Promise<boolean | EventAPIResponse> {
-      const finalPayload = (this.payload && payload)
-        ? (merge(this.payload, payload))
-        : (this.payload ? this.payload : payload) ?? {};
+    public async report(newPayload?: PartialPayload): Promise<boolean | EventAPIResponse> {
+      const finalPayload = (this.payload && newPayload) ? (merge(this.payload, newPayload))
+        : this.payload ?? newPayload ?? function(){throw Error('EventPayload is empty');}();
 
-      const sessionId = this.config.sessionTrackingEnabled
-        ? (payload?.sessionId ?? getOrSetupSessionId() ?? undefined)
-        : undefined;
-      if (sessionId) {
+      if (this.config.sessionTrackingEnabled) {
+        const sessionId = newPayload?.sessionId ?? getOrSetupSessionId();
         finalPayload.sessionId = sessionId;
       }
 
