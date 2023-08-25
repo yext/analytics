@@ -10,11 +10,11 @@ import {EventPayload} from './EventPayload';
  * @param forceFetch if true, it will force the browser to call fetch instead of sendBeacon,
  * regardless of whether keepAlive is supported
  */
-export function post(url: string, body: EventPayload, forceFetch: boolean) {
-    if (useBeacon(body, forceFetch)) {
-        return navigator.sendBeacon(url, JSON.stringify(body));
-    }
-    return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
+export function post(url: string, body: EventPayload, forceFetch: boolean | undefined) {
+  if (useBeacon(body, forceFetch)) {
+    return navigator.sendBeacon(url, JSON.stringify(body));
+  }
+  return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
 }
 
 /**
@@ -24,7 +24,7 @@ export function post(url: string, body: EventPayload, forceFetch: boolean) {
  *
  * @param body the EventPayload object
  */
-export function useBeacon(body: EventPayload, forceFetch: boolean) {
-    // keepAlive is not supported in Firefox or Firefox for Android
-    return !forceFetch && navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox');
+export function useBeacon(body: EventPayload, forceFetch: boolean | undefined) {
+  // keepAlive is not supported in Firefox or Firefox for Android
+  return !forceFetch && navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox');
 }

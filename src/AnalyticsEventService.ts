@@ -1,5 +1,5 @@
-import {EventAPIResponse} from "./EventAPIResponse";
-import {EventPayload} from "./EventPayload";
+import {EventAPIResponse} from './EventAPIResponse';
+import {EventPayload, PartialPayload} from './EventPayload';
 
 export interface AnalyticsEventService {
     /**
@@ -21,5 +21,5 @@ export interface AnalyticsEventService {
      * @param payload - desired values to be applied. The new payload will
      * override any overlapping values.
      */
-    report(payload: object): Promise<EventAPIResponse> | boolean;
-};
+    report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>
+}
