@@ -8,6 +8,8 @@ import { Action } from './Action';
 export interface EventPayload {
   /** The user action which caused the event, e.g. ADD_TO_CART or THUMBS_UP  */
   action: Action;
+  /** The authorization token for the request. Formatted like KEY <api-key> or Bearer <bearer-token> */
+  authorization?: string;
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string;
   /** The URL of the page where the event occurred */
@@ -101,3 +103,5 @@ export interface EventPayload {
    */
   visitor?: Record<string, string>;
 }
+
+export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
