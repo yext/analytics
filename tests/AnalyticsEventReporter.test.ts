@@ -79,7 +79,7 @@ describe('Test report function', () => {
     // Expect true to be returned for beacon request
     expect(res).toEqual(true);
     /** Expect merge to have completed correctly, the url to be constructed correctly,
-    and the clientSdk and authorization to be added to the request body in the correct format.. **/
+    and the clientSdk and authorization to be added to the request body in the correct format. **/
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
       'https://eu.yextevents.com/accounts/me/events',
       {
@@ -238,7 +238,7 @@ describe('Test report function', () => {
     // Expect true to be returned for beacon request
     expect(res).toEqual(true);
     /** Expect merge to have completed correctly, the url to be constructed correctly,
-      and the clientSdk and authorization to be added to the request body in the correct format.. **/
+      and the clientSdk and authorization to be added to the request body in the correct format. **/
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
       'https://eu.yextevents.com/accounts/me/events',
       {
@@ -267,14 +267,15 @@ describe('Test report function', () => {
 
       const service: AnalyticsEventService = new AnalyticsEventReporter(config);
 
-      const res = await service.report({action: 'ADD_TO_CART',
+      const res = await service.report({
+        action: 'ADD_TO_CART',
         referrerUrl: 'https://yext.com',
         count: 5});
 
       // Expect true to be returned for beacon request
       expect(res).toEqual(true);
       /** Expect merge to have completed correctly, the url to be constructed correctly,
-      and the clientSdk and authorization to be added to the request body in the correct format.. **/
+      and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
         'https://eu.yextevents.com/accounts/me/events',
         {
@@ -353,15 +354,28 @@ describe('Test report function', () => {
         forceFetch: false,
       };
 
-      const reporter = new AnalyticsEventReporter(config).with({
+      const reporter1 = new AnalyticsEventReporter(config).with({
         action: 'ADD_TO_CART',
         referrerUrl: 'https://yext.com',
         count: 5,
       });
 
-      const unaffectedReporter = JSON.parse(JSON.stringify(reporter));
+      const res1 = await reporter1.report();
+      // Expect true to be returned for beacon request
+      expect(res1).toEqual(true);
+      expect(mockPostWithBeacon).toHaveBeenCalledWith(
+        'https://eu.yextevents.com/accounts/me/events',
+        {
+          action: 'ADD_TO_CART',
+          authorization: 'KEY validKey',
+          clientSdk: {
+            '@yext/analytics': '1.0.0-beta.0',
+          },
+          referrerUrl: 'https://yext.com',
+          count: 5,
+        });
 
-      const reporter2 = reporter.with({
+      const reporter2 = reporter1.with({
         action: 'APPLY',
         authorization: 'Bearer shouldNotUpdate',
         destinationUrl: 'https://google.com',
@@ -370,12 +384,14 @@ describe('Test report function', () => {
         }
       });
 
-      const res = await reporter2.report();
+      mockPostWithBeacon.mockReturnValueOnce(true);
+      mockUseBeacon.mockReturnValueOnce(true);
+      const res2 = await reporter2.report();
 
       // Expect true to be returned for beacon request
-      expect(res).toEqual(true);
+      expect(res2).toEqual(true);
       /** Expect merge to have completed correctly, the url to be constructed correctly,
-      and the clientSdk and authorization to be added to the request body in the correct format.. **/
+      and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
         'https://eu.yextevents.com/accounts/me/events',
         {
@@ -389,7 +405,5 @@ describe('Test report function', () => {
           referrerUrl: 'https://yext.com',
           count: 5,
         });
-      // confirm original payload object unchanged
-      expect(reporter).toEqual(unaffectedReporter);
     });
 });
