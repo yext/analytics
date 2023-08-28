@@ -71,8 +71,29 @@ describe('Test post util function', () => {
 
   it('should send beacon request', async () => {
     // forceFetch: false and browser defined in navigator is Firefox
-    const result =await postWithBeacon(url, eventPayloadA);
+    const result = await postWithBeacon(url, eventPayloadA);
     expect(fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length).toEqual(0);
     expect(result).toBe(true);
   });
+
+  it('useBeacon should return true when forceFetch is false and browser is Firefox', async () => {
+    expect(useBeacon(eventPayloadA, false)).toEqual(true);
+  });
+
+  it('useBeacon should return false when forceFetch is false and browser is not Firefox', async () => {
+    const navigator = { userAgent: 'Chrome', sendBeacon: () => { return false; }};
+    Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+    expect(useBeacon(eventPayloadA, false)).toEqual(false);
+  });
+
+  it('useBeacon should return true when forceFetch is undefined and browser is Firefox', async () => {
+    expect(useBeacon(eventPayloadA, undefined)).toEqual(true);
+  });
+
+  it('useBeacon should return false when forceFetch is undefined and browser is not Firefox', async () => {
+    const navigator = { userAgent: 'Chrome', sendBeacon: () => { return false; }};
+    Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+    expect(useBeacon(eventPayloadA, undefined)).toEqual(false);
+  });
 });
+
