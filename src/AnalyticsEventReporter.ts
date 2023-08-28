@@ -34,8 +34,8 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       return new AnalyticsEventReporter(this.config, currentPayload);
     }
 
-    public async report(newPayload: PartialPayload): Promise<boolean | EventAPIResponse> {
-      const finalPayload = this.payload === undefined ? newPayload : merge(this.payload, newPayload);
+    public async report(newPayload?: PartialPayload): Promise<boolean | EventAPIResponse> {
+      const finalPayload: EventPayload = merge(this.payload ?? {}, newPayload ?? {});
 
       /** If session tracking is enabled, and sessionId was not already manually added to the event payload,
        * call getOrSetupSessionId to set value.
