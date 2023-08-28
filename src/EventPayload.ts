@@ -8,7 +8,7 @@ import { Action } from './Action';
 export interface EventPayload {
   /** The user action which caused the event, e.g. ADD_TO_CART or THUMBS_UP  */
   action: Action;
-  /** The authorization token for the request. Formatted like KEY <api-key> or Bearer <bearer-token> */
+  /** The authorization token for the request. This will be setup from the Key or Bearer in the config. */
   authorization?: string;
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string;
