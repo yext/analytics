@@ -28,9 +28,8 @@ export interface AnalyticsConfig {
      */
     sessionTrackingEnabled?: boolean;
     /**
-     * Used to force sending the POST request via fetch + keepalive.
-     * If the browser supports fetch + keep alive, defaults to true.
-     * If it does not, defaults to false and beacon will be used.
-     */
+     * Used to force sending the request with fetch even if the browser
+     * does not support fetch with the keepalive flag (like Firefox).
+     * If the browser does support it, fetch is used by default. */
     forceFetch?: boolean;
 }
