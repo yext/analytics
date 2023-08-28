@@ -4,6 +4,7 @@ import { RegionEnum } from '../src/Region';
 import { postWithBeacon, postWithFetch, useBeacon } from '../src/post';
 import { EnvironmentEnum } from '../src/Environment';
 import { getOrSetupSessionId } from '../src/setupSessionId';
+import { AnalyticsEventService } from '../src/AnalyticsEventService';
 
 jest.mock('../src/post');
 jest.mock('../src/setupSessionId');
@@ -213,5 +214,182 @@ describe('Test report function', () => {
           count: 5,
           sessionId: 'ULID1234'
         });
+    });
+
+  it('calling report with no argument should result in the request body coming from with()', async () => {
+    mockPostWithBeacon.mockReturnValueOnce(true);
+    mockUseBeacon.mockReturnValueOnce(true);
+    const navigator = { userAgent: 'Firefox', sendBeacon: () => { return true; }};
+    Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+
+    const config: AnalyticsConfig = {
+      key: 'validKey',
+      region: RegionEnum.EU,
+      forceFetch: false,
+    };
+    const reporter = new AnalyticsEventReporter(config).with({
+      action: 'ADD_TO_CART',
+      referrerUrl: 'https://yext.com',
+      count: 5,
+    });
+
+    const res = await reporter.report();
+
+    // Expect true to be returned for beacon request
+    expect(res).toEqual(true);
+    /** Expect merge to have completed correctly, the url to be constructed correctly,
+      and the clientSdk and authorization to be added to the request body in the correct format.. **/
+    expect(mockPostWithBeacon).toHaveBeenCalledWith(
+      'https://eu.yextevents.com/accounts/me/events',
+      {
+        action: 'ADD_TO_CART',
+        authorization: 'KEY validKey',
+        clientSdk: {
+          '@yext/analytics': '1.0.0-beta.0'
+        },
+        referrerUrl: 'https://yext.com',
+        count: 5,
+      });
+  });
+
+  it('calling report with an argument with no with call should result in request body coming from report',
+    async () => {
+      mockPostWithBeacon.mockReturnValueOnce(true);
+      mockUseBeacon.mockReturnValueOnce(true);
+      const navigator = { userAgent: 'Firefox', sendBeacon: () => { return true; }};
+      Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+
+      const config: AnalyticsConfig = {
+        key: 'validKey',
+        region: RegionEnum.EU,
+        forceFetch: false,
+      };
+
+      const service: AnalyticsEventService = new AnalyticsEventReporter(config);
+
+      const res = await service.report({action: 'ADD_TO_CART',
+        referrerUrl: 'https://yext.com',
+        count: 5});
+
+      // Expect true to be returned for beacon request
+      expect(res).toEqual(true);
+      /** Expect merge to have completed correctly, the url to be constructed correctly,
+      and the clientSdk and authorization to be added to the request body in the correct format.. **/
+      expect(mockPostWithBeacon).toHaveBeenCalledWith(
+        'https://eu.yextevents.com/accounts/me/events',
+        {
+          action: 'ADD_TO_CART',
+          authorization: 'KEY validKey',
+          clientSdk: {
+            '@yext/analytics': '1.0.0-beta.0'
+          },
+          referrerUrl: 'https://yext.com',
+          count: 5,
+        });
+    });
+
+  it('calling report with no argument and no with call should result in invalid request body and error',
+    async () => {
+      mockPostWithFetch.mockResolvedValue({
+        ok: false,
+        status: 400,
+        statusText: 'Bad Request',
+        json: jest.fn().mockResolvedValue({}),
+        redirected: false,
+        type: 'basic',
+        url: 'https://example.com',
+        clone: jest.fn(),
+        headers: new Headers(),
+        body: null,
+        bodyUsed: false,
+        arrayBuffer: jest.fn(),
+        blob: jest.fn(),
+        formData: jest.fn(),
+        text: jest.fn()
+      });
+
+      const navigator = { userAgent: 'Chrome', sendBeacon: () => { return false; }};
+      Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+      mockPostWithBeacon.mockReturnValue(false);
+
+      const config: AnalyticsConfig = {
+        key: 'validKey',
+        region: RegionEnum.EU,
+        forceFetch: true,
+      };
+
+      const service: AnalyticsEventService = new AnalyticsEventReporter(config);
+
+      try {
+        await service.report({});
+        // Fail test if above expression doesn't throw anything.
+        expect(true).toBe(false);
+      } catch (e) {
+        expect(e.message).toBe('Events API responded with 400: Bad Request');
+      }
+
+      /** Expect merge to have completed correctly, but the request
+       * body to be invalid as action was never added **/
+      expect(mockPostWithFetch).toHaveBeenCalledWith(
+        'https://eu.yextevents.com/accounts/me/events',
+        {
+          authorization: 'KEY validKey',
+          clientSdk: {
+            '@yext/analytics': '1.0.0-beta.0'
+          },
+        });
+    });
+
+  it('calling with more than once should result in unique objects that can be called with unique values',
+    async () => {
+      mockPostWithBeacon.mockReturnValueOnce(true);
+      mockUseBeacon.mockReturnValueOnce(true);
+      const navigator = { userAgent: 'Firefox', sendBeacon: () => { return true; }};
+      Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+
+      const config: AnalyticsConfig = {
+        key: 'validKey',
+        region: RegionEnum.EU,
+        forceFetch: false,
+      };
+
+      const reporter = new AnalyticsEventReporter(config).with({
+        action: 'ADD_TO_CART',
+        referrerUrl: 'https://yext.com',
+        count: 5,
+      });
+
+      const unaffectedReporter = JSON.parse(JSON.stringify(reporter));
+
+      const reporter2 = reporter.with({
+        action: 'APPLY',
+        authorization: 'Bearer shouldNotUpdate',
+        destinationUrl: 'https://google.com',
+        clientSdk: {
+          chat: '1.0.1.0',
+        }
+      });
+
+      const res = await reporter2.report();
+
+      // Expect true to be returned for beacon request
+      expect(res).toEqual(true);
+      /** Expect merge to have completed correctly, the url to be constructed correctly,
+      and the clientSdk and authorization to be added to the request body in the correct format.. **/
+      expect(mockPostWithBeacon).toHaveBeenCalledWith(
+        'https://eu.yextevents.com/accounts/me/events',
+        {
+          action: 'APPLY',
+          authorization: 'KEY validKey',
+          clientSdk: {
+            '@yext/analytics': '1.0.0-beta.0',
+            chat: '1.0.1.0',
+          },
+          destinationUrl: 'https://google.com',
+          referrerUrl: 'https://yext.com',
+          count: 5,
+        });
+      // confirm original payload object unchanged
+      expect(reporter).toEqual(unaffectedReporter);
     });
 });
