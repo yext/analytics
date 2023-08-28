@@ -4,7 +4,7 @@ import { EventPayload, PartialPayload } from './EventPayload';
 import { EventAPIResponse } from './EventAPIResponse';
 import { getOrSetupSessionId } from './setupSessionId';
 import { name, version } from '../package.json';
-import { post } from './post';
+import { postWithBeacon, postWithFetch, useBeacon } from './post';
 import merge from './merge';
 import { setupRequestUrl } from './setupRequestUrl';
 
@@ -54,23 +54,25 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
         ? 'KEY ' + this.config.key
         : 'Bearer ' + this.config.bearer;
 
-      const res = await post(
-        setupRequestUrl(
-          this.config.env,
-          this.config.region),
-        finalPayload as EventPayload,
-        this.config.forceFetch);
+      const shouldUseBeacon = useBeacon(finalPayload as EventPayload, this.config.forceFetch);
+      const requestUrl = setupRequestUrl(this.config.env, this.config.region);
 
-
-      if (typeof res === 'boolean') {
-        return res;
-      } else if (!res.ok) {
-        const body: EventAPIResponse = await res.json();
-        let errorMessage = `Events API responded with ${res.status}: ${res.statusText}`;
-        body.errors?.forEach(e => errorMessage += `\nError: ${e}.`);
-        throw new Error(errorMessage);
+      // If useBeacon returns true, return boolean response of postWithBeacon
+      if (shouldUseBeacon) {
+        return await postWithBeacon(requestUrl, finalPayload as EventPayload);
       }
-      const resJson = await res.json();
+
+      /** If useBeacon returns false, use postWithFetch.
+          If result is successful, return result json.
+          If request fails, return errors. */
+      const res = await postWithFetch(requestUrl, finalPayload as EventPayload);
+      if (!res?.ok) {
+        const body: EventAPIResponse = await res?.json();
+        let errorMessage = `Events API responded with ${res?.status}: ${res?.statusText}`;
+        body?.errors?.forEach(e => errorMessage += `\nError: ${e}.`);
+        throw Error(errorMessage);
+      }
+      const resJson = await res?.json();
       return resJson;
     }
 }
