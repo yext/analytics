@@ -8,8 +8,8 @@ import { EnumOrString } from './EnumOrString';
  * @public
  */
 export enum RegionEnum {
-  US = 'US',
-  EU = 'EU'
+  US = 'us',
+  EU = 'eu'
 }
 
 /**

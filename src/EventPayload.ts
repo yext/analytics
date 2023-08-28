@@ -8,8 +8,10 @@ import { Action } from './Action';
 export interface EventPayload {
   /** The user action which caused the event, e.g. ADD_TO_CART or THUMBS_UP  */
   action: Action;
+  /** The authorization token for the request. This will be setup from the Key or Bearer in the config. */
+  authorization?: string;
   /** Unique identifier to tie together events in a single browsing session */
-  sessionId?: string;
+  sessionId?: string | null;
   /** The URL of the page where the event occurred */
   pageUrl?: string;
   /** The URL of the page the event is directing the visitor to. */
@@ -101,3 +103,5 @@ export interface EventPayload {
    */
   visitor?: Record<string, string>;
 }
+
+export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;

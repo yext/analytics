@@ -1,3 +1,4 @@
+import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import {Environment} from './Environment';
 import {Region} from './Region';
 
@@ -26,4 +27,9 @@ export interface AnalyticsConfig {
      * This generates a ULID to tie together events in a single browsing session.
      */
     sessionTrackingEnabled?: boolean;
+    /**
+     * Used to force sending the request with fetch even if the browser
+     * does not support fetch with the keepalive flag (like Firefox).
+     * If the browser does support it, fetch is used by default. */
+    forceFetch?: boolean;
 }
