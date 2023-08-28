@@ -1,6 +1,6 @@
 import { ulid } from 'ulidx';
 
-export const SESSION_ID_KEY = 'yext_analytics_session_id';
+const SESSION_ID_KEY = 'yext_analytics_session_id';
 
 /**
  * Retrieves session id from session storage, or generates a new ULID to use as session id.
