@@ -1,15 +1,15 @@
-import { EventPayload } from '../src/EventPayload';
+import { EventPayload, PartialPayload } from '../src/EventPayload';
 import merge from '../src/merge';
 
 describe('Merge Function Test', () => {
   it('should merge primitives values correctly', () => {
-    const event1: EventPayload = {
+    const event1: PartialPayload = {
       action: 'APPLY',
       bot: false,
       locale: 'en_US',
     };
 
-    const uneffectedEvent1: EventPayload = {...event1};
+    const uneffectedEvent1: PartialPayload = {...event1};
 
     const event2 = {
       label: 'label',
@@ -30,14 +30,14 @@ describe('Merge Function Test', () => {
   });
 
   it('should merge objects with no overlap correctly', () => {
-    const event1: EventPayload = {
+    const event1: PartialPayload = {
       action: 'APPLY',
       chat: {
         botId: 'botId',
       }
     };
 
-    const uneffectedEvent1: EventPayload = {...event1};
+    const uneffectedEvent1: PartialPayload = {...event1};
 
     const event2 = {
       action: 'APPLY',
@@ -69,7 +69,7 @@ describe('Merge Function Test', () => {
   });
 
   it('should merge primitives and objects (with overlap) correctly', () => {
-    const event1: EventPayload = {
+    const event1: PartialPayload = {
       action: 'APPLY',
       browserAgent: {
         os: 'MacOS',
@@ -81,7 +81,7 @@ describe('Merge Function Test', () => {
       },
     };
 
-    const uneffectedEvent1: EventPayload = {...event1};
+    const uneffectedEvent1: PartialPayload = {...event1};
 
     const event2 = {
       action: 'ADD_TO_CART',
@@ -114,5 +114,76 @@ describe('Merge Function Test', () => {
 
     expect(result).toEqual(expected);
     expect(event1).toEqual(uneffectedEvent1); // confirm event1 uneffected
+  });
+
+  it('should merge correctly when original is empty', () => {
+    const event1: PartialPayload = {};
+
+    const event2: PartialPayload = {
+      action: 'ADD_TO_CART',
+      browserAgent: {
+        os: undefined,
+        browser: 'Safari',
+        device: 'MacBook Air',
+        deviceClass: 'Desktop',
+      },
+      ip: {
+        address: '0.0.0.1',
+        algorithm: 'hash',
+      },
+    };
+
+    const result = merge(event1, event2);
+
+    const expected: EventPayload = {
+      action: 'ADD_TO_CART',
+      browserAgent: {
+        os: undefined,
+        browser: 'Safari',
+        device: 'MacBook Air',
+        deviceClass: 'Desktop',
+      },
+      ip: {
+        address: '0.0.0.1',
+        algorithm: 'hash',
+      },
+    };
+
+    expect(result).toEqual(expected);
+  });
+
+  it('should merge correctly when the new payload is empty', () => {
+    const event1: PartialPayload = {
+      action: 'ADD_TO_CART',
+      browserAgent: {
+        os: undefined,
+        browser: 'Safari',
+        device: 'MacBook Air',
+        deviceClass: 'Desktop',
+      },
+      ip: {
+        address: '0.0.0.1',
+        algorithm: 'hash',
+      },
+    };
+    const event2: PartialPayload = {};
+
+    const result = merge(event1, event2);
+
+    const expected: EventPayload = {
+      action: 'ADD_TO_CART',
+      browserAgent: {
+        os: undefined,
+        browser: 'Safari',
+        device: 'MacBook Air',
+        deviceClass: 'Desktop',
+      },
+      ip: {
+        address: '0.0.0.1',
+        algorithm: 'hash',
+      },
+    };
+
+    expect(result).toEqual(expected);
   });
 });
