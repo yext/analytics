@@ -54,18 +54,18 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
         ? 'KEY ' + this.config.key
         : 'Bearer ' + this.config.bearer;
 
-      const shouldUseBeacon = useBeacon(finalPayload as EventPayload, this.config.forceFetch);
+      const shouldUseBeacon = useBeacon(finalPayload, this.config.forceFetch);
       const requestUrl = setupRequestUrl(this.config.env, this.config.region);
 
       // If useBeacon returns true, return boolean response of postWithBeacon
       if (shouldUseBeacon) {
-        return await postWithBeacon(requestUrl, finalPayload as EventPayload);
+        return await postWithBeacon(requestUrl, finalPayload);
       }
 
       /** If useBeacon returns false, use postWithFetch.
           If result is successful, return result json.
           If request fails, return errors. */
-      const res = await postWithFetch(requestUrl, finalPayload as EventPayload);
+      const res = await postWithFetch(requestUrl, finalPayload);
       if (!res?.ok) {
         const body: EventAPIResponse = await res?.json();
         let errorMessage = `Events API responded with ${res?.status}: ${res?.statusText}`;
