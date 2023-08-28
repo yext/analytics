@@ -30,7 +30,7 @@ export function postWithFetch(url: string, body: EventPayload): Promise<Response
  *
  * @param body the EventPayload object
  */
-export function useBeacon(body: EventPayload, forceFetch: boolean | undefined) {
+export function useBeacon(body: EventPayload, forceFetch: boolean | undefined): boolean {
   // keepAlive is not supported in Firefox or Firefox for Android
   return !forceFetch && navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox');
 }
