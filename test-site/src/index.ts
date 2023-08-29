@@ -2,7 +2,7 @@ import {analytics} from '@yext/analytics';
 
 
 const chat = analytics({
-  key: process.env.CHAT_API_KEY,
+  key: process.env.YEXT_API_KEY,
 });
 
 export function fireChatEvent() {
