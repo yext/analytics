@@ -16,7 +16,7 @@ with(payload: EventPayload): AnalyticsEventService;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  payload | EventPayload | desired values to be applied. The new payload will override any overlapping values. |
+|  payload | [EventPayload](./analytics.eventpayload.md) | desired values to be applied. The new payload will override any overlapping values. |
 
 <b>Returns:</b>
 

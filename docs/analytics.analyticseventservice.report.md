@@ -16,9 +16,9 @@ report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  payload | PartialPayload | desired values to be applied. The new payload will override any overlapping values. |
+|  payload | [PartialPayload](./analytics.partialpayload.md) | desired values to be applied. The new payload will override any overlapping values. |
 
 <b>Returns:</b>
 
-Promise&lt;boolean \| EventAPIResponse&gt;
+Promise&lt;boolean \| [EventAPIResponse](./analytics.eventapiresponse.md)<!-- -->&gt;
 
