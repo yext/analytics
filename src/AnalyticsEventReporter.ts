@@ -3,7 +3,7 @@ import { AnalyticsConfig } from './AnalyticsConfig';
 import { EventPayload, PartialPayload } from './EventPayload';
 import { EventAPIResponse } from './EventAPIResponse';
 import { getOrSetupSessionId } from './setupSessionId';
-import { name, version } from '../package.json';
+import packageinfo from '../package.json';
 import { postWithBeacon, postWithFetch, useBeacon } from './post';
 import merge from './merge';
 import { setupRequestUrl } from './setupRequestUrl';
@@ -45,9 +45,9 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       }
 
       finalPayload.clientSdk
-        ? (finalPayload.clientSdk as Record<string, string>)[name] = version
+        ? (finalPayload.clientSdk as Record<string, string>)[packageinfo.name] = packageinfo.version
         : finalPayload.clientSdk = {
-          [name]: version,
+          [packageinfo.name]: packageinfo.version,
         };
 
       finalPayload.authorization = this.config.key
