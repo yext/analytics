@@ -1,4 +1,3 @@
-import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import {Environment} from './Environment';
 import {Region} from './Region';
 

@@ -1,6 +1,7 @@
 import {EventAPIResponse} from './EventAPIResponse';
 import {EventPayload, PartialPayload} from './EventPayload';
 
+/** @public */
 export interface AnalyticsEventService {
     /**
      * Creates a new AnalyticsEventService with the following values defined
