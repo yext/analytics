@@ -3,11 +3,12 @@ import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import { AnalyticsEventService } from './AnalyticsEventService';
 
 /**
- * The Yext Analytics Events SDK
- * @beta
+ * The Yext Analytics Events SDK.
+ * Returns an AnalyticsEventService given an AnalyticsConfig.
+ * @public
  */
-const analytics = (config: AnalyticsConfig): AnalyticsEventService => {
+export function analytics(config: AnalyticsConfig): AnalyticsEventService {
   return new AnalyticsEventReporter(config);
-};
+}
 
-export default analytics;
+export { AnalyticsConfig, AnalyticsEventService};
