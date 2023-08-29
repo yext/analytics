@@ -1,4 +1,4 @@
-import analytics from '../../src/index';
+import {analytics} from '@yext/analytics';
 
 
 const chat = analytics({

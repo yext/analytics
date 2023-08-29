@@ -4,8 +4,8 @@
   "description": "An analytics library for Yext",
   "author": "fusion@yext.com",
   "license": "BSD-3-Clause",
-  "main": "./lib/commonjs/index.js",
-  "module": "./lib/esm/index.js",
+  "main": "./lib/commonjs/src/index.js",
+  "module": "./lib/esm/src/index.js",
   "types": "./lib/analytics.d.ts",
   "keywords": [
     "analytics",
