@@ -4,3 +4,16 @@
 
 ## analytics package
 
+## Functions
+
+|  Function | Description |
+|  --- | --- |
+|  [analytics(config)](./analytics.analytics.md) | The Yext Analytics Events SDK. Returns an AnalyticsEventService given an AnalyticsConfig. |
+
+## Interfaces
+
+|  Interface | Description |
+|  --- | --- |
+|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics Events. |
+|  [AnalyticsEventService](./analytics.analyticseventservice.md) |  |
+

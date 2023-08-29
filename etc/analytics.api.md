@@ -4,6 +4,30 @@
 
 ```ts
 
+// @public
+export function analytics(config: AnalyticsConfig): AnalyticsEventService;
+
+// @public
+export interface AnalyticsConfig {
+    bearer?: string;
+    // Warning: (ae-forgotten-export) The symbol "Environment" needs to be exported by the entry point index.d.ts
+    env?: Environment;
+    forceFetch?: boolean;
+    key?: string;
+    // Warning: (ae-forgotten-export) The symbol "Region" needs to be exported by the entry point index.d.ts
+    region?: Region;
+    sessionTrackingEnabled?: boolean;
+}
+
+// @public (undocumented)
+export interface AnalyticsEventService {
+    // Warning: (ae-forgotten-export) The symbol "PartialPayload" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "EventAPIResponse" needs to be exported by the entry point index.d.ts
+    report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
+    // Warning: (ae-forgotten-export) The symbol "EventPayload" needs to be exported by the entry point index.d.ts
+    with(payload: EventPayload): AnalyticsEventService;
+}
+
 // (No @packageDocumentation comment for this package)
 
 ```
