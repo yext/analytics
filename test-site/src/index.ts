@@ -48,7 +48,6 @@ const analyticsProvider = analytics({
 
 const analyticsProvideWithSessionTracking = analytics({
   key: process.env.YEXT_API_KEY,
-  sessionTrackingEnabled: true
 }).with({
   action: "CHAT_LINK_CLICK",
   pageUrl: "http://www.yext-test-pageurl.com",
@@ -96,10 +95,6 @@ export function fireChatEvent() {
 
 export function fireCallToActionEvent() {
   analyticsProvider.report({action: "CALL_TO_ACTION"});
-}
-
-export function fireSearchBarImpressionEvent() {
-  analyticsProvider.report({action: "SEARCH_BAR_IMPRESSION"});
 }
 
 export function fireEventWithSessionTracking() {
