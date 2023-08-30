@@ -74,16 +74,11 @@ export interface EventPayload {
    * Keys are case-insensitive.
    */
   customValues?: Record<string, number>;
-  /** The Yext entity to which the event corresponds.  */
-  entity?:
-    | {
-      /** The mutable, customer-settable entity ID for the entity associated with the event. */
-        entityId: string;
-      }
-    | {
-      /** The immutable entity ID set by the system. This is an internal ID. */
-        entityUid: number;
-      };
+  /** The Yext entity to which the event corresponds. If passed as a string, the value is
+   * the mutable, customer-settable entity ID for the entity associated with the event.
+   * If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
+   */
+  entity?: string | number
   /** The IP address for the event.*/
   ip?: {
     /** The IPv4 address associated with the event. */
