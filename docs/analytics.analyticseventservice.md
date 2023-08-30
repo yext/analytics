@@ -4,7 +4,6 @@
 
 ## AnalyticsEventService interface
 
-A service for reporting Yext analytics events
 
 <b>Signature:</b>
 

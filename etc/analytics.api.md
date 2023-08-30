@@ -5,101 +5,27 @@
 ```ts
 
 // @public
-export type Action = 'ADD_TO_CART' | 'ALL_TAB_NAVIGATION' | 'APPLY' | 'AUTO_COMPLETE_SELECTION' | 'BACKWARD_PAGINATE' | 'BOOK' | 'BRAND_ICON' | 'CALL_TO_ACTION' | 'CASE_START' | 'CASE_SUBMITTED' | 'CHAT_IMPRESSION' | 'CHAT_LINK_CLICK' | 'CHAT_RESPONSE' | 'COLLAPSE' | 'DIRECTIONS' | 'EVENT' | 'EXPAND' | 'FEATURED_MESSAGE' | 'FILTERING_WITHIN_SECTION' | 'FORWARD_PAGINATE' | 'HEADER_LINKS' | 'ITEM_IN_LIST' | 'MAP_CARD' | 'MAP_PIN' | 'MENU' | 'MESSAGE' | 'ORDER' | 'PAGINATE' | 'PHONE' | 'POST' | 'PRESET_PROMPT' | 'PRODUCT' | 'PROFILE' | 'QUESTION_FOCUS' | 'QUESTION_SUBMIT' | 'REMOVED_FILTER' | 'REVIEW' | 'SCROLL_TO_BOTTOM_OF_PAGE' | 'SEARCH_BAR_IMPRESSION' | 'SEARCH_CLEAR_BUTTON' | 'THUMBS_DOWN' | 'THUMBS_UP' | 'TICKET_URL' | 'TITLE' | 'VERTICAL_TAB_NAVIGATION' | 'VERTICAL_VIEW_ALL' | 'VOICE_START' | 'VOICE_STOP' | 'WEBSITE';
-
-// @public
 export function analytics(config: AnalyticsConfig): AnalyticsEventService;
 
 // @public
 export interface AnalyticsConfig {
     bearer?: string;
+    // Warning: (ae-forgotten-export) The symbol "Environment" needs to be exported by the entry point index.d.ts
     env?: Environment;
     forceFetch?: boolean;
     key?: string;
+    // Warning: (ae-forgotten-export) The symbol "Region" needs to be exported by the entry point index.d.ts
     region?: Region;
     sessionTrackingEnabled?: boolean;
 }
 
-// @public
+// @public (undocumented)
 export interface AnalyticsEventService {
+    // Warning: (ae-forgotten-export) The symbol "PartialPayload" needs to be exported by the entry point index.d.ts
+    // Warning: (ae-forgotten-export) The symbol "EventAPIResponse" needs to be exported by the entry point index.d.ts
     report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
+    // Warning: (ae-forgotten-export) The symbol "EventPayload" needs to be exported by the entry point index.d.ts
     with(payload: EventPayload): AnalyticsEventService;
-}
-
-// @public
-export type EnumOrString<T extends string> = T | `${T}`;
-
-// @public
-export type Environment = EnumOrString<EnvironmentEnum>;
-
-// @public
-export enum EnvironmentEnum {
-    // (undocumented)
-    Production = "PRODUCTION",
-    Sandbox = "SANDBOX"
-}
-
-// @public
-export interface EventAPIResponse {
-    errors?: string[];
-    id: string;
-}
-
-// @public
-export interface EventPayload {
-    action: Action;
-    authorization?: string;
-    bot?: boolean;
-    browserAgent?: {
-        browser?: string;
-        browserVersion?: string;
-        os?: string;
-        osVersion?: string;
-        device?: string;
-        deviceClass?: string;
-        userAgent?: string;
-    };
-    chat?: {
-        botId: string;
-        conversationId?: string;
-        responseId?: string;
-    };
-    clientSdk?: Record<string, string>;
-    count?: number;
-    customTags?: Record<string, string>;
-    customValues?: Record<string, number>;
-    destinationUrl?: string;
-    entity?: {
-        entityId: string;
-    } | {
-        entityUid: number;
-    };
-    internalUser?: boolean;
-    ip?: {
-        address: string;
-        algorithm?: string;
-    };
-    label?: string;
-    locale?: string;
-    pageUrl?: string;
-    referrerUrl?: string;
-    sessionId?: string | null;
-    timestamp?: Date | string;
-    visitor?: Record<string, string>;
-}
-
-// @public
-export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
-
-// @public
-export type Region = EnumOrString<RegionEnum>;
-
-// @public
-export enum RegionEnum {
-    // (undocumented)
-    EU = "eu",
-    // (undocumented)
-    US = "us"
 }
 
 // (No @packageDocumentation comment for this package)

@@ -1,11 +1,7 @@
 import {EventAPIResponse} from './EventAPIResponse';
 import {EventPayload, PartialPayload} from './EventPayload';
 
-/** 
- * A service for reporting Yext analytics events
- * 
- * @public 
-*/
+/** @public */
 export interface AnalyticsEventService {
     /**
      * Creates a new AnalyticsEventService with the following values defined
