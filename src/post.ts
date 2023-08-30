@@ -20,7 +20,11 @@ export function postWithBeacon(url: string, body: EventPayload): boolean {
  * @param body the EventPayload object
  */
 export function postWithFetch(url: string, body: EventPayload): Promise<Response> {
-  return fetch(url, {method: 'POST', body: JSON.stringify(body), keepalive: true});
+  return fetch(
+    url,
+    { method: 'POST',
+      headers: { 'Content-Type': 'application/json'},
+      body: JSON.stringify(body), keepalive: true});
 }
 
 /**
