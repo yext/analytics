@@ -21,7 +21,10 @@ describe('Test post util function', () => {
 
   const url = 'https://dev.us.yextevents.com/accounts/me/events';
 
-  const optionsA = {method: 'POST', body: JSON.stringify(eventPayloadA), keepalive: true};
+  const optionsA = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json'},
+    body: JSON.stringify(eventPayloadA), keepalive: true};
 
   fetchMock.post(url, JSON.stringify(eventResponseA));
 

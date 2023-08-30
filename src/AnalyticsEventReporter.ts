@@ -45,9 +45,9 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       }
 
       finalPayload.clientSdk
-        ? (finalPayload.clientSdk as Record<string, string>)[packageinfo.name] = packageinfo.version
+        ? (finalPayload.clientSdk as Record<string, string>)['ANALYTICS'] = packageinfo.version
         : finalPayload.clientSdk = {
-          [packageinfo.name]: packageinfo.version,
+          ['ANALYTICS']: packageinfo.version,
         };
 
       finalPayload.authorization = this.config.key
