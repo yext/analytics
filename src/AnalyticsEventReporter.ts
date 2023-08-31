@@ -73,7 +73,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
         const body: EventAPIResponse = await res?.json();
         let errorMessage = `Events API responded with ${res?.status}: ${res?.statusText}`;
         body?.errors?.forEach(e => errorMessage += `\nError: ${e}.`);
-        throw Error(errorMessage);
+        throw new Error(errorMessage);
       }
       const resJson = await res?.json();
       return resJson;
