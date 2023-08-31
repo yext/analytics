@@ -11,7 +11,8 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService {
   return new AnalyticsEventReporter(config);
 }
 
-export { AnalyticsConfig, AnalyticsEventService };
+export * from './AnalyticsConfig';
+export * from './AnalyticsEventService';
 export * from './Environment';
 export * from './Region';
 export * from './EventPayload';
