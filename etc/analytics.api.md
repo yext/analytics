@@ -5,146 +5,25 @@
 ```ts
 
 // @public
-export interface AccordionToggleEvent {
-    entityId: string;
-    queryId: string;
-    searcher?: Searcher;
-    type: EnumOrString<SearchAnalyticsEventType.RowExpand | SearchAnalyticsEventType.RowCollapse>;
-    verticalKey: string;
-}
-
-// @public
 export type Action = 'ADD_TO_CART' | 'ALL_TAB_NAVIGATION' | 'APPLY' | 'AUTO_COMPLETE_SELECTION' | 'BACKWARD_PAGINATE' | 'BOOK' | 'BRAND_ICON' | 'CALL_TO_ACTION' | 'CASE_START' | 'CASE_SUBMITTED' | 'CHAT_IMPRESSION' | 'CHAT_LINK_CLICK' | 'CHAT_RESPONSE' | 'COLLAPSE' | 'DIRECTIONS' | 'EVENT' | 'EXPAND' | 'FEATURED_MESSAGE' | 'FILTERING_WITHIN_SECTION' | 'FORWARD_PAGINATE' | 'HEADER_LINKS' | 'ITEM_IN_LIST' | 'MAP_CARD' | 'MAP_PIN' | 'MENU' | 'MESSAGE' | 'ORDER' | 'PAGINATE' | 'PHONE' | 'POST' | 'PRESET_PROMPT' | 'PRODUCT' | 'PROFILE' | 'QUESTION_FOCUS' | 'QUESTION_SUBMIT' | 'REMOVED_FILTER' | 'REVIEW' | 'SCROLL_TO_BOTTOM_OF_PAGE' | 'SEARCH_BAR_IMPRESSION' | 'SEARCH_CLEAR_BUTTON' | 'THUMBS_DOWN' | 'THUMBS_UP' | 'TICKET_URL' | 'TITLE' | 'VERTICAL_TAB_NAVIGATION' | 'VERTICAL_VIEW_ALL' | 'VOICE_START' | 'VOICE_STOP' | 'WEBSITE';
 
 // @public
-export interface AllTabNavigationEvent {
-    queryId?: string;
-    type: EnumOrString<SearchAnalyticsEventType.AllTabNavigation>;
-}
+export function analytics(config: AnalyticsConfig): AnalyticsEventService;
 
 // @public
-export interface AnalyticsPayload {
-    [key: string]: string | number | boolean | AnalyticsPayload;
-}
-
-// @public
-export interface AutocompleteEvent {
-    queryId?: string;
-    suggestedSearchText: string;
-    type: EnumOrString<SearchAnalyticsEventType.AutocompleteSelection>;
-}
-
-// @public
-export interface BaseAnalyticsConfig {
-    businessId: number;
-    debug?: boolean;
-    visitor?: Visitor;
-}
-
-// @public
-export interface ChatAnalyticsConfig {
-    apiKey: string;
-    endpoint?: string;
+export interface AnalyticsConfig {
+    bearer?: string;
     env?: Environment;
+    forceFetch?: boolean;
+    key?: string;
     region?: Region;
     sessionTrackingEnabled?: boolean;
 }
 
 // @public
-export interface ChatAnalyticsService {
-    report(event: ChatEventPayLoad): Promise<EventAPIResponse>;
-}
-
-// @public
-export interface ChatDomainProperties {
-    botId: string;
-    conversationId?: string;
-    responseId?: string;
-}
-
-// @public
-export interface ChatEventPayLoad extends EventPayload {
-    chat: ChatDomainProperties;
-}
-
-// @public
-export interface CommonConversionData {
-    cookieId: string;
-    location: string;
-    referrer?: string;
-}
-
-// @public
-export interface ConversionDetails {
-    cid: string;
-    cv?: string;
-}
-
-// @public
-export interface ConversionEvent extends CommonConversionData, ConversionDetails {
-}
-
-// @public
-export interface ConversionTrackingService {
-    setDebugEnabled(enabled: boolean): void;
-    trackConversion(event: ConversionEvent): void;
-    trackListings(event: ListingsClickEvent): Promise<void>;
-}
-
-// @public
-export const COOKIE_PARAM = "_yfpc";
-
-// @public
-export class CookieManager {
-    constructor(_outerWindow?: Window, _outerDocument?: Document);
-    setAndGetYextCookie(): string;
-}
-
-// @public
-export const CtaClick: PagesAnalyticsEvent;
-
-// @public
-export interface CtaEvent {
-    ctaLabel?: 'video_played' | string;
-    directAnswer?: boolean;
-    entityId: string;
-    fieldName?: string;
-    queryId: string;
-    searcher: Searcher;
-    type: EnumOrString<SearchAnalyticsEventType.CtaClick | SearchAnalyticsEventType.TitleClick | SearchAnalyticsEventType.TapToCall | SearchAnalyticsEventType.OrderNow | SearchAnalyticsEventType.AddToCart | SearchAnalyticsEventType.ApplyNow | SearchAnalyticsEventType.DrivingDirections | SearchAnalyticsEventType.ViewWebsite | SearchAnalyticsEventType.Email | SearchAnalyticsEventType.BookAppointment | SearchAnalyticsEventType.Rsvp>;
-    url?: string;
-    verticalKey: string;
-}
-
-// @public
-export enum DefaultPagesEventNames {
-    // (undocumented)
-    CTA = "CTA_CLICK",
-    // (undocumented)
-    DrivingDirection = "DRIVING_DIRECTIONS",
-    // (undocumented)
-    PageView = "PAGE_VIEW",
-    // (undocumented)
-    PhoneCall = "CALL",
-    // (undocumented)
-    Website = "WEBSITE"
-}
-
-// @public
-export interface DirectoryPage extends PageType {
-    directoryId: string;
-    id: number;
-    readonly name: 'directory';
-}
-
-// @public
-export const DrivingDirectionEvent: PagesAnalyticsEvent;
-
-// @public
-export interface EntityPage extends PageType {
-    id: number;
-    readonly name: 'entity';
-    pageSetId: string;
+export interface AnalyticsEventService {
+    report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
+    with(payload: EventPayload): AnalyticsEventService;
 }
 
 // @public
@@ -157,7 +36,6 @@ export type Environment = EnumOrString<EnvironmentEnum>;
 export enum EnvironmentEnum {
     // (undocumented)
     Production = "PRODUCTION",
-    // (undocumented)
     Sandbox = "SANDBOX"
 }
 
@@ -170,7 +48,8 @@ export interface EventAPIResponse {
 // @public
 export interface EventPayload {
     action: Action;
-    bot?: string;
+    authorization?: string;
+    bot?: boolean;
     browserAgent?: {
         browser?: string;
         browserVersion?: string;
@@ -180,16 +59,17 @@ export interface EventPayload {
         deviceClass?: string;
         userAgent?: string;
     };
+    chat?: {
+        botId: string;
+        conversationId?: string;
+        responseId?: string;
+    };
     clientSdk?: Record<string, string>;
     count?: number;
     customTags?: Record<string, string>;
     customValues?: Record<string, number>;
     destinationUrl?: string;
-    entity?: {
-        entityId: string;
-    } | {
-        entityUid: number;
-    };
+    entity?: string | number;
     internalUser?: boolean;
     ip?: {
         address: string;
@@ -199,90 +79,13 @@ export interface EventPayload {
     locale?: string;
     pageUrl?: string;
     referrerUrl?: string;
-    sessionId?: string;
+    sessionId?: string | null;
     timestamp?: Date | string;
     visitor?: Record<string, string>;
 }
 
 // @public
-export interface ListingsClickEvent extends CommonConversionData {
-    source: string;
-}
-
-// @public
-export interface LocatorPage extends PageType {
-    readonly name: 'locator';
-    searchId: string;
-}
-
-// @public
-export interface PagesAnalyticsConfig extends BaseAnalyticsConfig {
-    pageDomain?: string;
-    pageType: DirectoryPage | EntityPage | LocatorPage | StaticPage;
-    pageUrl: string;
-    production: boolean;
-    referrer: string;
-    region?: Region;
-    siteId: number;
-}
-
-// @public
-export interface PagesAnalyticsEvent {
-    eventType: DefaultPagesEventNames.PageView | DefaultPagesEventNames.CTA | DefaultPagesEventNames.PhoneCall | DefaultPagesEventNames.DrivingDirection | DefaultPagesEventNames.Website | string;
-}
-
-// @public
-export interface PagesAnalyticsService {
-    pageView(): Promise<void>;
-    setConversionTrackingEnabled(enabled: boolean, cookieId: string): void;
-    setDebugEnabled(enabled: boolean): void;
-    setVisitor(visitor: Visitor | undefined): void;
-    track(event: PagesAnalyticsEvent, conversionInfo?: ConversionDetails): Promise<void>;
-}
-
-// @public
-export interface PageType {
-    name: string;
-}
-
-// @public
-export const PageViewEvent: PagesAnalyticsEvent;
-
-// @public
-export interface PaginationEvent {
-    currentPage: number;
-    newPage: number;
-    queryId: string;
-    totalPageCount: number;
-    type: EnumOrString<SearchAnalyticsEventType.Paginate>;
-    verticalKey: string;
-}
-
-// @public
-export const PhoneCallEvent: PagesAnalyticsEvent;
-
-// @public
-export function provideAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
-
-// @public
-export function provideChatAnalytics(config: ChatAnalyticsConfig): ChatAnalyticsService;
-
-// @public
-export function provideConversionTrackingAnalytics(debug?: boolean): ConversionTrackingService;
-
-// @public
-export function providePagesAnalytics(config: PagesAnalyticsConfig): PagesAnalyticsService;
-
-// @public
-export function provideSearchAnalytics(config: SearchAnalyticsConfig): SearchAnalyticsService;
-
-// @public
-export interface QuestionSubmissionEvent {
-    queryId: string;
-    searcher: Searcher;
-    type: EnumOrString<SearchAnalyticsEventType.QuestionFocus | SearchAnalyticsEventType.QuestionSubmit>;
-    verticalKey: string;
-}
+export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
 
 // @public
 export type Region = EnumOrString<RegionEnum>;
@@ -290,177 +93,10 @@ export type Region = EnumOrString<RegionEnum>;
 // @public
 export enum RegionEnum {
     // (undocumented)
-    EU = "EU",
+    EU = "eu",
     // (undocumented)
-    US = "US"
+    US = "us"
 }
-
-// @public
-export interface ScrollEvent {
-    queryId: string;
-    type: EnumOrString<SearchAnalyticsEventType.ScrollToBottomOfPage>;
-}
-
-// @public
-interface SearchAnalyticsConfig extends BaseAnalyticsConfig {
-    // @deprecated
-    domain?: string;
-    env?: Environment;
-    experienceKey: string;
-    experienceVersion: 'PRODUCTION' | 'STAGING' | string;
-    region?: Region;
-}
-export { SearchAnalyticsConfig as AnalyticsConfig }
-export { SearchAnalyticsConfig }
-
-// @public
-export type SearchAnalyticsEvent = AccordionToggleEvent | CtaEvent | QuestionSubmissionEvent | ScrollEvent | SearchBarImpressionEvent | SearchClearEvent | SearchDurationEvent | ThumbsFeedbackEvent | VerticalViewAllEvent | VoiceSearchEvent | PaginationEvent | AutocompleteEvent | AllTabNavigationEvent | VerticalTabNavigationEvent;
-
-// @public
-enum SearchAnalyticsEventType {
-    // (undocumented)
-    AddToCart = "ADD_TO_CART",
-    // (undocumented)
-    AllTabNavigation = "ALL_TAB_NAVIGATION",
-    // (undocumented)
-    ApplyNow = "APPLY_NOW",
-    // (undocumented)
-    AutocompleteSelection = "AUTO_COMPLETE_SELECTION",
-    // (undocumented)
-    BookAppointment = "BOOK_APPOINTMENT",
-    // (undocumented)
-    CtaClick = "CTA_CLICK",
-    // (undocumented)
-    DrivingDirections = "DRIVING_DIRECTIONS",
-    // (undocumented)
-    Email = "EMAIL",
-    // (undocumented)
-    FollowUpQuery = "FOLLOW_UP_QUERY",
-    // (undocumented)
-    OrderNow = "ORDER_NOW",
-    // (undocumented)
-    Paginate = "PAGINATE",
-    // (undocumented)
-    QuestionFocus = "QUESTION_FOCUS",
-    // (undocumented)
-    QuestionSubmit = "QUESTION_SUBMIT",
-    // (undocumented)
-    ResultsHidden = "RESULTS_HIDDEN",
-    // (undocumented)
-    ResultsUnhidden = "RESULTS_UNHIDDEN",
-    // (undocumented)
-    RowCollapse = "ROW_COLLAPSE",
-    // (undocumented)
-    RowExpand = "ROW_EXPAND",
-    // (undocumented)
-    Rsvp = "RSVP",
-    // (undocumented)
-    ScrollToBottomOfPage = "SCROLL_TO_BOTTOM_OF_PAGE",
-    // (undocumented)
-    SearchBarImpression = "SEARCH_BAR_IMPRESSION",
-    // (undocumented)
-    SearchClearButton = "SEARCH_CLEAR_BUTTON",
-    // (undocumented)
-    TapToCall = "TAP_TO_CALL",
-    // (undocumented)
-    ThumbsDown = "THUMBS_DOWN",
-    // (undocumented)
-    ThumbsUp = "THUMBS_UP",
-    // (undocumented)
-    TitleClick = "TITLE_CLICK",
-    // (undocumented)
-    VerticalTabNavigation = "VERTICAL_TAB_NAVIGATION",
-    // (undocumented)
-    VerticalViewAll = "VERTICAL_VIEW_ALL",
-    // (undocumented)
-    ViewWebsite = "VIEW_WEBSITE",
-    // (undocumented)
-    VoiceStart = "VOICE_START",
-    // (undocumented)
-    VoiceStop = "VOICE_STOP"
-}
-export { SearchAnalyticsEventType as AnalyticsEventType }
-export { SearchAnalyticsEventType }
-
-// @public
-interface SearchAnalyticsService {
-    report(event: SearchAnalyticsEvent, additionalRequestAttributes?: AnalyticsPayload): Promise<void>;
-    setDebugEnabled(enabled: boolean): void;
-    setVisitor(visitor: Visitor | undefined): void;
-}
-export { SearchAnalyticsService as AnalyticsService }
-export { SearchAnalyticsService }
-
-// @public
-export interface SearchBarImpressionEvent {
-    searcher?: Searcher;
-    standAlone: boolean;
-    type: EnumOrString<SearchAnalyticsEventType.SearchBarImpression>;
-    verticalKey?: string;
-}
-
-// @public
-export interface SearchClearEvent {
-    queryId: string;
-    type: EnumOrString<SearchAnalyticsEventType.SearchClearButton>;
-    verticalKey?: string;
-}
-
-// @public
-export interface SearchDurationEvent {
-    queryId: string;
-    searcher: Searcher;
-    type: EnumOrString<SearchAnalyticsEventType.ResultsHidden | SearchAnalyticsEventType.ResultsUnhidden | SearchAnalyticsEventType.FollowUpQuery>;
-}
-
-// @public
-export type Searcher = 'UNIVERSAL' | 'VERTICAL';
-
-// @public
-export interface StaticPage extends PageType {
-    readonly name: 'static';
-    staticPageId: string;
-}
-
-// @public
-export interface ThumbsFeedbackEvent {
-    directAnswer?: boolean;
-    entityId?: string;
-    queryId: string;
-    searcher?: Searcher;
-    type: EnumOrString<SearchAnalyticsEventType.ThumbsUp | SearchAnalyticsEventType.ThumbsDown>;
-    verticalKey?: string;
-}
-
-// @public
-export interface VerticalTabNavigationEvent {
-    queryId?: string;
-    type: EnumOrString<SearchAnalyticsEventType.VerticalTabNavigation>;
-    verticalKey: string;
-}
-
-// @public
-export interface VerticalViewAllEvent {
-    queryId: string;
-    type: EnumOrString<SearchAnalyticsEventType.VerticalViewAll>;
-    verticalKey: string;
-}
-
-// @public
-export interface Visitor {
-    id: string;
-    idMethod?: string;
-}
-
-// @public
-export interface VoiceSearchEvent {
-    timestamp: number;
-    type: EnumOrString<SearchAnalyticsEventType.VoiceStart | SearchAnalyticsEventType.VoiceStop>;
-    voiceSessionId: string;
-}
-
-// @public
-export const WebsiteEvent: PagesAnalyticsEvent;
 
 // (No @packageDocumentation comment for this package)
 

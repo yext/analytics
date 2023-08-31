@@ -9,5 +9,5 @@ Whether the event is the result of bot activity.
 <b>Signature:</b>
 
 ```typescript
-bot?: string;
+bot?: boolean;
 ```

@@ -4,7 +4,7 @@
 
 ## EventAPIResponse interface
 
-Response from an analytic request.
+Response from an analytics request.
 
 <b>Signature:</b>
 
