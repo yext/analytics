@@ -21,5 +21,5 @@ export interface AnalyticsConfig
 |  [forceFetch?](./analytics.analyticsconfig.forcefetch.md) | boolean | <i>(Optional)</i> Used to force sending the request with fetch even if the browser does not support fetch with the keepalive flag (like Firefox). If the browser does support it, fetch is used by default. |
 |  [key?](./analytics.analyticsconfig.key.md) | string | <i>(Optional)</i> The API Key or OAuth for accessing the Analytics Events API Only one of key or bearer should be set. |
 |  [region?](./analytics.analyticsconfig.region.md) | Region | <i>(Optional)</i> The region to send requests to. Defaults to 'US'. |
-|  [sessionTrackingEnabled?](./analytics.analyticsconfig.sessiontrackingenabled.md) | boolean | <i>(Optional)</i> Whether to enable session tracking for analytics events. Defaults to true for both environments |
+|  [sessionTrackingEnabled?](./analytics.analyticsconfig.sessiontrackingenabled.md) | boolean | <i>(Optional)</i> Whether to enable session tracking for analytics events. Defaults to true for both environments. If set to false, sessionId will automatically be set to undefined in the event payload. |
 
