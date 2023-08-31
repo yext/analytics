@@ -26,7 +26,7 @@ export interface EventPayload
 |  [customTags?](./analytics.eventpayload.customtags.md) | Record&lt;string, string&gt; | <i>(Optional)</i> Up to 10 pairs matching custom string keys to string values to associate with the event. Keys are case-insensitive; values are case-sensitive. |
 |  [customValues?](./analytics.eventpayload.customvalues.md) | Record&lt;string, number&gt; | <i>(Optional)</i> Up to 10 pairs matching custom string keys to number values to associate with the event. Keys are case-insensitive. |
 |  [destinationUrl?](./analytics.eventpayload.destinationurl.md) | string | <i>(Optional)</i> The URL of the page the event is directing the visitor to. |
-|  [entity?](./analytics.eventpayload.entity.md) | { entityId: string; } \| { entityUid: number; } | <i>(Optional)</i> The Yext entity to which the event corresponds. |
+|  [entity?](./analytics.eventpayload.entity.md) | string \| number | <i>(Optional)</i> The Yext entity to which the event corresponds. If passed as a string, the value is the mutable, customer-settable entity ID for the entity associated with the event. If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID. |
 |  [internalUser?](./analytics.eventpayload.internaluser.md) | boolean | <i>(Optional)</i> Indicates whether the event is the result of internal activity. |
 |  [ip?](./analytics.eventpayload.ip.md) | { address: string; algorithm?: string; } | <i>(Optional)</i> The IP address for the event. |
 |  [label?](./analytics.eventpayload.label.md) | string | <i>(Optional)</i> A label assigned to the event, e.g. a CTA label. |

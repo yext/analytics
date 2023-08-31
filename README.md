@@ -122,9 +122,8 @@ pagesAnalytics.report({
 });
 ```
 ### Debugging
-We use `fetch()` + `keepalive` by default in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/fetch) to make debugging easier. For browsers like Firefox that do not support `keepalive`, we use `fetch` only. Be warned, since `forceFetch` uses `fetch()` without `keepalive`, **requests in progress will be canceled if the page is unloaded**.
+We use `fetch()` + `keepalive` by default in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/fetch) to make debugging easier. For browsers like Firefox that do not support `keepalive`, [we use the Beacon API](https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API). Users can set `forceFetch: true` in their config, which will make these browsers use `fetch()` instead of the `Beacon API`. Be warned, since `forceFetch` uses `fetch()` without `keepalive`, **requests in progress for browsers like FireFox will be canceled if the page is unloaded**.
  
-
 ## Module support
 - The ESM (ES6) build will be used automatically by module bundlers that support it (e.g. Webpack). It can be specified directly by importing `@yext/analytics/lib/esm`
 - The CommonJS build will be used automatically by Node, but it can be specified directly by importing `@yext/analytics/lib/commonjs`

@@ -69,11 +69,7 @@ export interface EventPayload {
     customTags?: Record<string, string>;
     customValues?: Record<string, number>;
     destinationUrl?: string;
-    entity?: {
-        entityId: string;
-    } | {
-        entityUid: number;
-    };
+    entity?: string | number;
     internalUser?: boolean;
     ip?: {
         address: string;
