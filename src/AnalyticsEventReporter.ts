@@ -37,17 +37,20 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     public async report(newPayload?: PartialPayload): Promise<boolean | EventAPIResponse> {
       const finalPayload: EventPayload = merge(this.payload ?? {}, newPayload ?? {});
 
-      /** If session tracking is enabled, and sessionId was not already manually added to the event payload,
+      /** If session tracking is disabled, set sessionId to undefined. If it is,
+       * enabled, and sessionId was not already manually added to the event payload,
        * call getOrSetupSessionId to set value.
        */
-      if (this.config.sessionTrackingEnabled && !finalPayload.sessionId) {
+      if (!this.config.sessionTrackingEnabled) {
+        finalPayload.sessionId = undefined;
+      } else if (!finalPayload.sessionId) {
         finalPayload.sessionId = getOrSetupSessionId();
       }
 
       finalPayload.clientSdk
-        ? (finalPayload.clientSdk as Record<string, string>)[packageinfo.name] = packageinfo.version
+        ? (finalPayload.clientSdk as Record<string, string>)['ANALYTICS'] = packageinfo.version
         : finalPayload.clientSdk = {
-          [packageinfo.name]: packageinfo.version,
+          ['ANALYTICS']: packageinfo.version,
         };
 
       finalPayload.authorization = this.config.key

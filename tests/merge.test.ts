@@ -9,7 +9,7 @@ describe('Merge Function Test', () => {
       locale: 'en_US',
     };
 
-    const uneffectedEvent1: PartialPayload = {...event1};
+    const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
 
     const event2 = {
       label: 'label',
@@ -26,7 +26,7 @@ describe('Merge Function Test', () => {
     };
 
     expect(result).toEqual(expected);
-    expect(event1).toEqual(uneffectedEvent1); // confirm event1 uneffected
+    expect(event1).toEqual(unaffectedEvent1); // confirm event1 unaffected
   });
 
   it('should merge objects with no overlap correctly', () => {
@@ -37,7 +37,7 @@ describe('Merge Function Test', () => {
       }
     };
 
-    const uneffectedEvent1: PartialPayload = {...event1};
+    const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
 
     const event2 = {
       action: 'APPLY',
@@ -65,7 +65,7 @@ describe('Merge Function Test', () => {
     };
 
     expect(result).toEqual(expected);
-    expect(event1).toEqual(uneffectedEvent1); // confirm event1 uneffected
+    expect(event1).toEqual(unaffectedEvent1); // confirm event1 unaffected
   });
 
   it('should merge primitives and objects (with overlap) correctly', () => {
@@ -81,8 +81,7 @@ describe('Merge Function Test', () => {
       },
     };
 
-    const uneffectedEvent1: PartialPayload = {...event1};
-
+    const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
     const event2 = {
       action: 'ADD_TO_CART',
       browserAgent: {
@@ -113,7 +112,7 @@ describe('Merge Function Test', () => {
     };
 
     expect(result).toEqual(expected);
-    expect(event1).toEqual(uneffectedEvent1); // confirm event1 uneffected
+    expect(event1).toEqual(unaffectedEvent1); // confirm event1 unaffected
   });
 
   it('should merge correctly when original is empty', () => {

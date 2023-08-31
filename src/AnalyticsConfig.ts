@@ -21,7 +21,8 @@ export interface AnalyticsConfig {
     region?: Region;
     /**
      * Whether to enable session tracking for analytics events.
-     * Defaults to true for both environments
+     * Defaults to true for both environments. If set to false, sessionId will automatically
+     * be set to undefined in the event payload.
      * @remarks
      * This generates a ULID to tie together events in a single browsing session.
      */
