@@ -216,6 +216,74 @@ describe('Test report function', () => {
         });
     });
 
+
+  it('should call post with correct fields, should set sessionId undefined if session tracking disabled',
+    async () => {
+      const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
+
+      mockPostWithFetch.mockResolvedValue({
+        ok: true,
+        status: 202,
+        statusText: 'Unauthorized request',
+        json: jest.fn().mockResolvedValue({id: 1111}),
+        redirected: false,
+        type: 'basic',
+        url: 'https://example.com',
+        clone: jest.fn(),
+        headers: new Headers(),
+        body: null,
+        bodyUsed: false,
+        arrayBuffer: jest.fn(),
+        blob: jest.fn(),
+        formData: jest.fn(),
+        text: jest.fn()
+      });
+      mockUseBeacon.mockReturnValueOnce(false);
+
+      const config: AnalyticsConfig = {
+        bearer: 'bearerToken',
+        sessionTrackingEnabled: false,
+      };
+      const reporter = new AnalyticsEventReporter(config).with({
+        action: 'ADD_TO_CART',
+        referrerUrl: 'https://yext.com',
+        count: 5,
+        sessionId: 'ULID1234',
+      });
+
+      const res = await reporter.report({
+        authorization: 'Bearer shouldNotUpdate',
+        destinationUrl: 'https://google.com',
+        clientSdk: {
+          chat: '1.0.1.0',
+        },
+      });
+
+      // Expect successful response
+      expect(res).toEqual({id: 1111});
+      // Expect getOrSetupSessionId to not be called as session tracking disabled
+      expect(mockSetupSessionId).toHaveBeenCalledTimes(0);
+      /** Expect merge to have completed correctly,
+     * the url to be constructed correctly defaulting to Production,
+     * authorization to be from the config and not overriden by reprt(),
+     * and sessionId set to undefined,
+     * and clientSdk to be added to the request body in the correct format. **/
+      expect(mockPostWithFetch).toHaveBeenCalledWith(
+        'https://us.yextevents.com/accounts/me/events',
+        {
+          action: 'ADD_TO_CART',
+          authorization: 'Bearer bearerToken',
+          clientSdk: {
+            ANALYTICS: '1.0.0-beta.0',
+            chat: '1.0.1.0',
+          },
+          destinationUrl: 'https://google.com',
+          referrerUrl: 'https://yext.com',
+          count: 5,
+          sessionId: undefined,
+        });
+    });
+
   it('calling report with no argument should result in the request body coming from with()', async () => {
     mockPostWithBeacon.mockReturnValueOnce(true);
     mockUseBeacon.mockReturnValueOnce(true);
