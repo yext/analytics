@@ -17,7 +17,7 @@ export declare enum EnvironmentEnum
 |  Member | Value | Description |
 |  --- | --- | --- |
 |  Production | <code>&quot;PRODUCTION&quot;</code> |  |
-|  Sandbox | <code>&quot;SANDBOX&quot;</code> |  |
+|  Sandbox | <code>&quot;SANDBOX&quot;</code> | unsupported in the EU region |
 
 ## Remarks
 

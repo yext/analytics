@@ -1,101 +1,110 @@
-import {CtaClick, provideAnalytics, providePagesAnalytics, provideChatAnalytics} from '@yext/analytics';
-import { CookieManager, provideConversionTrackingAnalytics } from '../../src';
+import { analytics } from '@yext/analytics';
 
-const analytics = provideAnalytics({
-  experienceKey: 'slanswers',
-  experienceVersion: 'PRODUCTION',
-  businessId: 3350634,
-  debug: true,
-});
-
-export function fireClickEvent() {
-  fireAnalyticsEvent({
-    type: 'CTA_CLICK',
-    entityId: '1',
-    verticalKey: 'people',
-    searcher: 'VERTICAL',
-    queryId: '95751527-9db6-4859-8278-60d1c060b6c0'
-  });
-}
-
-export function fireClickEventWithError() {
-  fireAnalyticsEvent({
-    type: 'CTA_CLICK',
-    queryId: '95751527-9db6-4859-8278-60d1c060b6c0'
-  });
-}
-
-function fireAnalyticsEvent(event) {
-  analytics
-    .report(event)
-    .then(() => console.log('success!'))
-    .catch(err => console.error(err));
-}
-
-const pages = providePagesAnalytics({
-  pageType: {
-    name: 'entity',
-    pageSetId: 'location',
-    id: 18718615,
+/** Note: there is currently a bug when sending requests in FireFox where the Network tab
+ * will show NS_ERROR_FAILURE under transferred even though the response is successful 
+ * and Yext successfuly recieved the data. 
+ * For Yext employees there is more info here: 
+ * https://yext.slack.com/archives/G8UMH43HP/p1693419787243609?thread_ts=1693411231.167479&cid=G8UMH43HP
+ * 
+ * We will continue investigating this make a fix if necessary. 
+*/
+const analyticsProvider = analytics({
+  key: process.env.YEXT_API_KEY,
+  sessionTrackingEnabled: false
+}).with({
+  action: "CHAT_LINK_CLICK",
+  pageUrl: "http://www.yext-test-pageurl.com",
+  destinationUrl: "http://www.yext-test-destinationurl.com",
+  referrerUrl: "http://www.yext-test-referrerurl.com",
+  label: "test-label",
+  timestamp: new Date(),
+  bot: false,
+  browserAgent: {
+    browser: "test-browser",
+    browserVersion: "test-browser-version",
+    os: "test-os",
+    osVersion: "test-os-version",
+    device: "test-device",
+    deviceClass: "test-device-class",
+    userAgent: "test-user-agent",
   },
-  referrer: 'https://www.google.com',
-  pageUrl: 'https://www.pagesanalyticstesting.com/location/11291?y_source=123353131212312312',
-  businessId: 3350634,
-  production: false,
-  siteId: 40659,
-  debug: true,
+  clientSdk: {
+    "testsdk": "version",
+  },
+  internalUser: false,
+  chat: {
+    botId: "analytics-test-bot"
+  },
+    count: 1,
+  customTags: {
+    "testcustomtag": "testcustomtagvalue",
+  },
+  customValues: {
+    "testcustomvalue": 1,
+  },
+  entity: "testEntityId",
+  ip: {
+    address: "0.0.0.0",
+    algorithm: "HASH",
+  },
+  visitor: {
+    "test-id-method": "visitor-test-id",
+  },
 });
 
-const cookieManager = new CookieManager();
-const cookieId = cookieManager.setAndGetYextCookie();
-let enableConversionTracking = true;
-pages.setConversionTrackingEnabled(enableConversionTracking, cookieId);
 
-export function firePageView() {
-  pages.pageView();
-}
-
-export function firePagesCTA() {
-  pages.track(CtaClick, {cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556'});
-}
-
-const conversions = provideConversionTrackingAnalytics(true);
-
-export function toggleConversionTracking() {
-  enableConversionTracking = !enableConversionTracking;
-  pages.setConversionTrackingEnabled(enableConversionTracking, cookieId);
-}
-
-export function fireConversion(value?: number) {
-  conversions.trackConversion({
-    cookieId: cookieId,
-    cid: 'fd61ce31-43ca-41ce-a68d-f6b540b80556',
-    cv: value.toString(),
-    location: window.location.href,
-  });
-}
-
-export function fireListings() {
-  conversions.trackListings({
-    cookieId: cookieId,
-    source: '1_NjE0MzM5Mi03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D',
-    location: 'location/04500'
-  });
-}
-
-const chat = provideChatAnalytics({
-  apiKey: process.env.CHAT_API_KEY,
+const analyticsProvideWithSessionTracking = analytics({
+  key: process.env.YEXT_API_KEY,
+}).with({
+  action: "CHAT_LINK_CLICK",
+  pageUrl: "http://www.yext-test-pageurl.com",
+  destinationUrl: "http://www.yext-test-destinationurl.com",
+  referrerUrl: "http://www.yext-test-referrerurl.com",
+  label: "test-label",
+  timestamp: new Date(),
+  bot: false,
+  browserAgent: {
+    browser: "test-browser",
+    browserVersion: "test-browser-version",
+    os: "test-os",
+    osVersion: "test-os-version",
+    device: "test-device",
+    deviceClass: "test-device-class",
+    userAgent: "test-user-agent",
+  },
+  clientSdk: {
+    "sdk": "version",
+  },
+  internalUser: false,
+  chat: {
+    botId: "analytics-test-bot"
+  },
+  count: 1,
+  customTags: {
+    "testcustomtag": "testcustomtagvalue",
+  },
+  customValues: {
+    "testcustomvalue": 1,
+  },
+  entity: "testEntityId",
+  ip: {
+    address: "0.0.0.0",
+    algorithm: "HASH",
+  },
+  visitor: {
+    "test-id-method": "visitor-test-id",
+  },
 });
 
 export function fireChatEvent() {
-  chat.report({
-    action: "CHAT_LINK_CLICK",
-    referrerUrl: "http://www.yext-test-referrerurl.com",
-    visitor: {
-      "test-id-method": "visitor-test-id",
-    },
-    chat: {
-      botId: "analytics-test-bot"
-    }
-  })
+  analyticsProvider.report();
 }
+
+export function fireCallToActionEvent() {
+  analyticsProvider.report({action: "CALL_TO_ACTION"});
+}
+
+export function fireEventWithSessionTracking() {
+  analyticsProvideWithSessionTracking.report();
+}
+

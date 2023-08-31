@@ -9,5 +9,5 @@ Unique identifier to tie together events in a single browsing session
 <b>Signature:</b>
 
 ```typescript
-sessionId?: string;
+sessionId?: string | null;
 ```

@@ -4,84 +4,27 @@
 
 ## analytics package
 
-## Classes
-
-|  Class | Description |
-|  --- | --- |
-|  [CookieManager](./analytics.cookiemanager.md) | CookieManager will manager conversion tracking cookies |
-
 ## Enumerations
 
 |  Enumeration | Description |
 |  --- | --- |
-|  [DefaultPagesEventNames](./analytics.defaultpageseventnames.md) | Default pages analytics event types. |
 |  [EnvironmentEnum](./analytics.environmentenum.md) | An enum for the Yext Environments |
 |  [RegionEnum](./analytics.regionenum.md) | An enum of the physical region the Yext account |
-|  [SearchAnalyticsEventType](./analytics.searchanalyticseventtype.md) | Represents the possible analytics event types. |
 
 ## Functions
 
 |  Function | Description |
 |  --- | --- |
-|  [provideAnalytics(config)](./analytics.provideanalytics.md) | Maintained for backwards compatibility with older versions of the library provideAnalytics uses the AnalyticsConfig, AnalyticsService, and AnalyticsReporter aliases for SearchAnalyticsConfig, SearchAnalyticsService, and SearchAnalyticsReporter |
-|  [provideChatAnalytics(config)](./analytics.providechatanalytics.md) | Provides a Chat Analytics service |
-|  [provideConversionTrackingAnalytics(debug)](./analytics.provideconversiontrackinganalytics.md) | Provides a Conversion Tracking service given an optional debugging parameter |
-|  [providePagesAnalytics(config)](./analytics.providepagesanalytics.md) | Provides a Pages Analytics service given a Pages specific config |
-|  [provideSearchAnalytics(config)](./analytics.providesearchanalytics.md) | Provides a Search Analytics service given a Search specific config |
+|  [analytics(config)](./analytics.analytics.md) | The Yext Analytics Events SDK. Returns an AnalyticsEventService given an AnalyticsConfig. |
 
 ## Interfaces
 
 |  Interface | Description |
 |  --- | --- |
-|  [AccordionToggleEvent](./analytics.accordiontoggleevent.md) | Event for expanding or collapsing an accordion row. Commonly used for FAQs. |
-|  [AllTabNavigationEvent](./analytics.alltabnavigationevent.md) | Event for navigating to the 'all' tab (a universal page). |
-|  [AnalyticsPayload](./analytics.analyticspayload.md) | The shape of the data which is sent during an analytics request. |
-|  [AutocompleteEvent](./analytics.autocompleteevent.md) | Event for autocomplete selection. |
-|  [BaseAnalyticsConfig](./analytics.baseanalyticsconfig.md) | Base analytics configuration |
-|  [ChatAnalyticsConfig](./analytics.chatanalyticsconfig.md) | The main configuration options for Chat Analytics. |
-|  [ChatAnalyticsService](./analytics.chatanalyticsservice.md) | A service for reporting chat analytics events. |
-|  [ChatDomainProperties](./analytics.chatdomainproperties.md) | Analytics event properties specific to Yext Chat. |
-|  [ChatEventPayLoad](./analytics.chateventpayload.md) | The payload accepted by the Analytics Events API for Chat related analytics. |
-|  [CommonConversionData](./analytics.commonconversiondata.md) | Shared properties of both ConversionEvent and ListingsClickEvent |
-|  [ConversionDetails](./analytics.conversiondetails.md) | The details of an individual conversion event, without the cookie id. |
-|  [ConversionEvent](./analytics.conversionevent.md) | An event representing a Conversion |
-|  [ConversionTrackingService](./analytics.conversiontrackingservice.md) | A service for tracking conversions |
-|  [CtaEvent](./analytics.ctaevent.md) | A call to action analytics event. |
-|  [DirectoryPage](./analytics.directorypage.md) | Represents the analytics parameters required to track events on a directory page |
-|  [EntityPage](./analytics.entitypage.md) | Represents the analytics parameters required to track events on an Entity Page |
-|  [EventAPIResponse](./analytics.eventapiresponse.md) | Response from an analytic request. |
+|  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics Events. |
+|  [AnalyticsEventService](./analytics.analyticseventservice.md) | A service for reporting Yext analytics events |
+|  [EventAPIResponse](./analytics.eventapiresponse.md) | Response from an analytics request. |
 |  [EventPayload](./analytics.eventpayload.md) | The payload accepted by the Analytics Events API. |
-|  [ListingsClickEvent](./analytics.listingsclickevent.md) | An event representing a user arriving at a landing page from a publisher site. |
-|  [LocatorPage](./analytics.locatorpage.md) | Represents the analytics parameters required to track events on a Locator Page |
-|  [PagesAnalyticsConfig](./analytics.pagesanalyticsconfig.md) | The main configuration options for Pages Analytics. Contains all page or session level information. |
-|  [PagesAnalyticsEvent](./analytics.pagesanalyticsevent.md) | An event from the Pages system |
-|  [PagesAnalyticsService](./analytics.pagesanalyticsservice.md) | A service for reporting pages analytics events. |
-|  [PageType](./analytics.pagetype.md) | represents a page type |
-|  [PaginationEvent](./analytics.paginationevent.md) | Event for pagination interaction. |
-|  [QuestionSubmissionEvent](./analytics.questionsubmissionevent.md) | Event for submitting a question. |
-|  [ScrollEvent](./analytics.scrollevent.md) | Event for scrolling to the bottom of the page. |
-|  [SearchAnalyticsConfig](./analytics.searchanalyticsconfig.md) | The main configuration options for Search Analytics. |
-|  [SearchAnalyticsService](./analytics.searchanalyticsservice.md) | A service for reporting search analytics events. |
-|  [SearchBarImpressionEvent](./analytics.searchbarimpressionevent.md) | Event for expanding or collapsing an accordion row. |
-|  [SearchClearEvent](./analytics.searchclearevent.md) | Event for clicking on the button to clear the search input. |
-|  [SearchDurationEvent](./analytics.searchdurationevent.md) | Event used to calculate the duration of a search. |
-|  [StaticPage](./analytics.staticpage.md) | Represents the analytics parameters required to track events on a static page |
-|  [ThumbsFeedbackEvent](./analytics.thumbsfeedbackevent.md) | Event for submitting thumbs up/down feedback (ThumbsUp and ThumbsDown). |
-|  [VerticalTabNavigationEvent](./analytics.verticaltabnavigationevent.md) | Event for navigating to a vertical tab or page. |
-|  [VerticalViewAllEvent](./analytics.verticalviewallevent.md) | Event for clicking on a vertical's View All button on a universal page. |
-|  [Visitor](./analytics.visitor.md) | Information used to associate analytics with a particular user. |
-|  [VoiceSearchEvent](./analytics.voicesearchevent.md) | Event for starting or stopping voice search. |
-
-## Variables
-
-|  Variable | Description |
-|  --- | --- |
-|  [COOKIE\_PARAM](./analytics.cookie_param.md) | URL Parameter &amp; Param name for Yext conversion pixels |
-|  [CtaClick](./analytics.ctaclick.md) | A Pages CTA Event |
-|  [DrivingDirectionEvent](./analytics.drivingdirectionevent.md) | A Pages DrivingDirection Event |
-|  [PageViewEvent](./analytics.pageviewevent.md) | A Pages PageView Event |
-|  [PhoneCallEvent](./analytics.phonecallevent.md) | A Pages Phone Call Event |
-|  [WebsiteEvent](./analytics.websiteevent.md) | A Pages Website Click Event |
 
 ## Type Aliases
 
@@ -90,7 +33,6 @@
 |  [Action](./analytics.action.md) | The action types accepted by the Analytics Events API. |
 |  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
 |  [Environment](./analytics.environment.md) | The Yext Environments |
+|  [PartialPayload](./analytics.partialpayload.md) | A Payload that is a subset of the EventPayload |
 |  [Region](./analytics.region.md) | The physical region of the Yext account |
-|  [SearchAnalyticsEvent](./analytics.searchanalyticsevent.md) | An analytics event. |
-|  [Searcher](./analytics.searcher.md) | Whether the search occurred on universal or vertical search. |
 
