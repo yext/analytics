@@ -35,7 +35,7 @@ Next, import and initialize the library in your application. When initializing y
 import { Analytics } from "@yext/analytics";
 
 // Root analytics service with no defaults.
-const rootAnalytics = new Analytics("MY_API_KEY"); 
+const rootAnalytics = new Analytics({ key: "MY_API_KEY" }); 
 ```
 In many cases, you might need to repeatedly specify the same properties, such as a Pages site ID or Chat bot ID. Yext Analytics allows you to avoid having to repeatedly specify the same code by allowing you to set **default values**.
 
@@ -44,7 +44,7 @@ You can add a `.with()` method to the root analytics service you initialized, wh
 import { Analytics } from "@yext/analytics";
 
 // Root analytics service with no defaults.
-const rootAnalytics = new Analytics("MY_API_KEY"); 
+const rootAnalytics = new Analytics({ key: "MY_API_KEY" }); 
 
 // Pages analytics service with Pages defaults.
 const pageAnalytics = rootAnalytics.with({ pages: { siteId: 123 } }); 
@@ -64,9 +64,10 @@ chatAnalytics.report({
 ```
 ### Additional Configuration 
 #### Session Tracking
-Session tracking is now available for Chat, Pages, and Search. Yext uses a browser-based method (sessionStorage) to track this. By default, session tracking is **enabled** in **both** the US and EU environments. For users whose Yext accounts are located in the EU environment, this can be disabled by setting `sessionTrackingEnabled` to `false`.
+Session tracking is now available for Chat, Pages, and Search. Yext uses a browser-based method (sessionStorage) to track this. By default, session tracking is **enabled** in **both** the US and EU environments. This can be disabled by setting `sessionTrackingEnabled` to `false`.
 
-When `sessionTrackingEnabled` is set to `true`, Analytics will automatically generate a ULID for `sessionId` and bind that ULID to events from the same browser session. Users may also provide their own `sessionId`, which takes precedence over the auto-generated ID by Analytics.
+When `sessionTrackingEnabled` is set to `true`, Analytics will automatically generate a ULID for `sessionId` and bind that ULID to events from the same browser session. Users may also provide their own `sessionId`, which takes precedence over the auto-generated ID by Analytics. [To read more about how we generate ULIDs, check out ulidx.](https://github.com/perry-mitchell/ulidx)
+
 #### Custom Events
 You can also send custom analytics events.
 ```ts
