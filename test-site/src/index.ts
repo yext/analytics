@@ -105,8 +105,6 @@ export function fireCallToActionEvent() {
 }
 
 export function fireEventWithSessionTracking() {
-  analyticsProvideWithSessionTracking.report({
-    sessionId: "12345"
-  });
+  analyticsProvideWithSessionTracking.report();
 }
 
