@@ -23,7 +23,7 @@
 |  --- | --- |
 |  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics Events. |
 |  [AnalyticsEventService](./analytics.analyticseventservice.md) | A service for reporting Yext analytics events |
-|  [EventAPIResponse](./analytics.eventapiresponse.md) | Response from an analytic request. |
+|  [EventAPIResponse](./analytics.eventapiresponse.md) | Response from an analytics request. |
 |  [EventPayload](./analytics.eventpayload.md) | The payload accepted by the Analytics Events API. |
 
 ## Type Aliases
