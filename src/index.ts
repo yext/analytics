@@ -11,4 +11,10 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService {
   return new AnalyticsEventReporter(config);
 }
 
-export { AnalyticsConfig, AnalyticsEventService};
+export { AnalyticsConfig, AnalyticsEventService };
+export * from './Environment';
+export * from './Region';
+export * from './EventPayload';
+export * from './EventAPIResponse';
+export * from './EnumOrString';
+export * from './Action'

@@ -99,4 +99,9 @@ export interface EventPayload {
   visitor?: Record<string, string>;
 }
 
+/**
+ * A Payload that is a subset of the EventPayload
+ *
+ * @public
+ */
 export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;

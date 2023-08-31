@@ -1,5 +1,5 @@
 /**
- * Response from an analytic request.
+ * Response from an analytics request.
  *
  * @public
  */

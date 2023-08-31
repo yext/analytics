@@ -4,6 +4,13 @@
 
 ## analytics package
 
+## Enumerations
+
+|  Enumeration | Description |
+|  --- | --- |
+|  [EnvironmentEnum](./analytics.environmentenum.md) | An enum for the Yext Environments |
+|  [RegionEnum](./analytics.regionenum.md) | An enum of the physical region the Yext account |
+
 ## Functions
 
 |  Function | Description |
@@ -15,5 +22,17 @@
 |  Interface | Description |
 |  --- | --- |
 |  [AnalyticsConfig](./analytics.analyticsconfig.md) | The main configuration options for Analytics Events. |
-|  [AnalyticsEventService](./analytics.analyticseventservice.md) |  |
+|  [AnalyticsEventService](./analytics.analyticseventservice.md) | A service for reporting Yext analytics events |
+|  [EventAPIResponse](./analytics.eventapiresponse.md) | Response from an analytics request. |
+|  [EventPayload](./analytics.eventpayload.md) | The payload accepted by the Analytics Events API. |
+
+## Type Aliases
+
+|  Type Alias | Description |
+|  --- | --- |
+|  [Action](./analytics.action.md) | The action types accepted by the Analytics Events API. |
+|  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
+|  [Environment](./analytics.environment.md) | The Yext Environments |
+|  [PartialPayload](./analytics.partialpayload.md) | A Payload that is a subset of the EventPayload |
+|  [Region](./analytics.region.md) | The physical region of the Yext account |
 
