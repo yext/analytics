@@ -19,7 +19,7 @@
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run api-extractor && npm run generate-docs && npm run generate-notices",
+    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run api-extractor && npm run generate-docs && npm run generate-notices && vite build",
     "lint": "eslint .",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
@@ -46,7 +46,8 @@
     "jest": "^27.0.6",
     "jest-fetch-mock": "^3.0.3",
     "prettier": "^2.8.8",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "vite": "^4.4.9"
   },
   "jest": {
     "bail": false,
