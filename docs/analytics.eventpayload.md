@@ -16,7 +16,7 @@ export interface EventPayload
 
 |  Property | Type | Description |
 |  --- | --- | --- |
-|  [action](./analytics.eventpayload.action.md) | [Action](./analytics.action.md) | The user action which caused the event, e.g. ADD\_TO\_CART or THUMBS\_UP |
+|  [action](./analytics.eventpayload.action.md) | [Action](./analytics.action.md) | The user action which caused the event, e.g. ADD\_TO\_CART, THUMBS\_UP, C\_CUSTOM\_ACTION |
 |  [authorization?](./analytics.eventpayload.authorization.md) | string | <i>(Optional)</i> The authorization token for the request. This will be setup from the Key or Bearer in the config. |
 |  [bot?](./analytics.eventpayload.bot.md) | boolean | <i>(Optional)</i> Whether the event is the result of bot activity. |
 |  [browserAgent?](./analytics.eventpayload.browseragent.md) | { browser?: string; browserVersion?: string; os?: string; osVersion?: string; device?: string; deviceClass?: string; userAgent?: string; } | <i>(Optional)</i> Information about the visitors device and browser. |

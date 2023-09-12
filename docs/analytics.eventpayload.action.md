@@ -4,7 +4,7 @@
 
 ## EventPayload.action property
 
-The user action which caused the event, e.g. ADD\_TO\_CART or THUMBS\_UP
+The user action which caused the event, e.g. ADD\_TO\_CART, THUMBS\_UP, C\_CUSTOM\_ACTION
 
 <b>Signature:</b>
 

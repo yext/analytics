@@ -72,7 +72,7 @@ describe('Test report function', () => {
     });
 
     const res = await reporter.report({
-      action: 'APPLY',
+      action: 'C_CUSTOM_ACTION',
       destinationUrl: 'https://google.com',
     });
 
@@ -83,7 +83,7 @@ describe('Test report function', () => {
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
       'https://eu.yextevents.com/accounts/me/events',
       {
-        action: 'APPLY',
+        action: 'C_CUSTOM_ACTION',
         authorization: 'KEY validKey',
         clientSdk: {
           ANALYTICS: '1.0.0-beta.0'
@@ -121,7 +121,7 @@ describe('Test report function', () => {
       env: EnvironmentEnum.Sandbox,
     };
     const reporter = new AnalyticsEventReporter(config).with({
-      action: 'ADD_TO_CART',
+      action: 'c_lowercase_custom_action',
       referrerUrl: 'https://yext.com',
       count: 5,
     });
@@ -139,7 +139,7 @@ describe('Test report function', () => {
     expect(mockPostWithFetch).toHaveBeenCalledWith(
       'https://sbx.us.yextevents.com/accounts/me/events',
       {
-        action: 'ADD_TO_CART',
+        action: 'c_lowercase_custom_action',
         authorization: 'Bearer bearerToken',
         clientSdk: {
           ANALYTICS: '1.0.0-beta.0'
