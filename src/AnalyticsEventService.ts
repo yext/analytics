@@ -1,10 +1,10 @@
 import {EventAPIResponse} from './EventAPIResponse';
 import {EventPayload, PartialPayload} from './EventPayload';
 
-/** 
+/**
  * A service for reporting Yext analytics events
- * 
- * @public 
+ *
+ * @public
 */
 export interface AnalyticsEventService {
     /**
@@ -26,5 +26,5 @@ export interface AnalyticsEventService {
      * @param payload - desired values to be applied. The new payload will
      * override any overlapping values.
      */
-    report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>
+    report(payload?: PartialPayload): Promise<string>
 }

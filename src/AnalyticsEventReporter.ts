@@ -34,7 +34,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       return new AnalyticsEventReporter(this.config, currentPayload);
     }
 
-    public async report(newPayload?: PartialPayload): Promise<boolean | EventAPIResponse> {
+    public async report(newPayload?: PartialPayload): Promise<string> {
       const finalPayload: EventPayload = merge(this.payload ?? {}, newPayload ?? {});
 
       /** If session tracking is disabled, set sessionId to undefined. If it is,
@@ -60,22 +60,19 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       const shouldUseBeacon = useBeacon(finalPayload, this.config.forceFetch);
       const requestUrl = setupRequestUrl(this.config.env, this.config.region);
 
-      // If useBeacon returns true, return boolean response of postWithBeacon
+      // If useBeacon returns true, return boolean response of postWithBeacon as string.
       if (shouldUseBeacon) {
-        return await postWithBeacon(requestUrl, finalPayload);
+        return String(postWithBeacon(requestUrl, finalPayload));
       }
 
       /** If useBeacon returns false, use postWithFetch.
           If result is successful, return result json.
           If request fails, return errors. */
       const res = await postWithFetch(requestUrl, finalPayload);
-      if (!res?.ok) {
-        const body: EventAPIResponse = await res?.json();
-        let errorMessage = `Events API responded with ${res?.status}: ${res?.statusText}`;
-        body?.errors?.forEach(e => errorMessage += `\nError: ${e}.`);
-        throw new Error(errorMessage);
-      }
       const resJson = await res?.json();
+      if (!res?.ok) {
+        return Promise.reject(`Events API responded with ${res?.status}: ${resJson?.errors}`);
+      }
       return resJson;
     }
 }

@@ -22,7 +22,7 @@ export interface AnalyticsConfig {
 
 // @public
 export interface AnalyticsEventService {
-    report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
+    report(payload?: PartialPayload): Promise<string>;
     with(payload: EventPayload): AnalyticsEventService;
 }
 
@@ -41,7 +41,6 @@ export enum EnvironmentEnum {
 
 // @public
 export interface EventAPIResponse {
-    errors?: string[];
     id: string;
 }
 
