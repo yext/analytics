@@ -83,7 +83,7 @@ describe('Merge Function Test', () => {
 
     const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
     const event2 = {
-      action: 'ADD_TO_CART',
+      action: 'C_CUSTOM_ACTION',
       browserAgent: {
         os: undefined,
         browser: 'Safari',
@@ -99,7 +99,7 @@ describe('Merge Function Test', () => {
     const result = merge(event1, event2);
 
     const expected: EventPayload = {
-      action: 'ADD_TO_CART',
+      action: 'C_CUSTOM_ACTION',
       browserAgent: {
         browser: 'Safari',
         device: 'MacBook Air',

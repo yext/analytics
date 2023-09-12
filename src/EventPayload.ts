@@ -6,7 +6,7 @@ import { Action } from './Action';
  * @public
  */
 export interface EventPayload {
-  /** The user action which caused the event, e.g. ADD_TO_CART or THUMBS_UP  */
+  /** The user action which caused the event, e.g. ADD_TO_CART, THUMBS_UP, C_CUSTOM_ACTION  */
   action: Action;
   /** The authorization token for the request. This will be setup from the Key or Bearer in the config. */
   authorization?: string;
