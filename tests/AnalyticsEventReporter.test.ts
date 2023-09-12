@@ -77,7 +77,7 @@ describe('Test report function', () => {
     });
 
     // Expect true to be returned for beacon request
-    expect(res).toEqual(true);
+    expect(res).toEqual('true');
     /** Expect merge to have completed correctly, the url to be constructed correctly,
     and the clientSdk and authorization to be added to the request body in the correct format. **/
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
@@ -304,7 +304,7 @@ describe('Test report function', () => {
     const res = await reporter.report();
 
     // Expect true to be returned for beacon request
-    expect(res).toEqual(true);
+    expect(res).toEqual('true');
     /** Expect merge to have completed correctly, the url to be constructed correctly,
       and the clientSdk and authorization to be added to the request body in the correct format. **/
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
@@ -341,7 +341,7 @@ describe('Test report function', () => {
         count: 5});
 
       // Expect true to be returned for beacon request
-      expect(res).toEqual(true);
+      expect(res).toEqual('true');
       /** Expect merge to have completed correctly, the url to be constructed correctly,
       and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
@@ -363,7 +363,7 @@ describe('Test report function', () => {
         ok: false,
         status: 400,
         statusText: 'Bad Request',
-        json: jest.fn().mockResolvedValue({}),
+        json: jest.fn().mockRejectedValue({errors: ['Bad Request']}),
         redirected: false,
         type: 'basic',
         url: 'https://example.com',
@@ -394,7 +394,7 @@ describe('Test report function', () => {
         // Fail test if above expression doesn't throw anything.
         expect(true).toBe(false);
       } catch (e) {
-        expect(e.message).toBe('Events API responded with 400: Bad Request');
+        expect(e).toEqual({errors: ['Bad Request']});
       }
 
       /** Expect merge to have completed correctly, but the request
@@ -430,7 +430,7 @@ describe('Test report function', () => {
 
       const res1 = await reporter1.report();
       // Expect true to be returned for beacon request
-      expect(res1).toEqual(true);
+      expect(res1).toEqual('true');
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
         'https://eu.yextevents.com/accounts/me/events',
         {
@@ -457,7 +457,7 @@ describe('Test report function', () => {
       const res2 = await reporter2.report();
 
       // Expect true to be returned for beacon request
-      expect(res2).toEqual(true);
+      expect(res2).toEqual('true');
       /** Expect merge to have completed correctly, the url to be constructed correctly,
       and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
