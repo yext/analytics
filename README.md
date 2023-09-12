@@ -32,10 +32,10 @@ npm install @yext/analytics
 
 Next, import and initialize the library in your application. When initializing your analytics reporter, you only need to provide an API Key that has access to the Events API. Other attributes such as your business ID will be automatically inferred. You can acquire this API key in the developer console of the Yext Platform.
 ```ts
-import { Analytics } from "@yext/analytics";
+import { analytics } from "@yext/analytics";
 
 // Root analytics service with no defaults.
-const rootAnalytics = new Analytics({ key: "MY_API_KEY" }); 
+const rootAnalytics = analytics({ key: "MY_API_KEY" }); 
 ```
 In many cases, you might need to repeatedly specify the same properties, such as a Pages site ID or Chat bot ID. Yext Analytics allows you to avoid having to repeatedly specify the same code by allowing you to set **default values**.
 
@@ -78,7 +78,7 @@ pagesAnalytics.report({
 Additionally, you can send arbitrary conversion events by specifying a `value` JSON object with a dollar `amount` and a `currency` in ISO format. 
 ```ts
 chatAnalytics.report({
-  action: "C_CONVERSION_EVENT"
+  action: "C_CONVERSION_EVENT",
   value: {
     amount: 10,
     currency: "USD",
@@ -135,64 +135,3 @@ Yext Analytics is an open-sourced library licensed under the [BSD-3 License](./L
 ## Third Party Licenses
 
 The licenses of our 3rd party dependencies are collected here: [THIRD-PARTY-NOTICES](./THIRD-PARTY-NOTICES).
-
-## Appendix 
-
-### Merge Operations
-When we merge the JSON, we abide by the following guidelines. For primitives:
-* Merging an existing key with null/undefined **deletes the key**.
-* Merging an existing key with a non-null value **updates the value**.
-* Merging a new key **adds the new value**.
-
-```ts
-const x = {
-  foo: "bar",
-  num: 123,
-  baz: "remove me"
-}
-
-const y = {
-  num: 789,
-  bool: True
-  baz: null
-}
-
-merge(x,y)
-/** ---------- Result -------------
- * {
- *   foo: "bar",
- *   num: 789,
- *   bool: True
- * }
- */
-```
-
-For objects, we recursively apply the above rules within the object. Merging multi-level objects strictly combines values on a level-by-level basis, so the first level of each JSON is merged, then the next, until there is nothing left to merge.
-
-```ts
-const x = {
-  foo: {
-    bar: {
-      baz: 123
-    }
-  }
-}
-
-const y = {
-  foo: {
-    baz: 789
-  }
-}
-
-merge(x,y)
-/** ---------- Result -------------
- * {
- *   foo: {
- *     bar: {
- *       baz: 123
- *     },
- *     baz: 789
- *   }
- * }
- */
-```
