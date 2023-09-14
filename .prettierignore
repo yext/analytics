@@ -1,0 +1,9 @@
+.github/
+coverage/
+docs/
+etc/
+lib/
+dist/
+package*.json
+LICENSE
+THIRD-PARTY-NOTICES
