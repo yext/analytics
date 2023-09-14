@@ -76,8 +76,9 @@ describe('Test report function', () => {
       destinationUrl: 'https://google.com',
     });
 
+
     // Expect true to be returned for beacon request
-    expect(res).toEqual('true');
+    expect(res).toEqual('');
     /** Expect merge to have completed correctly, the url to be constructed correctly,
     and the clientSdk and authorization to be added to the request body in the correct format. **/
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
@@ -97,23 +98,7 @@ describe('Test report function', () => {
   it('should call postWithFetch with correct fields, ' +
       'report should return success json if post returns successful',
   async () => {
-    mockPostWithFetch.mockResolvedValue({
-      ok: true,
-      status: 202,
-      statusText: 'OK',
-      json: jest.fn().mockResolvedValue({id: 1111}),
-      redirected: false,
-      type: 'basic',
-      url: 'https://example.com',
-      clone: jest.fn(),
-      headers: new Headers(),
-      body: null,
-      bodyUsed: false,
-      arrayBuffer: jest.fn(),
-      blob: jest.fn(),
-      formData: jest.fn(),
-      text: jest.fn()
-    });
+    mockPostWithFetch.mockResolvedValue({id: 1111});
     mockUseBeacon.mockReturnValueOnce(false);
 
     const config: AnalyticsConfig = {
@@ -154,24 +139,7 @@ describe('Test report function', () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
       mockSetupSessionId.mockImplementation( () => 'ULID1234');
-
-      mockPostWithFetch.mockResolvedValue({
-        ok: true,
-        status: 401,
-        statusText: 'Unauthorized request',
-        json: jest.fn().mockResolvedValue({id: 1111, errors: ['Unauthorized request']}),
-        redirected: false,
-        type: 'basic',
-        url: 'https://example.com',
-        clone: jest.fn(),
-        headers: new Headers(),
-        body: null,
-        bodyUsed: false,
-        arrayBuffer: jest.fn(),
-        blob: jest.fn(),
-        formData: jest.fn(),
-        text: jest.fn()
-      });
+      mockPostWithFetch.mockResolvedValue({id: 1111, errors: ['Unauthorized request']});
       mockUseBeacon.mockReturnValueOnce(false);
 
       const config: AnalyticsConfig = {
@@ -220,24 +188,7 @@ describe('Test report function', () => {
   it('should call post with correct fields, should set sessionId undefined if session tracking disabled',
     async () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
-
-      mockPostWithFetch.mockResolvedValue({
-        ok: true,
-        status: 202,
-        statusText: 'Unauthorized request',
-        json: jest.fn().mockResolvedValue({id: 1111}),
-        redirected: false,
-        type: 'basic',
-        url: 'https://example.com',
-        clone: jest.fn(),
-        headers: new Headers(),
-        body: null,
-        bodyUsed: false,
-        arrayBuffer: jest.fn(),
-        blob: jest.fn(),
-        formData: jest.fn(),
-        text: jest.fn()
-      });
+      mockPostWithFetch.mockResolvedValue({id: 1111});
       mockUseBeacon.mockReturnValueOnce(false);
 
       const config: AnalyticsConfig = {
@@ -304,7 +255,7 @@ describe('Test report function', () => {
     const res = await reporter.report();
 
     // Expect true to be returned for beacon request
-    expect(res).toEqual('true');
+    expect(res).toEqual('');
     /** Expect merge to have completed correctly, the url to be constructed correctly,
       and the clientSdk and authorization to be added to the request body in the correct format. **/
     expect(mockPostWithBeacon).toHaveBeenCalledWith(
@@ -341,7 +292,7 @@ describe('Test report function', () => {
         count: 5});
 
       // Expect true to be returned for beacon request
-      expect(res).toEqual('true');
+      expect(res).toEqual('');
       /** Expect merge to have completed correctly, the url to be constructed correctly,
       and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
@@ -359,27 +310,11 @@ describe('Test report function', () => {
 
   it('calling report with no argument and no with call should result in invalid request body and error',
     async () => {
-      mockPostWithFetch.mockResolvedValue({
-        ok: false,
-        status: 400,
-        statusText: 'Bad Request',
-        json: jest.fn().mockRejectedValue({errors: ['Bad Request']}),
-        redirected: false,
-        type: 'basic',
-        url: 'https://example.com',
-        clone: jest.fn(),
-        headers: new Headers(),
-        body: null,
-        bodyUsed: false,
-        arrayBuffer: jest.fn(),
-        blob: jest.fn(),
-        formData: jest.fn(),
-        text: jest.fn()
-      });
+      mockPostWithBeacon.mockReturnValue(false);
+      mockPostWithFetch.mockResolvedValue({errors: ['Bad Request']});
 
       const navigator = { userAgent: 'Chrome', sendBeacon: () => { return false; }};
       Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
-      mockPostWithBeacon.mockReturnValue(false);
 
       const config: AnalyticsConfig = {
         key: 'validKey',
@@ -389,13 +324,9 @@ describe('Test report function', () => {
 
       const service: AnalyticsEventService = new AnalyticsEventReporter(config);
 
-      try {
-        await service.report({});
-        // Fail test if above expression doesn't throw anything.
-        expect(true).toBe(false);
-      } catch (e) {
-        expect(e).toEqual({errors: ['Bad Request']});
-      }
+      const res = await service.report({});
+      expect(res).toEqual({errors: ['Bad Request']});
+
 
       /** Expect merge to have completed correctly, but the request
        * body to be invalid as action was never added **/
@@ -430,7 +361,7 @@ describe('Test report function', () => {
 
       const res1 = await reporter1.report();
       // Expect true to be returned for beacon request
-      expect(res1).toEqual('true');
+      expect(res1).toEqual('');
       expect(mockPostWithBeacon).toHaveBeenCalledWith(
         'https://eu.yextevents.com/accounts/me/events',
         {
@@ -457,7 +388,7 @@ describe('Test report function', () => {
       const res2 = await reporter2.report();
 
       // Expect true to be returned for beacon request
-      expect(res2).toEqual('true');
+      expect(res2).toEqual('');
       /** Expect merge to have completed correctly, the url to be constructed correctly,
       and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithBeacon).toHaveBeenCalledWith(

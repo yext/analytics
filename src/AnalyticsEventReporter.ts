@@ -1,7 +1,6 @@
 import { AnalyticsEventService } from './AnalyticsEventService';
 import { AnalyticsConfig } from './AnalyticsConfig';
 import { EventPayload, PartialPayload } from './EventPayload';
-import { EventAPIResponse } from './EventAPIResponse';
 import { getOrSetupSessionId } from './setupSessionId';
 import packageinfo from '../package.json';
 import { postWithBeacon, postWithFetch, useBeacon } from './post';
@@ -62,17 +61,20 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
 
       // If useBeacon returns true, return boolean response of postWithBeacon as string.
       if (shouldUseBeacon) {
-        return String(postWithBeacon(requestUrl, finalPayload));
+        return new Promise((resolve, reject) => {
+          if (postWithBeacon(requestUrl, finalPayload)) {
+            resolve('');
+          } else {
+            reject('Failed Beacon Call');
+          }
+        });
       }
 
       /** If useBeacon returns false, use postWithFetch.
-          If result is successful, return result json.
-          If request fails, return errors. */
-      const res = await postWithFetch(requestUrl, finalPayload);
-      const resJson = await res?.json();
-      if (!res?.ok) {
-        return Promise.reject(`Events API responded with ${res?.status}: ${resJson?.errors}`);
-      }
-      return resJson;
+      If result is successful, return result json.
+      If request fails, return errors. */
+      return postWithFetch(requestUrl, finalPayload)
+        .then((response) => response)
+        .catch((e) => e);
     }
 }

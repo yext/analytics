@@ -1,4 +1,3 @@
-import {EventAPIResponse} from './EventAPIResponse';
 import {EventPayload, PartialPayload} from './EventPayload';
 
 /**
