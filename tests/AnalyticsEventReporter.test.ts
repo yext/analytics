@@ -149,7 +149,7 @@ describe('Test report function', () => {
       });
   });
 
-  it('should call post with correct fields, report should return error json if post returns an error',
+  it('call post with correct fields, report should return error json if post returns an error',
     async () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
@@ -217,7 +217,7 @@ describe('Test report function', () => {
     });
 
 
-  it('should call post with correct fields, should set sessionId undefined if session tracking disabled',
+  it('call post with correct fields and set sessionId undefined if session tracking disabled',
     async () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
@@ -320,7 +320,7 @@ describe('Test report function', () => {
       });
   });
 
-  it('calling report with an argument with no with call should result in request body coming from report',
+  it('report with an argument with no with() should result in request body coming from report',
     async () => {
       mockPostWithBeacon.mockReturnValueOnce(true);
       mockUseBeacon.mockReturnValueOnce(true);
@@ -357,7 +357,7 @@ describe('Test report function', () => {
         });
     });
 
-  it('calling report with no argument and no with call should result in invalid request body and error',
+  it('report with no argument and no with() should result in invalid request body and error',
     async () => {
       mockPostWithFetch.mockResolvedValue({
         ok: false,
@@ -409,7 +409,7 @@ describe('Test report function', () => {
         });
     });
 
-  it('calling with more than once should result in unique objects that can be called with unique values',
+  it('multiple with() should result in unique objects with unique values',
     async () => {
       mockPostWithBeacon.mockReturnValueOnce(true);
       mockUseBeacon.mockReturnValueOnce(true);
