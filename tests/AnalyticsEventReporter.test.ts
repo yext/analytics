@@ -139,7 +139,7 @@ describe('Test report function', () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
       mockSetupSessionId.mockImplementation( () => 'ULID1234');
-      mockPostWithFetch.mockResolvedValue({id: 1111, errors: ['Unauthorized request']});
+      mockPostWithFetch.mockRejectedValue({id: 1111, errors: ['Unauthorized request']});
       mockUseBeacon.mockReturnValueOnce(false);
 
       const config: AnalyticsConfig = {
@@ -188,8 +188,8 @@ describe('Test report function', () => {
   it('should call post with correct fields, should set sessionId undefined if session tracking disabled',
     async () => {
       const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
-      mockPostWithFetch.mockResolvedValue({id: 1111});
       mockUseBeacon.mockReturnValueOnce(false);
+      mockPostWithFetch.mockResolvedValue({id: 1111});
 
       const config: AnalyticsConfig = {
         bearer: 'bearerToken',
@@ -311,7 +311,7 @@ describe('Test report function', () => {
   it('calling report with no argument and no with call should result in invalid request body and error',
     async () => {
       mockPostWithBeacon.mockReturnValue(false);
-      mockPostWithFetch.mockResolvedValue({errors: ['Bad Request']});
+      mockPostWithFetch.mockRejectedValue({errors: ['Bad Request']});
 
       const navigator = { userAgent: 'Chrome', sendBeacon: () => { return false; }};
       Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
