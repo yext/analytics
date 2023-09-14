@@ -1,16 +1,16 @@
-import { analytics } from '@yext/analytics';
+import { analytics } from "@yext/analytics";
 
 /** Note: there is currently a bug when sending requests in FireFox where the Network tab
- * will show NS_ERROR_FAILURE under transferred even though the response is successful 
- * and Yext successfuly recieved the data. 
- * For Yext employees there is more info here: 
+ * will show NS_ERROR_FAILURE under transferred even though the response is successful
+ * and Yext successfuly recieved the data.
+ * For Yext employees there is more info here:
  * https://yext.slack.com/archives/G8UMH43HP/p1693419787243609?thread_ts=1693411231.167479&cid=G8UMH43HP
- * 
- * We will continue investigating this make a fix if necessary. 
-*/
+ *
+ * We will continue investigating this make a fix if necessary.
+ */
 const analyticsProvider = analytics({
   key: process.env.YEXT_API_KEY,
-  sessionTrackingEnabled: false
+  sessionTrackingEnabled: false,
 }).with({
   action: "CHAT_LINK_CLICK",
   pageUrl: "http://www.yext-test-pageurl.com",
@@ -29,18 +29,18 @@ const analyticsProvider = analytics({
     userAgent: "test-user-agent",
   },
   clientSdk: {
-    "testsdk": "version",
+    testsdk: "version",
   },
   internalUser: false,
   chat: {
-    botId: "analytics-test-bot"
+    botId: "analytics-test-bot",
   },
-    count: 1,
+  count: 1,
   customTags: {
-    "testcustomtag": "testcustomtagvalue",
+    testcustomtag: "testcustomtagvalue",
   },
   customValues: {
-    "testcustomvalue": 1,
+    testcustomvalue: 1,
   },
   entity: "testEntityId",
   ip: {
@@ -51,7 +51,6 @@ const analyticsProvider = analytics({
     "test-id-method": "visitor-test-id",
   },
 });
-
 
 const analyticsProvideWithSessionTracking = analytics({
   key: process.env.YEXT_API_KEY,
@@ -73,18 +72,18 @@ const analyticsProvideWithSessionTracking = analytics({
     userAgent: "test-user-agent",
   },
   clientSdk: {
-    "sdk": "version",
+    sdk: "version",
   },
   internalUser: false,
   chat: {
-    botId: "analytics-test-bot"
+    botId: "analytics-test-bot",
   },
   count: 1,
   customTags: {
-    "testcustomtag": "testcustomtagvalue",
+    testcustomtag: "testcustomtagvalue",
   },
   customValues: {
-    "testcustomvalue": 1,
+    testcustomvalue: 1,
   },
   entity: "testEntityId",
   ip: {
@@ -101,10 +100,9 @@ export function fireChatEvent() {
 }
 
 export function fireCallToActionEvent() {
-  analyticsProvider.report({action: "CALL_TO_ACTION"});
+  analyticsProvider.report({ action: "CALL_TO_ACTION" });
 }
 
 export function fireEventWithSessionTracking() {
   analyticsProvideWithSessionTracking.report();
 }
-

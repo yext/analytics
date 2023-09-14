@@ -78,7 +78,7 @@ export interface EventPayload {
    * the mutable, customer-settable entity ID for the entity associated with the event.
    * If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
    */
-  entity?: string | number
+  entity?: string | number;
   /** The IP address for the event.*/
   ip?: {
     /** The IPv4 address associated with the event. */

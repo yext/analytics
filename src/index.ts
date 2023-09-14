@@ -18,4 +18,4 @@ export * from './Region';
 export * from './EventPayload';
 export * from './EventAPIResponse';
 export * from './EnumOrString';
-export * from './Action'
+export * from './Action';
