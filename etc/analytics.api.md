@@ -40,11 +40,6 @@ export enum EnvironmentEnum {
 }
 
 // @public
-export interface EventAPIResponse {
-    id: string;
-}
-
-// @public
 export interface EventPayload {
     action: Action;
     authorization?: string;
