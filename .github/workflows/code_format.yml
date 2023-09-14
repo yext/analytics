@@ -12,12 +12,12 @@ jobs:
         run: npm ci
       - name: Run Prettier and ESLint
         run: |
-					npm run format
-					npm run lint
-			- name: Commit and push formatting changes
-			  run: |
-			    git config --global user.name 'GitHub Actions'
-			    git config --global user.email 'action@github.com'
-			    git add -A
-			    git commit -m "Auto-fix formatting issues with Prettier and ESLint" || echo "No changes to commit"
-					git push
+	        npm run format
+          npm run lint
+      - name: Commit and push formatting changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'action@github.com'
+          git add -A
+          git commit -m "Auto-fix formatting issues with Prettier and ESLint" || echo "No changes to commit"
+          git push
