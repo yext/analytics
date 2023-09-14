@@ -32,6 +32,7 @@ export class HttpRequester implements HttpRequesterService {
     const fetchInit: RequestInit = {
       method: 'GET',
       mode: 'no-cors',
+      keepalive: true,
     };
 
     if (typeof (window) !== 'undefined' && window.fetch) {
