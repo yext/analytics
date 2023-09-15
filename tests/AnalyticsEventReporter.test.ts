@@ -183,7 +183,56 @@ describe('Test report function', () => {
           sessionId: 'ULID1234'
         });
     });
+ it('should call post with correct fields, and use the original sessionId',
+    async () => {
+      const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<typeof getOrSetupSessionId>;
 
+      mockSetupSessionId.mockImplementation( () => 'ULID1234');
+      mockPostWithFetch.mockRejectedValue({id: 1111, errors: ['Unauthorized request']});
+      mockUseBeacon.mockReturnValueOnce(false);
+
+      const config: AnalyticsConfig = {
+        bearer: 'bearerToken',
+        sessionTrackingEnabled: true,
+      };
+      const reporter = new AnalyticsEventReporter(config).with({
+        action: 'ADD_TO_CART',
+        referrerUrl: 'https://yext.com',
+        count: 5,
+      });
+
+      const res = await reporter.report({
+        authorization: 'Bearer shouldNotUpdate',
+        destinationUrl: 'https://google.com',
+        clientSdk: {
+          chat: '1.0.1.0',
+        },
+        sessionId: 'ULIDORIGINAL'
+      });
+
+      // Expect Unauthorized response
+      expect(res).toEqual({id: 1111, errors: ['Unauthorized request']});
+      // Expect getOrSetupSessionId to be called as sessionTrackingEnabled is set to true
+      expect(mockSetupSessionId).toHaveBeenCalledTimes(0);
+      /** Expect merge to have completed correctly,
+       * the url to be constructed correctly defaulting to Production,
+       * authorization to be from the config and not overriden by reprt(),
+       * and sessionId and clientSdk to be added to the request body in the correct format. **/
+      expect(mockPostWithFetch).toHaveBeenCalledWith(
+        'https://us.yextevents.com/accounts/me/events',
+        {
+          action: 'ADD_TO_CART',
+          authorization: 'Bearer bearerToken',
+          clientSdk: {
+            ANALYTICS: '1.0.0-beta.0',
+            chat: '1.0.1.0',
+          },
+          destinationUrl: 'https://google.com',
+          referrerUrl: 'https://yext.com',
+          count: 5,
+          sessionId: 'ULIDORIGINAL'
+        });
+    });
 
   it('should call post with correct fields, should set sessionId undefined if session tracking disabled',
     async () => {
@@ -331,6 +380,37 @@ describe('Test report function', () => {
       /** Expect merge to have completed correctly, but the request
        * body to be invalid as action was never added **/
       expect(mockPostWithFetch).toHaveBeenCalledWith(
+        'https://eu.yextevents.com/accounts/me/events',
+        {
+          authorization: 'KEY validKey',
+          clientSdk: {
+            ANALYTICS: '1.0.0-beta.0'
+          },
+        });
+    });
+  it('calling report with no argument and no with call should result in Failed Beacon Call for beacon',
+    async () => {
+      mockPostWithBeacon.mockReturnValue(false);
+      mockUseBeacon.mockReturnValueOnce(true);
+      mockPostWithFetch.mockRejectedValue({errors: ['Bad Request']});
+
+      const navigator = { userAgent: 'Firefox', sendBeacon: () => { return true; }};
+      Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
+
+      const config: AnalyticsConfig = {
+        key: 'validKey',
+        region: RegionEnum.EU,
+        forceFetch: false,
+      };
+
+      const service: AnalyticsEventService = new AnalyticsEventReporter(config);
+
+      const res = service.report({});
+      await res.catch(e => expect(e).toMatch('Failed Beacon Call'));
+
+      /** Expect merge to have completed correctly, but the request
+       * body to be invalid as action was never added **/
+      expect(mockPostWithBeacon).toHaveBeenCalledWith(
         'https://eu.yextevents.com/accounts/me/events',
         {
           authorization: 'KEY validKey',
