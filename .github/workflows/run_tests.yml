@@ -8,5 +8,5 @@ on: [push, pull_request]
 jobs:
   call_run_tests:
     uses: yext/slapshot-reusable-workflows/.github/workflows/run_tests.yml@v1
-      with: 
-        test_script: npx jest
+    with: 
+      test_script: npx jest
