@@ -24,7 +24,7 @@
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
-    "test": "jest",
+    "test": "jest && playwright test",
     "dev": "tsc -p tsconfig.esm.json --watch",
     "generate-notices": "generate-license-file --input package.json --output THIRD-PARTY-NOTICES --overwrite"
   },
