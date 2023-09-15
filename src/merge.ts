@@ -10,7 +10,10 @@ import { EventPayload, PartialPayload } from './EventPayload';
  *  Merging a non-existing key adds the key/value.
  *  When the value is an object, the above is applied iteratively.
  */
-const merge = (original: PartialPayload, newValues: PartialPayload): EventPayload => {
+const merge = (
+  original: PartialPayload,
+  newValues: PartialPayload,
+): EventPayload => {
   if (Object.keys(newValues).length === 0) {
     return original as EventPayload;
   } else if (Object.keys(original).length === 0) {
@@ -42,7 +45,7 @@ const merge = (original: PartialPayload, newValues: PartialPayload): EventPayloa
 
   return {
     ...copy,
-    action: copy.action as EventPayload['action']
+    action: copy.action as EventPayload['action'],
   };
 };
 

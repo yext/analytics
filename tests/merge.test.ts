@@ -22,7 +22,7 @@ describe('Merge Function Test', () => {
     const expected: EventPayload = {
       label: 'label',
       locale: 'en_UK',
-      action: 'APPLY'
+      action: 'APPLY',
     };
 
     expect(result).toEqual(expected);
@@ -34,7 +34,7 @@ describe('Merge Function Test', () => {
       action: 'APPLY',
       chat: {
         botId: 'botId',
-      }
+      },
     };
 
     const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
@@ -47,7 +47,7 @@ describe('Merge Function Test', () => {
       },
       chat: {
         responseId: 'responseId',
-      }
+      },
     };
 
     const result = merge(event1, event2);
