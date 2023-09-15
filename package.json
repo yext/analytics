@@ -63,6 +63,9 @@
     "testMatch": [
       "<rootDir>/tests/**/*.ts"
     ],
+    "modulePathIgnorePatterns": [
+      ".*__mocks__.*"
+    ],
     "resetMocks": true,
     "restoreMocks": true,
     "clearMocks": true,
