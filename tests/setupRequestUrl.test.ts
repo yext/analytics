@@ -4,7 +4,10 @@ import { setupRequestUrl } from '../src/setupRequestUrl';
 
 describe('setUpRequestUrl Test', () => {
   it('should set url correctly for env: prod, region: us using their Enums', () => {
-    const resultUrl = setupRequestUrl(EnvironmentEnum.Production, RegionEnum.US);
+    const resultUrl = setupRequestUrl(
+      EnvironmentEnum.Production,
+      RegionEnum.US,
+    );
     const expectedUrl = 'https://us.yextevents.com/accounts/me/events';
 
     expect(resultUrl).toEqual(expectedUrl);
@@ -18,7 +21,10 @@ describe('setUpRequestUrl Test', () => {
   });
 
   it('should set url correctly for env: prod, region: eu using their Enums', () => {
-    const resultUrl = setupRequestUrl(EnvironmentEnum.Production, RegionEnum.EU);
+    const resultUrl = setupRequestUrl(
+      EnvironmentEnum.Production,
+      RegionEnum.EU,
+    );
     const expectedUrl = 'https://eu.yextevents.com/accounts/me/events';
 
     expect(resultUrl).toEqual(expectedUrl);
@@ -51,7 +57,9 @@ describe('setUpRequestUrl Test', () => {
       // Fail test if above expression doesn't throw anything.
       expect(true).toBe(false);
     } catch (e) {
-      expect(e.message).toBe('Sandbox environment is not available in the EU region.');
+      expect(e.message).toBe(
+        'Sandbox environment is not available in the EU region.',
+      );
     }
   });
 
@@ -61,7 +69,9 @@ describe('setUpRequestUrl Test', () => {
       // Fail test if above expression doesn't throw anything.
       expect(true).toBe(false);
     } catch (e) {
-      expect(e.message).toBe('Sandbox environment is not available in the EU region.');
+      expect(e.message).toBe(
+        'Sandbox environment is not available in the EU region.',
+      );
     }
   });
 

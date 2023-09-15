@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -10,109 +10,112 @@
     <!-- <script src="https://assets.sitescdn.net/chat/v0/chat.umd.js"></script> -->
     <script src="../dist/analytics.umd.js"></script>
     <script>
-        const analyticsProvider = window.AnalyticsSDK.analytics({
-            key: "%YEXT_API_KEY%",
-            sessionTrackingEnabled: false
-        }).with({
-            action: "CHAT_LINK_CLICK",
-            pageUrl: "http://www.yext-test-pageurl.com",
-            destinationUrl: "http://www.yext-test-destinationurl.com",
-            referrerUrl: "http://www.yext-test-referrerurl.com",
-            label: "test-label",
-            timestamp: new Date(),
-            bot: false,
-            browserAgent: {
-                browser: "test-browser",
-                browserVersion: "test-browser-version",
-                os: "test-os",
-                osVersion: "test-os-version",
-                device: "test-device",
-                deviceClass: "test-device-class",
-                userAgent: "test-user-agent",
-            },
-            clientSdk: {
-                "testsdk": "version",
-            },
-            internalUser: false,
-            chat: {
-                botId: "analytics-test-bot"
-            },
-                count: 1,
-            customTags: {
-                "testcustomtag": "testcustomtagvalue",
-            },
-            customValues: {
-                "testcustomvalue": 1,
-            },
-            entity: "testEntityId",
-            ip: {
-                address: "0.0.0.0",
-                algorithm: "HASH",
-            },
-            visitor: {
-                "test-id-method": "visitor-test-id",
-            },
-        });
+      const analyticsProvider = window.AnalyticsSDK.analytics({
+        key: "%YEXT_API_KEY%",
+        sessionTrackingEnabled: false,
+      }).with({
+        action: "CHAT_LINK_CLICK",
+        pageUrl: "http://www.yext-test-pageurl.com",
+        destinationUrl: "http://www.yext-test-destinationurl.com",
+        referrerUrl: "http://www.yext-test-referrerurl.com",
+        label: "test-label",
+        timestamp: new Date(),
+        bot: false,
+        browserAgent: {
+          browser: "test-browser",
+          browserVersion: "test-browser-version",
+          os: "test-os",
+          osVersion: "test-os-version",
+          device: "test-device",
+          deviceClass: "test-device-class",
+          userAgent: "test-user-agent",
+        },
+        clientSdk: {
+          testsdk: "version",
+        },
+        internalUser: false,
+        chat: {
+          botId: "analytics-test-bot",
+        },
+        count: 1,
+        customTags: {
+          testcustomtag: "testcustomtagvalue",
+        },
+        customValues: {
+          testcustomvalue: 1,
+        },
+        entity: "testEntityId",
+        ip: {
+          address: "0.0.0.0",
+          algorithm: "HASH",
+        },
+        visitor: {
+          "test-id-method": "visitor-test-id",
+        },
+      });
 
+      const analyticsProvideWithSessionTracking = window.AnalyticsSDK.analytics(
+        {
+          key: "%YEXT_API_KEY%",
+        },
+      ).with({
+        action: "CHAT_LINK_CLICK",
+        pageUrl: "http://www.yext-test-pageurl.com",
+        destinationUrl: "http://www.yext-test-destinationurl.com",
+        referrerUrl: "http://www.yext-test-referrerurl.com",
+        label: "test-label",
+        timestamp: new Date(),
+        bot: false,
+        browserAgent: {
+          browser: "test-browser",
+          browserVersion: "test-browser-version",
+          os: "test-os",
+          osVersion: "test-os-version",
+          device: "test-device",
+          deviceClass: "test-device-class",
+          userAgent: "test-user-agent",
+        },
+        clientSdk: {
+          sdk: "version",
+        },
+        internalUser: false,
+        chat: {
+          botId: "analytics-test-bot",
+        },
+        count: 1,
+        customTags: {
+          testcustomtag: "testcustomtagvalue",
+        },
+        customValues: {
+          testcustomvalue: 1,
+        },
+        entity: "testEntityId",
+        ip: {
+          address: "0.0.0.0",
+          algorithm: "HASH",
+        },
+        visitor: {
+          "test-id-method": "visitor-test-id",
+        },
+      });
 
-        const analyticsProvideWithSessionTracking = window.AnalyticsSDK.analytics({
-            key: "%YEXT_API_KEY%",
-        }).with({
-            action: "CHAT_LINK_CLICK",
-            pageUrl: "http://www.yext-test-pageurl.com",
-            destinationUrl: "http://www.yext-test-destinationurl.com",
-            referrerUrl: "http://www.yext-test-referrerurl.com",
-            label: "test-label",
-            timestamp: new Date(),
-            bot: false,
-            browserAgent: {
-                browser: "test-browser",
-                browserVersion: "test-browser-version",
-                os: "test-os",
-                osVersion: "test-os-version",
-                device: "test-device",
-                deviceClass: "test-device-class",
-                userAgent: "test-user-agent",
-            },
-            clientSdk: {
-                "sdk": "version",
-            },
-            internalUser: false,
-            chat: {
-                botId: "analytics-test-bot"
-            },
-            count: 1,
-            customTags: {
-                "testcustomtag": "testcustomtagvalue",
-            },
-            customValues: {
-                "testcustomvalue": 1,
-            },
-            entity: "testEntityId",
-            ip: {
-                address: "0.0.0.0",
-                algorithm: "HASH",
-            },
-            visitor: {
-                "test-id-method": "visitor-test-id",
-            },
-        });
+      function fireChatEvent() {
+        analyticsProvider.report();
+      }
 
-        function fireChatEvent() {
-            analyticsProvider.report();
-        }
+      function fireCallToActionEvent() {
+        analyticsProvider.report({ action: "CALL_TO_ACTION" });
+      }
 
-        function fireCallToActionEvent() {
-            analyticsProvider.report({action: "CALL_TO_ACTION"});
-        }
-
-        function fireEventWithSessionTracking() {
-            analyticsProvideWithSessionTracking.report();
-        }
+      function fireEventWithSessionTracking() {
+        analyticsProvideWithSessionTracking.report();
+      }
     </script>
     <!-- This mirrors the test site -->
     <button onclick="fireChatEvent()">Fire Chat Event</button>
     <button onclick="fireCallToActionEvent()">Fire CTA event</button>
-    <button onclick="fireEventWithSessionTracking()">Fire Event w/ Session Tracking</button>
+    <button onclick="fireEventWithSessionTracking()">
+      Fire Event w/ Session Tracking
+    </button>
   </body>
 </html>

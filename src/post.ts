@@ -1,4 +1,4 @@
-import {EventPayload} from './EventPayload';
+import { EventPayload } from './EventPayload';
 
 /**
  * Used by the AnalyticsEventReport report() method to send an analytics event request via
@@ -19,12 +19,16 @@ export function postWithBeacon(url: string, body: EventPayload): boolean {
  * @param url URL that the request will be sent to
  * @param body the EventPayload object
  */
-export function postWithFetch(url: string, body: EventPayload): Promise<Response> {
-  return fetch(
-    url,
-    { method: 'POST',
-      headers: { 'Content-Type': 'application/json'},
-      body: JSON.stringify(body), keepalive: true});
+export function postWithFetch(
+  url: string,
+  body: EventPayload,
+): Promise<Response> {
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    keepalive: true,
+  });
 }
 
 /**
@@ -34,7 +38,14 @@ export function postWithFetch(url: string, body: EventPayload): Promise<Response
  *
  * @param body the EventPayload object
  */
-export function useBeacon(body: EventPayload, forceFetch: boolean | undefined): boolean {
+export function useBeacon(
+  body: EventPayload,
+  forceFetch: boolean | undefined,
+): boolean {
   // keepAlive is not supported in Firefox or Firefox for Android
-  return !forceFetch && !!navigator.userAgent && navigator.userAgent.toLowerCase().includes('firefox');
+  return (
+    !forceFetch &&
+    !!navigator.userAgent &&
+    navigator.userAgent.toLowerCase().includes('firefox')
+  );
 }
