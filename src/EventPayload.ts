@@ -59,6 +59,23 @@ export interface EventPayload {
     /** The ID of the individual response in which the event occurred. */
     responseId?: string;
   };
+  /** Fields specific to reporting Search Analytics Events */
+  search?: {
+    /** Unique identifier of the search */
+    searchId: number,
+    /** Unique identifier for a single query across pagination */
+    queryId: number,
+    /** The vertical key on which the event occurred, if any */
+    verticalKey?: string,
+    /** Whether or not the event occurred on a direct answer card */
+    directAnswer?: boolean,
+    /** The label of the version number of the search config */
+    versionLabel?: string,
+    /** The version number of the search config */
+    versionNumber: number,
+    /** The identifier of the search experience. */
+    experienceKey: string,
+  }
   /**
    * When the record summarizes multiple events, the number of events the record represents.
    * The event is treated as if it is duplicated this many times.
