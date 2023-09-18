@@ -108,7 +108,7 @@ export function fireSearchEvent() {
       queryId: 1, 
       verticalKey: "test-vertical-key", 
       directAnswer: false, 
-      versionLabel: "test-version-label",
+      versionLabel: "PRODUCTION",
       versionNumber: 1, 
       experienceKey: "test-experience-key"
     }

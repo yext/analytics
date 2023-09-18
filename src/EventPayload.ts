@@ -1,4 +1,5 @@
 import { Action } from './Action';
+import { VersionLabel } from './VersionLabel';
 
 /**
  * The payload accepted by the Analytics Events API.
@@ -69,8 +70,9 @@ export interface EventPayload {
     verticalKey?: string,
     /** Whether or not the event occurred on a direct answer card */
     directAnswer?: boolean,
-    /** The label of the version number of the search config */
-    versionLabel?: string,
+    /** The label of the version number of the search config.
+     * Either "PRODUCTION" or "STAGING" */
+    versionLabel?: VersionLabel,
     /** The version number of the search config */
     versionNumber: number,
     /** The identifier of the search experience. */
