@@ -212,7 +212,7 @@ describe('Test report function', () => {
 
       // Expect Unauthorized response
       expect(res).toEqual({id: 1111, errors: ['Unauthorized request']});
-      // Expect getOrSetupSessionId to be called as sessionTrackingEnabled is set to true
+      // Expect getOrSetupSessionId to not be called as sessionId already provided in event payload.
       expect(mockSetupSessionId).toHaveBeenCalledTimes(0);
       /** Expect merge to have completed correctly,
        * the url to be constructed correctly defaulting to Production,
@@ -392,8 +392,6 @@ describe('Test report function', () => {
     async () => {
       mockPostWithBeacon.mockReturnValue(false);
       mockUseBeacon.mockReturnValueOnce(true);
-      mockPostWithFetch.mockRejectedValue({errors: ['Bad Request']});
-
       const navigator = { userAgent: 'Firefox', sendBeacon: () => { return true; }};
       Object.defineProperty(window, 'navigator', { value: navigator, writable: true});
 
