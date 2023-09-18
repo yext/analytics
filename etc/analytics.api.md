@@ -73,6 +73,15 @@ export interface EventPayload {
     locale?: string;
     pageUrl?: string;
     referrerUrl?: string;
+    search?: {
+        searchId: number;
+        queryId: number;
+        verticalKey?: string;
+        directAnswer?: boolean;
+        versionLabel?: string;
+        versionNumber: number;
+        experienceKey: string;
+    };
     sessionId?: string | null;
     timestamp?: Date | string;
     visitor?: Record<string, string>;
