@@ -14,7 +14,7 @@ search?: {
         queryId: number;
         verticalKey?: string;
         directAnswer?: boolean;
-        versionLabel?: string;
+        versionLabel?: VersionLabel;
         versionNumber: number;
         experienceKey: string;
     };

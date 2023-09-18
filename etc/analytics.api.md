@@ -78,7 +78,7 @@ export interface EventPayload {
         queryId: number;
         verticalKey?: string;
         directAnswer?: boolean;
-        versionLabel?: string;
+        versionLabel?: VersionLabel;
         versionNumber: number;
         experienceKey: string;
     };
@@ -100,6 +100,10 @@ export enum RegionEnum {
     // (undocumented)
     US = "us"
 }
+
+// Warnings were encountered during analysis:
+//
+// src/EventPayload.ts:75:5 - (ae-forgotten-export) The symbol "VersionLabel" needs to be exported by the entry point index.d.ts
 
 // (No @packageDocumentation comment for this package)
 
