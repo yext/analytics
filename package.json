@@ -19,10 +19,10 @@
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run api-extractor && npm run generate-docs && npm run generate-notices && vite build",
+    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run format-check && npm run api-extractor && npm run generate-docs && npm run generate-notices && vite build",
     "prepare": "husky install",
-    "format": "prettier --write .",
-    "lint": "eslint . --fix",
+    "format-check": "prettier --check . && eslint .",
+    "format-fix": "prettier --write . && eslint . --fix",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
