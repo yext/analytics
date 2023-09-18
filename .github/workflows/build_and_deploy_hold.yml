@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch: # allow manual run
 
 jobs:
   call_build_US:
