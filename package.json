@@ -24,7 +24,7 @@
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
-    "test": "jest",
+    "test": "jest && playwright test",
     "dev": "tsc -p tsconfig.esm.json --watch",
     "generate-notices": "generate-license-file --input package.json --output THIRD-PARTY-NOTICES --overwrite"
   },
@@ -33,6 +33,8 @@
     "@babel/preset-typescript": "^7.14.5",
     "@microsoft/api-documenter": "^7.15.3",
     "@microsoft/api-extractor": "^7.19.4",
+    "@playwright/test": "^1.38.0",
+    "@types/node": "^20.6.0",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
