@@ -69,7 +69,7 @@ export interface EventPayload {
     /** The vertical key on which the event occurred, if any */
     verticalKey?: string,
     /** Whether or not the event occurred on a direct answer card */
-    directAnswer?: boolean,
+    isDirectAnswer?: boolean,
     /** The label of the version number of the search config.
      * Either "PRODUCTION" or "STAGING" */
     versionLabel?: VersionLabel,
