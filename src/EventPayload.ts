@@ -63,9 +63,9 @@ export interface EventPayload {
   /** Fields specific to reporting Search Analytics Events */
   search?: {
     /** Unique identifier of the search */
-    searchId: string,
+    searchId?: string,
     /** Unique identifier for a single query across pagination */
-    queryId: string,
+    queryId?: string,
     /** The vertical key on which the event occurred, if any */
     verticalKey?: string,
     /** Whether or not the event occurred on a direct answer card */
