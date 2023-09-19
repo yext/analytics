@@ -13,7 +13,7 @@ search?: {
         searchId?: string;
         queryId?: string;
         verticalKey?: string;
-        directAnswer?: boolean;
+        isDirectAnswer?: boolean;
         versionLabel?: VersionLabel;
         versionNumber: number;
         experienceKey: string;
