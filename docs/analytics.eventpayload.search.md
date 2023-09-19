@@ -10,8 +10,8 @@ Fields specific to reporting Search Analytics Events
 
 ```typescript
 search?: {
-        searchId: number;
-        queryId: number;
+        searchId: string;
+        queryId: string;
         verticalKey?: string;
         directAnswer?: boolean;
         versionLabel?: VersionLabel;

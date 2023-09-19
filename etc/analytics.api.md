@@ -74,8 +74,8 @@ export interface EventPayload {
     pageUrl?: string;
     referrerUrl?: string;
     search?: {
-        searchId: number;
-        queryId: number;
+        searchId: string;
+        queryId: string;
         verticalKey?: string;
         directAnswer?: boolean;
         versionLabel?: VersionLabel;
