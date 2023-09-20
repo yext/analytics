@@ -104,10 +104,10 @@ export function fireSearchEvent() {
   analyticsProvider.report({
     chat: undefined, 
     search: {
-      searchId: 1, 
-      queryId: 1, 
+      searchId: '1', 
+      queryId: '1', 
       verticalKey: "test-vertical-key", 
-      directAnswer: false, 
+      isDirectAnswer: false, 
       versionLabel: "PRODUCTION",
       versionNumber: 1, 
       experienceKey: "test-experience-key"
