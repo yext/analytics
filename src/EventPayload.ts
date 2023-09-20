@@ -74,7 +74,7 @@ export interface EventPayload {
      * Either "PRODUCTION" or "STAGING" */
     versionLabel?: VersionLabel,
     /** The version number of the search config */
-    versionNumber: number,
+    versionNumber?: number,
     /** The identifier of the search experience. */
     experienceKey: string,
   }
