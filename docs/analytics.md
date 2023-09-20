@@ -10,6 +10,7 @@
 |  --- | --- |
 |  [EnvironmentEnum](./analytics.environmentenum.md) | An enum for the Yext Environments |
 |  [RegionEnum](./analytics.regionenum.md) | An enum of the physical region the Yext account |
+|  [VersionLabelEnum](./analytics.versionlabelenum.md) | An enum for the Search Version Labels |
 
 ## Functions
 
@@ -34,4 +35,5 @@
 |  [Environment](./analytics.environment.md) | The Yext Environments |
 |  [PartialPayload](./analytics.partialpayload.md) | A Payload that is a subset of the EventPayload |
 |  [Region](./analytics.region.md) | The physical region of the Yext account |
+|  [VersionLabel](./analytics.versionlabel.md) | The Search Version Label |
 

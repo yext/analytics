@@ -101,9 +101,16 @@ export enum RegionEnum {
     US = "us"
 }
 
-// Warnings were encountered during analysis:
-//
-// src/EventPayload.ts:75:5 - (ae-forgotten-export) The symbol "VersionLabel" needs to be exported by the entry point index.d.ts
+// @public
+export type VersionLabel = EnumOrString<VersionLabelEnum>;
+
+// @public
+export enum VersionLabelEnum {
+    // (undocumented)
+    Production = "PRODUCTION",
+    // (undocumented)
+    Staging = "STAGING"
+}
 
 // (No @packageDocumentation comment for this package)
 
