@@ -79,7 +79,7 @@ export interface EventPayload {
         verticalKey?: string;
         isDirectAnswer?: boolean;
         versionLabel?: VersionLabel;
-        versionNumber: number;
+        versionNumber?: number;
         experienceKey: string;
     };
     sessionId?: string | null;

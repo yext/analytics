@@ -15,7 +15,7 @@ search?: {
         verticalKey?: string;
         isDirectAnswer?: boolean;
         versionLabel?: VersionLabel;
-        versionNumber: number;
+        versionNumber?: number;
         experienceKey: string;
     };
 ```
