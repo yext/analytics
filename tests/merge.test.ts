@@ -6,7 +6,7 @@ describe('Merge Function Test', () => {
     const event1: PartialPayload = {
       action: 'APPLY',
       bot: false,
-      locale: 'en_US',
+      locale: 'en_US'
     };
 
     const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
@@ -14,7 +14,7 @@ describe('Merge Function Test', () => {
     const event2 = {
       label: 'label',
       bot: null,
-      locale: 'en_UK',
+      locale: 'en_UK'
     };
 
     const result = merge(event1, event2);
@@ -22,7 +22,7 @@ describe('Merge Function Test', () => {
     const expected: EventPayload = {
       label: 'label',
       locale: 'en_UK',
-      action: 'APPLY',
+      action: 'APPLY'
     };
 
     expect(result).toEqual(expected);
@@ -33,8 +33,8 @@ describe('Merge Function Test', () => {
     const event1: PartialPayload = {
       action: 'APPLY',
       chat: {
-        botId: 'botId',
-      },
+        botId: 'botId'
+      }
     };
 
     const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
@@ -43,11 +43,11 @@ describe('Merge Function Test', () => {
       action: 'APPLY',
       browserAgent: {
         device: 'iPhone',
-        deviceClass: 'Mobile',
+        deviceClass: 'Mobile'
       },
       chat: {
-        responseId: 'responseId',
-      },
+        responseId: 'responseId'
+      }
     };
 
     const result = merge(event1, event2);
@@ -56,12 +56,12 @@ describe('Merge Function Test', () => {
       action: 'APPLY',
       browserAgent: {
         device: 'iPhone',
-        deviceClass: 'Mobile',
+        deviceClass: 'Mobile'
       },
       chat: {
         botId: 'botId',
-        responseId: 'responseId',
-      },
+        responseId: 'responseId'
+      }
     };
 
     expect(result).toEqual(expected);
@@ -74,11 +74,11 @@ describe('Merge Function Test', () => {
       browserAgent: {
         os: 'MacOS',
         browser: 'Chrome',
-        device: 'MacBook Pro',
+        device: 'MacBook Pro'
       },
       ip: {
-        address: '0.0.0.0',
-      },
+        address: '0.0.0.0'
+      }
     };
 
     const unaffectedEvent1: PartialPayload = JSON.parse(JSON.stringify(event1));
@@ -88,12 +88,12 @@ describe('Merge Function Test', () => {
         os: undefined,
         browser: 'Safari',
         device: 'MacBook Air',
-        deviceClass: 'Desktop',
+        deviceClass: 'Desktop'
       },
       ip: {
         address: '0.0.0.1',
-        algorithm: 'hash',
-      },
+        algorithm: 'hash'
+      }
     };
 
     const result = merge(event1, event2);
@@ -103,12 +103,12 @@ describe('Merge Function Test', () => {
       browserAgent: {
         browser: 'Safari',
         device: 'MacBook Air',
-        deviceClass: 'Desktop',
+        deviceClass: 'Desktop'
       },
       ip: {
         address: '0.0.0.1',
-        algorithm: 'hash',
-      },
+        algorithm: 'hash'
+      }
     };
 
     expect(result).toEqual(expected);
@@ -124,12 +124,12 @@ describe('Merge Function Test', () => {
         os: undefined,
         browser: 'Safari',
         device: 'MacBook Air',
-        deviceClass: 'Desktop',
+        deviceClass: 'Desktop'
       },
       ip: {
         address: '0.0.0.1',
-        algorithm: 'hash',
-      },
+        algorithm: 'hash'
+      }
     };
 
     const result = merge(event1, event2);
@@ -140,12 +140,12 @@ describe('Merge Function Test', () => {
         os: undefined,
         browser: 'Safari',
         device: 'MacBook Air',
-        deviceClass: 'Desktop',
+        deviceClass: 'Desktop'
       },
       ip: {
         address: '0.0.0.1',
-        algorithm: 'hash',
-      },
+        algorithm: 'hash'
+      }
     };
 
     expect(result).toEqual(expected);
@@ -158,12 +158,12 @@ describe('Merge Function Test', () => {
         os: undefined,
         browser: 'Safari',
         device: 'MacBook Air',
-        deviceClass: 'Desktop',
+        deviceClass: 'Desktop'
       },
       ip: {
         address: '0.0.0.1',
-        algorithm: 'hash',
-      },
+        algorithm: 'hash'
+      }
     };
     const event2: PartialPayload = {};
 
@@ -175,12 +175,12 @@ describe('Merge Function Test', () => {
         os: undefined,
         browser: 'Safari',
         device: 'MacBook Air',
-        deviceClass: 'Desktop',
+        deviceClass: 'Desktop'
       },
       ip: {
         address: '0.0.0.1',
-        algorithm: 'hash',
-      },
+        algorithm: 'hash'
+      }
     };
 
     expect(result).toEqual(expected);

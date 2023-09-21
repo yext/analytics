@@ -27,7 +27,7 @@ export function postWithFetch(
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
-    keepalive: true,
+    keepalive: true
   });
 }
 

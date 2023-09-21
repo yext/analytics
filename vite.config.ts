@@ -8,7 +8,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'AnalyticsSDK',
       formats: ['umd'],
-      fileName: 'analytics',
-    },
-  },
+      fileName: 'analytics'
+    }
+  }
 });

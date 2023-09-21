@@ -12,7 +12,7 @@
     <script>
       const analyticsProvider = window.AnalyticsSDK.analytics({
         key: '%YEXT_API_KEY%',
-        sessionTrackingEnabled: false,
+        sessionTrackingEnabled: false
       }).with({
         action: 'CHAT_LINK_CLICK',
         pageUrl: 'http://www.yext-test-pageurl.com',
@@ -28,35 +28,35 @@
           osVersion: 'test-os-version',
           device: 'test-device',
           deviceClass: 'test-device-class',
-          userAgent: 'test-user-agent',
+          userAgent: 'test-user-agent'
         },
         clientSdk: {
-          testsdk: 'version',
+          testsdk: 'version'
         },
         internalUser: false,
         chat: {
-          botId: 'analytics-test-bot',
+          botId: 'analytics-test-bot'
         },
         count: 1,
         customTags: {
-          testcustomtag: 'testcustomtagvalue',
+          testcustomtag: 'testcustomtagvalue'
         },
         customValues: {
-          testcustomvalue: 1,
+          testcustomvalue: 1
         },
         entity: 'testEntityId',
         ip: {
           address: '0.0.0.0',
-          algorithm: 'HASH',
+          algorithm: 'HASH'
         },
         visitor: {
-          'test-id-method': 'visitor-test-id',
-        },
+          'test-id-method': 'visitor-test-id'
+        }
       });
 
       const analyticsProvideWithSessionTracking = window.AnalyticsSDK.analytics(
         {
-          key: '%YEXT_API_KEY%',
+          key: '%YEXT_API_KEY%'
         }
       ).with({
         action: 'CHAT_LINK_CLICK',
@@ -73,30 +73,30 @@
           osVersion: 'test-os-version',
           device: 'test-device',
           deviceClass: 'test-device-class',
-          userAgent: 'test-user-agent',
+          userAgent: 'test-user-agent'
         },
         clientSdk: {
-          sdk: 'version',
+          sdk: 'version'
         },
         internalUser: false,
         chat: {
-          botId: 'analytics-test-bot',
+          botId: 'analytics-test-bot'
         },
         count: 1,
         customTags: {
-          testcustomtag: 'testcustomtagvalue',
+          testcustomtag: 'testcustomtagvalue'
         },
         customValues: {
-          testcustomvalue: 1,
+          testcustomvalue: 1
         },
         entity: 'testEntityId',
         ip: {
           address: '0.0.0.0',
-          algorithm: 'HASH',
+          algorithm: 'HASH'
         },
         visitor: {
-          'test-id-method': 'visitor-test-id',
-        },
+          'test-id-method': 'visitor-test-id'
+        }
       });
 
       function fireChatEvent() {

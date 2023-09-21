@@ -45,7 +45,7 @@ const merge = (
 
   return {
     ...copy,
-    action: copy.action as EventPayload['action'],
+    action: copy.action as EventPayload['action']
   };
 };
 

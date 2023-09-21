@@ -14,7 +14,7 @@ it('Invalid config with no authorization field', () => {
     'Provide one and only one of API Key or Bearer Token.'
   );
   const InvalidConfig: AnalyticsConfig = {
-    key: undefined,
+    key: undefined
   };
   expect(() => new AnalyticsEventReporter(InvalidConfig)).toThrowError(
     'Provide one and only one of API Key or Bearer Token.'
@@ -24,7 +24,7 @@ it('Invalid config with no authorization field', () => {
 it('Invalid config with both authorization field', () => {
   const InvalidConfig: AnalyticsConfig = {
     key: 'mock-api-key',
-    bearer: 'mock-bearer-token',
+    bearer: 'mock-bearer-token'
   };
   expect(() => new AnalyticsEventReporter(InvalidConfig)).toThrowError(
     'Provide one and only one of API Key or Bearer Token.'
@@ -33,12 +33,12 @@ it('Invalid config with both authorization field', () => {
 
 it('Valid config will not throw error', () => {
   const configwithAPI: AnalyticsConfig = {
-    key: 'mock-api-key',
+    key: 'mock-api-key'
   };
   expect(() => new AnalyticsEventReporter(configwithAPI)).not.toThrow();
 
   const configwithBearer: AnalyticsConfig = {
-    bearer: 'mock-bearer-token',
+    bearer: 'mock-bearer-token'
   };
 
   expect(() => new AnalyticsEventReporter(configwithBearer)).not.toThrow();
@@ -66,27 +66,27 @@ describe('Test report function', () => {
       userAgent: 'Firefox',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     const config: AnalyticsConfig = {
       key: 'validKey',
       region: RegionEnum.EU,
-      forceFetch: false,
+      forceFetch: false
     };
     const reporter = new AnalyticsEventReporter(config).with({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
-      count: 5,
+      count: 5
     });
 
     const res = await reporter.report({
       action: 'C_CUSTOM_ACTION',
-      destinationUrl: 'https://google.com',
+      destinationUrl: 'https://google.com'
     });
 
     // Expect true to be returned for beacon request
@@ -99,11 +99,11 @@ describe('Test report function', () => {
         action: 'C_CUSTOM_ACTION',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0-beta.0',
+          ANALYTICS: '1.0.0-beta.0'
         },
         referrerUrl: 'https://yext.com',
         destinationUrl: 'https://google.com',
-        count: 5,
+        count: 5
       }
     );
   });
@@ -117,17 +117,17 @@ describe('Test report function', () => {
 
       const config: AnalyticsConfig = {
         bearer: 'bearerToken',
-        env: EnvironmentEnum.Sandbox,
+        env: EnvironmentEnum.Sandbox
       };
       const reporter = new AnalyticsEventReporter(config).with({
         action: 'c_lowercase_custom_action',
         referrerUrl: 'https://yext.com',
-        count: 5,
+        count: 5
       });
 
       const res = await reporter.report({
         destinationUrl: 'https://google.com',
-        referrerUrl: null,
+        referrerUrl: null
       });
 
       // Expect Successful Response
@@ -141,10 +141,10 @@ describe('Test report function', () => {
           action: 'c_lowercase_custom_action',
           authorization: 'Bearer bearerToken',
           clientSdk: {
-            ANALYTICS: '1.0.0-beta.0',
+            ANALYTICS: '1.0.0-beta.0'
           },
           destinationUrl: 'https://google.com',
-          count: 5,
+          count: 5
         }
       );
     }
@@ -158,26 +158,26 @@ describe('Test report function', () => {
     mockSetupSessionId.mockImplementation(() => 'ULID1234');
     mockPostWithFetch.mockRejectedValue({
       id: 1111,
-      errors: ['Unauthorized request'],
+      errors: ['Unauthorized request']
     });
     mockUseBeacon.mockReturnValueOnce(false);
 
     const config: AnalyticsConfig = {
       bearer: 'bearerToken',
-      sessionTrackingEnabled: true,
+      sessionTrackingEnabled: true
     };
     const reporter = new AnalyticsEventReporter(config).with({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
-      count: 5,
+      count: 5
     });
 
     const res = await reporter.report({
       authorization: 'Bearer shouldNotUpdate',
       destinationUrl: 'https://google.com',
       clientSdk: {
-        chat: '1.0.1.0',
-      },
+        chat: '1.0.1.0'
+      }
     });
 
     // Expect Unauthorized response
@@ -195,12 +195,12 @@ describe('Test report function', () => {
         authorization: 'Bearer bearerToken',
         clientSdk: {
           ANALYTICS: '1.0.0-beta.0',
-          chat: '1.0.1.0',
+          chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
         referrerUrl: 'https://yext.com',
         count: 5,
-        sessionId: 'ULID1234',
+        sessionId: 'ULID1234'
       }
     );
   });
@@ -212,27 +212,27 @@ describe('Test report function', () => {
     mockSetupSessionId.mockImplementation(() => 'ULID1234');
     mockPostWithFetch.mockRejectedValue({
       id: 1111,
-      errors: ['Unauthorized request'],
+      errors: ['Unauthorized request']
     });
     mockUseBeacon.mockReturnValueOnce(false);
 
     const config: AnalyticsConfig = {
       bearer: 'bearerToken',
-      sessionTrackingEnabled: true,
+      sessionTrackingEnabled: true
     };
     const reporter = new AnalyticsEventReporter(config).with({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
-      count: 5,
+      count: 5
     });
 
     const res = await reporter.report({
       authorization: 'Bearer shouldNotUpdate',
       destinationUrl: 'https://google.com',
       clientSdk: {
-        chat: '1.0.1.0',
+        chat: '1.0.1.0'
       },
-      sessionId: 'ULIDORIGINAL',
+      sessionId: 'ULIDORIGINAL'
     });
 
     // Expect Unauthorized response
@@ -250,12 +250,12 @@ describe('Test report function', () => {
         authorization: 'Bearer bearerToken',
         clientSdk: {
           ANALYTICS: '1.0.0-beta.0',
-          chat: '1.0.1.0',
+          chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
         referrerUrl: 'https://yext.com',
         count: 5,
-        sessionId: 'ULIDORIGINAL',
+        sessionId: 'ULIDORIGINAL'
       }
     );
   });
@@ -269,21 +269,21 @@ describe('Test report function', () => {
 
     const config: AnalyticsConfig = {
       bearer: 'bearerToken',
-      sessionTrackingEnabled: false,
+      sessionTrackingEnabled: false
     };
     const reporter = new AnalyticsEventReporter(config).with({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
       count: 5,
-      sessionId: 'ULID1234',
+      sessionId: 'ULID1234'
     });
 
     const res = await reporter.report({
       authorization: 'Bearer shouldNotUpdate',
       destinationUrl: 'https://google.com',
       clientSdk: {
-        chat: '1.0.1.0',
-      },
+        chat: '1.0.1.0'
+      }
     });
 
     // Expect successful response
@@ -302,12 +302,12 @@ describe('Test report function', () => {
         authorization: 'Bearer bearerToken',
         clientSdk: {
           ANALYTICS: '1.0.0-beta.0',
-          chat: '1.0.1.0',
+          chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
         referrerUrl: 'https://yext.com',
         count: 5,
-        sessionId: undefined,
+        sessionId: undefined
       }
     );
   });
@@ -319,22 +319,22 @@ describe('Test report function', () => {
       userAgent: 'Firefox',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     const config: AnalyticsConfig = {
       key: 'validKey',
       region: RegionEnum.EU,
-      forceFetch: false,
+      forceFetch: false
     };
     const reporter = new AnalyticsEventReporter(config).with({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
-      count: 5,
+      count: 5
     });
 
     const res = await reporter.report();
@@ -349,10 +349,10 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0-beta.0',
+          ANALYTICS: '1.0.0-beta.0'
         },
         referrerUrl: 'https://yext.com',
-        count: 5,
+        count: 5
       }
     );
   });
@@ -364,17 +364,17 @@ describe('Test report function', () => {
       userAgent: 'Firefox',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     const config: AnalyticsConfig = {
       key: 'validKey',
       region: RegionEnum.EU,
-      forceFetch: false,
+      forceFetch: false
     };
 
     const service: AnalyticsEventService = new AnalyticsEventReporter(config);
@@ -382,7 +382,7 @@ describe('Test report function', () => {
     const res = await service.report({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
-      count: 5,
+      count: 5
     });
 
     // Expect true to be returned for beacon request
@@ -395,10 +395,10 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0-beta.0',
+          ANALYTICS: '1.0.0-beta.0'
         },
         referrerUrl: 'https://yext.com',
-        count: 5,
+        count: 5
       }
     );
   });
@@ -411,17 +411,17 @@ describe('Test report function', () => {
       userAgent: 'Chrome',
       sendBeacon: () => {
         return false;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     const config: AnalyticsConfig = {
       key: 'validKey',
       region: RegionEnum.EU,
-      forceFetch: true,
+      forceFetch: true
     };
 
     const service: AnalyticsEventService = new AnalyticsEventReporter(config);
@@ -436,8 +436,8 @@ describe('Test report function', () => {
       {
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0-beta.0',
-        },
+          ANALYTICS: '1.0.0-beta.0'
+        }
       }
     );
   });
@@ -448,17 +448,17 @@ describe('Test report function', () => {
       userAgent: 'Firefox',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     const config: AnalyticsConfig = {
       key: 'validKey',
       region: RegionEnum.EU,
-      forceFetch: false,
+      forceFetch: false
     };
 
     const service: AnalyticsEventService = new AnalyticsEventReporter(config);
@@ -473,8 +473,8 @@ describe('Test report function', () => {
       {
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0-beta.0',
-        },
+          ANALYTICS: '1.0.0-beta.0'
+        }
       }
     );
   });
@@ -486,23 +486,23 @@ describe('Test report function', () => {
       userAgent: 'Firefox',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     const config: AnalyticsConfig = {
       key: 'validKey',
       region: RegionEnum.EU,
-      forceFetch: false,
+      forceFetch: false
     };
 
     const reporter1 = new AnalyticsEventReporter(config).with({
       action: 'ADD_TO_CART',
       referrerUrl: 'https://yext.com',
-      count: 5,
+      count: 5
     });
 
     const res1 = await reporter1.report();
@@ -514,10 +514,10 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0-beta.0',
+          ANALYTICS: '1.0.0-beta.0'
         },
         referrerUrl: 'https://yext.com',
-        count: 5,
+        count: 5
       }
     );
 
@@ -526,8 +526,8 @@ describe('Test report function', () => {
       authorization: 'Bearer shouldNotUpdate',
       destinationUrl: 'https://google.com',
       clientSdk: {
-        chat: '1.0.1.0',
-      },
+        chat: '1.0.1.0'
+      }
     });
 
     mockPostWithBeacon.mockReturnValueOnce(true);
@@ -545,11 +545,11 @@ describe('Test report function', () => {
         authorization: 'KEY validKey',
         clientSdk: {
           ANALYTICS: '1.0.0-beta.0',
-          chat: '1.0.1.0',
+          chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
         referrerUrl: 'https://yext.com',
-        count: 5,
+        count: 5
       }
     );
   });

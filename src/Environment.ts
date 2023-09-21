@@ -10,7 +10,7 @@ import { EnumOrString } from './EnumOrString';
 export enum EnvironmentEnum {
   Production = 'PRODUCTION',
   /** unsupported in the EU region */
-  Sandbox = 'SANDBOX',
+  Sandbox = 'SANDBOX'
 }
 
 /**

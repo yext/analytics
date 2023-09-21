@@ -8,9 +8,9 @@ const babelOptions = {
   presets: [
     [
       '@babel/preset-env',
-      { useBuiltIns: 'entry', corejs: 3, targets: { ie: 11 } },
-    ],
-  ],
+      { useBuiltIns: 'entry', corejs: 3, targets: { ie: 11 } }
+    ]
+  ]
 };
 
 module.exports = [
@@ -24,36 +24,36 @@ module.exports = [
           test: /\.ts$/,
           use: [
             { loader: 'babel-loader', options: babelOptions },
-            { loader: 'ts-loader' },
+            { loader: 'ts-loader' }
           ],
-          exclude: /node_modules/,
-        },
-      ],
+          exclude: /node_modules/
+        }
+      ]
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: ['.tsx', '.ts', '.js']
     },
     plugins: [
       new CopyPlugin({
-        patterns: [{ from: 'src/index.html' }],
+        patterns: [{ from: 'src/index.html' }]
       }),
       new webpack.DefinePlugin({
-        'process.env': JSON.stringify(process.env),
-      }),
+        'process.env': JSON.stringify(process.env)
+      })
     ],
     output: {
       filename: 'bundle.js',
       path: path.resolve(__dirname, 'dist'),
       library: {
         name: 'TestSite',
-        type: 'window',
+        type: 'window'
       },
       environment: {
-        arrowFunction: false,
-      },
+        arrowFunction: false
+      }
     },
     optimization: {
-      minimize: false,
-    },
-  },
+      minimize: false
+    }
+  }
 ];

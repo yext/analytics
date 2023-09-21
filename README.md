@@ -68,7 +68,7 @@ Now that we’ve initialized our analytics reporter, we can fire an event! This 
 
 ```ts
 chatAnalytics.report({
-  action: 'CHAT_IMPRESSION',
+  action: 'CHAT_IMPRESSION'
 });
 ```
 
@@ -86,7 +86,7 @@ You can also send custom analytics events.
 
 ```ts
 pagesAnalytics.report({
-  action: 'C_MY_CUSTOM_EVENT',
+  action: 'C_MY_CUSTOM_EVENT'
 });
 ```
 
@@ -97,8 +97,8 @@ chatAnalytics.report({
   action: 'C_CONVERSION_EVENT',
   value: {
     amount: 10,
-    currency: 'USD',
-  },
+    currency: 'USD'
+  }
 });
 ```
 
@@ -116,11 +116,11 @@ pagesAnalytics.report({
   sessionId: 'e790f75d-4f1e-4a1b-b57b-9a456019b176',
   value: {
     amount: 35.5,
-    currency: 'USD',
+    currency: 'USD'
   },
   customTags: {
-    promoCode: 'SPRING15OFF',
-  },
+    promoCode: 'SPRING15OFF'
+  }
 });
 ```
 
@@ -132,14 +132,14 @@ pagesAnalytics.report({
   sessionId: 'e790f75d-4f1e-4a1b-b57b-9a456019b176',
   value: {
     amount: 35.5,
-    currency: 'USD',
+    currency: 'USD'
   },
   customTags: {
-    promoCode: 'SPRING15OFF',
+    promoCode: 'SPRING15OFF'
   },
   customValues: {
-    promoDiscount: 41.76,
-  },
+    promoDiscount: 41.76
+  }
 });
 ```
 

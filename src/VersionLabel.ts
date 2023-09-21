@@ -10,7 +10,7 @@ import { EnumOrString } from './EnumOrString';
  */
 export enum VersionLabelEnum {
   Production = 'PRODUCTION',
-  Staging = 'STAGING',
+  Staging = 'STAGING'
 }
 
 /**

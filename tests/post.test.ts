@@ -9,21 +9,21 @@ describe('Test post util function', () => {
       userAgent: 'Firefox',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
   });
 
   const eventResponseA: EventAPIResponse = {
-    id: 'event-id-A',
+    id: 'event-id-A'
   };
 
   const eventPayloadA: EventPayload = {
     action: 'ADD_TO_CART',
-    locale: 'en_US',
+    locale: 'en_US'
   };
 
   const url = 'https://dev.us.yextevents.com/accounts/me/events';
@@ -32,7 +32,7 @@ describe('Test post util function', () => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(eventPayloadA),
-    keepalive: true,
+    keepalive: true
   };
 
   fetchMock.post(url, JSON.stringify(eventResponseA));
@@ -45,7 +45,7 @@ describe('Test post util function', () => {
     const navigator = { userAgent: 'Chrome' };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
 
     // userAgent is Chrome and forceFetch = false
@@ -78,11 +78,11 @@ describe('Test post util function', () => {
       userAgent: 'Chrome',
       sendBeacon: () => {
         return true;
-      },
+      }
     };
     Object.defineProperty(window, 'navigator', {
       value: navigator,
-      writable: true,
+      writable: true
     });
     await postWithFetch(url, eventPayloadA);
     expect(

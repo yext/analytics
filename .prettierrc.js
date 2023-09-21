@@ -1,8 +1,8 @@
 const config = {
-  trailingComma: 'es5',
+  trailingComma: 'none',
   tabWidth: 2,
   semi: true,
-  singleQuote: true,
+  singleQuote: true
 };
 
 module.exports = config;

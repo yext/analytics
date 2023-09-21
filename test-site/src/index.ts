@@ -10,7 +10,7 @@ import { analytics } from '@yext/analytics';
  */
 const analyticsProvider = analytics({
   key: process.env.YEXT_API_KEY,
-  sessionTrackingEnabled: false,
+  sessionTrackingEnabled: false
 }).with({
   action: 'CHAT_LINK_CLICK',
   pageUrl: 'http://www.yext-test-pageurl.com',
@@ -26,34 +26,34 @@ const analyticsProvider = analytics({
     osVersion: 'test-os-version',
     device: 'test-device',
     deviceClass: 'test-device-class',
-    userAgent: 'test-user-agent',
+    userAgent: 'test-user-agent'
   },
   clientSdk: {
-    testsdk: 'version',
+    testsdk: 'version'
   },
   internalUser: false,
   chat: {
-    botId: 'analytics-test-bot',
+    botId: 'analytics-test-bot'
   },
   count: 1,
   customTags: {
-    testcustomtag: 'testcustomtagvalue',
+    testcustomtag: 'testcustomtagvalue'
   },
   customValues: {
-    testcustomvalue: 1,
+    testcustomvalue: 1
   },
   entity: 'testEntityId',
   ip: {
     address: '0.0.0.0',
-    algorithm: 'HASH',
+    algorithm: 'HASH'
   },
   visitor: {
-    'test-id-method': 'visitor-test-id',
-  },
+    'test-id-method': 'visitor-test-id'
+  }
 });
 
 const analyticsProvideWithSessionTracking = analytics({
-  key: process.env.YEXT_API_KEY,
+  key: process.env.YEXT_API_KEY
 }).with({
   action: 'CHAT_LINK_CLICK',
   pageUrl: 'http://www.yext-test-pageurl.com',
@@ -69,30 +69,30 @@ const analyticsProvideWithSessionTracking = analytics({
     osVersion: 'test-os-version',
     device: 'test-device',
     deviceClass: 'test-device-class',
-    userAgent: 'test-user-agent',
+    userAgent: 'test-user-agent'
   },
   clientSdk: {
-    sdk: 'version',
+    sdk: 'version'
   },
   internalUser: false,
   chat: {
-    botId: 'analytics-test-bot',
+    botId: 'analytics-test-bot'
   },
   count: 1,
   customTags: {
-    testcustomtag: 'testcustomtagvalue',
+    testcustomtag: 'testcustomtagvalue'
   },
   customValues: {
-    testcustomvalue: 1,
+    testcustomvalue: 1
   },
   entity: 'testEntityId',
   ip: {
     address: '0.0.0.0',
-    algorithm: 'HASH',
+    algorithm: 'HASH'
   },
   visitor: {
-    'test-id-method': 'visitor-test-id',
-  },
+    'test-id-method': 'visitor-test-id'
+  }
 });
 
 export function fireChatEvent() {
@@ -109,8 +109,8 @@ export function fireSearchEvent() {
       isDirectAnswer: false,
       versionLabel: 'PRODUCTION',
       versionNumber: 1,
-      experienceKey: 'test-experience-key',
-    },
+      experienceKey: 'test-experience-key'
+    }
   });
 }
 
