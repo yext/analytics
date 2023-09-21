@@ -8,7 +8,7 @@ const SESSION_ID_KEY = 'yext_analytics_session_id';
  * unavailable (e.g. The function is running on the server for SSR).
  */
 export function getOrSetupSessionId(): string | null {
-  if (typeof(window) === 'undefined') {
+  if (typeof window === 'undefined') {
     return null;
   }
   try {

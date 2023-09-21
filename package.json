@@ -22,11 +22,11 @@
     "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run format-check && npm run api-extractor && npm run generate-docs && npm run generate-notices && vite build",
     "prepare": "husky install",
     "format-check": "prettier --check . && eslint .",
-    "format-fix": "prettier --write . && eslint . --fix",
+    "format-fix": "prettier --write .",
     "api-extractor": "api-extractor run --local --verbose",
     "generate-docs": "api-documenter markdown --input-folder temp --output-folder docs && rm -rf temp",
     "prepublishOnly": "npm run build",
-    "test": "jest && playwright test",
+    "test": "jest && playwright install --with-deps && playwright test",
     "dev": "tsc -p tsconfig.esm.json --watch",
     "generate-notices": "generate-license-file --input package.json --output THIRD-PARTY-NOTICES --overwrite"
   },
