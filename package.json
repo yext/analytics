@@ -19,8 +19,7 @@
     "THIRD-PARTY-NOTICES"
   ],
   "scripts": {
-    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run prepare && npm run format-check && npm run api-extractor && npm run generate-docs && npm run generate-notices && npx playwright install --with-deps && vite build",
-    "prepare": "husky install",
+    "build": "rm -rf lib/** && tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && npm run format-check && npm run api-extractor && npm run generate-docs && npm run generate-notices && vite build",
     "format-check": "prettier --check . && eslint .",
     "format-fix": "prettier --write . && eslint . --fix",
     "api-extractor": "api-extractor run --local --verbose",
