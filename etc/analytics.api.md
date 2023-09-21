@@ -73,6 +73,15 @@ export interface EventPayload {
     locale?: string;
     pageUrl?: string;
     referrerUrl?: string;
+    search?: {
+        searchId?: string;
+        queryId?: string;
+        verticalKey?: string;
+        isDirectAnswer?: boolean;
+        versionLabel?: VersionLabel;
+        versionNumber?: number;
+        experienceKey: string;
+    };
     sessionId?: string | null;
     timestamp?: Date | string;
     visitor?: Record<string, string>;
@@ -90,6 +99,17 @@ export enum RegionEnum {
     EU = "eu",
     // (undocumented)
     US = "us"
+}
+
+// @public
+export type VersionLabel = EnumOrString<VersionLabelEnum>;
+
+// @public
+export enum VersionLabelEnum {
+    // (undocumented)
+    Production = "PRODUCTION",
+    // (undocumented)
+    Staging = "STAGING"
 }
 
 // (No @packageDocumentation comment for this package)

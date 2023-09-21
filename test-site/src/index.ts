@@ -100,6 +100,21 @@ export function fireChatEvent() {
   analyticsProvider.report();
 }
 
+export function fireSearchEvent() {
+  analyticsProvider.report({
+    chat: undefined, 
+    search: {
+      searchId: '1', 
+      queryId: '1', 
+      verticalKey: "test-vertical-key", 
+      isDirectAnswer: false, 
+      versionLabel: "PRODUCTION",
+      versionNumber: 1, 
+      experienceKey: "test-experience-key"
+    }
+  });
+}
+
 export function fireCallToActionEvent() {
   analyticsProvider.report({action: "CALL_TO_ACTION"});
 }

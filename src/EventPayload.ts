@@ -1,4 +1,5 @@
 import { Action } from './Action';
+import { VersionLabel } from './VersionLabel';
 
 /**
  * The payload accepted by the Analytics Events API.
@@ -59,6 +60,24 @@ export interface EventPayload {
     /** The ID of the individual response in which the event occurred. */
     responseId?: string;
   };
+  /** Fields specific to reporting Search Analytics Events */
+  search?: {
+    /** Unique identifier of the search */
+    searchId?: string,
+    /** Unique identifier for a single query across pagination */
+    queryId?: string,
+    /** The vertical key on which the event occurred, if any */
+    verticalKey?: string,
+    /** Whether or not the event occurred on a direct answer card */
+    isDirectAnswer?: boolean,
+    /** The label of the version number of the search config.
+     * Either "PRODUCTION" or "STAGING" */
+    versionLabel?: VersionLabel,
+    /** The version number of the search config */
+    versionNumber?: number,
+    /** The identifier of the search experience. */
+    experienceKey: string,
+  }
   /**
    * When the record summarizes multiple events, the number of events the record represents.
    * The event is treated as if it is duplicated this many times.
