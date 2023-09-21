@@ -349,7 +349,7 @@
      */
     "tsdocMessageReporting": {
       "default": {
-        "logLevel": "none"
+        "logLevel": "error"
         // "addToApiReportFile": false
       }
 

@@ -62,14 +62,11 @@ export interface EventPayload {
   };
   /** Fields specific to reporting Search Analytics Events */
   search?: {
-    /** Unique identifier of the search
-     *  Pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$" */
+    /** Unique identifier of the search */
     searchId?: string,
-    /** Unique identifier for a single query across pagination
-     *  Pattern: "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$" */
+    /** Unique identifier for a single query across pagination */
     queryId?: string,
-    /** The vertical key on which the event occurred, if any
-     *  Pattern: "^[a-zA-Z0-9.\-_]{1,100}$" */
+    /** The vertical key on which the event occurred, if any */
     verticalKey?: string,
     /** Whether or not the event occurred on a direct answer card */
     isDirectAnswer?: boolean,
@@ -78,8 +75,7 @@ export interface EventPayload {
     versionLabel?: VersionLabel,
     /** The version number of the search config */
     versionNumber?: number,
-    /** The identifier of the search experience.
-     *  Pattern: "^[a-zA-Z0-9.\-_]{1,50}$" */
+    /** The identifier of the search experience. */
     experienceKey: string,
   }
   /**
