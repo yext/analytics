@@ -63,21 +63,21 @@ export interface EventPayload {
   /** Fields specific to reporting Search Analytics Events */
   search?: {
     /** Unique identifier of the search */
-    searchId?: string,
+    searchId?: string;
     /** Unique identifier for a single query across pagination */
-    queryId?: string,
+    queryId?: string;
     /** The vertical key on which the event occurred, if any */
-    verticalKey?: string,
+    verticalKey?: string;
     /** Whether or not the event occurred on a direct answer card */
-    isDirectAnswer?: boolean,
+    isDirectAnswer?: boolean;
     /** The label of the version number of the search config.
      * Either "PRODUCTION" or "STAGING" */
-    versionLabel?: VersionLabel,
+    versionLabel?: VersionLabel;
     /** The version number of the search config */
-    versionNumber?: number,
+    versionNumber?: number;
     /** The identifier of the search experience. */
-    experienceKey: string,
-  }
+    experienceKey: string;
+  };
   /**
    * When the record summarizes multiple events, the number of events the record represents.
    * The event is treated as if it is duplicated this many times.
@@ -97,7 +97,7 @@ export interface EventPayload {
    * the mutable, customer-settable entity ID for the entity associated with the event.
    * If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
    */
-  entity?: string | number
+  entity?: string | number;
   /** The IP address for the event.*/
   ip?: {
     /** The IPv4 address associated with the event. */

@@ -9,8 +9,8 @@ import { EnumOrString } from './EnumOrString';
  * @public
  */
 export enum VersionLabelEnum {
-    Production = 'PRODUCTION',
-    Staging = 'STAGING'
+  Production = 'PRODUCTION',
+  Staging = 'STAGING'
 }
 
 /**

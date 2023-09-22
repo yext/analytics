@@ -1,11 +1,9 @@
 module.exports = {
-  extends: [
-    'plugin:@typescript-eslint/recommended'
-  ],
+  extends: ['plugin:@typescript-eslint/recommended'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2020,
-    sourceType: 'module',
+    sourceType: 'module'
   },
   rules: {
     indent: ['error', 2, { SwitchCase: 1 }],
@@ -16,8 +14,8 @@ module.exports = {
       'error',
       {
         named: 'never',
-        anonymous: 'never',
-      },
+        anonymous: 'never'
+      }
     ],
     'keyword-spacing': ['error'],
     'quote-props': ['error', 'as-needed'],
@@ -25,11 +23,11 @@ module.exports = {
       'error',
       {
         code: 110,
-        ignorePattern: '^import\\s.+\\sfrom\\s.+;$',
-      },
+        ignorePattern: '^import\\s.+\\sfrom\\s.+;$'
+      }
     ],
     '@typescript-eslint/semi': ['error'],
-    '@typescript-eslint/type-annotation-spacing': ['error'],
+    '@typescript-eslint/type-annotation-spacing': ['error']
   },
-  ignorePatterns: ['lib', 'test-site'],
+  ignorePatterns: ['lib', 'test-site']
 };
