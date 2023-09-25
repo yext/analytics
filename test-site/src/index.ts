@@ -101,10 +101,11 @@ export function fireChatEvent() {
 
 export function fireSearchEvent() {
   analyticsProvider.report({
-    chat: undefined,
+    action: 'PRODUCT',
+    chat: null,
     search: {
-      searchId: '1',
-      queryId: '1',
+      searchId: '11111111-1111-1111-1111-111111111111',
+      queryId: '11111111-1111-1111-1111-111111111111',
       verticalKey: 'test-vertical-key',
       isDirectAnswer: false,
       versionLabel: 'PRODUCTION',
