@@ -25,7 +25,7 @@ test('test Fire Search Event on chrome, firefox, and webkit', async ({
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    await page.click('button:has-text("Fire Search Event")')
+    page.click('button:has-text("Fire Search Event")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
@@ -41,7 +41,7 @@ test('test Fire CTA Event on chrome, firefox, and webkit', async ({ page }) => {
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    await page.click('button:has-text("Fire CTA Event")')
+    page.click('button:has-text("Fire CTA Event")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
@@ -59,7 +59,7 @@ test('test Fire Event w/ Session Tracking on chrome, firefox, and webkit', async
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    await page.click('button:has-text("Fire Event w/ Session Tracking")')
+    page.click('button:has-text("Fire Event w/ Session Tracking")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
