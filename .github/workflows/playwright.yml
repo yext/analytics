@@ -20,7 +20,7 @@ jobs:
     - name: Build test site
       run: npm run build --prefix ./test-site
     - name: RUn test site
-      run: npm run start --prefix ./test-site
+      run: npm run serve --prefix ./test-site
     - name: Run Playwright tests
       run: npx playwright test
     - uses: actions/upload-artifact@v3
