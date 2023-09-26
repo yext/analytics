@@ -71,8 +71,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'cd test-site && npm run build && npm run serve',
-    url: 'http://127.0.0.1:3030',
-    reuseExistingServer: !process.env.CI
+    command: 'cd test-site && npm i && npm run build && npm run serve',
+    port: 3030
   }
 });
