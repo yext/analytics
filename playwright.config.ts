@@ -71,7 +71,7 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'cd test-site && npm i && npm run build && npm run serve',
+    command: 'npm run serve --prefix ./test-site',
     port: 3030
   }
 });
