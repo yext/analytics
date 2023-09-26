@@ -74,4 +74,5 @@ export default defineConfig({
     command: 'cd test-site && npm i && npm run build && npm run serve',
     port: 3030
   }
+]
 });

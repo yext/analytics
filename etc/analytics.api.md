@@ -5,7 +5,7 @@
 ```ts
 
 // @public
-export type Action = 'ADD_TO_CART' | 'ALL_TAB_NAVIGATION' | 'APPLY' | 'AUTO_COMPLETE_SELECTION' | 'BACKWARD_PAGINATE' | 'BOOK' | 'BRAND_ICON' | 'CALL_TO_ACTION' | 'CASE_START' | 'CASE_SUBMITTED' | 'CHAT_IMPRESSION' | 'CHAT_LINK_CLICK' | 'CHAT_RESPONSE' | 'COLLAPSE' | 'DIRECTIONS' | 'EVENT' | 'EXPAND' | 'FEATURED_MESSAGE' | 'FILTERING_WITHIN_SECTION' | 'FORWARD_PAGINATE' | 'HEADER_LINKS' | 'ITEM_IN_LIST' | 'MAP_CARD' | 'MAP_PIN' | 'MENU' | 'MESSAGE' | 'ORDER' | 'PAGINATE' | 'PHONE' | 'POST' | 'PRESET_PROMPT' | 'PRODUCT' | 'PROFILE' | 'QUESTION_FOCUS' | 'QUESTION_SUBMIT' | 'REMOVED_FILTER' | 'REVIEW' | 'SCROLL_TO_BOTTOM_OF_PAGE' | 'SEARCH_BAR_IMPRESSION' | 'SEARCH_CLEAR_BUTTON' | 'THUMBS_DOWN' | 'THUMBS_UP' | 'TICKET_URL' | 'TITLE' | 'VERTICAL_TAB_NAVIGATION' | 'VERTICAL_VIEW_ALL' | 'VOICE_START' | 'VOICE_STOP' | 'WEBSITE';
+export type Action = `C_${string}` | `c_${string}` | 'ADD_TO_CART' | 'ALL_TAB_NAVIGATION' | 'APPLY' | 'AUTO_COMPLETE_SELECTION' | 'BACKWARD_PAGINATE' | 'BOOK' | 'BRAND_ICON' | 'CALL_TO_ACTION' | 'CASE_START' | 'CASE_SUBMITTED' | 'CHAT_IMPRESSION' | 'CHAT_LINK_CLICK' | 'CHAT_RESPONSE' | 'COLLAPSE' | 'DIRECTIONS' | 'EVENT' | 'EXPAND' | 'FEATURED_MESSAGE' | 'FILTERING_WITHIN_SECTION' | 'FORWARD_PAGINATE' | 'HEADER_LINKS' | 'ITEM_IN_LIST' | 'MAP_CARD' | 'MAP_PIN' | 'MENU' | 'MESSAGE' | 'ORDER' | 'PAGINATE' | 'PHONE' | 'POST' | 'PRESET_PROMPT' | 'PRODUCT' | 'PROFILE' | 'QUESTION_FOCUS' | 'QUESTION_SUBMIT' | 'REMOVED_FILTER' | 'REVIEW' | 'SCROLL_TO_BOTTOM_OF_PAGE' | 'SEARCH_BAR_IMPRESSION' | 'SEARCH_CLEAR_BUTTON' | 'THUMBS_DOWN' | 'THUMBS_UP' | 'TICKET_URL' | 'TITLE' | 'VERTICAL_TAB_NAVIGATION' | 'VERTICAL_VIEW_ALL' | 'VOICE_START' | 'VOICE_STOP' | 'WEBSITE';
 
 // @public
 export function analytics(config: AnalyticsConfig): AnalyticsEventService;
@@ -22,7 +22,7 @@ export interface AnalyticsConfig {
 
 // @public
 export interface AnalyticsEventService {
-    report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
+    report(payload?: PartialPayload): Promise<string>;
     with(payload: EventPayload): AnalyticsEventService;
 }
 
@@ -37,12 +37,6 @@ export enum EnvironmentEnum {
     // (undocumented)
     Production = "PRODUCTION",
     Sandbox = "SANDBOX"
-}
-
-// @public
-export interface EventAPIResponse {
-    errors?: string[];
-    id: string;
 }
 
 // @public
@@ -79,6 +73,15 @@ export interface EventPayload {
     locale?: string;
     pageUrl?: string;
     referrerUrl?: string;
+    search?: {
+        searchId?: string;
+        queryId?: string;
+        verticalKey?: string;
+        isDirectAnswer?: boolean;
+        versionLabel?: VersionLabel;
+        versionNumber?: number;
+        experienceKey: string;
+    };
     sessionId?: string | null;
     timestamp?: Date | string;
     visitor?: Record<string, string>;
@@ -96,6 +99,17 @@ export enum RegionEnum {
     EU = "eu",
     // (undocumented)
     US = "us"
+}
+
+// @public
+export type VersionLabel = EnumOrString<VersionLabelEnum>;
+
+// @public
+export enum VersionLabelEnum {
+    // (undocumented)
+    Production = "PRODUCTION",
+    // (undocumented)
+    Staging = "STAGING"
 }
 
 // (No @packageDocumentation comment for this package)
