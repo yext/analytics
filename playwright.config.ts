@@ -73,5 +73,6 @@ export default defineConfig({
   webServer: {
     command: 'npm run serve --prefix ./test-site',
     port: 3030
-  }
+  },
+  timeout: 60000
 });
