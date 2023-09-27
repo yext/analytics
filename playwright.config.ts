@@ -71,9 +71,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command:
-      'npm run build --prefix ./test-site && npm run serve --prefix ./test-site',
+    command: 'npm run serve --prefix ./test-site',
     reuseExistingServer: true,
-    port: 3030
+    url: 'http://localhost:3030'
   }
 });
