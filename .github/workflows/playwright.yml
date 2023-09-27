@@ -22,6 +22,6 @@ jobs:
     - name: build test site package
       run: npm i --prefix ./test-site && npm run build --prefix ./test-site
     - name: Start server
-      run: npm run serve --prefix ./test-site
+      run: npm run serve --prefix ./test-site &
     - name: Run Playwright tests
       run: npx playwright test
