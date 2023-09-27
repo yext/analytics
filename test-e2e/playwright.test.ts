@@ -1,14 +1,13 @@
 import { test, expect } from '@playwright/test';
 
-test('test Fire Chat Event on chrome, firefox, and webkit', async ({
+test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
   await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    page.click('button:has-text("Fire Chat Event")'),
-    page.waitForTimeout(3000)
+    await page.click('button:has-text("Fire Chat Event")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
@@ -19,14 +18,14 @@ test('test Fire Chat Event on chrome, firefox, and webkit', async ({
     });
 });
 
-test('test Fire Search Event on chrome, firefox, and webkit', async ({
+test('test Fire Search Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
   await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    page.click('button:has-text("Fire Search Event")')
+    await page.click('button:has-text("Fire Search Event")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
@@ -37,12 +36,14 @@ test('test Fire Search Event on chrome, firefox, and webkit', async ({
     });
 });
 
-test('test Fire CTA Event on chrome, firefox, and webkit', async ({ page }) => {
+test('test Fire CTA Event on Chromium, Firefox, and Webkit', async ({
+  page
+}) => {
   await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    page.click('button:has-text("Fire CTA Event")')
+    await page.click('button:has-text("Fire CTA Event")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
@@ -53,14 +54,14 @@ test('test Fire CTA Event on chrome, firefox, and webkit', async ({ page }) => {
     });
 });
 
-test('test Fire Event w/ Session Tracking on chrome, firefox, and webkit', async ({
+test('test Fire Event w/ Session Tracking on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
   await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    page.click('button:has-text("Fire Event w/ Session Tracking")')
+    await page.click('button:has-text("Fire Event w/ Session Tracking")')
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
