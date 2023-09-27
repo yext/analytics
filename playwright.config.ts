@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { defineConfig, devices } from '@playwright/test';
 
 /**
@@ -51,11 +52,11 @@ export default defineConfig({
   webServer: process.env.CI
     ? undefined
     : {
-      command: 'yarn dev',
-      cwd: './test-site',
-      url: 'http://localhost:3000/',
-      reuseExistingServer: true,
-      stderr: 'pipe',
-      stdout: 'pipe'
-    }
+        command: 'yarn dev',
+        cwd: './test-site',
+        url: 'http://localhost:3000/',
+        reuseExistingServer: true,
+        stderr: 'pipe',
+        stdout: 'pipe'
+      }
 });
