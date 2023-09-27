@@ -20,5 +20,5 @@ jobs:
     - name: build package
       run: npm run build
     - name: Run Playwright tests
-      run: DEBUG=pw:api npx playwright test playwright.test.ts -g "test\s+Fire\s+Chat\s+Event\s+on\s+Chromium,\s+Firefox,\s+and\s+Webkit$"
+      run: env HOME=/root npx playwright test playwright.test.ts -g "test\s+Fire\s+Chat\s+Event\s+on\s+Chromium,\s+Firefox,\s+and\s+Webkit$"
 
