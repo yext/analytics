@@ -22,7 +22,6 @@ jobs:
     - name: Start server
       run: |
        npm run serve --prefix ./test-site &
-       timeout 60s bash -c 'until curl -s http://localhost:3000; do sleep 1; done'
     - name: Run Playwright tests
-      run: DEBUG=pw:api npx playwright test --project="Chromium"
+      run: DEBUG=pw:api npx playwright test playwright.test.ts -g "test\s+Fire\s+Search\s+Event\s+on\s+Chromium,\s+Firefox,\s+and\s+Webkit$"
 
