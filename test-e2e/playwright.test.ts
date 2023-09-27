@@ -7,7 +7,8 @@ test('test Fire Chat Event on chrome, firefox, and webkit', async ({
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    await page.click('button:has-text("Fire Chat Event")')
+    page.click('button:has-text("Fire Chat Event")'),
+    page.waitForTimeout(3000)
   ])
     .then((responses) => {
       expect(responses.at(0)?.status()).toBe(202);
