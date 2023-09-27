@@ -20,7 +20,9 @@ jobs:
     - name: build package
       run: npm run build
     - name: Start server
-      run: npm run serve --prefix ./test-site &
+      run: |
+       npm run serve --prefix ./test-site &
+       timeout 60s bash -c 'until curl -s http://localhost:3000; do sleep 1; done'
     - name: Run Playwright tests
       run: DEBUG=pw:api npx playwright test --project="Chromium"
 
