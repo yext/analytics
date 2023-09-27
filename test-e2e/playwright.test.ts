@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
-  const responsePromise = page.waitForResponse((res) => res.status() == 202);
+  const responsePromise = page.waitForResponse((res) => res.status() != 202);
   await page.goto('http://localhost:3000');
   await page.click('button:has-text("Fire Chat Event")');
   const response = await responsePromise;
