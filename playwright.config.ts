@@ -49,14 +49,12 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: process.env.CI
-    ? undefined
-    : {
-        command: 'yarn dev',
-        cwd: './test-site',
-        url: 'http://localhost:3000/',
-        reuseExistingServer: true,
-        stderr: 'pipe',
-        stdout: 'pipe'
-      }
+  webServer: {
+    command: 'npm run serve',
+    cwd: './test-site',
+    url: 'http://localhost:3000/',
+    reuseExistingServer: true,
+    stderr: 'pipe',
+    stdout: 'pipe'
+  }
 });
