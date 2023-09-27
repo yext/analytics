@@ -3,18 +3,20 @@ import { test, expect } from '@playwright/test';
 test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
-  await page.goto('http://localhost:3000', { waitUntil: 'networkidle' }),
-  await Promise.all([
-    page.waitForResponse((res) => res.ok()),
-    page.click('button:has-text("Fire Chat Event")')
-  ])
-    .then((responses) => {
-      expect(responses.at(0)?.status()).toBe(202);
-    })
-    .catch((e) => {
-      console.log(e);
-      test.fail(e);
-    });
+  await page.goto('http://localhost:3000');
+  const response = await page.click('button:has-text("Fire Chat Event")');
+  expect(response).toBe(202);
+  // await Promise.all([
+  //   page.waitForResponse((res) => res.status() != 202),
+  //   page.click('button:has-text("Fire Chat Event")')
+  // ])
+  //   .then((responses) => {
+  //     expect(responses.at(0)?.status()).toBe(202);
+  //   })
+  //   .catch((e) => {
+  //     console.log(e);
+  //     test.fail(e);
+  //   });
 });
 
 test('test Fire Search Event on Chromium, Firefox, and Webkit', async ({
