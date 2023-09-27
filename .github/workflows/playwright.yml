@@ -19,9 +19,6 @@ jobs:
       run: npm ci && npm i --prefix ./test-site
     - name: build package
       run: npm run build
-    - name: Start server
-      run: |
-       npm run serve --prefix ./test-site &
     - name: Run Playwright tests
       run: DEBUG=pw:api npx playwright test playwright.test.ts -g "test\s+Fire\s+Search\s+Event\s+on\s+Chromium,\s+Firefox,\s+and\s+Webkit$"
 
