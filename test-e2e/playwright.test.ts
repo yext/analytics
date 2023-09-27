@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 test('test Fire Chat Event on chrome, firefox, and webkit', async ({
   page
 }) => {
-  await page.goto('http://127.0.0.1:3030');
+  await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
@@ -21,7 +21,7 @@ test('test Fire Chat Event on chrome, firefox, and webkit', async ({
 test('test Fire Search Event on chrome, firefox, and webkit', async ({
   page
 }) => {
-  await page.goto('http://127.0.0.1:3030');
+  await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
@@ -37,7 +37,7 @@ test('test Fire Search Event on chrome, firefox, and webkit', async ({
 });
 
 test('test Fire CTA Event on chrome, firefox, and webkit', async ({ page }) => {
-  await page.goto('http://127.0.0.1:3030');
+  await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
@@ -55,7 +55,7 @@ test('test Fire CTA Event on chrome, firefox, and webkit', async ({ page }) => {
 test('test Fire Event w/ Session Tracking on chrome, firefox, and webkit', async ({
   page
 }) => {
-  await page.goto('http://127.0.0.1:3030');
+  await page.goto('http://localhost:3000');
 
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),

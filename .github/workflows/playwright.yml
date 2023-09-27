@@ -23,7 +23,5 @@ jobs:
       run: npx playwright install --with-deps
     - name: Build test site
       run: npm run build --prefix ./test-site
-    - name: Start test site
-      run: npm run serve --prefix ./test-site
     - name: Run Playwright tests
       run: npx playwright test
