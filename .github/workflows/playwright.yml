@@ -9,10 +9,6 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-    - if: ${{ env.YEXT_API_KEY == ''}}
-      run: |
-        echo "YEXT_API_KEY is not set"
-        exit 1
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
@@ -26,6 +22,8 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Build test site
-      run: echo 'Key:' '${{ env.YEXT_API_KEY }}' && npm run build --prefix ./test-site &
+      run: npm run build --prefix ./test-site
+    - name: Start test site
+      run: npm run start --prefix ./test-site &
     - name: Run Playwright tests
       run: npx playwright test
