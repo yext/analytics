@@ -16,11 +16,9 @@ jobs:
       with:
         node-version: 18
     - name: Install dependencies
-      run: npm ci
+      run: npm ci && npm i --prefix ./test-site
     - name: build package
       run: npm run build
-    - name: build test site package
-      run: npm i --prefix ./test-site && npm run build --prefix ./test-site
     - name: Start server
       run: npm run serve --prefix ./test-site &
     - name: Run Playwright tests
