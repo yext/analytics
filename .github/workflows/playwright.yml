@@ -21,5 +21,7 @@ jobs:
       env: 
         YEXT_API_KEY: ${{ env.YEXT_API_KEY }}
       run: npm run build --prefix ./test-site
+    - name: Start dev server
+      run: npm run serve --prefix ./test-site &
     - name: Run Playwright tests
       run: npx playwright test
