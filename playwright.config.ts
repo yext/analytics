@@ -71,8 +71,8 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run serve --prefix ./test-site',
+    command: 'cd test-site && yarn dev',
     reuseExistingServer: true,
-    url: 'http://localhost:3030'
+    port: 3030
   }
 });
