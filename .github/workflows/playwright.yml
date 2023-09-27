@@ -5,7 +5,7 @@ jobs:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3di
     - uses: actions/setup-node@v3
       with:
         node-version: 18
@@ -20,6 +20,6 @@ jobs:
     - name: Build test site
       env: 
         YEXT_API_KEY: ${{ secrets.YEXT_API_KEY }}
-      run: echo "key:$YEXT_API_KEY" && npm run build --prefix ./test-site &
+      run: echo 'Key:' '${{ env.YEXT_API_KEY }}' && npm run build --prefix ./test-site &
     - name: Run Playwright tests
       run: npx playwright test
