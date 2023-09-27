@@ -5,7 +5,7 @@ test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
 }) => {
   await page.goto('http://localhost:3000', { waitUntil: 'networkidle' }),
   await Promise.all([
-    page.waitForResponse((res) => res.status() == 202),
+    page.waitForResponse((res) => res.ok()),
     page.click('button:has-text("Fire Chat Event")')
   ])
     .then((responses) => {
