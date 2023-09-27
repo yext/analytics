@@ -19,5 +19,9 @@ jobs:
       run: npm ci
     - name: build package
       run: npm run build
+    - name: build test site package
+      run: npm i --prefix ./test-site && npm run build --prefix ./test-site
+    - name: Start server
+      run: yarn dev &
     - name: Run Playwright tests
       run: npx playwright test
