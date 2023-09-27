@@ -24,4 +24,5 @@ jobs:
     - name: Start server
       run: npm run serve --prefix ./test-site &
     - name: Run Playwright tests
-      run: npx playwright test
+      run: DEBUG=pw:api npx playwright test
+
