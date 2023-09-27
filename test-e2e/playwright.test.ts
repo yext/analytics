@@ -3,9 +3,9 @@ import { test, expect } from '@playwright/test';
 test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
+  await page.goto('http://localhost:3000', { waitUntil: 'networkidle' }),
   await Promise.all([
     page.waitForResponse((res) => res.status() == 202),
-    page.goto('http://localhost:3000', { waitUntil: 'networkidle' }),
     page.click('button:has-text("Fire Chat Event")')
   ])
     .then((responses) => {
