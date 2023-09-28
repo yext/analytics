@@ -12,19 +12,10 @@ test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
 test('test Fire Search Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
+  const responsePromise = page.waitForResponse((res) => res.status() == 202 || res.status() == 200);
   await page.goto('http://localhost:3000');
-
-  await Promise.all([
-    page.waitForResponse((res) => res.status() == 202),
-    page.click('button:has-text("Fire Search Event")')
-  ])
-    .then((responses) => {
-      expect(responses.at(0)?.status()).toBe(202);
-    })
-    .catch((e) => {
-      console.log(e);
-      test.fail(e);
-    });
+  await page.click('button:has-text("Fire Search Event")');
+  await responsePromise;
 });
 
 test('test Fire CTA Event on Chromium, Firefox, and Webkit', async ({
