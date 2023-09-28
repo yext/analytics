@@ -3,7 +3,7 @@ on: [push, pull_request]
 
 env: 
   YEXT_API_KEY: ${{ secrets.YEXT_API_KEY }}
-  
+
 jobs:
   test:
     timeout-minutes: 5
@@ -21,6 +21,7 @@ jobs:
       run: npm run build
     - name: Run Playwright tests
       env:
+        # Refer to: https://github.com/microsoft/playwright/issues/6500#issuecomment-1577221956
         HOME: /root
       run: npx playwright test
 
