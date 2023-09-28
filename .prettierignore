@@ -4,6 +4,7 @@ dist/
 docs/
 etc/
 lib/
+test-e2e/
 node_modules/
 package*.json
 LICENSE

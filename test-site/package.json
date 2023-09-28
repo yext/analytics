@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "dev": "webpack --watch",
-    "serve": "serve dist -p 3030"
+    "serve": "serve dist -p 3000"
   },
   "author": "slapshot@yext.com",
   "devDependencies": {
