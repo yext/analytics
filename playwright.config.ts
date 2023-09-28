@@ -52,7 +52,6 @@ export default defineConfig({
   webServer: {
     command: 'npm run build && npm run serve',
     cwd: './test-site',
-    url: 'http://localhost:3000/',
-    reuseExistingServer: true
+    url: 'http://localhost:3000/'
   }
 });
