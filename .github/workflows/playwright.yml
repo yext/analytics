@@ -5,7 +5,7 @@ env:
   YEXT_API_KEY: ${{ secrets.YEXT_API_KEY }}
 
 jobs:
-  test:
+  test-e2e:
     timeout-minutes: 5
     runs-on: ubuntu-latest
     container:
