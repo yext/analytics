@@ -53,8 +53,6 @@ export default defineConfig({
     command: 'npm run build && npm run serve',
     cwd: './test-site',
     url: 'http://localhost:3000/',
-    reuseExistingServer: true,
-    stderr: 'pipe',
-    stdout: 'pipe'
+    reuseExistingServer: true
   }
 });
