@@ -47,6 +47,7 @@ export default defineConfig({
   webServer: {
     command: 'npm run build && npm run serve',
     cwd: './test-site',
-    port: 3000
+    port: 3000,
+    reuseExistingServer: !process.env.CI
   }
 });
