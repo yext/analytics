@@ -21,5 +21,5 @@ jobs:
     - name: build package
       run: npm run build
     - name: Run Playwright tests
-      run: npx playwright test playwright.test.ts -g "test\s+Fire\s+Chat\s+Event\s+on\s+Chromium,\s+Firefox,\s+and\s+Webkit$"
+      run: npx playwright test playwright.test.ts -g "test\s+Fire\s+Search\s+Event\s+on\s+Chromium,\s+Firefox,\s+and\s+Webkit$"
 
