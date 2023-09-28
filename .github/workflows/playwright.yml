@@ -2,9 +2,8 @@ name: Playwright Tests
 on: [push, pull_request]
 
 env: 
-  YEXT_API_KEY: ${{ secrets.GCP_SA_KEY }}
-  HOME: /root
-
+  YEXT_API_KEY: ${{ secrets.YEXT_API_KEY }}
+  
 jobs:
   test:
     timeout-minutes: 5
@@ -21,5 +20,7 @@ jobs:
     - name: build package
       run: npm run build
     - name: Run Playwright tests
+      env:
+        HOME: /root
       run: npx playwright test
 
