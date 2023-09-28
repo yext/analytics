@@ -34,17 +34,17 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'], headless: true }
+      use: { ...devices['Desktop Chrome'] }
     },
 
     {
       name: 'firefox',
-      use: { ...devices['Desktop Firefox'], headless: true }
+      use: { ...devices['Desktop Firefox'] }
     },
 
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'], headless: true }
+      use: { ...devices['Desktop Safari'] }
     }
   ],
 
