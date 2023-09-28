@@ -17,10 +17,12 @@ export default defineConfig({
   reporter: process.env.CI ? 'dot' : [['html', { open: 'never' }]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+    /* Base URL to use in actions like `await page.goto('/')`. */
+    baseURL: 'http://localhost:3000',
+    /* Collect trace when retrying the failed test locally. See https://playwright.dev/docs/trace-viewer */
     trace: process.env.CI ? 'off' : 'on-first-retry',
-    video: process.env.CI ? 'off' : 'on',
-    baseURL: 'http://localhost:3000'
+    /* Record video of tests when retrying locally */
+    video: process.env.CI ? 'off' : 'on-first-retry'
   },
 
   /* Configure projects for major browsers */
