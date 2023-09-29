@@ -18,7 +18,7 @@ jobs:
       region: EU
 
   call_extract_versions:
-    uses: ./.github/workflows/extract_versions.yml
+    uses: ./.github/workflows/extract_versions.yaml
 
   call_should_deploy_major_version:
     uses: ./.github/workflows/should_deploy_major_version.yml
