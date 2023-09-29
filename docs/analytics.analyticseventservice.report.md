@@ -9,7 +9,7 @@ Reports an analytics event. Operand will throw an error if the request fails. Th
 <b>Signature:</b>
 
 ```typescript
-report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
+report(payload?: PartialPayload): Promise<string>;
 ```
 
 ## Parameters
@@ -20,5 +20,5 @@ report(payload?: PartialPayload): Promise<boolean | EventAPIResponse>;
 
 <b>Returns:</b>
 
-Promise&lt;boolean \| [EventAPIResponse](./analytics.eventapiresponse.md)<!-- -->&gt;
+Promise&lt;string&gt;
 
