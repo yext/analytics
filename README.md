@@ -10,6 +10,8 @@
 </div>
 <br>
 
+FOR TESTING
+
 A Typescript library for sending Yext Analytics events.
 
 [Full Documentation](./docs/analytics.md)
