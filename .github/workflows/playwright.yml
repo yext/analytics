@@ -16,7 +16,7 @@ jobs:
       with:
         node-version: 18
     - name: Install dependencies
-      run: npm ci && npm i --prefix ./test-site
+      run: npm ci
     - name: build package
       run: npm run build
     - name: Run Playwright tests
