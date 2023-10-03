@@ -1,4 +1,8 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+
+test.beforeAll(async () => {
+  expect(process.env.YEXT_API_KEY).toBeDefined();
+});
 
 test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
   page

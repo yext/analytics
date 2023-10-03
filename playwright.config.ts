@@ -45,9 +45,10 @@ export default defineConfig({
 
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npm run build && npm run serve',
+    command: 'npm i && npm run build && npm run serve',
     cwd: './test-site',
     port: 3000,
-    reuseExistingServer: !process.env.CI
+    reuseExistingServer: !process.env.CI,
+    stdout: 'pipe'
   }
 });

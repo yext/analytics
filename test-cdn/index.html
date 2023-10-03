@@ -6,13 +6,14 @@
   </head>
   <body>
     <p>Analytics Script Tag Integration Test Site</p>
-    <!-- <script src="https://storage.googleapis.com/assets-eu.sitescdn.net/chat/v0/chat.umd.js"></script> -->
-    <!-- <script src="https://assets.sitescdn.net/chat/v0/chat.umd.js"></script> -->
-    <script src="../dist/analytics.umd.js"></script>
+    <!-- LOCAL DEPLOYABLE <script src="../dist/analytics.umd.js"></script>-->
+    <!-- GCP SCRIPT TAG FOR EU <script src="https://storage.googleapis.com/assets-eu.sitescdn.net/analytics/v1.0.0-beta.1/analytics.umd.js"></script> -->
+    <!-- AWS SCRIPT TAG FOR US <script src="https://assets.sitescdn.net/analytics/v1.0.0-beta.1/analytics.umd.js"></script> -->
     <script>
       const analyticsProvider = window.AnalyticsSDK.analytics({
-        key: '%YEXT_API_KEY%',
-        sessionTrackingEnabled: false
+        key: '<INSERT YEXT API KEY HERE>',
+        sessionTrackingEnabled: false,
+        region: 'eu'
       }).with({
         action: 'CHAT_LINK_CLICK',
         pageUrl: 'http://www.yext-test-pageurl.com',
