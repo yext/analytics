@@ -4,7 +4,7 @@
 
 ## EventPayload.sites property
 
-Fields specific to reporting Yext Sites Analytics Events
+Fields specific to reporting Yext Pages Analytics Events
 
 <b>Signature:</b>
 

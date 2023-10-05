@@ -35,7 +35,7 @@ export interface EventPayload
 |  [referrerUrl?](./analytics.eventpayload.referrerurl.md) | string | <i>(Optional)</i> The URL of the page which the visitor came from prior to the event. |
 |  [search?](./analytics.eventpayload.search.md) | { searchId?: string; queryId?: string; verticalKey?: string; isDirectAnswer?: boolean; versionLabel?: [VersionLabel](./analytics.versionlabel.md)<!-- -->; versionNumber?: number; experienceKey: string; } | <i>(Optional)</i> Fields specific to reporting Yext Search Analytics Events |
 |  [sessionId?](./analytics.eventpayload.sessionid.md) | string \| null | <i>(Optional)</i> Unique identifier to tie together events in a single browsing session |
-|  [sites?](./analytics.eventpayload.sites.md) | { siteUid?: number; template?: string; } | <i>(Optional)</i> Fields specific to reporting Yext Sites Analytics Events |
+|  [sites?](./analytics.eventpayload.sites.md) | { siteUid?: number; template?: string; } | <i>(Optional)</i> Fields specific to reporting Yext Pages Analytics Events |
 |  [timestamp?](./analytics.eventpayload.timestamp.md) | Date \| string | <i>(Optional)</i> The timestamp at which the event occurred, in ISO format. |
 |  [visitor?](./analytics.eventpayload.visitor.md) | Record&lt;string, string&gt; | <i>(Optional)</i> Information used to associate analytics with a particular user. |
 
