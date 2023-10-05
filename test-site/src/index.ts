@@ -127,7 +127,7 @@ export function firePagesEvent() {
 }
 
 export function fireCallToActionEvent() {
-  analyticsProvider.report({ action: 'CALL_TO_ACTION' });
+  analyticsProvider.report({ action: 'CTA_CLICK' });
 }
 
 export function fireEventWithSessionTracking() {
