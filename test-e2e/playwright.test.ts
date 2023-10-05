@@ -22,6 +22,15 @@ test('test Fire Search Event on Chromium, Firefox, and Webkit', async ({
   await responsePromise;
 });
 
+test('test Fire Pages Event on Chromium, Firefox, and Webkit', async ({
+  page
+}) => {
+  const responsePromise = page.waitForResponse((res) => res.status() == 202);
+  await page.goto('/');
+  await page.click('button:has-text("Fire Pages Event")');
+  await responsePromise;
+});
+
 test('test Fire CTA Event on Chromium, Firefox, and Webkit', async ({
   page
 }) => {
