@@ -83,6 +83,10 @@ export interface EventPayload {
         experienceKey: string;
     };
     sessionId?: string | null;
+    sites?: {
+        siteUid?: number;
+        template?: string;
+    };
     timestamp?: Date | string;
     visitor?: Record<string, string>;
 }
