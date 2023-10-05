@@ -60,7 +60,7 @@ export interface EventPayload {
     /** The ID of the individual response in which the event occurred. */
     responseId?: string;
   };
-  /** Fields specific to reporting Search Analytics Events */
+  /** Fields specific to reporting Yext Search Analytics Events */
   search?: {
     /** Unique identifier of the search */
     searchId?: string;
@@ -77,6 +77,13 @@ export interface EventPayload {
     versionNumber?: number;
     /** The identifier of the search experience. */
     experienceKey: string;
+  };
+  /** Fields specific to reporting Yext Sites Analytics Events */
+  sites?: {
+    /* The UID of the site an event was tied to. */
+    siteUid?: number;
+    /* The ID of the template from which a site was generated. */
+    template?: string;
   };
   /**
    * When the record summarizes multiple events, the number of events the record represents.
