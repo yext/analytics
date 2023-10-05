@@ -78,7 +78,7 @@ export interface EventPayload {
     /** The identifier of the search experience. */
     experienceKey: string;
   };
-  /** Fields specific to reporting Yext Sites Analytics Events */
+  /** Fields specific to reporting Yext Pages Analytics Events */
   sites?: {
     /* The UID of the site an event was tied to. */
     siteUid?: number;

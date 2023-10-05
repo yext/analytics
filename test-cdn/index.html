@@ -128,7 +128,7 @@
         });
       }
 
-      function fireSitesEvent() {
+      function firePagesEvent() {
         analyticsProvider.report({
           action: 'WEBSITE',
           chat: null,
@@ -142,7 +142,7 @@
     <!-- This mirrors the test site -->
     <button onclick="fireChatEvent()">Fire Chat Event</button>
     <button onclick="fireSearchEvent()">Fire Search Event</button>
-    <button onclick="fireSitesEvent()">Fire Sites Event</button>
+    <button onclick="firePagesEvent()">Fire Pages Event</button>
     <button onclick="fireCallToActionEvent()">Fire CTA event</button>
     <button onclick="fireEventWithSessionTracking()">
       Fire Event w/ Session Tracking

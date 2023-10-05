@@ -115,7 +115,7 @@ export function fireSearchEvent() {
   });
 }
 
-export function fireSitesEvent() {
+export function firePagesEvent() {
   analyticsProvider.report({
     action: 'WEBSITE',
     chat: null,
