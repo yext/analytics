@@ -1,4 +1,8 @@
-import { test } from '@playwright/test';
+import { expect, test } from '@playwright/test';
+
+test.beforeAll(async () => {
+  expect(process.env.YEXT_API_KEY).toBeDefined();
+});
 
 test('test Fire Chat Event on Chromium, Firefox, and Webkit', async ({
   page
@@ -15,6 +19,15 @@ test('test Fire Search Event on Chromium, Firefox, and Webkit', async ({
   const responsePromise = page.waitForResponse((res) => res.status() == 202);
   await page.goto('/');
   await page.click('button:has-text("Fire Search Event")');
+  await responsePromise;
+});
+
+test('test Fire Pages Event on Chromium, Firefox, and Webkit', async ({
+  page
+}) => {
+  const responsePromise = page.waitForResponse((res) => res.status() == 202);
+  await page.goto('/');
+  await page.click('button:has-text("Fire Pages Event")');
   await responsePromise;
 });
 
