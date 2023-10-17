@@ -38,3 +38,4 @@ export interface EventPayload
 |  [sites?](./analytics.eventpayload.sites.md) | { siteUid?: number; template?: string; } | <i>(Optional)</i> Fields specific to reporting Yext Pages Analytics Events |
 |  [timestamp?](./analytics.eventpayload.timestamp.md) | Date \| string | <i>(Optional)</i> The timestamp at which the event occurred, in ISO format. |
 |  [visitor?](./analytics.eventpayload.visitor.md) | Record&lt;string, string&gt; | <i>(Optional)</i> Information used to associate analytics with a particular user. |
+
