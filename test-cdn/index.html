@@ -6,13 +6,14 @@
   </head>
   <body>
     <p>Analytics Script Tag Integration Test Site</p>
-    <!-- <script src="https://storage.googleapis.com/assets-eu.sitescdn.net/chat/v0/chat.umd.js"></script> -->
-    <!-- <script src="https://assets.sitescdn.net/chat/v0/chat.umd.js"></script> -->
-    <script src="../dist/analytics.umd.js"></script>
+    <!-- LOCAL DEPLOYABLE <script src="../dist/analytics.umd.js"></script>-->
+    <!-- GCP SCRIPT TAG FOR EU <script src="https://storage.googleapis.com/assets-eu.sitescdn.net/analytics/v1.0.0-beta.1/analytics.umd.js"></script> -->
+    <!-- AWS SCRIPT TAG FOR US <script src="https://assets.sitescdn.net/analytics/v1.0.0-beta.1/analytics.umd.js"></script> -->
     <script>
       const analyticsProvider = window.AnalyticsSDK.analytics({
-        key: '%YEXT_API_KEY%',
-        sessionTrackingEnabled: false
+        key: '<INSERT YEXT API KEY HERE>',
+        sessionTrackingEnabled: false,
+        region: 'eu'
       }).with({
         action: 'CHAT_LINK_CLICK',
         pageUrl: 'http://www.yext-test-pageurl.com',
@@ -104,15 +105,44 @@
       }
 
       function fireCallToActionEvent() {
-        analyticsProvider.report({ action: 'CALL_TO_ACTION' });
+        analyticsProvider.report({ action: 'CTA_CLICK' });
       }
 
       function fireEventWithSessionTracking() {
         analyticsProvideWithSessionTracking.report();
       }
+
+      function fireSearchEvent() {
+        analyticsProvider.report({
+          action: 'PRODUCT',
+          chat: null,
+          search: {
+            searchId: '11111111-1111-1111-1111-111111111111',
+            queryId: '11111111-1111-1111-1111-111111111111',
+            verticalKey: 'test-vertical-key',
+            isDirectAnswer: false,
+            versionLabel: 'PRODUCTION',
+            versionNumber: 1,
+            experienceKey: 'test-experience-key'
+          }
+        });
+      }
+
+      function firePagesEvent() {
+        analyticsProvider.report({
+          action: 'WEBSITE',
+          chat: null,
+          sites: {
+            siteUid: 123456789,
+            template: 'test-template'
+          }
+        });
+      }
     </script>
     <!-- This mirrors the test site -->
     <button onclick="fireChatEvent()">Fire Chat Event</button>
+    <button onclick="fireSearchEvent()">Fire Search Event</button>
+    <button onclick="firePagesEvent()">Fire Pages Event</button>
     <button onclick="fireCallToActionEvent()">Fire CTA event</button>
     <button onclick="fireEventWithSessionTracking()">
       Fire Event w/ Session Tracking

@@ -4,7 +4,7 @@
 
 ## EventPayload.search property
 
-Fields specific to reporting Search Analytics Events
+Fields specific to reporting Yext Search Analytics Events
 
 <b>Signature:</b>
 

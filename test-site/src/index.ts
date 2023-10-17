@@ -115,8 +115,19 @@ export function fireSearchEvent() {
   });
 }
 
+export function firePagesEvent() {
+  analyticsProvider.report({
+    action: 'WEBSITE',
+    chat: null,
+    sites: {
+      siteUid: 123456789,
+      template: 'test-template'
+    }
+  });
+}
+
 export function fireCallToActionEvent() {
-  analyticsProvider.report({ action: 'CALL_TO_ACTION' });
+  analyticsProvider.report({ action: 'CTA_CLICK' });
 }
 
 export function fireEventWithSessionTracking() {
