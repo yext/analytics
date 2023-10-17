@@ -24,4 +24,3 @@ jobs:
         # Refer to: https://github.com/microsoft/playwright/issues/6500#issuecomment-1577221956
         HOME: /root
       run: npx playwright test
-
