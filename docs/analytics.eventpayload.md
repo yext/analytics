@@ -37,5 +37,6 @@ export interface EventPayload
 |  [sessionId?](./analytics.eventpayload.sessionid.md) | string \| null | <i>(Optional)</i> Unique identifier to tie together events in a single browsing session |
 |  [sites?](./analytics.eventpayload.sites.md) | { siteUid?: number; template?: string; } | <i>(Optional)</i> Fields specific to reporting Yext Pages Analytics Events |
 |  [timestamp?](./analytics.eventpayload.timestamp.md) | Date \| string | <i>(Optional)</i> The timestamp at which the event occurred, in ISO format. |
+|  [value?](./analytics.eventpayload.value.md) | { amount: number; currency: string; } | <i>(Optional)</i> The monetary value of the event. |
 |  [visitor?](./analytics.eventpayload.visitor.md) | Record&lt;string, string&gt; | <i>(Optional)</i> Information used to associate analytics with a particular user. |
 

@@ -88,6 +88,10 @@ export interface EventPayload {
         template?: string;
     };
     timestamp?: Date | string;
+    value?: {
+        amount: number;
+        currency: string;
+    };
     visitor?: Record<string, string>;
 }
 
