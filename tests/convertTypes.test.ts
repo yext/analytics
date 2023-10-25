@@ -9,7 +9,7 @@ describe('convertTypesGTM Test', () => {
         versionNumber: '5'
       },
       sites: {
-        siteUId: '5'
+        siteUid: '5'
       }
     };
 
@@ -22,7 +22,7 @@ describe('convertTypesGTM Test', () => {
         versionNumber: 5
       },
       sites: {
-        siteUId: 5
+        siteUid: 5
       }
     });
   });
@@ -71,6 +71,29 @@ describe('convertTypesGTM Test', () => {
       customValues: {
         myCustomVal: 5,
         myCustomVal2: 1234
+      }
+    });
+  });
+  it('should convert string represented booleans to boolean type', () => {
+    const payload = {
+      action: 'ADD_TO_CART',
+      bot: 'true',
+      internalUser: 'false',
+      search: {
+        versionNumber: '5',
+        isDirectAnswer: 'false'
+      }
+    };
+
+    const result = convertTypesGTM(payload);
+
+    expect(result).toEqual({
+      action: 'ADD_TO_CART',
+      bot: true,
+      internalUser: false,
+      search: {
+        versionNumber: 5,
+        isDirectAnswer: false
       }
     });
   });
