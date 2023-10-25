@@ -1,6 +1,7 @@
 import { AnalyticsConfig } from './AnalyticsConfig';
 import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import { AnalyticsEventService } from './AnalyticsEventService';
+import { convertTypesGTM } from './convertTypesGTM';
 
 /**
  * The Yext Analytics Events SDK.
@@ -11,6 +12,28 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService {
   return new AnalyticsEventReporter(config);
 }
 
+export function analyticsGTM(): Promise<string> {
+  const payload = window['analyticsEventPayload'];
+  let response: Promise<string>;
+  if (payload) {
+    const config = payload[0][1] as Record<string, unknown>;
+    const data = payload[1][1] as Record<string, unknown>;
+    console.log('config', config);
+    console.log('payload', payload);
+    if (config) {
+      const reporter = new AnalyticsEventReporter(config);
+      const correctedData = convertTypesGTM(data);
+      console.log('Data with numerical types corrected:', correctedData);
+      response = reporter.report(correctedData);
+    } else {
+      response = Promise.reject('No config found in payload.');
+    }
+  } else {
+    response = Promise.reject('No payload found.');
+  }
+  return response;
+}
+
 export * from './AnalyticsConfig';
 export * from './AnalyticsEventService';
 export * from './Environment';
@@ -19,3 +42,10 @@ export * from './EventPayload';
 export * from './EnumOrString';
 export * from './Action';
 export * from './VersionLabel';
+
+declare global {
+  interface Window {
+    analyticsEventPayload?: Payload;
+  }
+  type Payload = Record<string, Record<string, unknown>>;
+}
