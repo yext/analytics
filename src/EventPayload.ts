@@ -112,6 +112,13 @@ export interface EventPayload {
     /** The algorithm to use to anonymize the IP address after collection. */
     algorithm?: string;
   };
+  /** The monetary value of the event. */
+  value?: {
+    /** The monetary value. */
+    amount: number;
+    /** The ISO 4217 currency code of the currency the value is expressed in. */
+    currency: string;
+  };
   /**
    * Information used to associate analytics with a particular user.
    *
