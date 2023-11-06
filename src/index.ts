@@ -2,7 +2,6 @@ import { AnalyticsConfig } from './AnalyticsConfig';
 import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import { AnalyticsEventService } from './AnalyticsEventService';
 import { convertTypesGTM } from './convertTypesGTM';
-import { convertTypesGTM } from './convertTypesGTM';
 
 /**
  * The Yext Analytics Events SDK.
@@ -40,13 +39,6 @@ export * from './EventPayload';
 export * from './EnumOrString';
 export * from './Action';
 export * from './VersionLabel';
-
-declare global {
-  interface Window {
-    analyticsEventPayload?: Payload;
-  }
-  type Payload = Record<string, Record<string, unknown>>;
-}
 
 declare global {
   interface Window {
