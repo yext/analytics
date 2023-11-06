@@ -47,10 +47,10 @@ export interface EventPayload {
     browserAgent?: {
         browser?: string;
         browserVersion?: string;
-        os?: string;
-        osVersion?: string;
         device?: string;
         deviceClass?: string;
+        os?: string;
+        osVersion?: string;
         userAgent?: string;
     };
     chat?: {
@@ -67,10 +67,14 @@ export interface EventPayload {
     internalUser?: boolean;
     ip?: {
         address: string;
-        algorithm?: string;
+        algorithm: string;
     };
     label?: string;
     locale?: string;
+    // Warning: (ae-forgotten-export) The symbol "Coordinates" needs to be exported by the entry point index.d.ts
+    location?: Coordinates | string;
+    // (undocumented)
+    nonce?: string;
     pageUrl?: string;
     referrerUrl?: string;
     search?: {
@@ -82,6 +86,8 @@ export interface EventPayload {
         versionNumber?: number;
         experienceKey: string;
     };
+    // (undocumented)
+    searchTerm?: string;
     sessionId?: string | null;
     sites?: {
         siteUid?: number;

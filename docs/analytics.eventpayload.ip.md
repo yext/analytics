@@ -11,6 +11,6 @@ The IP address for the event.
 ```typescript
 ip?: {
         address: string;
-        algorithm?: string;
+        algorithm: string;
     };
 ```
