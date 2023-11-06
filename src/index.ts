@@ -12,6 +12,10 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService {
   return new AnalyticsEventReporter(config);
 }
 
+/**
+ * The exported function of Yext Analytics Events SDK used for Google Tag Manager.
+ * @public
+ */
 export function analyticsGTM(): Promise<string> {
   const payload = window['analyticsEventPayload'];
   let response: Promise<string>;
