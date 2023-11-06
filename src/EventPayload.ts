@@ -1,4 +1,5 @@
 import { Action } from './Action';
+import { Coordinates } from './Coordinates';
 import { VersionLabel } from './VersionLabel';
 
 /**
@@ -11,20 +12,6 @@ export interface EventPayload {
   action: Action;
   /** The authorization token for the request. This will be setup from the Key or Bearer in the config. */
   authorization?: string;
-  /** Unique identifier to tie together events in a single browsing session */
-  sessionId?: string | null;
-  /** The URL of the page where the event occurred */
-  pageUrl?: string;
-  /** The URL of the page the event is directing the visitor to. */
-  destinationUrl?: string;
-  /** The URL of the page which the visitor came from prior to the event. */
-  referrerUrl?: string;
-  /** A label assigned to the event, e.g. a CTA label. */
-  label?: string;
-  /** The locale of the user who generated the event. */
-  locale?: string;
-  /** The timestamp at which the event occurred, in ISO format. */
-  timestamp?: Date | string;
   /** Whether the event is the result of bot activity. */
   bot?: boolean;
   /** Information about the visitors device and browser. */
@@ -33,24 +20,17 @@ export interface EventPayload {
     browser?: string;
     /** The browser version associated with the event. */
     browserVersion?: string;
-    /** The operating system associated with the event. */
-    os?: string;
-    /** The operating system version associated with the event. */
-    osVersion?: string;
     /** The device associated with the event. */
     device?: string;
     /** The device class associated with the event. */
     deviceClass?: string;
+    /** The operating system associated with the event. */
+    os?: string;
+    /** The operating system version associated with the event. */
+    osVersion?: string;
     /** The user agent associated with the event. */
     userAgent?: string;
   };
-  /**
-   * For the Yext client SDKs involved in the event, this is an object mapping
-   * the names of those SDKs to the version labels of those SDKs.
-   */
-  clientSdk?: Record<string, string>;
-  /** Indicates whether the event is the result of internal activity. */
-  internalUser?: boolean;
   /** Fields specific to reporting Chat Analytics Events */
   chat?: {
     /** The ID of the bot that generated the event. */
@@ -60,31 +40,11 @@ export interface EventPayload {
     /** The ID of the individual response in which the event occurred. */
     responseId?: string;
   };
-  /** Fields specific to reporting Yext Search Analytics Events */
-  search?: {
-    /** Unique identifier of the search */
-    searchId?: string;
-    /** Unique identifier for a single query across pagination */
-    queryId?: string;
-    /** The vertical key on which the event occurred, if any */
-    verticalKey?: string;
-    /** Whether or not the event occurred on a direct answer card */
-    isDirectAnswer?: boolean;
-    /** The label of the version number of the search config.
-     * Either "PRODUCTION" or "STAGING" */
-    versionLabel?: VersionLabel;
-    /** The version number of the search config */
-    versionNumber?: number;
-    /** The identifier of the search experience. */
-    experienceKey: string;
-  };
-  /** Fields specific to reporting Yext Pages Analytics Events */
-  sites?: {
-    /* The UID of the site an event was tied to. */
-    siteUid?: number;
-    /* The ID of the template from which a site was generated. */
-    template?: string;
-  };
+  /**
+   * For the Yext client SDKs involved in the event, this is an object mapping
+   * the names of those SDKs to the version labels of those SDKs.
+   */
+  clientSdk?: Record<string, string>;
   /**
    * When the record summarizes multiple events, the number of events the record represents.
    * The event is treated as if it is duplicated this many times.
@@ -100,18 +60,67 @@ export interface EventPayload {
    * Keys are case-insensitive.
    */
   customValues?: Record<string, number>;
+  /** The URL of the page the event is directing the visitor to. */
+  destinationUrl?: string;
   /** The Yext entity to which the event corresponds. If passed as a string, the value is
    * the mutable, customer-settable entity ID for the entity associated with the event.
    * If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
    */
   entity?: string | number;
+  /** Indicates whether the event is the result of internal activity. */
+  internalUser?: boolean;
   /** The IP address for the event.*/
   ip?: {
     /** The IPv4 address associated with the event. */
     address: string;
     /** The algorithm to use to anonymize the IP address after collection. */
-    algorithm?: string;
+    algorithm: string;
   };
+  /** A label assigned to the event, e.g. a CTA label. */
+  label?: string;
+  /** The locale of the user who generated the event. */
+  locale?: string;
+  /** The location information of the visitor for the event.
+   * Either a Coordinates object with both latitude and longitude or a string
+   * with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. */
+  location?: Coordinates | string;
+  /* Deduplication ID for the event.
+  Events from the same app for the same business with the same nonce will get de-duplicated. */
+  nonce?: string;
+  /** The URL of the page where the event occurred */
+  pageUrl?: string;
+  /** The URL of the page which the visitor came from prior to the event. */
+  referrerUrl?: string;
+  /** Fields specific to reporting Yext Search Analytics Events */
+  search?: {
+    /** Unique identifier of the search */
+    searchId?: string;
+    /** Unique identifier for a single query across pagination */
+    queryId?: string;
+    /** The vertical key on which the event occurred, if any */
+    verticalKey?: string;
+    /** Whether or not the event occurred on a direct answer card */
+    isDirectAnswer?: boolean;
+    /** The label of the version number of the search config. Either "PRODUCTION" or "STAGING" */
+    versionLabel?: VersionLabel;
+    /** The version number of the search config */
+    versionNumber?: number;
+    /** The identifier of the search experience. */
+    experienceKey: string;
+  };
+  /* The query entered by the user. */
+  searchTerm?: string;
+  /** Unique identifier to tie together events in a single browsing session */
+  sessionId?: string | null;
+  /** Fields specific to reporting Yext Pages Analytics Events */
+  sites?: {
+    /* The UID of the site an event was tied to. */
+    siteUid?: number;
+    /* The ID of the template from which a site was generated. */
+    template?: string;
+  };
+  /** The timestamp at which the event occurred, in ISO format. */
+  timestamp?: Date | string;
   /** The monetary value of the event. */
   value?: {
     /** The monetary value. */
