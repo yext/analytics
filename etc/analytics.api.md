@@ -27,6 +27,9 @@ export interface AnalyticsEventService {
 }
 
 // @public
+export function analyticsGTM(): Promise<string>;
+
+// @public
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public

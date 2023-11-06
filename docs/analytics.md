@@ -17,6 +17,7 @@
 |  Function | Description |
 |  --- | --- |
 |  [analytics(config)](./analytics.analytics.md) | The Yext Analytics Events SDK. Returns an AnalyticsEventService given an AnalyticsConfig. |
+|  [analyticsGTM()](./analytics.analyticsgtm.md) | The exported function of Yext Analytics Events SDK used for Google Tag Manager. |
 
 ## Interfaces
 
