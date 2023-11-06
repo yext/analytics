@@ -48,5 +48,5 @@ declare global {
   interface Window {
     analyticsEventPayload?: Payload;
   }
-  type Payload = Record<string, Record<string, unknown>>;
 }
+type Payload = Record<string, Record<string, unknown>>;
