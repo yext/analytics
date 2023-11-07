@@ -1,7 +1,7 @@
 import { AnalyticsConfig } from './AnalyticsConfig';
 import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import { AnalyticsEventService } from './AnalyticsEventService';
-import { convertTypesGTM } from './convertTypesGTM';
+import { convertTypesGTM } from './convertStringToValue';
 
 /**
  * The Yext Analytics Events SDK.
@@ -17,11 +17,11 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService {
  * @public
  */
 export function analyticsGTM(): Promise<string> {
-  const payload = window['analyticsEventPayload'];
+  const gtmPayload = window['analyticsEventPayload'];
   let response: Promise<string>;
-  if (payload) {
-    const config = payload[0][1] as Record<string, unknown>;
-    const data = payload[1][1] as Record<string, unknown>;
+  if (gtmPayload) {
+    const config = gtmPayload[0][1] as Record<string, unknown>;
+    const data = gtmPayload[1][1] as Record<string, unknown>;
     if (config) {
       const reporter = new AnalyticsEventReporter(config);
       const correctedData = convertTypesGTM(data);
@@ -46,7 +46,7 @@ export * from './VersionLabel';
 
 declare global {
   interface Window {
-    analyticsEventPayload?: Payload;
+    analyticsEventPayload?: GTMPayload;
   }
 }
-type Payload = Record<string, Record<string, unknown>>;
+type GTMPayload = Record<string, Record<string, unknown>>;

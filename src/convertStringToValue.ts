@@ -15,14 +15,13 @@ const propertiesToCheck = [
   'isDirectAnswer'
 ];
 
-export function convertTypesGTM(data: Record<string, unknown>): EventPayload {
+export function convertStringToValue(
+  data: Record<string, unknown>
+): EventPayload {
   // Recursive function to traverse and convert nested objects
   function recursiveConversion(obj: Record<string, unknown>) {
     for (const property in obj) {
-      if (
-        obj.hasOwnProperty(property) &&
-        propertiesToCheck.includes(property)
-      ) {
+      if (propertiesToCheck.includes(property)) {
         // Check if the property is in the list of properties to convert,
         // and if it's a string that represents a number, convert it to a number.
         // If it's a boolean string, convert it to a boolean.

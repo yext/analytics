@@ -1,8 +1,8 @@
-import { convertTypesGTM } from '../src/convertTypesGTM';
+import { convertStringToValue } from '../src/convertStringToValue';
 
 describe('convertTypesGTM Test', () => {
   it('should convert string represented numbers to numerical type - standard case', () => {
-    const payload = {
+    const gtmPayload = {
       action: 'ADD_TO_CART',
       count: '5',
       search: {
@@ -13,7 +13,7 @@ describe('convertTypesGTM Test', () => {
       }
     };
 
-    const result = convertTypesGTM(payload);
+    const result = convertStringToValue(gtmPayload);
 
     expect(result).toEqual({
       action: 'ADD_TO_CART',
@@ -28,12 +28,12 @@ describe('convertTypesGTM Test', () => {
   });
 
   it('should convert string represented numbers to numerical type - entity is Number', () => {
-    const payload = {
+    const gtmPayload = {
       action: 'ADD_TO_CART',
       entity: '1234'
     };
 
-    const result = convertTypesGTM(payload);
+    const result = convertStringToValue(gtmPayload);
 
     expect(result).toEqual({
       action: 'ADD_TO_CART',
@@ -42,12 +42,12 @@ describe('convertTypesGTM Test', () => {
   });
 
   it('should convert string represented numbers to numerical type - entity is string', () => {
-    const payload = {
+    const gtmPayload = {
       action: 'ADD_TO_CART',
       entity: 'myEntity'
     };
 
-    const result = convertTypesGTM(payload);
+    const result = convertStringToValue(gtmPayload);
 
     expect(result).toEqual({
       action: 'ADD_TO_CART',
@@ -56,7 +56,7 @@ describe('convertTypesGTM Test', () => {
   });
 
   it('should convert customValues properly', () => {
-    const payload = {
+    const gtmPayload = {
       action: 'ADD_TO_CART',
       customValues: {
         myCustomVal: '5',
@@ -64,7 +64,7 @@ describe('convertTypesGTM Test', () => {
       }
     };
 
-    const result = convertTypesGTM(payload);
+    const result = convertStringToValue(gtmPayload);
 
     expect(result).toEqual({
       action: 'ADD_TO_CART',
@@ -75,7 +75,7 @@ describe('convertTypesGTM Test', () => {
     });
   });
   it('should convert string represented booleans to boolean type', () => {
-    const payload = {
+    const gtmPayload = {
       action: 'ADD_TO_CART',
       bot: 'true',
       internalUser: 'false',
@@ -85,7 +85,7 @@ describe('convertTypesGTM Test', () => {
       }
     };
 
-    const result = convertTypesGTM(payload);
+    const result = convertStringToValue(gtmPayload);
 
     expect(result).toEqual({
       action: 'ADD_TO_CART',
