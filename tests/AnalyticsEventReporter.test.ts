@@ -631,7 +631,7 @@ describe('Test report function', () => {
         siteUid: 321,
         template: 'template'
       },
-      timestamp: new Date(12, 7),
+      timestamp: '1912-08-01T05:00:00.000Z',
       value: {
         amount: 1,
         currency: 'USD'
