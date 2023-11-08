@@ -1,7 +1,7 @@
 import { AnalyticsConfig } from './AnalyticsConfig';
 import { AnalyticsEventReporter } from './AnalyticsEventReporter';
 import { AnalyticsEventService } from './AnalyticsEventService';
-import { convertTypesGTM } from './convertStringToValue';
+import { convertStringToValue } from './convertStringToValue';
 
 /**
  * The Yext Analytics Events SDK.
@@ -24,7 +24,7 @@ export function analyticsGTM(): Promise<string> {
     const data = gtmPayload[1][1] as Record<string, unknown>;
     if (config) {
       const reporter = new AnalyticsEventReporter(config);
-      const correctedData = convertTypesGTM(data);
+      const correctedData = convertStringToValue(data);
       response = reporter.report(correctedData);
     } else {
       response = Promise.reject('No config found in payload.');
