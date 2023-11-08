@@ -2,6 +2,7 @@ import { EventPayload } from './EventPayload';
 
 // Define the list of possibly numerical properties to check and convert
 const propertiesToCheck = [
+  'sessionTrackingEnabled',
   'versionNumber',
   'siteUid',
   'count',

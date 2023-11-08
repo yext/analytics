@@ -23,8 +23,11 @@ export function analyticsGTM(): Promise<string> {
     const config = gtmPayload[0][1] as Record<string, unknown>;
     const data = gtmPayload[1][1] as Record<string, unknown>;
     if (config) {
-      const reporter = new AnalyticsEventReporter(config);
+      const correctedConfig = convertStringToValue(config);
       const correctedData = convertStringToValue(data);
+      const reporter = new AnalyticsEventReporter(
+        correctedConfig as AnalyticsConfig
+      );
       response = reporter.report(correctedData);
     } else {
       response = Promise.reject('No config found in payload.');

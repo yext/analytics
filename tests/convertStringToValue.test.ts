@@ -97,4 +97,19 @@ describe('convertTypesGTM Test', () => {
       }
     });
   });
+  it('test convert AnayticsConfig - should convert sessionTrackingEnabled', () => {
+    const analyticsConfig = {
+      key: 'apiKey',
+      sessionTrackingEnabled: 'false',
+      region: 'US'
+    };
+
+    const result = convertStringToValue(analyticsConfig);
+
+    expect(result).toEqual({
+      key: 'apiKey',
+      sessionTrackingEnabled: false,
+      region: 'US'
+    });
+  });
 });
