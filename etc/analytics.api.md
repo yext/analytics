@@ -73,8 +73,6 @@ export interface EventPayload {
     locale?: string;
     // Warning: (ae-forgotten-export) The symbol "Coordinates" needs to be exported by the entry point index.d.ts
     location?: Coordinates | string;
-    // (undocumented)
-    nonce?: string;
     pageUrl?: string;
     referrerUrl?: string;
     search?: {

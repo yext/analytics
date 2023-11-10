@@ -32,7 +32,6 @@ export interface EventPayload
 |  [label?](./analytics.eventpayload.label.md) | string | <i>(Optional)</i> A label assigned to the event, e.g. a CTA label. |
 |  [locale?](./analytics.eventpayload.locale.md) | string | <i>(Optional)</i> The locale of the user who generated the event. |
 |  [location?](./analytics.eventpayload.location.md) | Coordinates \| string | <i>(Optional)</i> The location information of the visitor for the event. Either a Coordinates object with both latitude and longitude or a string with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. |
-|  [nonce?](./analytics.eventpayload.nonce.md) | string | <i>(Optional)</i> |
 |  [pageUrl?](./analytics.eventpayload.pageurl.md) | string | <i>(Optional)</i> The URL of the page where the event occurred |
 |  [referrerUrl?](./analytics.eventpayload.referrerurl.md) | string | <i>(Optional)</i> The URL of the page which the visitor came from prior to the event. |
 |  [search?](./analytics.eventpayload.search.md) | { searchId?: string; queryId?: string; verticalKey?: string; isDirectAnswer?: boolean; versionLabel?: [VersionLabel](./analytics.versionlabel.md)<!-- -->; versionNumber?: number; experienceKey: string; } | <i>(Optional)</i> Fields specific to reporting Yext Search Analytics Events |
