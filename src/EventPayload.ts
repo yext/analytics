@@ -84,9 +84,6 @@ export interface EventPayload {
    * Either a Coordinates object with both latitude and longitude or a string
    * with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. */
   location?: Coordinates | string;
-  /* Deduplication ID for the event.
-  Events from the same app for the same business with the same nonce will get de-duplicated. */
-  nonce?: string;
   /** The URL of the page where the event occurred */
   pageUrl?: string;
   /** The URL of the page which the visitor came from prior to the event. */
