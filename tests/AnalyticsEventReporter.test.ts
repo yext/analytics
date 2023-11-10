@@ -616,7 +616,6 @@ describe('Test report function', () => {
           longitude: 1
         }
       },
-      nonce: 'nonce',
       pageUrl: 'https://yext.com',
       referrerUrl: 'https://yext.com',
       search: {
@@ -696,7 +695,6 @@ describe('Test report function', () => {
             longitude: 1
           }
         },
-        nonce: 'nonce',
         pageUrl: 'https://yext.com',
         referrerUrl: 'https://yext.com',
         search: {
