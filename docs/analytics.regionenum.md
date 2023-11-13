@@ -6,7 +6,7 @@
 
 An enum of the physical region the Yext account
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare enum RegionEnum 

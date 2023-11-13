@@ -6,7 +6,7 @@
 
 The main configuration options for Analytics Events.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface AnalyticsConfig 
@@ -14,12 +14,12 @@ export interface AnalyticsConfig
 
 ## Properties
 
-|  Property | Type | Description |
-|  --- | --- | --- |
-|  [bearer?](./analytics.analyticsconfig.bearer.md) | string | <i>(Optional)</i> The bearer token for accessing the Analytics Events API. Only one of key or bearer should be set. |
-|  [env?](./analytics.analyticsconfig.env.md) | [Environment](./analytics.environment.md) | <i>(Optional)</i> The Yext environment to send requests to. Defaults to 'PRODUCTION'. |
-|  [forceFetch?](./analytics.analyticsconfig.forcefetch.md) | boolean | <i>(Optional)</i> Used to force sending the request with fetch even if the browser does not support fetch with the keepalive flag (like Firefox). If the browser does support it, fetch is used by default. |
-|  [key?](./analytics.analyticsconfig.key.md) | string | <i>(Optional)</i> The API Key or OAuth for accessing the Analytics Events API Only one of key or bearer should be set. |
-|  [region?](./analytics.analyticsconfig.region.md) | [Region](./analytics.region.md) | <i>(Optional)</i> The region to send requests to. Defaults to 'US'. |
-|  [sessionTrackingEnabled?](./analytics.analyticsconfig.sessiontrackingenabled.md) | boolean | <i>(Optional)</i> Whether to enable session tracking for analytics events. Defaults to true for both environments. If set to false, sessionId will automatically be set to undefined in the event payload. |
+|  Property | Modifiers | Type | Description |
+|  --- | --- | --- | --- |
+|  [bearer?](./analytics.analyticsconfig.bearer.md) |  | string | _(Optional)_ The bearer token for accessing the Analytics Events API. Only one of key or bearer should be set. |
+|  [env?](./analytics.analyticsconfig.env.md) |  | [Environment](./analytics.environment.md) | _(Optional)_ The Yext environment to send requests to. Defaults to 'PRODUCTION'. |
+|  [forceFetch?](./analytics.analyticsconfig.forcefetch.md) |  | boolean | _(Optional)_ Used to force sending the request with fetch even if the browser does not support fetch with the keepalive flag (like Firefox). If the browser does support it, fetch is used by default. |
+|  [key?](./analytics.analyticsconfig.key.md) |  | string | _(Optional)_ The API Key or OAuth for accessing the Analytics Events API Only one of key or bearer should be set. |
+|  [region?](./analytics.analyticsconfig.region.md) |  | [Region](./analytics.region.md) | _(Optional)_ The region to send requests to. Defaults to 'US'. |
+|  [sessionTrackingEnabled?](./analytics.analyticsconfig.sessiontrackingenabled.md) |  | boolean | _(Optional)_ Whether to enable session tracking for analytics events. Defaults to true for both environments. If set to false, sessionId will automatically be set to undefined in the event payload. |
 

@@ -6,12 +6,12 @@
 
 The Search Version Label
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type VersionLabel = EnumOrString<VersionLabelEnum>;
 ```
-<b>References:</b> [EnumOrString](./analytics.enumorstring.md)<!-- -->, [VersionLabelEnum](./analytics.versionlabelenum.md)
+**References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [VersionLabelEnum](./analytics.versionlabelenum.md)
 
 ## Remarks
 

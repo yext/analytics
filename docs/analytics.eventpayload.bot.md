@@ -6,7 +6,7 @@
 
 Whether the event is the result of bot activity.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 bot?: boolean;

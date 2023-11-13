@@ -6,7 +6,7 @@
 
 The Yext Analytics Events SDK. Returns an AnalyticsEventService given an AnalyticsConfig.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare function analytics(config: AnalyticsConfig): AnalyticsEventService;
@@ -18,7 +18,7 @@ export declare function analytics(config: AnalyticsConfig): AnalyticsEventServic
 |  --- | --- | --- |
 |  config | [AnalyticsConfig](./analytics.analyticsconfig.md) |  |
 
-<b>Returns:</b>
+**Returns:**
 
 [AnalyticsEventService](./analytics.analyticseventservice.md)
 
