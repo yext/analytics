@@ -6,7 +6,7 @@
 
 An enum for the Yext Environments
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare enum EnvironmentEnum 

@@ -6,7 +6,7 @@
 
 The authorization token for the request. This will be setup from the Key or Bearer in the config.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 authorization?: string;

@@ -6,12 +6,12 @@
 
 The Yext Environments
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type Environment = EnumOrString<EnvironmentEnum>;
 ```
-<b>References:</b> [EnumOrString](./analytics.enumorstring.md)<!-- -->, [EnvironmentEnum](./analytics.environmentenum.md)
+**References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [EnvironmentEnum](./analytics.environmentenum.md)
 
 ## Remarks
 

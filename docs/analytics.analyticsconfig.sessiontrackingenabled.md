@@ -6,7 +6,7 @@
 
 Whether to enable session tracking for analytics events. Defaults to true for both environments. If set to false, sessionId will automatically be set to undefined in the event payload.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 sessionTrackingEnabled?: boolean;

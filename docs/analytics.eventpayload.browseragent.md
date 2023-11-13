@@ -6,7 +6,7 @@
 
 Information about the visitors device and browser.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 browserAgent?: {

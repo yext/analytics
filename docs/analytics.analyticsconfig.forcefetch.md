@@ -6,7 +6,7 @@
 
 Used to force sending the request with fetch even if the browser does not support fetch with the keepalive flag (like Firefox). If the browser does support it, fetch is used by default.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 forceFetch?: boolean;
