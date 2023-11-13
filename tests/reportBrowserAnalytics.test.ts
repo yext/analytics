@@ -1,8 +1,7 @@
-// analyticsGTM.test.ts
-import { analyticsGTM } from '../src/index';
+import { reportBrowserAnalytics } from '../src/index';
 import { AnalyticsEventReporter } from '../src/AnalyticsEventReporter'; // replace with actual import path
 
-describe('analyticsGTM', () => {
+describe('reportBrowserAnalytics', () => {
   let reportSpy: jest.SpyInstance;
 
   beforeEach(() => {
@@ -25,7 +24,7 @@ describe('analyticsGTM', () => {
     ];
     (global as any).window['analyticsEventPayload'] = mockPayload;
 
-    const result = await analyticsGTM();
+    const result = await reportBrowserAnalytics();
 
     expect(result).toBe('report');
     expect(reportSpy).toHaveBeenCalled();
@@ -34,6 +33,6 @@ describe('analyticsGTM', () => {
   it('should return a promise that rejects when analyticeEvenPayload is not present in window', async () => {
     (global as any).window['analyticsEventPayload'] = undefined;
 
-    await expect(analyticsGTM()).rejects.toEqual('No payload found.');
+    await expect(reportBrowserAnalytics()).rejects.toEqual('No payload found.');
   });
 });

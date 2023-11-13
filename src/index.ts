@@ -13,16 +13,23 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService {
 }
 
 /**
- * The exported function of Yext Analytics Events SDK used for Google Tag Manager.
+ * An alternative entry point for the Yext Analytics Events SDK, currently used by Google Tag Manager.
+ * This method reads the config and payload from the variable analyticsEventPayload stored
+ * in the global window object. The config and payload are then passed to the report function to be sent
+ * to the Yext Analytics Events API.
  * @public
  */
-export function analyticsGTM(): Promise<string> {
+export function reportBrowserAnalytics(): Promise<string> {
   const gtmPayload = window['analyticsEventPayload'];
   let response: Promise<string>;
   if (gtmPayload) {
     const config = gtmPayload[0][1] as Record<string, unknown>;
     const data = gtmPayload[1][1] as Record<string, unknown>;
     if (config) {
+      // User text input inside of Google Tag Manager defaults to a String type for all fields.
+      // However, the Events API expects true boolean and number types for certain fields.
+      // The below convertStringToValue method calls take care of converting the String types
+      // to the correct one's for the config and payload objects.
       const correctedConfig = convertStringToValue(config);
       const correctedData = convertStringToValue(data);
       const reporter = new AnalyticsEventReporter(
