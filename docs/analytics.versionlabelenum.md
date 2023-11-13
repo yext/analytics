@@ -6,7 +6,7 @@
 
 An enum for the Search Version Labels
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare enum VersionLabelEnum 

@@ -6,7 +6,7 @@
 
 When the record summarizes multiple events, the number of events the record represents. The event is treated as if it is duplicated this many times.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 count?: number;

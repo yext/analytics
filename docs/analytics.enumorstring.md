@@ -6,7 +6,7 @@
 
 A TypeScript utility type which creates a union of an enum member and its string representation.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export declare type EnumOrString<T extends string> = T | `${T}`;

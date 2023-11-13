@@ -6,7 +6,7 @@
 
 Indicates whether the event is the result of internal activity.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 internalUser?: boolean;

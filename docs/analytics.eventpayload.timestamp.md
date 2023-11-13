@@ -6,7 +6,7 @@
 
 The timestamp at which the event occurred, in ISO format.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 timestamp?: Date | string;
