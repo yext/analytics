@@ -27,9 +27,6 @@ export interface AnalyticsEventService {
 }
 
 // @public
-export function analyticsGTM(): Promise<string>;
-
-// @public
 export type EnumOrString<T extends string> = T | `${T}`;
 
 // @public
@@ -107,6 +104,9 @@ export enum RegionEnum {
     // (undocumented)
     US = "us"
 }
+
+// @public
+export function reportBrowserAnalytics(): Promise<string>;
 
 // @public
 export type VersionLabel = EnumOrString<VersionLabelEnum>;

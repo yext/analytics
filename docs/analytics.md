@@ -17,7 +17,7 @@
 |  Function | Description |
 |  --- | --- |
 |  [analytics(config)](./analytics.analytics.md) | The Yext Analytics Events SDK. Returns an AnalyticsEventService given an AnalyticsConfig. |
-|  [analyticsGTM()](./analytics.analyticsgtm.md) | The exported function of Yext Analytics Events SDK used for Google Tag Manager. |
+|  [reportBrowserAnalytics()](./analytics.reportbrowseranalytics.md) | An alternative entry point for the Yext Analytics Events SDK, currently used by Google Tag Manager. This method reads the config and payload from the variable analyticsEventPayload stored in the global window object. The config and payload are then passed to the report function to be sent to the Yext Analytics Events API. |
 
 ## Interfaces
 
