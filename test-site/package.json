@@ -12,7 +12,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.15.6",
     "copy-webpack-plugin": "^9.0.1",
-    "serve": "^13.0.1",
+    "serve": "^14.2.1",
     "ts-loader": "^9.2.6",
     "webpack": "^5.55.1",
     "webpack-cli": "^4.8.0"
