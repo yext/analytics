@@ -6,7 +6,7 @@
 
 A label assigned to the event, e.g. a CTA label.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 label?: string;

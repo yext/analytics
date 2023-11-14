@@ -33,6 +33,7 @@ export type Action =
   | 'MENU'
   | 'MESSAGE'
   | 'ORDER'
+  | 'PAGE_VIEW'
   | 'PAGINATE'
   | 'POST'
   | 'PRESET_PROMPT'

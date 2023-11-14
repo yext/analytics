@@ -6,7 +6,7 @@
 
 Up to 10 pairs matching custom string keys to number values to associate with the event. Keys are case-insensitive.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 customValues?: Record<string, number>;

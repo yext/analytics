@@ -6,7 +6,7 @@
 
 The IP address for the event.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 ip?: {

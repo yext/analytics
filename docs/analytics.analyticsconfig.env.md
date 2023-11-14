@@ -6,7 +6,7 @@
 
 The Yext environment to send requests to. Defaults to 'PRODUCTION'.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 env?: Environment;

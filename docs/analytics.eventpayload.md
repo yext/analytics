@@ -6,7 +6,7 @@
 
 The payload accepted by the Analytics Events API.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 export interface EventPayload 
