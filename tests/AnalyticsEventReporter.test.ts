@@ -553,4 +553,171 @@ describe('Test report function', () => {
       }
     );
   });
+
+  it('should call post with correct fields - full payload', async () => {
+    mockPostWithBeacon.mockReturnValueOnce(true);
+    mockUseBeacon.mockReturnValueOnce(true);
+    const navigator = {
+      userAgent: 'Firefox',
+      sendBeacon: () => {
+        return true;
+      }
+    };
+    Object.defineProperty(window, 'navigator', {
+      value: navigator,
+      writable: true
+    });
+
+    const config: AnalyticsConfig = {
+      key: 'validKey',
+      region: RegionEnum.EU,
+      forceFetch: false,
+      sessionTrackingEnabled: true
+    };
+    const reporter = new AnalyticsEventReporter(config).with({
+      action: 'ADD_TO_CART',
+      bot: false,
+      browserAgent: {
+        browser: 'chrome',
+        browserVersion: '1.0.0',
+        device: 'desktop',
+        deviceClass: 'desktop',
+        os: 'windows',
+        osVersion: '10',
+        userAgent: 'chrome'
+      },
+      chat: {
+        botId: 'botId',
+        conversationId: 'conversationId',
+        responseId: 'responseId'
+      },
+      clientSdk: {
+        chat: '1.0.0'
+      },
+      count: 5,
+      customTags: {
+        customTag: 'customTagValue'
+      },
+      customValues: {
+        customValue: 1
+      },
+      destinationUrl: 'https://google.com',
+      entity: 'entityId',
+      internalUser: false,
+      ip: {
+        address: '1.0.0.0',
+        algorithm: 'HASH'
+      },
+      label: 'label',
+      locale: 'en_US',
+      location: {
+        coordinates: {
+          latitude: 1,
+          longitude: 1
+        }
+      },
+      pageUrl: 'https://yext.com',
+      referrerUrl: 'https://yext.com',
+      search: {
+        versionNumber: 5,
+        isDirectAnswer: false,
+        experienceKey: 'experienceKey',
+        queryId: 'queryId'
+      },
+      searchTerm: 'searchTerm',
+      sessionId: 'sessionId',
+      sites: {
+        siteUid: 321,
+        template: 'template'
+      },
+      timestamp: '1912-08-01T05:00:00.000Z',
+      value: {
+        amount: 1,
+        currency: 'USD'
+      },
+      visitor: {
+        'visitor-id': 'visitor-id'
+      }
+    });
+
+    const res = await reporter.report({
+      action: 'C_CUSTOM_ACTION',
+      destinationUrl: 'https://google.com'
+    });
+
+    // Expect true to be returned for beacon request
+    expect(res).toEqual('');
+    /** Expect merge to have completed correctly, the url to be constructed correctly,
+    and the clientSdk and authorization to be added to the request body in the correct format. **/
+    expect(mockPostWithBeacon).toHaveBeenCalledWith(
+      'https://eu.yextevents.com/accounts/me/events',
+      {
+        action: 'C_CUSTOM_ACTION',
+        authorization: 'KEY validKey',
+        bot: false,
+        browserAgent: {
+          browser: 'chrome',
+          browserVersion: '1.0.0',
+          device: 'desktop',
+          deviceClass: 'desktop',
+          os: 'windows',
+          osVersion: '10',
+          userAgent: 'chrome'
+        },
+        chat: {
+          botId: 'botId',
+          conversationId: 'conversationId',
+          responseId: 'responseId'
+        },
+        clientSdk: {
+          ANALYTICS: '1.0.0-beta.2',
+          chat: '1.0.0'
+        },
+        count: 5,
+        customTags: {
+          customTag: 'customTagValue'
+        },
+        customValues: {
+          customValue: 1
+        },
+        destinationUrl: 'https://google.com',
+        entity: 'entityId',
+        internalUser: false,
+        ip: {
+          address: '1.0.0.0',
+          algorithm: 'HASH'
+        },
+        label: 'label',
+        locale: 'en_US',
+        location: {
+          coordinates: {
+            latitude: 1,
+            longitude: 1
+          }
+        },
+        pageUrl: 'https://yext.com',
+        referrerUrl: 'https://yext.com',
+        search: {
+          versionNumber: 5,
+          isDirectAnswer: false,
+          experienceKey: 'experienceKey',
+          queryId: 'queryId'
+        },
+        searchTerm: 'searchTerm',
+        sessionId: 'sessionId',
+        sites: {
+          siteUid: 321,
+          template: 'template'
+        },
+        timestamp: '1912-08-01T05:00:00.000Z',
+        value: {
+          amount: 1,
+          currency: 'USD'
+        },
+        visitor: {
+          'visitor-id': 'visitor-id'
+        }
+      }
+    );
+  });
 });

@@ -12,10 +12,10 @@ Information about the visitors device and browser.
 browserAgent?: {
         browser?: string;
         browserVersion?: string;
-        os?: string;
-        osVersion?: string;
         device?: string;
         deviceClass?: string;
+        os?: string;
+        osVersion?: string;
         userAgent?: string;
     };
 ```
