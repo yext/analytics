@@ -114,6 +114,9 @@ export enum RegionEnum {
 }
 
 // @public
+export function reportBrowserAnalytics(): Promise<string>;
+
+// @public
 export type VersionLabel = EnumOrString<VersionLabelEnum>;
 
 // @public
