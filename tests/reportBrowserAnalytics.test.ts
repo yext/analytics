@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { reportBrowserAnalytics } from '../src/index';
 import { AnalyticsEventReporter } from '../src/AnalyticsEventReporter'; // replace with actual import path
 
