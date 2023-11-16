@@ -6,7 +6,7 @@
 
 Information used to associate analytics with a particular user.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 visitor?: Record<string, string>;

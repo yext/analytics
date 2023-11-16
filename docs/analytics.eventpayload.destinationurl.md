@@ -6,7 +6,7 @@
 
 The URL of the page the event is directing the visitor to.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 destinationUrl?: string;

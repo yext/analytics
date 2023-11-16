@@ -6,7 +6,7 @@
 
 The bearer token for accessing the Analytics Events API. Only one of key or bearer should be set.
 
-<b>Signature:</b>
+**Signature:**
 
 ```typescript
 bearer?: string;
