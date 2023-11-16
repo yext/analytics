@@ -6,7 +6,7 @@
 
 The location information of the visitor for the event. Either a Coordinates object with both latitude and longitude or a string with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 location?: Coordinates | string;

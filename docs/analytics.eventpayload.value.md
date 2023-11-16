@@ -6,7 +6,7 @@
 
 The monetary value of the event.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 value?: {

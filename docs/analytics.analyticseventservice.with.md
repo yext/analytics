@@ -6,7 +6,7 @@
 
 Creates a new AnalyticsEventService with the following values defined as the default when making a report.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 with(payload: EventPayload): AnalyticsEventService;
@@ -18,7 +18,7 @@ with(payload: EventPayload): AnalyticsEventService;
 |  --- | --- | --- |
 |  payload | [EventPayload](./analytics.eventpayload.md) | desired values to be applied. The new payload will override any overlapping values. |
 
-**Returns:**
+<b>Returns:</b>
 
 [AnalyticsEventService](./analytics.analyticseventservice.md)
 

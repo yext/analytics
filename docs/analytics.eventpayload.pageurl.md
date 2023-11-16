@@ -6,7 +6,7 @@
 
 The URL of the page where the event occurred
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 pageUrl?: string;

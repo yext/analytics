@@ -6,7 +6,7 @@
 
 Up to 10 pairs matching custom string keys to string values to associate with the event. Keys are case-insensitive; values are case-sensitive.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 customTags?: Record<string, string>;

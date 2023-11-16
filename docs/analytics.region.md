@@ -6,12 +6,12 @@
 
 The physical region of the Yext account
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 export declare type Region = EnumOrString<RegionEnum>;
 ```
-**References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [RegionEnum](./analytics.regionenum.md)
+<b>References:</b> [EnumOrString](./analytics.enumorstring.md)<!-- -->, [RegionEnum](./analytics.regionenum.md)
 
 ## Remarks
 

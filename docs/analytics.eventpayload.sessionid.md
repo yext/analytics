@@ -6,7 +6,7 @@
 
 Unique identifier to tie together events in a single browsing session
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 sessionId?: string | null;

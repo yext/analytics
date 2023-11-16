@@ -6,10 +6,10 @@
 
 A Payload that is a subset of the EventPayload
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 export declare type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
 ```
-**References:** [EventPayload](./analytics.eventpayload.md)
+<b>References:</b> [EventPayload](./analytics.eventpayload.md)
 

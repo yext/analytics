@@ -6,7 +6,7 @@
 
 Fields specific to reporting Chat Analytics Events
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 chat?: {

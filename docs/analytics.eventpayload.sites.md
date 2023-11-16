@@ -6,7 +6,7 @@
 
 Fields specific to reporting Yext Pages Analytics Events
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 sites?: {

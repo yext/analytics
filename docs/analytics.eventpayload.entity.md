@@ -6,7 +6,7 @@
 
 The Yext entity to which the event corresponds. If passed as a string, the value is the mutable, customer-settable entity ID for the entity associated with the event. If passed as a number, it is the immutable entity ID (UID) set by the system. This is an internal ID.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 entity?: string | number;

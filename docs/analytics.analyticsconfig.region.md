@@ -6,7 +6,7 @@
 
 The region to send requests to. Defaults to 'US'.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 region?: Region;

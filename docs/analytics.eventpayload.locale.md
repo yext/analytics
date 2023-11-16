@@ -6,7 +6,7 @@
 
 The locale of the user who generated the event.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 locale?: string;

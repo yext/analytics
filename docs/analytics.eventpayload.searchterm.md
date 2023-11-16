@@ -4,7 +4,7 @@
 
 ## EventPayload.searchTerm property
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 searchTerm?: string;

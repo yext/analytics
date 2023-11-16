@@ -6,7 +6,7 @@
 
 For the Yext client SDKs involved in the event, this is an object mapping the names of those SDKs to the version labels of those SDKs.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 clientSdk?: Record<string, string>;

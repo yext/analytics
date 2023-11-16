@@ -6,7 +6,7 @@
 
 The URL of the page which the visitor came from prior to the event.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 referrerUrl?: string;

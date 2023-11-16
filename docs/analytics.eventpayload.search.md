@@ -6,7 +6,7 @@
 
 Fields specific to reporting Yext Search Analytics Events
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 search?: {

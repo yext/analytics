@@ -6,7 +6,7 @@
 
 A service for reporting Yext analytics events
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 export interface AnalyticsEventService 

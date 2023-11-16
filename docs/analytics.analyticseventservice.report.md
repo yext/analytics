@@ -6,7 +6,7 @@
 
 Reports an analytics event. Operand will throw an error if the request fails. The request will default to being sent via fetch, with keepalive set to true, if supported by the browser, and a Promise of an EventAPIResponse will be returned. Otherwise, the request will be sent via the Beacon API, unless the forceFetch flag is toggled, and a boolean will be returned.
 
-**Signature:**
+<b>Signature:</b>
 
 ```typescript
 report(payload?: PartialPayload): Promise<string>;
@@ -16,9 +16,9 @@ report(payload?: PartialPayload): Promise<string>;
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  payload | [PartialPayload](./analytics.partialpayload.md) | _(Optional)_ desired values to be applied. The new payload will override any overlapping values. |
+|  payload | [PartialPayload](./analytics.partialpayload.md) | desired values to be applied. The new payload will override any overlapping values. |
 
-**Returns:**
+<b>Returns:</b>
 
 Promise&lt;string&gt;
 
