@@ -9,14 +9,14 @@ Reports an analytics event. Operand will throw an error if the request fails. Th
 **Signature:**
 
 ```typescript
-report(payload?: PartialPayload): Promise<string>;
+report(payload?: EventPayload): Promise<string>;
 ```
 
 ## Parameters
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  payload | [PartialPayload](./analytics.partialpayload.md) | _(Optional)_ desired values to be applied. The new payload will override any overlapping values. |
+|  payload | [EventPayload](./analytics.eventpayload.md) | _(Optional)_ desired values to be applied. The new payload will override any overlapping values. |
 
 **Returns:**
 

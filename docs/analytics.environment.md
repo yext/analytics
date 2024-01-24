@@ -9,7 +9,7 @@ The Yext Environments
 **Signature:**
 
 ```typescript
-export declare type Environment = EnumOrString<EnvironmentEnum>;
+export type Environment = EnumOrString<EnvironmentEnum>;
 ```
 **References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [EnvironmentEnum](./analytics.environmentenum.md)
 
