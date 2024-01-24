@@ -1,9 +1,26 @@
-# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# This workflow will do a clean install of node dependencies, build the source code,
+# and run tests across different versions of node.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 name: Run Tests
-on: [push, pull_request, workflow_call]    
-inputs:
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ${{ inputs.working_directory }}
+
+    strategy:
+      matrix:
+        node-version: ${{ fromJSON(inputs.node_matrix) }}
+
+    inputs:
       build_script:
         required: false
         type: string
@@ -20,22 +37,17 @@ inputs:
         required: false
         type: string
         default: '["14.x"]'
+
     secrets:
       NPM_TOKEN:
         required: false
       MAPBOX_API_KEY:
         required: false
-jobs:
-  tests:
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ${{ inputs.working_directory }}
-    strategy:
-      matrix:
-        node-version: ${{ fromJSON(inputs.node_matrix) }}
+
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
