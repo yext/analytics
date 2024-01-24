@@ -9,7 +9,7 @@ import { VersionLabel } from './VersionLabel';
  */
 export interface EventPayload {
   /** The user action which caused the event, e.g. ADD_TO_CART, THUMBS_UP, C_CUSTOM_ACTION  */
-  action: Action;
+  action?: Action;
   /** The authorization token for the request. This will be setup from the Key or Bearer in the config. */
   authorization?: string;
   /** Whether the event is the result of bot activity. */
@@ -137,10 +137,3 @@ export interface EventPayload {
    */
   visitor?: Record<string, string>;
 }
-
-/**
- * A Payload that is a subset of the EventPayload
- *
- * @public
- */
-export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;

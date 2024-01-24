@@ -1,4 +1,4 @@
-import { EventPayload, PartialPayload } from './EventPayload';
+import { EventPayload } from './EventPayload';
 
 /**
  * A service for reporting Yext analytics events
@@ -25,5 +25,5 @@ export interface AnalyticsEventService {
    * @param payload - desired values to be applied. The new payload will
    * override any overlapping values.
    */
-  report(payload?: PartialPayload): Promise<string>;
+  report(payload?: EventPayload): Promise<string>;
 }

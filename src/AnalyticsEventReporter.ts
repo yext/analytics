@@ -1,6 +1,6 @@
 import { AnalyticsEventService } from './AnalyticsEventService';
 import { AnalyticsConfig } from './AnalyticsConfig';
-import { EventPayload, PartialPayload } from './EventPayload';
+import { EventPayload } from './EventPayload';
 import { getOrSetupSessionId } from './setupSessionId';
 import packageinfo from '../package.json';
 import { postWithBeacon, postWithFetch, useBeacon } from './post';
@@ -35,7 +35,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     return new AnalyticsEventReporter(this.config, currentPayload);
   }
 
-  public async report(newPayload?: PartialPayload): Promise<string> {
+  public async report(newPayload?: EventPayload): Promise<string> {
     const finalPayload: EventPayload = merge(
       this.payload ?? {},
       newPayload ?? {}
