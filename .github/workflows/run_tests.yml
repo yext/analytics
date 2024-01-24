@@ -20,7 +20,7 @@ on:
       node_matrix:
         required: false
         type: string
-        default: '["14.x", "16.x"]'
+        default: '["14.x"]'
     secrets:
       NPM_TOKEN:
         required: false
