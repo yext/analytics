@@ -46,10 +46,10 @@ In many cases, you might need to repeatedly specify the same properties, such as
 You can add a `.with()` method to the root analytics service you initialized, which returns a new analytics object with the specified JSON merged on top of the existing defaults.
 
 ```ts
-import { Analytics } from '@yext/analytics';
+import { analytics } from '@yext/analytics';
 
 // Root analytics service with no defaults.
-const rootAnalytics = new Analytics({ key: 'MY_API_KEY' });
+const rootAnalytics = analytics({ key: 'MY_API_KEY' });
 
 // Pages analytics service with Pages defaults.
 const pageAnalytics = rootAnalytics.with({ pages: { siteId: 123 } });
