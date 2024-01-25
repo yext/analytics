@@ -18,13 +18,6 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
    * @param payload - (optional) desired event values to report
    */
   constructor(config: AnalyticsConfig, payload?: EventPayload) {
-    const apiKeyIsSet = config.key !== undefined;
-    const bearerTokenIsSet = config.bearer !== undefined;
-    const configIsValid =
-      (apiKeyIsSet || bearerTokenIsSet) && !(apiKeyIsSet && bearerTokenIsSet);
-    if (!configIsValid) {
-      throw new Error('Provide one and only one of API Key or Bearer Token.');
-    }
     this.config = config;
     this.payload = payload;
   }
@@ -56,9 +49,10 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
           packageinfo.version)
       : (finalPayload.clientSdk = { ['ANALYTICS']: packageinfo.version });
 
-    finalPayload.authorization = this.config.key
-      ? 'KEY ' + this.config.key
-      : 'Bearer ' + this.config.bearer;
+    finalPayload.authorization =
+      this.config.authorizationType === 'apiKey'
+        ? 'KEY ' + this.config.authorization
+        : 'Bearer ' + this.config.authorization;
 
     const shouldUseBeacon = useBeacon(finalPayload, this.config.forceFetch);
     const requestUrl = setupRequestUrl(this.config.env, this.config.region);
