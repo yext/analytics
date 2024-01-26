@@ -73,6 +73,10 @@ export interface EventPayload {
     locale?: string;
     // Warning: (ae-forgotten-export) The symbol "Coordinates" needs to be exported by the entry point index.d.ts
     location?: Coordinates | string;
+    pages?: {
+        siteUid?: number;
+        template?: string;
+    };
     pageUrl?: string;
     referrerUrl?: string;
     search?: {
@@ -87,10 +91,6 @@ export interface EventPayload {
     // (undocumented)
     searchTerm?: string;
     sessionId?: string | null;
-    sites?: {
-        siteUid?: number;
-        template?: string;
-    };
     timestamp?: Date | string;
     value?: {
         amount: number;

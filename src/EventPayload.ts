@@ -110,7 +110,7 @@ export interface EventPayload {
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string | null;
   /** Fields specific to reporting Yext Pages Analytics Events */
-  sites?: {
+  pages?: {
     /* The UID of the site an event was tied to. */
     siteUid?: number;
     /* The ID of the template from which a site was generated. */
