@@ -8,7 +8,7 @@ import { EventPayload } from './EventPayload';
  *  Merging an existing key with null/undefined deletes the key.
  *  Merging an existing key with non-null value updates the value.
  *  Merging a non-existing key adds the key/value.
- *  When the value is an object, the above is applied iteratively.
+ *  When the value is an object, the above is applied recursivley.
  */
 const merge = (
   original: EventPayload,
