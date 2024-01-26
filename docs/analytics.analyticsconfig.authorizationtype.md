@@ -9,5 +9,5 @@ Used for specifying if an API Key or Bearer Token is used for the authorization 
 **Signature:**
 
 ```typescript
-authorizationType: 'apiKey' | 'Bearer';
+authorizationType: 'apiKey' | 'bearer';
 ```

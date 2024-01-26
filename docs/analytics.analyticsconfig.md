@@ -17,7 +17,7 @@ export interface AnalyticsConfig
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [authorization](./analytics.analyticsconfig.authorization.md) |  | string | The API Key, OAuth, or bearer token for accessing the Analytics Events API. |
-|  [authorizationType](./analytics.analyticsconfig.authorizationtype.md) |  | 'apiKey' \| 'Bearer' | Used for specifying if an API Key or Bearer Token is used for the authorization property. |
+|  [authorizationType](./analytics.analyticsconfig.authorizationtype.md) |  | 'apiKey' \| 'bearer' | Used for specifying if an API Key or Bearer Token is used for the authorization property. |
 |  [env?](./analytics.analyticsconfig.env.md) |  | [Environment](./analytics.environment.md) | _(Optional)_ The Yext environment to send requests to. Defaults to 'PRODUCTION'. |
 |  [forceFetch?](./analytics.analyticsconfig.forcefetch.md) |  | boolean | _(Optional)_ Used to force sending the request with fetch even if the browser does not support fetch with the keepalive flag (like Firefox). If the browser does support it, fetch is used by default. |
 |  [region?](./analytics.analyticsconfig.region.md) |  | [Region](./analytics.region.md) | _(Optional)_ The region to send requests to. Defaults to 'US'. |

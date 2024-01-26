@@ -13,7 +13,7 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService;
 // @public
 export interface AnalyticsConfig {
     authorization: string;
-    authorizationType: 'apiKey' | 'Bearer';
+    authorizationType: 'apiKey' | 'bearer';
     env?: Environment;
     forceFetch?: boolean;
     region?: Region;

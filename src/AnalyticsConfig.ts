@@ -8,7 +8,7 @@ import { Region } from './Region';
  */
 export interface AnalyticsConfig {
   /** Used for specifying if an API Key or Bearer Token is used for the authorization property. */
-  authorizationType: 'apiKey' | 'Bearer';
+  authorizationType: 'apiKey' | 'bearer';
   /** The API Key, OAuth, or bearer token for accessing the Analytics Events API. */
   authorization: string;
   /** The Yext environment to send requests to. Defaults to 'PRODUCTION'. */

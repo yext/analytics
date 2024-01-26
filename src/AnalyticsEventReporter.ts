@@ -18,6 +18,15 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
    * @param payload - (optional) desired event values to report
    */
   constructor(config: AnalyticsConfig, payload?: EventPayload) {
+    if (
+      config.authorizationType !== 'apiKey' &&
+      config.authorizationType !== 'bearer'
+    ) {
+      throw new Error('Authorization type must be either apiKey or bearer.');
+    }
+    if (!config.authorization) {
+      throw new Error('Authorization must be provided.');
+    }
     this.config = config;
     this.payload = payload;
   }
