@@ -9,7 +9,7 @@ The Search Version Label
 **Signature:**
 
 ```typescript
-export type VersionLabel = EnumOrString<VersionLabelEnum>;
+export declare type VersionLabel = EnumOrString<VersionLabelEnum>;
 ```
 **References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [VersionLabelEnum](./analytics.versionlabelenum.md)
 
