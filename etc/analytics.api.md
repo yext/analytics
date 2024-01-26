@@ -22,7 +22,7 @@ export interface AnalyticsConfig {
 
 // @public
 export interface AnalyticsEventService {
-    report(payload?: PartialPayload): Promise<string>;
+    report(payload?: EventPayload): Promise<string>;
     with(payload: EventPayload): AnalyticsEventService;
 }
 
@@ -41,7 +41,7 @@ export enum EnvironmentEnum {
 
 // @public
 export interface EventPayload {
-    action: Action;
+    action?: Action;
     authorization?: string;
     bot?: boolean;
     browserAgent?: {
@@ -98,9 +98,6 @@ export interface EventPayload {
     };
     visitor?: Record<string, string>;
 }
-
-// @public
-export type PartialPayload = Partial<Record<keyof EventPayload, unknown>>;
 
 // @public
 export type Region = EnumOrString<RegionEnum>;

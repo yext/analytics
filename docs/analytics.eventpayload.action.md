@@ -9,5 +9,5 @@ The user action which caused the event, e.g. ADD\_TO\_CART, THUMBS\_UP, C\_CUSTO
 **Signature:**
 
 ```typescript
-action: Action;
+action?: Action;
 ```
