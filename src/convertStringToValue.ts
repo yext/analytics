@@ -1,4 +1,5 @@
 import { EventPayload } from './EventPayload';
+import { AnalyticsConfig } from './AnalyticsConfig';
 
 // Define the list of possibly numerical properties to check and convert
 const propertiesToCheck = [
@@ -18,7 +19,7 @@ const propertiesToCheck = [
 
 export function convertStringToValue(
   data: Record<string, unknown>
-): EventPayload {
+): EventPayload | AnalyticsConfig {
   // Recursive function to traverse and convert nested objects
   function recursiveConversion(obj: Record<string, unknown>) {
     for (const property in obj) {

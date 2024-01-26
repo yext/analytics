@@ -9,7 +9,8 @@ import { analytics } from '@yext/analytics';
  * We will continue investigating this make a fix if necessary.
  */
 const analyticsProvider = analytics({
-  key: process.env.YEXT_API_KEY,
+  authorizationType: 'apiKey',
+  authorization: process.env.YEXT_API_KEY,
   sessionTrackingEnabled: false
 }).with({
   action: 'CHAT_LINK_CLICK',
@@ -53,7 +54,8 @@ const analyticsProvider = analytics({
 });
 
 const analyticsProvideWithSessionTracking = analytics({
-  key: process.env.YEXT_API_KEY
+  authorizationType: 'apiKey',
+  authorization: process.env.YEXT_API_KEY
 }).with({
   action: 'CHAT_LINK_CLICK',
   pageUrl: 'http://www.yext-test-pageurl.com',

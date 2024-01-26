@@ -9,39 +9,59 @@ import { AnalyticsEventService } from '../src/AnalyticsEventService';
 jest.mock('../src/post');
 jest.mock('../src/setupSessionId');
 
-it('Invalid config with no authorization field', () => {
+it('Invalid config with niether authorization fields', () => {
   expect(() => new AnalyticsEventReporter({})).toThrowError(
-    'Provide one and only one of API Key or Bearer Token.'
+    'Authorization type must be either apiKey or bearer.'
   );
+});
+it('Invalid config with no authorizationType field', () => {
   const InvalidConfig: AnalyticsConfig = {
-    key: undefined
+    authorizationType: undefined,
+    authorization: 'myKey'
   };
   expect(() => new AnalyticsEventReporter(InvalidConfig)).toThrowError(
-    'Provide one and only one of API Key or Bearer Token.'
+    'Authorization type must be either apiKey or bearer.'
   );
 });
 
-it('Invalid config with both authorization field', () => {
+it('Invalid config with invalid authorizationType field', () => {
   const InvalidConfig: AnalyticsConfig = {
-    key: 'mock-api-key',
-    bearer: 'mock-bearer-token'
+    authorizationType: 'type5',
+    authorization: 'myKey'
   };
   expect(() => new AnalyticsEventReporter(InvalidConfig)).toThrowError(
-    'Provide one and only one of API Key or Bearer Token.'
+    'Authorization type must be either apiKey or bearer.'
+  );
+});
+it('Invalid config with no authorization field', () => {
+  const InvalidConfig: AnalyticsConfig = {
+    authorizationType: 'apiKey',
+    authorization: undefined
+  };
+  expect(() => new AnalyticsEventReporter(InvalidConfig)).toThrowError(
+    'Authorization must be provided.'
+  );
+  const InvalidConfig2: AnalyticsConfig = {
+    authorizationType: 'apiKey'
+  };
+  expect(() => new AnalyticsEventReporter(InvalidConfig2)).toThrowError(
+    'Authorization must be provided.'
   );
 });
 
 it('Valid config will not throw error', () => {
   const configwithAPI: AnalyticsConfig = {
-    key: 'mock-api-key'
+    authorizationType: 'apiKey',
+    authorization: 'mock-api-key'
   };
   expect(() => new AnalyticsEventReporter(configwithAPI)).not.toThrow();
 
-  const configwithBearer: AnalyticsConfig = {
-    bearer: 'mock-bearer-token'
+  const configwithbearer: AnalyticsConfig = {
+    authorizationType: 'bearer',
+    authorization: 'BearerToken'
   };
 
-  expect(() => new AnalyticsEventReporter(configwithBearer)).not.toThrow();
+  expect(() => new AnalyticsEventReporter(configwithbearer)).not.toThrow();
 });
 
 describe('Test report function', () => {
@@ -74,7 +94,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false
     };
@@ -116,7 +137,8 @@ describe('Test report function', () => {
       mockUseBeacon.mockReturnValueOnce(false);
 
       const config: AnalyticsConfig = {
-        bearer: 'bearerToken',
+        authorizationType: 'bearer',
+        authorization: 'bearerToken',
         env: EnvironmentEnum.Sandbox
       };
       const reporter = new AnalyticsEventReporter(config).with({
@@ -163,7 +185,8 @@ describe('Test report function', () => {
     mockUseBeacon.mockReturnValueOnce(false);
 
     const config: AnalyticsConfig = {
-      bearer: 'bearerToken',
+      authorizationType: 'bearer',
+      authorization: 'bearerToken',
       sessionTrackingEnabled: true
     };
     const reporter = new AnalyticsEventReporter(config).with({
@@ -217,7 +240,8 @@ describe('Test report function', () => {
     mockUseBeacon.mockReturnValueOnce(false);
 
     const config: AnalyticsConfig = {
-      bearer: 'bearerToken',
+      authorizationType: 'bearer',
+      authorization: 'bearerToken',
       sessionTrackingEnabled: true
     };
     const reporter = new AnalyticsEventReporter(config).with({
@@ -268,7 +292,8 @@ describe('Test report function', () => {
     mockPostWithFetch.mockResolvedValue({ id: 1111 });
 
     const config: AnalyticsConfig = {
-      bearer: 'bearerToken',
+      authorizationType: 'bearer',
+      authorization: 'bearerToken',
       sessionTrackingEnabled: false
     };
     const reporter = new AnalyticsEventReporter(config).with({
@@ -327,7 +352,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false
     };
@@ -372,7 +398,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false
     };
@@ -419,7 +446,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: true
     };
@@ -456,7 +484,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false
     };
@@ -494,7 +523,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false
     };
@@ -569,7 +599,8 @@ describe('Test report function', () => {
     });
 
     const config: AnalyticsConfig = {
-      key: 'validKey',
+      authorizationType: 'apiKey',
+      authorization: 'validKey',
       region: RegionEnum.EU,
       forceFetch: false,
       sessionTrackingEnabled: true

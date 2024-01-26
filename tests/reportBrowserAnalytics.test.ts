@@ -20,7 +20,10 @@ describe('reportBrowserAnalytics', () => {
 
   it('should return a promise that resolves when payload is present', async () => {
     const mockPayload = [
-      ['config', { key: 'apiKey' }],
+      [
+        'config',
+        { authorizationType: 'apiKey', authorization: 'test-api-key' }
+      ],
       ['payload', { bot: false }]
     ];
     (global as any).window['analyticsEventPayload'] = mockPayload;

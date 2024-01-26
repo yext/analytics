@@ -12,10 +12,10 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService;
 
 // @public
 export interface AnalyticsConfig {
-    bearer?: string;
+    authorization: string;
+    authorizationType: 'apiKey' | 'bearer';
     env?: Environment;
     forceFetch?: boolean;
-    key?: string;
     region?: Region;
     sessionTrackingEnabled?: boolean;
 }
