@@ -50,7 +50,6 @@ export * from './AnalyticsEventService';
 export * from './Environment';
 export * from './Region';
 export * from './EventPayload';
-export * from './EnumOrString';
 export * from './Action';
 export * from './VersionLabel';
 

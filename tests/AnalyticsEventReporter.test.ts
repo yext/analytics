@@ -1,8 +1,6 @@
 import { AnalyticsConfig } from '../src/AnalyticsConfig';
 import { AnalyticsEventReporter } from '../src/AnalyticsEventReporter';
-import { RegionEnum } from '../src/Region';
 import { postWithBeacon, postWithFetch, useBeacon } from '../src/post';
-import { EnvironmentEnum } from '../src/Environment';
 import { getOrSetupSessionId } from '../src/setupSessionId';
 import { AnalyticsEventService } from '../src/AnalyticsEventService';
 
@@ -96,7 +94,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: false
     };
     const reporter = new AnalyticsEventReporter(config).with({
@@ -139,7 +137,7 @@ describe('Test report function', () => {
       const config: AnalyticsConfig = {
         authorizationType: 'bearer',
         authorization: 'bearerToken',
-        env: EnvironmentEnum.Sandbox
+        env: 'SANDBOX'
       };
       const reporter = new AnalyticsEventReporter(config).with({
         action: 'c_lowercase_custom_action',
@@ -354,7 +352,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: false
     };
     const reporter = new AnalyticsEventReporter(config).with({
@@ -400,7 +398,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: false
     };
 
@@ -448,7 +446,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: true
     };
 
@@ -486,7 +484,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: false
     };
 
@@ -525,7 +523,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: false
     };
 
@@ -601,7 +599,7 @@ describe('Test report function', () => {
     const config: AnalyticsConfig = {
       authorizationType: 'apiKey',
       authorization: 'validKey',
-      region: RegionEnum.EU,
+      region: 'EU',
       forceFetch: false,
       sessionTrackingEnabled: true
     };
@@ -657,7 +655,7 @@ describe('Test report function', () => {
       },
       searchTerm: 'searchTerm',
       sessionId: 'sessionId',
-      sites: {
+      pages: {
         siteUid: 321,
         template: 'template'
       },
@@ -736,7 +734,7 @@ describe('Test report function', () => {
         },
         searchTerm: 'searchTerm',
         sessionId: 'sessionId',
-        sites: {
+        pages: {
           siteUid: 321,
           template: 'template'
         },
