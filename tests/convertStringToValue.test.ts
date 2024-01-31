@@ -8,7 +8,7 @@ describe('convertTypesGTM Test', () => {
       search: {
         versionNumber: '5'
       },
-      sites: {
+      pages: {
         siteUid: '5'
       }
     };
@@ -21,7 +21,7 @@ describe('convertTypesGTM Test', () => {
       search: {
         versionNumber: 5
       },
-      sites: {
+      pages: {
         siteUid: 5
       }
     });

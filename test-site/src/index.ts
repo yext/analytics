@@ -121,7 +121,7 @@ export function firePagesEvent() {
   analyticsProvider.report({
     action: 'WEBSITE',
     chat: null,
-    sites: {
+    pages: {
       siteUid: 123456789,
       template: 'test-template'
     }

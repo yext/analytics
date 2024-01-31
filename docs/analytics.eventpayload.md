@@ -32,12 +32,12 @@ export interface EventPayload
 |  [label?](./analytics.eventpayload.label.md) |  | string | _(Optional)_ A label assigned to the event, e.g. a CTA label. |
 |  [locale?](./analytics.eventpayload.locale.md) |  | string | _(Optional)_ The locale of the user who generated the event. |
 |  [location?](./analytics.eventpayload.location.md) |  | Coordinates \| string | _(Optional)_ The location information of the visitor for the event. Either a Coordinates object with both latitude and longitude or a string with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. |
+|  [pages?](./analytics.eventpayload.pages.md) |  | { siteUid?: number; template?: string; } | _(Optional)_ Fields specific to reporting Yext Pages Analytics Events |
 |  [pageUrl?](./analytics.eventpayload.pageurl.md) |  | string | _(Optional)_ The URL of the page where the event occurred |
 |  [referrerUrl?](./analytics.eventpayload.referrerurl.md) |  | string | _(Optional)_ The URL of the page which the visitor came from prior to the event. |
 |  [search?](./analytics.eventpayload.search.md) |  | { searchId?: string; queryId?: string; verticalKey?: string; isDirectAnswer?: boolean; versionLabel?: [VersionLabel](./analytics.versionlabel.md)<!-- -->; versionNumber?: number; experienceKey: string; } | _(Optional)_ Fields specific to reporting Yext Search Analytics Events |
 |  [searchTerm?](./analytics.eventpayload.searchterm.md) |  | string | _(Optional)_ |
 |  [sessionId?](./analytics.eventpayload.sessionid.md) |  | string \| null | _(Optional)_ Unique identifier to tie together events in a single browsing session |
-|  [sites?](./analytics.eventpayload.sites.md) |  | { siteUid?: number; template?: string; } | _(Optional)_ Fields specific to reporting Yext Pages Analytics Events |
 |  [timestamp?](./analytics.eventpayload.timestamp.md) |  | Date \| string | _(Optional)_ The timestamp at which the event occurred, in ISO format. |
 |  [value?](./analytics.eventpayload.value.md) |  | { amount: number; currency: string; } | _(Optional)_ The monetary value of the event. |
 |  [visitor?](./analytics.eventpayload.visitor.md) |  | Record&lt;string, string&gt; | _(Optional)_ Information used to associate analytics with a particular user. |
