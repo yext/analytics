@@ -1,17 +1,3 @@
-import { EnumOrString } from './EnumOrString';
-/**
- * An enum of the physical region the Yext account
- *
- * @remarks
- * Affects the domain the requests are sent to.
- *
- * @public
- */
-export enum RegionEnum {
-  US = 'us',
-  EU = 'eu'
-}
-
 /**
  * The physical region of the Yext account
  *
@@ -20,4 +6,5 @@ export enum RegionEnum {
  *
  * @public
  */
-export type Region = EnumOrString<RegionEnum>;
+
+export type Region = 'US' | 'EU' | 'us' | 'eu';

@@ -9,9 +9,8 @@ The physical region of the Yext account
 **Signature:**
 
 ```typescript
-export type Region = EnumOrString<RegionEnum>;
+export type Region = 'US' | 'EU' | 'us' | 'eu';
 ```
-**References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [RegionEnum](./analytics.regionenum.md)
 
 ## Remarks
 

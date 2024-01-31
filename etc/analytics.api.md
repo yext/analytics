@@ -27,17 +27,7 @@ export interface AnalyticsEventService {
 }
 
 // @public
-export type EnumOrString<T extends string> = T | `${T}`;
-
-// @public
-export type Environment = EnumOrString<EnvironmentEnum>;
-
-// @public
-export enum EnvironmentEnum {
-    // (undocumented)
-    Production = "PRODUCTION",
-    Sandbox = "SANDBOX"
-}
+export type Environment = 'PRODUCTION' | 'SANDBOX' | 'production' | 'sandbox';
 
 // @public
 export interface EventPayload {
@@ -100,29 +90,13 @@ export interface EventPayload {
 }
 
 // @public
-export type Region = EnumOrString<RegionEnum>;
-
-// @public
-export enum RegionEnum {
-    // (undocumented)
-    EU = "eu",
-    // (undocumented)
-    US = "us"
-}
+export type Region = 'US' | 'EU' | 'us' | 'eu';
 
 // @public
 export function reportBrowserAnalytics(): Promise<string>;
 
 // @public
-export type VersionLabel = EnumOrString<VersionLabelEnum>;
-
-// @public
-export enum VersionLabelEnum {
-    // (undocumented)
-    Production = "PRODUCTION",
-    // (undocumented)
-    Staging = "STAGING"
-}
+export type VersionLabel = 'PRODUCTION' | 'STAGING';
 
 // (No @packageDocumentation comment for this package)
 

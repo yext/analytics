@@ -1,16 +1,18 @@
-import { Environment, EnvironmentEnum } from './Environment';
-import { Region, RegionEnum } from './Region';
+import { Environment } from './Environment';
+import { Region } from './Region';
 
 const urlBase = 'yextevents.com/accounts/me/events';
 
 export function setupRequestUrl(env?: Environment, region?: Region): string {
-  if (env === EnvironmentEnum.Sandbox && region === RegionEnum.EU) {
+  const isSandbox = env === 'SANDBOX';
+  const lowerRegion = region?.toLowerCase();
+  if (isSandbox && lowerRegion === 'eu') {
     throw new Error('Sandbox environment is not available in the EU region.');
   }
   return (
     'https://' +
-    (env === EnvironmentEnum.Sandbox ? 'sbx.' : '') +
-    (region ?? 'us') +
+    (isSandbox ? 'sbx.' : '') +
+    (lowerRegion ?? 'us') +
     '.' +
     urlBase
   );
