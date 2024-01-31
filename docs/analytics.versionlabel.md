@@ -4,14 +4,13 @@
 
 ## VersionLabel type
 
-The Search Version Label
+An enum for the Search Version Labels
 
 **Signature:**
 
 ```typescript
-export type VersionLabel = EnumOrString<VersionLabelEnum>;
+export type VersionLabel = 'PRODUCTION' | 'STAGING';
 ```
-**References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [VersionLabelEnum](./analytics.versionlabelenum.md)
 
 ## Remarks
 

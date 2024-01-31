@@ -4,14 +4,6 @@
 
 ## analytics package
 
-## Enumerations
-
-|  Enumeration | Description |
-|  --- | --- |
-|  [EnvironmentEnum](./analytics.environmentenum.md) | An enum for the Yext Environments |
-|  [RegionEnum](./analytics.regionenum.md) | An enum of the physical region the Yext account |
-|  [VersionLabelEnum](./analytics.versionlabelenum.md) | An enum for the Search Version Labels |
-
 ## Functions
 
 |  Function | Description |
@@ -32,8 +24,7 @@
 |  Type Alias | Description |
 |  --- | --- |
 |  [Action](./analytics.action.md) | The action types accepted by the Analytics Events API. |
-|  [EnumOrString](./analytics.enumorstring.md) | A TypeScript utility type which creates a union of an enum member and its string representation. |
 |  [Environment](./analytics.environment.md) | The Yext Environments |
 |  [Region](./analytics.region.md) | The physical region of the Yext account |
-|  [VersionLabel](./analytics.versionlabel.md) | The Search Version Label |
+|  [VersionLabel](./analytics.versionlabel.md) | An enum for the Search Version Labels |
 

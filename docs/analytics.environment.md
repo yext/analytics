@@ -9,9 +9,8 @@ The Yext Environments
 **Signature:**
 
 ```typescript
-export type Environment = EnumOrString<EnvironmentEnum>;
+export type Environment = 'PRODUCTION' | 'SANDBOX' | 'production' | 'sandbox';
 ```
-**References:** [EnumOrString](./analytics.enumorstring.md)<!-- -->, [EnvironmentEnum](./analytics.environmentenum.md)
 
 ## Remarks
 
