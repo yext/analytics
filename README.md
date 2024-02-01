@@ -38,7 +38,10 @@ Next, import and initialize the library in your application. When initializing y
 import { analytics } from '@yext/analytics';
 
 // Root analytics service with no defaults.
-const rootAnalytics = analytics({ key: 'MY_API_KEY' });
+const rootAnalytics = analytics({
+  authorizationType: 'apiKey',
+  authorization: 'MY_API_KEY'
+});
 ```
 
 In many cases, you might need to repeatedly specify the same properties, such as a Pages site ID or Chat bot ID. Yext Analytics allows you to avoid having to repeatedly specify the same code by allowing you to set **default values**.
@@ -49,7 +52,10 @@ You can add a `.with()` method to the root analytics service you initialized, wh
 import { analytics } from '@yext/analytics';
 
 // Root analytics service with no defaults.
-const rootAnalytics = analytics({ key: 'MY_API_KEY' });
+const rootAnalytics = analytics({
+  authorizationType: 'apiKey',
+  authorization: 'MY_API_KEY'
+});
 
 // Pages analytics service with Pages defaults.
 const pageAnalytics = rootAnalytics.with({ pages: { siteId: 123 } });
