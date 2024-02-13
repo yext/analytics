@@ -28,4 +28,11 @@ export interface AnalyticsConfig {
    * does not support fetch with the keepalive flag (like Firefox).
    * If the browser does support it, fetch is used by default. */
   forceFetch?: boolean;
+
+  /**
+   * Used to enable debug mode, which is false by default.
+   * When enabled the SDK will not send requests to the Events API, but will log the request
+   * with other useful debug information instead.
+   */
+  debug?: boolean;
 }
