@@ -29,19 +29,15 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     }
     this.config = config;
     this.payload = payload;
-    console.log('[DEBUG] AnalyticsConfig object:\n', this.config);
-    console.log(
-      '[DEBUG] EventPayload object following call to constructor:\n',
-      this.payload
-    );
   }
 
   with(payload: EventPayload): AnalyticsEventService {
     const currentPayload =
       this.payload === undefined ? payload : merge(this.payload, payload);
     if (this.config.debug) {
+      console.log('[DEBUG] AnalyticsConfig Object:\n', this.config);
       console.log(
-        '[DEBUG] EventPayload object following call to `with()`:\n',
+        '[DEBUG] Payload following call to `with`:\n',
         currentPayload
       );
     }
@@ -49,6 +45,16 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
   }
 
   public async report(newPayload?: EventPayload): Promise<string> {
+    if (this.config.debug) {
+      console.log(
+        '[DEBUG] Merging the following payloads:\n' +
+          '\nOriginal Payload from call to `with`:\n' +
+          `\n${this.payload ? JSON.stringify(this.payload) : '{}'}\n` +
+          '\nNew Payload from call to `report:`\n' +
+          `\n${newPayload ? JSON.stringify(newPayload) : '{}'}\n`
+      );
+    }
+
     const finalPayload: EventPayload = merge(
       this.payload ?? {},
       newPayload ?? {}
@@ -78,18 +84,17 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     const requestUrl = setupRequestUrl(this.config.env, this.config.region);
 
     if (this.config.debug) {
-      const reportMethod = shouldUseBeacon ? 'Beacon' : 'fetch()';
-      const sessionTrackingStatus = this.config.sessionTrackingEnabled
-        ? 'enabled'
-        : 'disabled';
       console.log(
-        `[DEBUG] The following Payload would be sent to the Yext Events API using ${reportMethod}.
-        The request url would be ${requestUrl}, with Session Tracking ${sessionTrackingStatus}.
-        To actually send the event, disable the debug flag in your AnalyticsConfig.`,
+        '[DEBUG] The following Payload would be sent to the Yext Events API using ' +
+          (shouldUseBeacon ? 'Beacon. ' : 'fetch(). ') +
+          'Session Tracking is ' +
+          (this.config.sessionTrackingEnabled ? 'enabled.\n' : 'disabled.\n') +
+          'Request URL: ' +
+          requestUrl +
+          '\n' +
+          'To send the event to the Yext Events API, disable the debug flag in your AnalyticsConfig.\n',
         finalPayload
       );
-      // Return early to prevent the request from being sent when debug mode is on.
-      return '';
     }
 
     // If useBeacon returns true, return boolean response of postWithBeacon as string.
