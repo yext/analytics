@@ -29,15 +29,19 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     }
     this.config = config;
     this.payload = payload;
+    console.log('[DEBUG] AnalyticsConfig object:\n', this.config);
+    console.log(
+      '[DEBUG] EventPayload object following call to constructor:\n',
+      this.payload
+    );
   }
 
   with(payload: EventPayload): AnalyticsEventService {
     const currentPayload =
       this.payload === undefined ? payload : merge(this.payload, payload);
     if (this.config.debug) {
-      console.log('[DEBUG] AnalyticsConfig Object:\n', this.config);
       console.log(
-        '[DEBUG] Payload following call to `with`:\n',
+        '[DEBUG] EventPayload object following call to `with()`:\n',
         currentPayload
       );
     }
@@ -45,20 +49,6 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
   }
 
   public async report(newPayload?: EventPayload): Promise<string> {
-    if (this.config.debug) {
-      console.log(
-        `[DEBUG] Merging the following payloads:
-
-        Original Payload from call to \`with\`:
-
-        ${this.payload ? JSON.stringify(this.payload) : '{}'}
-
-        New Payload from call to \`report:\`
-        
-        ${newPayload ? JSON.stringify(newPayload) : '{}'}`
-      );
-    }
-
     const finalPayload: EventPayload = merge(
       this.payload ?? {},
       newPayload ?? {}

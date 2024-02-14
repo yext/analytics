@@ -151,6 +151,13 @@ pagesAnalytics.report({
 
 ### Debugging
 
+#### Debug Mode
+
+The SDK has a debug mode which can be activated by setting the `debug` property in your AnalyticsConfig to `true`.
+This will cause more useful information to be printed out in the logs. In addition, calling report will not actually send an event to the Yext Events API. Instead it will print the request to console.
+
+#### fetch + keepalive
+
 We use `fetch()` + `keepalive` by default in [supported browsers](https://developer.mozilla.org/en-US/docs/Web/API/fetch) to make debugging easier. For browsers like Firefox that do not support `keepalive`, [we use the Beacon API](https://developer.mozilla.org/en-US/docs/Web/API/Beacon_API). Users can set `forceFetch: true` in their config, which will make these browsers use `fetch()` instead of the `Beacon API`. Be warned, since `forceFetch` uses `fetch()` without `keepalive`, **requests in progress for browsers like FireFox will be canceled if the page is unloaded**.
 
 ## Module support
