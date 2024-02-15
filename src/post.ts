@@ -15,7 +15,7 @@ export function postWithBeacon(
   config: AnalyticsConfig
 ): boolean {
   if (config.debug) {
-    printDebugLog(false, body, config);
+    printDebugLog(true, body, config);
     return true;
   } else {
     return navigator.sendBeacon(url, JSON.stringify(body));
