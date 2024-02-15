@@ -1,3 +1,4 @@
+import { AnalyticsConfig } from './AnalyticsConfig';
 import { EventPayload } from './EventPayload';
 
 /**
@@ -8,11 +9,20 @@ import { EventPayload } from './EventPayload';
  * @param url URL that the request will be sent to
  * @param body the EventPayload object
  */
-export function postWithBeacon(url: string, body: EventPayload): boolean {
-  return navigator.sendBeacon(url, JSON.stringify(body));
+export function postWithBeacon(
+  url: string,
+  body: EventPayload,
+  config: AnalyticsConfig
+): boolean {
+  if (config.debug) {
+    printDebugLog(true, body, config);
+    return true;
+  } else {
+    return navigator.sendBeacon(url, JSON.stringify(body));
+  }
 }
 
-/**
+/*
  * Used by the AnalyticsEventReport report() method to send an analytics event request via
  * fetch. Used when forceFetch is true.
  *
@@ -21,14 +31,20 @@ export function postWithBeacon(url: string, body: EventPayload): boolean {
  */
 export function postWithFetch(
   url: string,
-  body: EventPayload
+  body: EventPayload,
+  config: AnalyticsConfig
 ): Promise<Response> {
-  return fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-    keepalive: true
-  });
+  if (config.debug) {
+    printDebugLog(false, body, config);
+    return Promise.resolve(new Response());
+  } else {
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+      keepalive: true
+    });
+  }
 }
 
 /**
@@ -47,5 +63,21 @@ export function useBeacon(
     !forceFetch &&
     !!navigator.userAgent &&
     navigator.userAgent.toLowerCase().includes('firefox')
+  );
+}
+
+function printDebugLog(
+  usingBeacon: boolean,
+  finalPayload: EventPayload,
+  config: AnalyticsConfig
+): void {
+  const method = usingBeacon ? 'Beacon' : 'fetch()';
+  console.log(
+    '[DEBUG] AnalyticsConfig object at time of call to report():',
+    config
+  );
+  console.log(
+    `[DEBUG] The following EventPayload would be sent to the Yext Events API using ${method}:`,
+    finalPayload
   );
 }

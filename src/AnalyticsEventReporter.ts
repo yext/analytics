@@ -34,6 +34,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
   with(payload: EventPayload): AnalyticsEventService {
     const currentPayload =
       this.payload === undefined ? payload : merge(this.payload, payload);
+
     return new AnalyticsEventReporter(this.config, currentPayload);
   }
 
@@ -69,7 +70,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     // If useBeacon returns true, return boolean response of postWithBeacon as string.
     if (shouldUseBeacon) {
       return new Promise((resolve, reject) => {
-        if (postWithBeacon(requestUrl, finalPayload)) {
+        if (postWithBeacon(requestUrl, finalPayload, this.config)) {
           resolve('');
         } else {
           reject('Failed Beacon Call');
@@ -80,7 +81,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     /** If useBeacon returns false, use postWithFetch.
       If result is successful, return result json.
       If request fails, return errors. */
-    return postWithFetch(requestUrl, finalPayload)
+    return postWithFetch(requestUrl, finalPayload, this.config)
       .then((response) => response)
       .catch((e) => e);
   }

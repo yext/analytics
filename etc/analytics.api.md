@@ -14,6 +14,7 @@ export function analytics(config: AnalyticsConfig): AnalyticsEventService;
 export interface AnalyticsConfig {
     authorization: string;
     authorizationType: 'apiKey' | 'bearer';
+    debug?: boolean;
     env?: Environment;
     forceFetch?: boolean;
     region?: Region;
