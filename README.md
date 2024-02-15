@@ -154,7 +154,7 @@ pagesAnalytics.report({
 #### Debug Mode
 
 The SDK has a debug mode which can be activated by setting the `debug` property in your AnalyticsConfig to `true`.
-This will cause more useful information to be printed out in the logs. In addition, calling `report()` will not actually send an event to the Yext Events API. Instead it will print the request to console.
+This will prevent `report()` from sending a real request to the Yext Events API. Instead it will print the EventPayload and AnalyticsConfig to console.
 
 #### fetch + keepalive
 

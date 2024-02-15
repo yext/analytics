@@ -34,27 +34,11 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
   with(payload: EventPayload): AnalyticsEventService {
     const currentPayload =
       this.payload === undefined ? payload : merge(this.payload, payload);
-    if (this.config.debug) {
-      console.log('[DEBUG] AnalyticsConfig Object:\n', this.config);
-      console.log(
-        '[DEBUG] Payload following call to `with`:\n',
-        currentPayload
-      );
-    }
+
     return new AnalyticsEventReporter(this.config, currentPayload);
   }
 
   public async report(newPayload?: EventPayload): Promise<string> {
-    if (this.config.debug) {
-      console.log(
-        '[DEBUG] Merging the following payloads:\n' +
-          '\nOriginal Payload from call to `with`:\n' +
-          `\n${this.payload ? JSON.stringify(this.payload) : '{}'}\n` +
-          '\nNew Payload from call to `report:`\n' +
-          `\n${newPayload ? JSON.stringify(newPayload) : '{}'}\n`
-      );
-    }
-
     const finalPayload: EventPayload = merge(
       this.payload ?? {},
       newPayload ?? {}
@@ -83,24 +67,10 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     const shouldUseBeacon = useBeacon(finalPayload, this.config.forceFetch);
     const requestUrl = setupRequestUrl(this.config.env, this.config.region);
 
-    if (this.config.debug) {
-      console.log(
-        '[DEBUG] The following Payload would be sent to the Yext Events API using ' +
-          (shouldUseBeacon ? 'Beacon. ' : 'fetch(). ') +
-          'Session Tracking is ' +
-          (this.config.sessionTrackingEnabled ? 'enabled.\n' : 'disabled.\n') +
-          'Request URL: ' +
-          requestUrl +
-          '\n' +
-          'To send the event to the Yext Events API, disable the debug flag in your AnalyticsConfig.\n',
-        finalPayload
-      );
-    }
-
     // If useBeacon returns true, return boolean response of postWithBeacon as string.
     if (shouldUseBeacon) {
       return new Promise((resolve, reject) => {
-        if (postWithBeacon(requestUrl, finalPayload)) {
+        if (postWithBeacon(requestUrl, finalPayload, this.config)) {
           resolve('');
         } else {
           reject('Failed Beacon Call');
@@ -111,7 +81,7 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     /** If useBeacon returns false, use postWithFetch.
       If result is successful, return result json.
       If request fails, return errors. */
-    return postWithFetch(requestUrl, finalPayload)
+    return postWithFetch(requestUrl, finalPayload, this.config)
       .then((response) => response)
       .catch((e) => e);
   }
