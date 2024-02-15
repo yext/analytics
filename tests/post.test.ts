@@ -26,6 +26,11 @@ describe('Test post util function', () => {
     locale: 'en_US'
   };
 
+  const standardConfig: AnalyticsConfig = {
+    authorizationType: 'apiKey',
+    authorization: 'test-api-key'
+  };
+
   const url = 'https://dev.us.yextevents.com/accounts/me/events';
 
   const optionsA = {
@@ -65,7 +70,7 @@ describe('Test post util function', () => {
 
   it('should send fetch request', async () => {
     // forceFetch: true
-    await postWithFetch(url, eventPayloadA);
+    await postWithFetch(url, eventPayloadA, standardConfig);
     expect(
       fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length
     ).toEqual(1);
@@ -84,7 +89,7 @@ describe('Test post util function', () => {
       value: navigator,
       writable: true
     });
-    await postWithFetch(url, eventPayloadA);
+    await postWithFetch(url, eventPayloadA, standardConfig);
     expect(
       fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length
     ).toEqual(2);
@@ -93,7 +98,7 @@ describe('Test post util function', () => {
     ).toEqual(optionsA);
 
     // forceFetch: true, browser is not Firefox
-    await postWithFetch(url, eventPayloadA);
+    await postWithFetch(url, eventPayloadA, standardConfig);
     expect(
       fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length
     ).toEqual(3);
@@ -106,7 +111,7 @@ describe('Test post util function', () => {
 
   it('should send beacon request', async () => {
     // forceFetch: false and browser defined in navigator is Firefox
-    const result = await postWithBeacon(url, eventPayloadA);
+    const result = await postWithBeacon(url, eventPayloadA, standardConfig);
     expect(
       fetchMock.calls('https://dev.us.yextevents.com/accounts/me/events').length
     ).toEqual(0);

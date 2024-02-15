@@ -123,7 +123,8 @@ describe('Test report function', () => {
         referrerUrl: 'https://yext.com',
         destinationUrl: 'https://google.com',
         count: 5
-      }
+      },
+      config
     );
   });
 
@@ -165,7 +166,8 @@ describe('Test report function', () => {
           },
           destinationUrl: 'https://google.com',
           count: 5
-        }
+        },
+        config
       );
     }
   );
@@ -222,7 +224,8 @@ describe('Test report function', () => {
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULID1234'
-      }
+      },
+      config
     );
   });
   it('should call post with correct fields, and use the original sessionId', async () => {
@@ -278,7 +281,8 @@ describe('Test report function', () => {
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULIDORIGINAL'
-      }
+      },
+      config
     );
   });
 
@@ -331,7 +335,8 @@ describe('Test report function', () => {
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: undefined
-      }
+      },
+      config
     );
   });
 
@@ -377,7 +382,8 @@ describe('Test report function', () => {
         },
         referrerUrl: 'https://yext.com',
         count: 5
-      }
+      },
+      config
     );
   });
 
@@ -424,7 +430,8 @@ describe('Test report function', () => {
         },
         referrerUrl: 'https://yext.com',
         count: 5
-      }
+      },
+      config
     );
   });
 
@@ -464,7 +471,8 @@ describe('Test report function', () => {
         clientSdk: {
           ANALYTICS: '1.0.0-beta.4'
         }
-      }
+      },
+      config
     );
   });
   it('call report with no argument and no with() result in Failed Beacon Call for beacon', async () => {
@@ -502,7 +510,8 @@ describe('Test report function', () => {
         clientSdk: {
           ANALYTICS: '1.0.0-beta.4'
         }
-      }
+      },
+      config
     );
   });
 
@@ -546,7 +555,8 @@ describe('Test report function', () => {
         },
         referrerUrl: 'https://yext.com',
         count: 5
-      }
+      },
+      config
     );
 
     const reporter2 = reporter1.with({
@@ -578,7 +588,8 @@ describe('Test report function', () => {
         destinationUrl: 'https://google.com',
         referrerUrl: 'https://yext.com',
         count: 5
-      }
+      },
+      config
     );
   });
 
@@ -746,7 +757,8 @@ describe('Test report function', () => {
         visitor: {
           'visitor-id': 'visitor-id'
         }
-      }
+      },
+      config
     );
   });
 });
