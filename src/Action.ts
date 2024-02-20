@@ -5,7 +5,6 @@
  */
 export type Action =
   | `C_${string}`
-  | `c_${string}`
   | 'ADD_TO_CART'
   | 'ALL_TAB_NAVIGATION'
   | 'APPLY'
