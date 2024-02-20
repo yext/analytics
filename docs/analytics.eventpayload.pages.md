@@ -10,6 +10,7 @@ Fields specific to reporting Yext Pages Analytics Events
 
 ```typescript
 pages?: {
+        scope?: string;
         siteUid?: number;
         template?: string;
     };

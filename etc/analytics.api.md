@@ -65,6 +65,7 @@ export interface EventPayload {
     // Warning: (ae-forgotten-export) The symbol "Coordinates" needs to be exported by the entry point index.d.ts
     location?: Coordinates | string;
     pages?: {
+        scope?: string;
         siteUid?: number;
         template?: string;
     };
