@@ -12,9 +12,18 @@ export interface EventPayload {
   action?: Action;
   /** The authorization token for the request. This will be setup from the Key or Bearer in the config. */
   authorization?: string;
-  /** Whether the event is the result of bot activity. */
+  /** Whether the event is the result of bot activity.
+   *
+   * Defaults to '$auto' which indicates to
+   * automatically detect whether this event originates from a bot.
+   */
   bot?: boolean;
-  /** Information about the visitors device and browser. */
+  /** Information about the visitors device and browser.
+   *
+   * All fields default to '$auto' which indicates to
+   * automatically determine the value from request headers,
+   * or the value of the `userAgent` property if specified."
+   */
   browserAgent?: {
     /** The browser associated with the event. */
     browser?: string;
@@ -71,22 +80,50 @@ export interface EventPayload {
   internalUser?: boolean;
   /** The IP address for the event.*/
   ip?: {
-    /** The IPv4 address associated with the event. */
+    /** The IPv4 address associated with the event.
+     *
+     * Defaults to '$auto' which indicates to use the Source IP address from the IP header of the request.
+     * This IP address is only used if the `Yext-Opt-In: ip` header is present."
+     */
     address: string;
     /** The algorithm to use to anonymize the IP address after collection. */
     algorithm: string;
   };
   /** A label assigned to the event, e.g. a CTA label. */
   label?: string;
-  /** The locale of the user who generated the event. */
+  /** The locale of the user who generated the event.
+   *
+   * Defaults to '$auto' which indicates to automatically
+   * determine the locale from the Accept-Language header.
+   */
   locale?: string;
   /** The location information of the visitor for the event.
    * Either a Coordinates object with both latitude and longitude or a string
-   * with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. */
+   * with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code.
+   *
+   * Defaults to a string value of '$auto' which indicates to automatically
+   * determine all location information from the request's IP address,
+   * or the value of the `ip` property if specified.
+   */
   location?: Coordinates | string;
-  /** The URL of the page where the event occurred */
+  /** Fields specific to reporting Yext Pages Analytics Events */
+  pages?: {
+    /** The scope of an action. Applies to Pages events. */
+    scope?: string;
+    /* The UID of the site an event was tied to. */
+    siteUid?: number;
+    /* The ID of the template from which a site was generated. */
+    template?: string;
+  };
+  /** The URL of the page where the event occurred.
+   *
+   * Defaults to '$auto' which indicates to use the `Referer` header of the request.
+   */
   pageUrl?: string;
-  /** The URL of the page which the visitor came from prior to the event. */
+  /** The URL of the page which the visitor came from prior to the event.
+   *
+   * Defaults to '$auto' which indicates to use the `Referer` header of the request.
+   */
   referrerUrl?: string;
   /** Fields specific to reporting Yext Search Analytics Events */
   search?: {
@@ -109,15 +146,6 @@ export interface EventPayload {
   searchTerm?: string;
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string | null;
-  /** Fields specific to reporting Yext Pages Analytics Events */
-  pages?: {
-    /** The scope of an action. Applies to Pages events. */
-    scope?: string;
-    /* The UID of the site an event was tied to. */
-    siteUid?: number;
-    /* The ID of the template from which a site was generated. */
-    template?: string;
-  };
   /** The timestamp at which the event occurred, in ISO format. */
   timestamp?: Date | string;
   /** The monetary value of the event. */
