@@ -54,18 +54,4 @@ describe('setUpRequestUrl Test', () => {
 
     expect(resultUrl).toEqual(expectedUrl);
   });
-
-  it('should set url correctly with upper case env and lowercase region', () => {
-    const resultUrl = setupRequestUrl('SANDBOX', 'us');
-    const expectedUrl = 'https://sbx.us.yextevents.com/accounts/me/events';
-
-    expect(resultUrl).toEqual(expectedUrl);
-  });
-
-  it('should set url correctly with lower case env and uppercase region', () => {
-    const resultUrl = setupRequestUrl('production', 'EU');
-    const expectedUrl = 'https://eu.yextevents.com/accounts/me/events';
-
-    expect(resultUrl).toEqual(expectedUrl);
-  });
 });

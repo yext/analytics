@@ -9,7 +9,7 @@ The Yext Environments
 **Signature:**
 
 ```typescript
-export type Environment = 'PRODUCTION' | 'SANDBOX' | 'production' | 'sandbox';
+export type Environment = 'PRODUCTION' | 'SANDBOX';
 ```
 
 ## Remarks

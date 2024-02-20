@@ -6,4 +6,4 @@
  *
  * @public
  */
-export type Environment = 'PRODUCTION' | 'SANDBOX' | 'production' | 'sandbox';
+export type Environment = 'PRODUCTION' | 'SANDBOX';

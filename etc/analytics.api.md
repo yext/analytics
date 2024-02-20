@@ -28,7 +28,7 @@ export interface AnalyticsEventService {
 }
 
 // @public
-export type Environment = 'PRODUCTION' | 'SANDBOX' | 'production' | 'sandbox';
+export type Environment = 'PRODUCTION' | 'SANDBOX';
 
 // @public
 export interface EventPayload {
@@ -91,7 +91,7 @@ export interface EventPayload {
 }
 
 // @public
-export type Region = 'US' | 'EU' | 'us' | 'eu';
+export type Region = 'US' | 'EU';
 
 // @public
 export function reportBrowserAnalytics(): Promise<string>;
