@@ -7,4 +7,4 @@
  * @public
  */
 
-export type Region = 'US' | 'EU' | 'us' | 'eu';
+export type Region = 'US' | 'EU';

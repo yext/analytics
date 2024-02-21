@@ -9,7 +9,7 @@ The physical region of the Yext account
 **Signature:**
 
 ```typescript
-export type Region = 'US' | 'EU' | 'us' | 'eu';
+export type Region = 'US' | 'EU';
 ```
 
 ## Remarks
