@@ -14,15 +14,14 @@ export interface EventPayload {
   authorization?: string;
   /** Whether the event is the result of bot activity.
    *
-   * Defaults to '$auto' which indicates to
-   * automatically detect whether this event originates from a bot.
+   * If not specified the system will automatically detect whether
+   * this event originates from a bot.
    */
   bot?: boolean;
   /** Information about the visitors device and browser.
    *
-   * All fields default to '$auto' which indicates to
-   * automatically determine the value from request headers,
-   * or the value of the `userAgent` property if specified."
+   * If not specified the system will automatically detect
+   * the values from request headers or `userAgent` property.
    */
   browserAgent?: {
     /** The browser associated with the event. */
@@ -82,8 +81,8 @@ export interface EventPayload {
   ip?: {
     /** The IPv4 address associated with the event.
      *
-     * Defaults to '$auto' which indicates to use the Source IP address from the IP header of the request.
-     * This IP address is only used if the `Yext-Opt-In: ip` header is present."
+     * If not specified the system will use the Source IP address
+     * from the IP header of the request.
      */
     address: string;
     /** The algorithm to use to anonymize the IP address after collection. */
@@ -93,7 +92,7 @@ export interface EventPayload {
   label?: string;
   /** The locale of the user who generated the event.
    *
-   * Defaults to '$auto' which indicates to automatically
+   * If not specified the system will automatically
    * determine the locale from the Accept-Language header.
    */
   locale?: string;
@@ -101,7 +100,7 @@ export interface EventPayload {
    * Either a Coordinates object with both latitude and longitude or a string
    * with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code.
    *
-   * Defaults to a string value of '$auto' which indicates to automatically
+   * If not specified the system will automatically
    * determine all location information from the request's IP address,
    * or the value of the `ip` property if specified.
    */
@@ -117,12 +116,14 @@ export interface EventPayload {
   };
   /** The URL of the page where the event occurred.
    *
-   * Defaults to '$auto' which indicates to use the `Referer` header of the request.
+   * If not specified the system will automatically
+   * use the `Referer` header of the request.
    */
   pageUrl?: string;
   /** The URL of the page which the visitor came from prior to the event.
    *
-   * Defaults to '$auto' which indicates to use the `Referer` header of the request.
+   * If not specified the system will automatically
+   * use the `Referer` header of the request.
    */
   referrerUrl?: string;
   /** Fields specific to reporting Yext Search Analytics Events */
@@ -146,7 +147,11 @@ export interface EventPayload {
   searchTerm?: string;
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string | null;
-  /** The timestamp at which the event occurred, in ISO format. */
+  /** The timestamp at which the event occurred, in ISO format.
+   *
+   * If not specified the system will automatically
+   * use the time when the request was received as the event timestamp.
+   */
   timestamp?: Date | string;
   /** The monetary value of the event. */
   value?: {
