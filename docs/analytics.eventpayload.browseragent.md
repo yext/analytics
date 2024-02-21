@@ -6,6 +6,8 @@
 
 Information about the visitors device and browser.
 
+If not specified the system will automatically detect the values from request headers or `userAgent` property.
+
 **Signature:**
 
 ```typescript

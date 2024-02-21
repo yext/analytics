@@ -6,6 +6,8 @@
 
 The timestamp at which the event occurred, in ISO format.
 
+If not specified the system will automatically use the time when the request was received as the event timestamp.
+
 **Signature:**
 
 ```typescript

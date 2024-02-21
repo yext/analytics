@@ -6,6 +6,8 @@
 
 The locale of the user who generated the event.
 
+If not specified the system will automatically determine the locale from the Accept-Language header.
+
 **Signature:**
 
 ```typescript

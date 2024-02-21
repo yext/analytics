@@ -6,6 +6,8 @@
 
 The URL of the page which the visitor came from prior to the event.
 
+If not specified the system will automatically use the `Referer` header of the request.
+
 **Signature:**
 
 ```typescript

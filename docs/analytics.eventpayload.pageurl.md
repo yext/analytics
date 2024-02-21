@@ -4,7 +4,9 @@
 
 ## EventPayload.pageUrl property
 
-The URL of the page where the event occurred
+The URL of the page where the event occurred.
+
+If not specified the system will automatically use the `Referer` header of the request.
 
 **Signature:**
 
