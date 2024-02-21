@@ -111,6 +111,8 @@ export interface EventPayload {
   sessionId?: string | null;
   /** Fields specific to reporting Yext Pages Analytics Events */
   pages?: {
+    /** The scope of an action. Applies to Pages events. */
+    scope?: string;
     /* The UID of the site an event was tied to. */
     siteUid?: number;
     /* The ID of the template from which a site was generated. */
