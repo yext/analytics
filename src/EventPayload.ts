@@ -105,6 +105,7 @@ export interface EventPayload {
    * or the value of the `ip` property if specified.
    */
   location?: Coordinates | string;
+<<<<<<< HEAD
   /** Fields specific to reporting Yext Pages Analytics Events */
   pages?: {
     /** The scope of an action. Applies to Pages events. */
@@ -114,6 +115,8 @@ export interface EventPayload {
     /* The ID of the template from which a site was generated. */
     template?: string;
   };
+=======
+>>>>>>> 1926546 (fix)
   /** The URL of the page where the event occurred.
    *
    * If not specified the system will automatically
