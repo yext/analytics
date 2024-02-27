@@ -9,7 +9,6 @@ const prodConfig: ChatAnalyticsConfig = {
 };
 
 const expectedHeaders: Record<string, string> = {
-  Authorization: 'KEY mock-api-key',
   'Content-Type': 'application/json',
 };
 
@@ -20,6 +19,11 @@ const payload: ChatEventPayLoad = {
   },
   sessionId: 'mocked-ulid-value'
 };
+
+const expectedPayload = {
+  ...payload,
+  authorization: 'KEY mock-api-key'
+}
 
 beforeEach(() => {
   jest.spyOn(ulidxLib, 'ulid').mockReturnValue('mocked-ulid-value');
@@ -35,7 +39,7 @@ it('should send events to the prod domain when configured', async () => {
   expect(response).toEqual(mockedResponse);
   expect(mockService.post).toBeCalledWith(
     expectedUrl,
-    payload,
+    expectedPayload,
     expectedHeaders
   );
 });
@@ -51,7 +55,7 @@ it('should send events to the custom endpoint when configured', async () => {
   expect(response).toEqual(mockedResponse);
   expect(mockService.post).toBeCalledWith(
     expectedUrl,
-    payload,
+    expectedPayload,
     expectedHeaders
   );
 });
@@ -114,7 +118,7 @@ describe('sessionId handling', () => {
     await reporter.report(payload);
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
-      payload,
+      expectedPayload,
       expect.any(Object)
     );
   });
@@ -130,7 +134,7 @@ describe('sessionId handling', () => {
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
       {
-        ...payload,
+        ...expectedPayload,
         sessionId: undefined
       },
       expect.any(Object)
@@ -150,7 +154,7 @@ describe('sessionId handling', () => {
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
       {
-        ...payload,
+        ...expectedPayload,
         sessionId: 'custom-ulid-value',
       },
       expect.any(Object)
@@ -168,7 +172,7 @@ describe('sessionId handling', () => {
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
       {
-        ...payload,
+        ...expectedPayload,
         sessionId: undefined
       },
       expect.any(Object)
@@ -182,7 +186,7 @@ describe('sessionId handling', () => {
     expect(mockService.post).toBeCalledWith(
       expect.any(String),
       {
-        ...payload,
+        ...expectedPayload,
         sessionId: undefined
       },
       expect.any(Object)

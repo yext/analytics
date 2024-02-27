@@ -52,7 +52,7 @@ export class SearchAnalyticsReporter implements SearchAnalyticsService {
     const res = await this.httpRequesterService.post(
       this._endpoint, { data, ...additionalRequestAttributes }
     );
-    if (res.status !== 200) {
+    if (!res.ok) {
       const errorMessage = await res.text();
       throw new Error(errorMessage);
     }
