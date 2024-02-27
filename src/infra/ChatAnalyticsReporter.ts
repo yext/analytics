@@ -57,7 +57,6 @@ export class ChatAnalyticsReporter {
    */
   public async report(event: ChatEventPayLoad): Promise<EventAPIResponse> {
     const headers: Record<string, string> = {
-      Authorization: `KEY ${this.apiKey}`,
       'Content-Type': 'application/json',
     };
 
@@ -68,7 +67,8 @@ export class ChatAnalyticsReporter {
       this.endpoint,
       {
         ...event,
-        sessionId
+        sessionId,
+        authorization: `KEY ${this.apiKey}`
       },
       headers);
 
