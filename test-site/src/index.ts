@@ -84,7 +84,7 @@ export function fireListings() {
 }
 
 const chat = provideChatAnalytics({
-  apiKey: 'd0e7eab25eb91c1eafe037d61eadd869',
+  apiKey: process.env.CHAT_API_KEY,
 });
 
 export function fireChatEvent() {
