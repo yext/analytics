@@ -105,7 +105,6 @@ export interface EventPayload {
    * or the value of the `ip` property if specified.
    */
   location?: Coordinates | string;
-<<<<<<< HEAD
   /** Fields specific to reporting Yext Pages Analytics Events */
   pages?: {
     /** The scope of an action. Applies to Pages events. */
@@ -115,18 +114,16 @@ export interface EventPayload {
     /* The ID of the template from which a site was generated. */
     template?: string;
   };
-=======
->>>>>>> 1926546 (fix)
   /** The URL of the page where the event occurred.
    *
    * If not specified the system will automatically
-   * use the `Referer` header of the request.
+   * use the `Referrer` header from the auto-generated request headers.
    */
   pageUrl?: string;
   /** The URL of the page which the visitor came from prior to the event.
    *
    * If not specified the system will automatically
-   * use the `Referer` header of the request.
+   * use the `Referrer` header from the auto-generated request headers.
    */
   referrerUrl?: string;
   /** Fields specific to reporting Yext Search Analytics Events */
@@ -151,6 +148,8 @@ export interface EventPayload {
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string | null;
   /** The timestamp at which the event occurred, in ISO format.
+   * For example, September 27, 2022 at 6 p.m. is represented as
+   * 2022-09-27 18:00:00.000.
    *
    * If not specified the system will automatically
    * use the time when the request was received as the event timestamp.
@@ -160,7 +159,9 @@ export interface EventPayload {
   value?: {
     /** The monetary value. */
     amount: number;
-    /** The ISO 4217 currency code of the currency the value is expressed in. */
+    /** The ISO 4217 currency code of the currency the value is expressed in.
+     * For example, "USD" for US dollars.
+     */
     currency: string;
   };
   /**
