@@ -4,7 +4,9 @@
 
 ## EventPayload.location property
 
-The location information of the visitor for the event. Either a Coordinates object with both latitude and longitude or a string with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code.
+The location information of the visitor for the event. Either a Coordinates object with both latitude and longitude or a string with the country of the visitor for the event, as a ISO 3166-1 alpha-2 country code. For more information see https://www.iso.org/iso-3166-country-codes.html.
+
+If not specified the system will automatically determine all location information from the request's IP address, or the value of the `ip` property if specified.
 
 **Signature:**
 
