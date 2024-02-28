@@ -66,6 +66,7 @@ export interface EventPayload {
     location?: Coordinates | string;
     pages?: {
         scope?: string;
+        originalEventName?: string;
         siteUid?: number;
         template?: string;
     };
