@@ -110,6 +110,8 @@ export interface EventPayload {
   pages?: {
     /** The scope of an action. Applies to Pages events. */
     scope?: string;
+    /** The Event name as it was used in previous analytics implementations. */
+    originalEventName?: string;
     /* The UID of the site an event was tied to. */
     siteUid?: number;
     /* The ID of the template from which a site was generated. */
