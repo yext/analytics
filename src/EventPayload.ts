@@ -113,7 +113,7 @@ export interface EventPayload {
   pages?: {
     /** The scope of an action. Applies to Pages events. */
     scope?: string;
-    /** The legacy identifier of the event. */
+    /** The identifier of the event. */
     originalEventName?: string;
     /* The UID of the site an event was tied to. */
     siteUid?: number;
