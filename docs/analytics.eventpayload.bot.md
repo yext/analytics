@@ -6,6 +6,8 @@
 
 Whether the event is the result of bot activity.
 
+If not specified the system will automatically detect whether this event originates from a bot.
+
 **Signature:**
 
 ```typescript
