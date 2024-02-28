@@ -4,9 +4,9 @@
 
 ## EventPayload.timestamp property
 
-The timestamp at which the event occurred, in ISO format.
+The timestamp at which the event occurred, in ISO format. For example, September 27, 2022 at 6 p.m. is represented as 2022-09-27 18:00:00.000. For more information, see https://www.iso.org/iso-8601-date-and-time-format.html.
 
-If not specified the system will automatically use the time when the request was received as the event timestamp.
+If not specified the system will automatically use the time when the request was received in UTC as the event timestamp.
 
 **Signature:**
 
