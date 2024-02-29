@@ -81,7 +81,6 @@ export interface EventPayload {
         versionNumber?: number;
         experienceKey: string;
     };
-    // (undocumented)
     searchTerm?: string;
     sessionId?: string | null;
     timestamp?: Date | string;
