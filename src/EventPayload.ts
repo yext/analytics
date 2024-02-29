@@ -146,7 +146,7 @@ export interface EventPayload {
     /** The identifier of the search experience. */
     experienceKey: string;
   };
-  /* The query entered by the user. */
+  /** The query entered by the user. */
   searchTerm?: string;
   /** Unique identifier to tie together events in a single browsing session */
   sessionId?: string | null;
