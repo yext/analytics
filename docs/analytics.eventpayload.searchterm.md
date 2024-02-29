@@ -4,6 +4,8 @@
 
 ## EventPayload.searchTerm property
 
+The query entered by the user.
+
 **Signature:**
 
 ```typescript
