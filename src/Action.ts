@@ -27,6 +27,7 @@ export type Action =
   | 'FORWARD_PAGINATE'
   | 'HEADER_LINKS'
   | 'ITEM_IN_LIST'
+  | 'LINK'
   | 'MAP_CARD'
   | 'MAP_PIN'
   | 'MENU'
