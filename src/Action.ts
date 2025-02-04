@@ -17,6 +17,7 @@ export type Action =
   | 'CHAT_IMPRESSION'
   | 'CHAT_LINK_CLICK'
   | 'CHAT_RESPONSE'
+  | 'CITATION_CLICK'
   | 'COLLAPSE'
   | 'CTA_CLICK'
   | 'DRIVING_DIRECTIONS'
