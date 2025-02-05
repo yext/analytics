@@ -17,5 +17,6 @@ search?: {
         versionLabel?: VersionLabel;
         versionNumber?: number;
         experienceKey: string;
+        isGenerativeDirectAnswer?: boolean;
     };
 ```

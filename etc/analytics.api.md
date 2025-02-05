@@ -80,6 +80,7 @@ export interface EventPayload {
         versionLabel?: VersionLabel;
         versionNumber?: number;
         experienceKey: string;
+        isGenerativeDirectAnswer?: boolean;
     };
     searchTerm?: string;
     sessionId?: string | null;
