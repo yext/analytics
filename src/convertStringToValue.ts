@@ -14,7 +14,8 @@ const propertiesToCheck = [
   'timestamp',
   'bot',
   'internalUser',
-  'isDirectAnswer'
+  'isDirectAnswer',
+  'isGenerativeDirectAnswer'
 ];
 
 export function convertStringToValue(
