@@ -10,12 +10,18 @@
   },
   "author": "slapshot@yext.com",
   "devDependencies": {
-    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-env": "^7.23.2",
     "copy-webpack-plugin": "^9.0.1",
     "serve": "^14.2.1",
     "ts-loader": "^9.2.6",
     "webpack": "^5.93.0",
     "webpack-cli": "^4.8.0"
+  },
+  "overrides": {
+    "@babel/helper-define-polyfill-provider": "0.4.3",
+    "babel-plugin-polyfill-corejs2": "0.4.6",
+    "babel-plugin-polyfill-corejs3": "0.8.5",
+    "babel-plugin-polyfill-regenerator": "0.5.3"
   },
   "dependencies": {
     "@yext/analytics": "file:..",

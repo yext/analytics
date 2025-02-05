@@ -81,7 +81,8 @@ describe('convertTypesGTM Test', () => {
       internalUser: 'false',
       search: {
         versionNumber: '5',
-        isDirectAnswer: 'false'
+        isDirectAnswer: 'false',
+        isGenerativeDirectAnswer: 'false'
       }
     };
 
@@ -93,7 +94,8 @@ describe('convertTypesGTM Test', () => {
       internalUser: false,
       search: {
         versionNumber: 5,
-        isDirectAnswer: false
+        isDirectAnswer: false,
+        isGenerativeDirectAnswer: false
       }
     });
   });

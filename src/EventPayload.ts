@@ -145,6 +145,8 @@ export interface EventPayload {
     versionNumber?: number;
     /** The identifier of the search experience. */
     experienceKey: string;
+    /** Whether or not the event occurred on a generative direct answer card */
+    isGenerativeDirectAnswer?: boolean;
   };
   /** The query entered by the user. */
   searchTerm?: string;
