@@ -21,6 +21,7 @@ export declare enum SearchAnalyticsEventType
 |  ApplyNow | <code>&quot;APPLY_NOW&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  AutocompleteSelection | <code>&quot;AUTO_COMPLETE_SELECTION&quot;</code> | [AutocompleteEvent](./analytics.autocompleteevent.md) |
 |  BookAppointment | <code>&quot;BOOK_APPOINTMENT&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
+|  CitationClick | <code>&quot;CITATION_CLICK&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  CtaClick | <code>&quot;CTA_CLICK&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  DrivingDirections | <code>&quot;DRIVING_DIRECTIONS&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |
 |  Email | <code>&quot;EMAIL&quot;</code> | [CtaEvent](./analytics.ctaevent.md) |

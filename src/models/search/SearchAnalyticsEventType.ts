@@ -60,6 +60,8 @@ export enum SearchAnalyticsEventType {
   BookAppointment = 'BOOK_APPOINTMENT',
   /** {@link CtaEvent} */
   Rsvp = 'RSVP',
+  /** {@link CtaEvent} */
+  CitationClick = 'CITATION_CLICK',
 
   // Search duration event types
   /** {@link SearchDurationEvent} */
