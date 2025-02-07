@@ -21,7 +21,8 @@ export interface CtaEvent {
     SearchAnalyticsEventType.ViewWebsite |
     SearchAnalyticsEventType.Email |
     SearchAnalyticsEventType.BookAppointment |
-    SearchAnalyticsEventType.Rsvp
+    SearchAnalyticsEventType.Rsvp |
+    SearchAnalyticsEventType.CitationClick
   >,
   /**
    * The vertical key for the vertical on which the event was fired. Or, if
@@ -37,6 +38,8 @@ export interface CtaEvent {
   queryId: string,
   /** Whether or not the event was fired on a direct answer card. */
   directAnswer?: boolean,
+  /** Whether or not the event was fired on a generative direct answer card. */
+  generativeDirectAnswer?: boolean,
   /** The url of the event target. */
   url?: string,
   /** The name of the Rich Text field used. */

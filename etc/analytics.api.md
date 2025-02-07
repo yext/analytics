@@ -109,9 +109,10 @@ export interface CtaEvent {
     directAnswer?: boolean;
     entityId: string;
     fieldName?: string;
+    generativeDirectAnswer?: boolean;
     queryId: string;
     searcher: Searcher;
-    type: EnumOrString<SearchAnalyticsEventType.CtaClick | SearchAnalyticsEventType.TitleClick | SearchAnalyticsEventType.TapToCall | SearchAnalyticsEventType.OrderNow | SearchAnalyticsEventType.AddToCart | SearchAnalyticsEventType.ApplyNow | SearchAnalyticsEventType.DrivingDirections | SearchAnalyticsEventType.ViewWebsite | SearchAnalyticsEventType.Email | SearchAnalyticsEventType.BookAppointment | SearchAnalyticsEventType.Rsvp>;
+    type: EnumOrString<SearchAnalyticsEventType.CtaClick | SearchAnalyticsEventType.TitleClick | SearchAnalyticsEventType.TapToCall | SearchAnalyticsEventType.OrderNow | SearchAnalyticsEventType.AddToCart | SearchAnalyticsEventType.ApplyNow | SearchAnalyticsEventType.DrivingDirections | SearchAnalyticsEventType.ViewWebsite | SearchAnalyticsEventType.Email | SearchAnalyticsEventType.BookAppointment | SearchAnalyticsEventType.Rsvp | SearchAnalyticsEventType.CitationClick>;
     url?: string;
     verticalKey: string;
 }
@@ -328,6 +329,8 @@ enum SearchAnalyticsEventType {
     AutocompleteSelection = "AUTO_COMPLETE_SELECTION",
     // (undocumented)
     BookAppointment = "BOOK_APPOINTMENT",
+    // (undocumented)
+    CitationClick = "CITATION_CLICK",
     // (undocumented)
     CtaClick = "CTA_CLICK",
     // (undocumented)
