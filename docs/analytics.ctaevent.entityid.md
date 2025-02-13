@@ -9,5 +9,5 @@ The entity ID for the entity.
 <b>Signature:</b>
 
 ```typescript
-entityId: string;
+entityId?: string;
 ```
