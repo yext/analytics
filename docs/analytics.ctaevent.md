@@ -18,7 +18,7 @@ export interface CtaEvent
 |  --- | --- | --- |
 |  [ctaLabel?](./analytics.ctaevent.ctalabel.md) | 'video\_played' \| string | <i>(Optional)</i> The label for this CTA event. |
 |  [directAnswer?](./analytics.ctaevent.directanswer.md) | boolean | <i>(Optional)</i> Whether or not the event was fired on a direct answer card. |
-|  [entityId](./analytics.ctaevent.entityid.md) | string | The entity ID for the entity. |
+|  [entityId?](./analytics.ctaevent.entityid.md) | string | <i>(Optional)</i> The entity ID for the entity. |
 |  [fieldName?](./analytics.ctaevent.fieldname.md) | string | <i>(Optional)</i> The name of the Rich Text field used. |
 |  [generativeDirectAnswer?](./analytics.ctaevent.generativedirectanswer.md) | boolean | <i>(Optional)</i> Whether or not the event was fired on a generative direct answer card. |
 |  [queryId](./analytics.ctaevent.queryid.md) | string | The ID of the most recent query. |

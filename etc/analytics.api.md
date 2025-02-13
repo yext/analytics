@@ -107,7 +107,7 @@ export const CtaClick: PagesAnalyticsEvent;
 export interface CtaEvent {
     ctaLabel?: 'video_played' | string;
     directAnswer?: boolean;
-    entityId: string;
+    entityId?: string;
     fieldName?: string;
     generativeDirectAnswer?: boolean;
     queryId: string;

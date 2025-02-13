@@ -31,7 +31,7 @@ export interface CtaEvent {
    */
   verticalKey: string,
   /** The entity ID for the entity. */
-  entityId: string,
+  entityId?: string,
   /** Whether it was on universal or vertical search. */
   searcher: Searcher,
   /** The ID of the most recent query. */
