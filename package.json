@@ -1,6 +1,6 @@
 {
   "name": "@yext/analytics",
-  "version": "1.0.0-beta.8",
+  "version": "1.0.0",
   "description": "An analytics library for Yext",
   "author": "fusion@yext.com",
   "license": "BSD-3-Clause",
