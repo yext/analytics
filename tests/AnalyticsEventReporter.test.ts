@@ -118,7 +118,7 @@ describe('Test report function', () => {
         action: 'C_CUSTOM_ACTION',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0'
+          ANALYTICS: '1.0.1'
         },
         referrerUrl: 'https://yext.com',
         destinationUrl: 'https://google.com',
@@ -162,7 +162,7 @@ describe('Test report function', () => {
           action: 'c_lowercase_custom_action',
           authorization: 'Bearer bearerToken',
           clientSdk: {
-            ANALYTICS: '1.0.0'
+            ANALYTICS: '1.0.1'
           },
           destinationUrl: 'https://google.com',
           count: 5
@@ -217,7 +217,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'Bearer bearerToken',
         clientSdk: {
-          ANALYTICS: '1.0.0',
+          ANALYTICS: '1.0.1',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
@@ -274,7 +274,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'Bearer bearerToken',
         clientSdk: {
-          ANALYTICS: '1.0.0',
+          ANALYTICS: '1.0.1',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
@@ -328,7 +328,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'Bearer bearerToken',
         clientSdk: {
-          ANALYTICS: '1.0.0',
+          ANALYTICS: '1.0.1',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
@@ -378,7 +378,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0'
+          ANALYTICS: '1.0.1'
         },
         referrerUrl: 'https://yext.com',
         count: 5
@@ -426,7 +426,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0'
+          ANALYTICS: '1.0.1'
         },
         referrerUrl: 'https://yext.com',
         count: 5
@@ -469,7 +469,7 @@ describe('Test report function', () => {
       {
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0'
+          ANALYTICS: '1.0.1'
         }
       },
       config
@@ -508,7 +508,7 @@ describe('Test report function', () => {
       {
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0'
+          ANALYTICS: '1.0.1'
         }
       },
       config
@@ -551,7 +551,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0'
+          ANALYTICS: '1.0.1'
         },
         referrerUrl: 'https://yext.com',
         count: 5
@@ -582,7 +582,7 @@ describe('Test report function', () => {
         action: 'APPLY',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.0',
+          ANALYTICS: '1.0.1',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
@@ -710,7 +710,7 @@ describe('Test report function', () => {
           responseId: 'responseId'
         },
         clientSdk: {
-          ANALYTICS: '1.0.0',
+          ANALYTICS: '1.0.1',
           chat: '1.0.0'
         },
         count: 5,
