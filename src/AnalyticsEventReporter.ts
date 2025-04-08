@@ -78,13 +78,13 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       });
     }
 
-    /** If pageUrl is undefined, default to document.URL */
-    if (finalPayload.pageUrl === undefined) {
+    /** If pageUrl is undefined, default to document.URL if it exists */
+    if (finalPayload.pageUrl === undefined && document.URL !== '') {
       finalPayload.pageUrl = document.URL;
     }
 
-    /** If referrerUrl is undefined, default to document.referrer */
-    if (finalPayload.referrerUrl === undefined) {
+    /** If referrerUrl is undefined, default to document.referrer if it exists */
+    if (finalPayload.referrerUrl === undefined && document.referrer !== '') {
       finalPayload.referrerUrl = document.referrer;
     }
 
