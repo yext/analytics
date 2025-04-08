@@ -153,7 +153,7 @@ describe('Test report function', () => {
 
       // Expect Successful Response
       expect(res).toEqual({ id: 1111 });
-      /** Expect merge to have completed correctly (with referrerUrl being removed),
+      /** Expect merge to have completed correctly,
        * the url to be constructed correctly defaulting to US,
        * and the clientSdk and authorization to be added to the request body in the correct format. **/
       expect(mockPostWithFetch).toHaveBeenCalledWith(
@@ -165,7 +165,10 @@ describe('Test report function', () => {
             ANALYTICS: '1.0.3'
           },
           destinationUrl: 'https://google.com',
-          count: 5
+          pageUrl: "http://localhost/",
+          referrerUrl: "",
+          count: 5,
+          sessionId: undefined
         },
         config
       );
@@ -221,6 +224,7 @@ describe('Test report function', () => {
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
+        pageUrl: "http://localhost/",
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULID1234'
@@ -278,6 +282,7 @@ describe('Test report function', () => {
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
+        pageUrl: "http://localhost/",
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULIDORIGINAL'
@@ -332,6 +337,7 @@ describe('Test report function', () => {
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
+        pageUrl: "http://localhost/",
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: undefined
@@ -470,7 +476,10 @@ describe('Test report function', () => {
         authorization: 'KEY validKey',
         clientSdk: {
           ANALYTICS: '1.0.3'
-        }
+        },
+        pageUrl: "http://localhost/",
+        referrerUrl: "",
+        sessionId: undefined
       },
       config
     );

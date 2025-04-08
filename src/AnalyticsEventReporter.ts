@@ -79,12 +79,12 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
     }
 
     /** If pageUrl is undefined, default to document.URL */
-    if(finalPayload.pageUrl === undefined) {
+    if (finalPayload.pageUrl === undefined) {
       finalPayload.pageUrl = document.URL;
     }
 
     /** If referrerUrl is undefined, default to document.referrer */
-    if(finalPayload.referrerUrl === undefined) {
+    if (finalPayload.referrerUrl === undefined) {
       finalPayload.referrerUrl = document.referrer;
     }
 
