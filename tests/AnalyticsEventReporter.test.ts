@@ -165,8 +165,8 @@ describe('Test report function', () => {
             ANALYTICS: '1.0.3'
           },
           destinationUrl: 'https://google.com',
-          pageUrl: "http://localhost/",
-          referrerUrl: "",
+          pageUrl: 'http://localhost/',
+          referrerUrl: '',
           count: 5,
           sessionId: undefined
         },
@@ -224,7 +224,7 @@ describe('Test report function', () => {
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
-        pageUrl: "http://localhost/",
+        pageUrl: 'http://localhost/',
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULID1234'
@@ -282,7 +282,7 @@ describe('Test report function', () => {
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
-        pageUrl: "http://localhost/",
+        pageUrl: 'http://localhost/',
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULIDORIGINAL'
@@ -337,7 +337,7 @@ describe('Test report function', () => {
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
-        pageUrl: "http://localhost/",
+        pageUrl: 'http://localhost/',
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: undefined
@@ -477,8 +477,8 @@ describe('Test report function', () => {
         clientSdk: {
           ANALYTICS: '1.0.3'
         },
-        pageUrl: "http://localhost/",
-        referrerUrl: "",
+        pageUrl: 'http://localhost/',
+        referrerUrl: '',
         sessionId: undefined
       },
       config
