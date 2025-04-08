@@ -78,6 +78,16 @@ export class AnalyticsEventReporter implements AnalyticsEventService {
       });
     }
 
+    /** If pageUrl is undefined, default to document.URL */
+    if(finalPayload.pageUrl === undefined) {
+      finalPayload.pageUrl = document.URL;
+    }
+
+    /** If referrerUrl is undefined, default to document.referrer */
+    if(finalPayload.referrerUrl === undefined) {
+      finalPayload.referrerUrl = document.referrer;
+    }
+
     /** If useBeacon returns false, use postWithFetch.
       If result is successful, return result json.
       If request fails, return errors. */
