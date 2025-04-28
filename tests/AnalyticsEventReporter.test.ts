@@ -118,7 +118,7 @@ describe('Test report function', () => {
         action: 'C_CUSTOM_ACTION',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2'
+          ANALYTICS: '1.1.0'
         },
         referrerUrl: 'https://yext.com',
         destinationUrl: 'https://google.com',
@@ -162,15 +162,77 @@ describe('Test report function', () => {
           action: 'c_lowercase_custom_action',
           authorization: 'Bearer bearerToken',
           clientSdk: {
-            ANALYTICS: '1.0.2'
+            ANALYTICS: '1.1.0'
           },
           destinationUrl: 'https://google.com',
-          count: 5
+          pageUrl: 'http://localhost/',
+          count: 5,
+          sessionId: undefined
         },
         config
       );
     }
   );
+
+  it('should default pageUrl and referrerUrl to document values if undefined', async () => {
+    mockPostWithFetch.mockResolvedValue({ id: 2222 });
+    mockUseBeacon.mockReturnValueOnce(false);
+
+    const originalURL = document.URL;
+    const originalReferrer = document.referrer;
+
+    Object.defineProperty(document, 'URL', {
+      value: 'https://default-url.com',
+      configurable: true
+    });
+
+    Object.defineProperty(document, 'referrer', {
+      value: 'https://referrer-site.com',
+      configurable: true
+    });
+
+    const config: AnalyticsConfig = {
+      authorizationType: 'bearer',
+      authorization: 'bearerToken',
+      forceFetch: true
+    };
+
+    const reporter = new AnalyticsEventReporter(config).with({
+      action: 'ADD_TO_CART',
+      count: 1
+    });
+
+    const res = await reporter.report({});
+
+    expect(res).toEqual({ id: 2222 });
+
+    expect(mockPostWithFetch).toHaveBeenCalledWith(
+      'https://us.yextevents.com/accounts/me/events',
+      expect.objectContaining({
+        action: 'ADD_TO_CART',
+        pageUrl: 'https://default-url.com',
+        referrerUrl: 'https://referrer-site.com',
+        authorization: 'Bearer bearerToken',
+        clientSdk: {
+          ANALYTICS: '1.1.0'
+        },
+        count: 1,
+        sessionId: undefined
+      }),
+      config
+    );
+
+    // Reset to not affect other tests
+    Object.defineProperty(document, 'URL', {
+      value: originalURL,
+      configurable: true
+    });
+
+    Object.defineProperty(document, 'referrer', {
+      value: originalReferrer,
+      configurable: true
+    });
+  });
 
   it('call post with correct fields, report return error json if post returns an error', async () => {
     const mockSetupSessionId = getOrSetupSessionId as jest.MockedFunction<
@@ -217,10 +279,11 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'Bearer bearerToken',
         clientSdk: {
-          ANALYTICS: '1.0.2',
+          ANALYTICS: '1.1.0',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
+        pageUrl: 'http://localhost/',
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULID1234'
@@ -274,10 +337,11 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'Bearer bearerToken',
         clientSdk: {
-          ANALYTICS: '1.0.2',
+          ANALYTICS: '1.1.0',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
+        pageUrl: 'http://localhost/',
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: 'ULIDORIGINAL'
@@ -328,10 +392,11 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'Bearer bearerToken',
         clientSdk: {
-          ANALYTICS: '1.0.2',
+          ANALYTICS: '1.1.0',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
+        pageUrl: 'http://localhost/',
         referrerUrl: 'https://yext.com',
         count: 5,
         sessionId: undefined
@@ -378,7 +443,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2'
+          ANALYTICS: '1.1.0'
         },
         referrerUrl: 'https://yext.com',
         count: 5
@@ -426,7 +491,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2'
+          ANALYTICS: '1.1.0'
         },
         referrerUrl: 'https://yext.com',
         count: 5
@@ -469,8 +534,10 @@ describe('Test report function', () => {
       {
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2'
-        }
+          ANALYTICS: '1.1.0'
+        },
+        pageUrl: 'http://localhost/',
+        sessionId: undefined
       },
       config
     );
@@ -508,7 +575,7 @@ describe('Test report function', () => {
       {
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2'
+          ANALYTICS: '1.1.0'
         }
       },
       config
@@ -551,7 +618,7 @@ describe('Test report function', () => {
         action: 'ADD_TO_CART',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2'
+          ANALYTICS: '1.1.0'
         },
         referrerUrl: 'https://yext.com',
         count: 5
@@ -582,7 +649,7 @@ describe('Test report function', () => {
         action: 'APPLY',
         authorization: 'KEY validKey',
         clientSdk: {
-          ANALYTICS: '1.0.2',
+          ANALYTICS: '1.1.0',
           chat: '1.0.1.0'
         },
         destinationUrl: 'https://google.com',
@@ -710,7 +777,7 @@ describe('Test report function', () => {
           responseId: 'responseId'
         },
         clientSdk: {
-          ANALYTICS: '1.0.2',
+          ANALYTICS: '1.1.0',
           chat: '1.0.0'
         },
         count: 5,
