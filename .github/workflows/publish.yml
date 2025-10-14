@@ -6,6 +6,9 @@ on:
       - "v*"
   workflow_dispatch: # allow manual run
 
+permissions:
+  id-token: write # Required for OIDC
+
 jobs:
   test:
     runs-on: ubuntu-latest
