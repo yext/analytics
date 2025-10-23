@@ -1,5 +1,17 @@
 The following NPM package may be included in this product:
 
+ - @esbuild/linux-x64@0.18.20
+
+This package contains the following license and notice below:
+
+# esbuild
+
+This is the Linux 64-bit binary for esbuild, a JavaScript bundler and minifier. See https://github.com/evanw/esbuild for details.
+
+-----------
+
+The following NPM package may be included in this product:
+
  - layerr@2.0.0
 
 This package contains the following license and notice below:
